@@ -1,0 +1,362 @@
+[
+{
+"key": "sun2023gptscan",
+"system": "GPTScan",
+"title": "GPTScan: Detecting Logic Vulnerabilities in Smart Contracts by Combining GPT wit"
+},
+{
+"key": "liu2023latte",
+"system": "LATTE",
+"title": "Harnessing the Power of LLM to Support Binary Taint Analysis"
+},
+{
+"key": "zhou2024vulmaster",
+"system": "VulMaster",
+"title": "Multi-LLM Collaboration + Data-Centric Innovation = 2x Better Vulnerability Repa"
+},
+{
+"key": "sun2024llm4vuln",
+"system": "LLM4Vuln",
+"title": "LLM4Vuln: A Unified Evaluation Framework for Decoupling and Enhancing LLMs' Vuln"
+},
+{
+"key": "zhang2024acfix",
+"system": "ACFix",
+"title": "ACFIX: Guiding LLMs with Mined Common RBAC Practices for Context-Aware Repair of"
+},
+{
+"key": "wen2024scale",
+"system": "SCALE",
+"title": "SCALE: Constructing Structured Natural Language Comment Trees for Software Vulne"
+},
+{
+"key": "wang2024spvr",
+"system": "SPVR",
+"title": "SPVR: syntax-to-prompt vulnerability repair based on large language models"
+},
+{
+"key": "li2024iris",
+"system": "IRIS",
+"title": "IRIS: LLM-Assisted Static Analysis for Detecting Security Vulnerabilities"
+},
+{
+"key": "yang2024msivd",
+"system": "MSIVD",
+"title": "Security Vulnerability Detection with Multitask Self-Instructed Fine-Tuning of L"
+},
+{
+"key": "du2024vulrag",
+"system": "Vul-RAG",
+"title": "Vul-RAG: Enhancing LLM-based Vulnerability Detection via Knowledge-level RAG"
+},
+{
+"key": "mahyari2024mahyari24",
+"system": "Mahyari24",
+"title": "Harnessing the Power of LLMs in Source Code Vulnerability Detection"
+},
+{
+"key": "wang2024contracttink",
+"system": "ContractTinker",
+"title": "ContractTinker: LLM-Empowered Vulnerability Repair for Real-World Smart Contract"
+},
+{
+"key": "khan2024khan24",
+"system": "Khan24",
+"title": "Code Vulnerability Repair with Large Language Model using Context-Aware Prompt T"
+},
+{
+"key": "chen2024llm4fpm",
+"system": "LLM4FPM",
+"title": "Utilizing Precise and Complete Code Context to Guide LLM in Automatic False Posi"
+},
+{
+"key": "sheng2024lprotector",
+"system": "LProtector",
+"title": "LProtector: An LLM-driven Vulnerability Detection System"
+},
+{
+"key": "feng2025cgptuning",
+"system": "CGP-Tuning",
+"title": "CGP-Tuning: Structure-Aware Soft Prompt Tuning for Code Vulnerability Detection"
+},
+{
+"key": "guo2025repoaudit",
+"system": "RepoAudit",
+"title": "RepoAudit: An Autonomous LLM-Agent for Repository-Level Code Auditing"
+},
+{
+"key": "lin2025lin25",
+"system": "Lin25",
+"title": "Evaluating Large Language Models in Vulnerability Detection Under Variable Conte"
+},
+{
+"key": "yildiz2025jitvul",
+"system": "JitVul",
+"title": "Benchmarking LLMs and LLM-based Agents in Practical Vulnerability Detection for "
+},
+{
+"key": "li2025mocq",
+"system": "MoCQ",
+"title": "Neuro-symbolic Static Analysis with LLM-generated Vulnerability Patterns"
+},
+{
+"key": "yang2025pacvd",
+"system": "PacVD",
+"title": "Context-Enhanced Vulnerability Detection Based on Large Language Model"
+},
+{
+"key": "jin2025llmbscvm",
+"system": "LLM-BSCVM",
+"title": "LLM-BSCVM: An LLM-Based Blockchain Smart Contract Vulnerability Management Frame"
+},
+{
+"key": "ahmed2025secvuleval",
+"system": "SecVulEval",
+"title": "SecVulEval: Benchmarking LLMs for Real-World C/C++ Vulnerability Detection"
+},
+{
+"key": "hussain2025vulbinllm",
+"system": "VulBinLLM",
+"title": "VulBinLLM: LLM-powered Vulnerability Detection for Stripped Binaries"
+},
+{
+"key": "du2025llm4pfa",
+"system": "LLM4PFA",
+"title": "Minimizing False Positives in Static Bug Detection via LLM-Enhanced Path Feasibi"
+},
+{
+"key": "antal2025antal25",
+"system": "Antal25",
+"title": "Identifying Helpful Context for LLM-based Vulnerability Repair: A Preliminary St"
+},
+{
+"key": "fu2025cognixshield",
+"system": "CognixShield",
+"title": "CognixShield: PoV-Guided Vulnerable API Usage Detection in Large Codebases via L"
+},
+{
+"key": "cheng2025ltfix",
+"system": "LTFix",
+"title": "Tracing Errors, Constructing Fixes: Repository-Level Memory Error Repair via Typ"
+},
+{
+"key": "lekssays2025llmxcpg",
+"system": "LLMxCPG",
+"title": "LLMxCPG: Context-Aware Vulnerability Detection Through Code Property Graph-Guide"
+},
+{
+"key": "long2025veriloglavd",
+"system": "VerilogLAVD",
+"title": "VerilogLAVD: LLM-Aided Rule Generation for Vulnerability Detection in Verilog"
+},
+{
+"key": "li2025vulsolver",
+"system": "VULSOLVER",
+"title": "VULSOLVER: Vulnerability Detection via LLM-Driven Constraint Solving"
+},
+{
+"key": "agrawal2025sastgenius",
+"system": "SAST-Genius",
+"title": "LLM-Driven SAST-Genius: A Hybrid Static Analysis Framework for Comprehensive and"
+},
+{
+"key": "gajjar2025securefixage",
+"system": "SecureFixAgent",
+"title": "SecureFixAgent: A Hybrid LLM Agent for Automated Python Static Vulnerability Rep"
+},
+{
+"key": "iranmanesh2025zerofalse",
+"system": "ZeroFalse",
+"title": "ZeroFalse: Improving Precision in Static Analysis with LLMs"
+},
+{
+"key": "huang2025paravul",
+"system": "ParaVul",
+"title": "ParaVul: A Parallel Large Language Model and Retrieval-Augmented Framework for S"
+},
+{
+"key": "ni2025ni25",
+"system": "Ni25",
+"title": "Learning to Triage Vulnerability Reports from Program Analysis: An Empirical Stu"
+},
+{
+"key": "lin2025adataint",
+"system": "AdaTaint",
+"title": "LLM-Driven Adaptive Source-Sink Identification and False Positive Mitigation for"
+},
+{
+"key": "li2025vulpo",
+"system": "VULPO",
+"title": "VULPO: Context-Aware Vulnerability Detection via On-Policy LLM Optimization"
+},
+{
+"key": "trad2025trad25",
+"system": "Trad25",
+"title": "Retrieval-Augmented Few-Shot Prompting Versus Fine-Tuning for Code Vulnerability"
+},
+{
+"key": "li2025ckgllm",
+"system": "CKG-LLM",
+"title": "CKG-LLM: LLM-Assisted Detection of Smart Contract Access Control Vulnerabilities"
+},
+{
+"key": "nie2025vulnllmr",
+"system": "VulnLLM-R",
+"title": "VulnLLM-R: Specialized Reasoning LLM with Agent Scaffold for Vulnerability Detec"
+},
+{
+"key": "li2025li25",
+"system": "Li25",
+"title": "A Systematic Study of Code Obfuscation Against LLM-based Vulnerability Detection"
+},
+{
+"key": "saju2026saju26",
+"system": "Saju26",
+"title": "An Empirical Evaluation of LLM-Based Approaches for Code Vulnerability Detection"
+},
+{
+"key": "ghebremichael2026semtaint",
+"system": "SemTaint",
+"title": "Multi-Agent Taint Specification Extraction for Vulnerability Detection"
+},
+{
+"key": "du2026du26",
+"system": "Du26",
+"title": "Reducing False Positives in Static Bug Detection with LLMs: An Empirical Study i"
+},
+{
+"key": "wu2026mulvul",
+"system": "MulVul",
+"title": "MulVul: Retrieval-augmented Multi-Agent Code Vulnerability Detection via Cross-M"
+},
+{
+"key": "li2026li26",
+"system": "Li26",
+"title": "LLM-based Vulnerability Detection at Project Scale: An Empirical Study"
+},
+{
+"key": "li2026cprvul",
+"system": "CPRVul",
+"title": "Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vul"
+},
+{
+"key": "meng2026vulnagentr2",
+"system": "VulnAgent-R2",
+"title": "VulnAgent-R2: Evidence-Calibrated Multi-Agent Auditing for Repository-Level Vuln"
+},
+{
+"key": "wang2026malskills",
+"system": "MalSkills",
+"title": "MalSkills: Detecting Malicious Skills in the Agentic Supply Chain via Neuro-symb"
+},
+{
+"key": "lira2026lira26",
+"system": "Lira26",
+"title": "Vulnerability Detection with Interprocedural Context in Multiple Languages: Asse"
+},
+{
+"key": "jamwal2026raven",
+"system": "RAVEN",
+"title": "RAVEN: Retrieval-Augmented Vulnerability Exploration Network for Memory Corrupti"
+},
+{
+"key": "ni2026llmvdjs",
+"system": "LLMVD.js",
+"title": "Taint-Style Vulnerability Detection and Confirmation for Node.js Packages Using "
+},
+{
+"key": "chen2026chen26",
+"system": "Chen26",
+"title": "How Code Representation Shapes False-Positive Dynamics in Cross-Language LLM Vul"
+},
+{
+"key": "ameen2026qasecclaw",
+"system": "QASecClaw",
+"title": "QASecClaw: A Multi-Agent LLM Approach for False Positive Reduction in Static App"
+},
+{
+"key": "zhang2026zhang26",
+"system": "Zhang26",
+"title": "Tailored Prompts, Targeted Protection: Vulnerability-Specific LLM Analysis for S"
+},
+{
+"key": "wang2026kumushi",
+"system": "Kumushi",
+"title": "Root-Cause-Driven Automated Vulnerability Repair"
+},
+{
+"key": "tang2026vultriage",
+"system": "VulTriage",
+"title": "VulTriage: Triple-Path Context Augmentation for LLM-Based Vulnerability Detectio"
+},
+{
+"key": "liu2026memrepair",
+"system": "MemRepair",
+"title": "MemRepair: Hierarchical Memory for Agentic Repository-Level Vulnerability Repair"
+},
+{
+"key": "kaniewski2026vulrag",
+"system": "Vul-RAG",
+"title": "Revisiting Vul-RAG: Reproducibility and Replicability of RAG-based Vulnerability"
+},
+{
+"key": "gadey2026raven",
+"system": "RAVEN",
+"title": "RAVEN: Agentic RAG for Automated Vulnerability Repair"
+},
+{
+"key": "stoltman2026repbench",
+"system": "RepBench",
+"title": "Representation Matters: An Empirical Study of Program Representations for LLM Vu"
+},
+{
+"key": "armillotta2026antaeus",
+"system": "Antaeus",
+"title": "Antaeus: Hunting Repository-Level Logic Vulnerabilities via Context-Grounded LLM"
+},
+{
+"key": "zhao2026leanguard",
+"system": "LeanGuard",
+"title": "Neuro-Symbolic Reasoning for Vulnerability Detection"
+},
+{
+"key": "sun2026drea",
+"system": "DREA",
+"title": "DREA: Decoupled Reasoning and Exploration Agents for Repository-Level Vulnerabil"
+},
+{
+"key": "yang2026yang26",
+"system": "Yang26",
+"title": "Ethereum NFT Smart Contracts: Knowledge-Guided Vulnerability Detection with LLM "
+},
+{
+"key": "fu2026agenticrepai",
+"system": "AgenticRepair",
+"title": "AgenticRepair: Multi-Faceted Program Context Engineering for Agentic Vulnerabili"
+},
+{
+"key": "yun2026clear",
+"system": "CLEAR",
+"title": "CLEAR: Causal Context-Based Agentic Reasoning for Vulnerability Detection"
+},
+{
+"key": "petersen2015guidelines",
+"system": "METHOD",
+"title": "Petersen mapping guidelines"
+},
+{
+"key": "petersen2008systematic",
+"system": "METHOD",
+"title": "Petersen mapping study"
+},
+{
+"key": "kitchenham2007guidelines",
+"system": "METHOD",
+"title": "Kitchenham SLR guidelines"
+},
+{
+"key": "wieringa2006requirements",
+"system": "METHOD",
+"title": "Wieringa research-type classification"
+}
+]

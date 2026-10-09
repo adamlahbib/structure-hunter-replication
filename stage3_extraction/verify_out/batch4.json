@@ -1,0 +1,375 @@
+[
+{
+"arxiv_id": "2403.19096",
+"numbers": [
+{
+"metric": "F1 on Reveal",
+"value": "62.85% (SCALE) vs 49.10% best baseline (CodeBERT)",
+"verdict": "WRONG",
+"correct_value_if_wrong": "62.85% (SCALE) vs 56.04% best baseline (UniXcoder)",
+"note": "Both raw numbers (62.85%, 49.10%) do appear in Table 3, but CodeBERT is NOT the best baseline on Reveal - it is the WORST of the pretrained baselines (Devign 33.91, ReVeal 41.62, CodeBERT 49.10, CodeT5 52.78, EPVD 55.22, UniXcoder 56.04). UniXcoder (56.04%) is the actual best baseline."
+},
+{
+"metric": "F1 on FFMPeg+Qemu",
+"value": "65.11% (SCALE) vs 63.24% (CodeT5)",
+"verdict": "CONFIRMED",
+"note": "CodeT5 (63.24%) is indeed the best baseline on FFMPeg+Qemu; matches Table 3 exactly."
+},
+{
+"metric": "CodeBERT F1 gain from SCT-enhanced representation",
+"value": "+10.87% on FFMPeg+Qemu",
+"verdict": "CONFIRMED",
+"note": "Table 4/RQ2: CodeBERT F1 54.07% -> 64.94% = +10.87%, matches exactly."
+},
+{
+"metric": "structure_gain",
+"value": "SCALE improves F1 by 1.17-13.47 points over best pre-trained/LLM baseline across three datasets (Table 3)",
+"verdict": "CONFIRMED",
+"note": "Paper's own RQ1 text states verbatim: 'improvements of 2.96%, 13.47%, and 1.17% ... on the FFMPeg+Qemu, Reveal, and SVulD datasets'. The extracted range's endpoints (1.17 and 13.47) match exactly; these are the paper's own reported relative-improvement percentages (not simple absolute point-differences from Table 3 raw values, which would give different numbers like 1.87/6.81/1.17)."
+}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "Key_number 'F1 on Reveal' mislabels CodeBERT (49.10%, actually the worst baseline on Reveal) as the 'best baseline' - the true best baseline on Reveal is UniXcoder at 56.04%. All other numbers, structure_gain, facets, and stop_detail are confirmed accurate; Table 6 RQ4 ablation (Without SCTC/SER) is a genuine same-model representation-only ablation supporting the evaluation label."
+},
+{
+"arxiv_id": "2409.09661",
+"numbers": [
+{
+"metric": "valid patches fixing vulnerability",
+"value": "23/48 (48%)",
+"verdict": "CONFIRMED",
+"note": "§4.2.2 confirms 23/48 = 47.9% ≈ 48% valid patches; also 10/48 (21%) require minor modification."
+},
+{
+"metric": "top-3 strategy success rate",
+"value": "91.6%",
+"verdict": "CONFIRMED"
+},
+{
+"metric": "single-strategy (GPT-3.5) success rate",
+"value": "70.4%",
+"verdict": "CONFIRMED"
+}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "All three key numbers confirmed exactly against §4.2.1-4.2.2. Paper contains no baseline comparisons and no CDG-ablation, confirming both structure_gain='none reported' and evaluation='demonstrated'. Architecture description (CDG pruning via Slither §2.2, CoT §2.3, multi-agent debate + compilation/GPT-4 validation §2.4/§4.2.2) matches verbatim."
+},
+{
+"arxiv_id": "2502.00064",
+"numbers": [
+{
+"metric": "benchmark scale",
+"value": "74 vulnerabilities / 140 Java files / 25 CWE types",
+"verdict": "CONFIRMED",
+"note": "Matches paper text verbatim: '140 Java files corresponding to 74 unique vulnerabilities' across 25 CWE types."
+},
+{
+"metric": "models robust to context-length (both null hypotheses accepted)",
+"value": "GPT-4; Mistral-7B and Mixtral-8x7B at 32,768-token context window",
+"verdict": "CONFIRMED",
+"note": "GPT-4 quoted as consistently accepting both null hypotheses; Mistral-7B and Mixtral-8x7B both show both hypotheses accepted specifically at the 32,768-token context window in Table II."
+}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "Both key numbers confirmed exactly. Stop_detail confirmed: no grounding mechanism, all files intentionally vulnerable ('All files contain vulnerabilities'), manual Correct/Incorrect/Irrelevant classification with no inter-annotator agreement reported."
+},
+{
+"arxiv_id": "2505.22010",
+"numbers": [
+{
+"metric": "Accuracy CWE-134",
+"value": "99.74% (VulBinLLM) vs 93.88% (LATTE)",
+"verdict": "CONFIRMED"
+},
+{
+"metric": "F1 CWE-190",
+"value": "98.99% (VulBinLLM) vs 62.05% (LATTE)",
+"verdict": "CONFIRMED"
+},
+{
+"metric": "Overall accuracy gain vs LATTE",
+"value": "~10% increase",
+"verdict": "CONFIRMED",
+"note": "Matches abstract's 'approximately 10% increased accuracy'; independent average-across-CWEs recomputation gives ~11%, consistent with the ~10% approximation."
+},
+{
+"metric": "structure_gain",
+"value": "~10% average accuracy gain and up to ~37-point F1 gain (CWE-190) over LATTE baseline on Juliet binaries (Table 3); no controlled representation-only ablation is reported",
+"verdict": "CONFIRMED",
+"note": "98.99-62.05=36.94≈37 points, confirmed; paper compares only against LATTE as an external baseline system, no internal representation ablation exists, confirmed."
+}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "All numbers confirmed exactly against Table 3. Architecture (GPT-4o annotation of Ghidra pseudocode, memory-management agent with SQL store and function queue) confirmed. Comparison is only vs. LATTE (different baseline system, no internal ablation), correctly supporting evaluation='ablated_measured' rather than representation_only_ablation."
+},
+{
+"arxiv_id": "2508.13092",
+"numbers": [
+{
+"metric": "F1 (GPT-4o + VerilogLAVD)",
+"value": "0.57 vs 0.25 (LLM+Knowledge baseline)",
+"verdict": "CONFIRMED"
+},
+{
+"metric": "F1 (DeepSeek-V3 + VerilogLAVD)",
+"value": "0.50 vs 0.34 (LLM+Knowledge baseline)",
+"verdict": "CONFIRMED"
+},
+{
+"metric": "Illegal rule-usage rate with validation FSM",
+"value": "40.87% -> 10.10% (87.10% reduction)",
+"verdict": "CONFIRMED",
+"note": "Table 3 confirms; breakdown also given: illegal traversal rules 27.04%->3.49%, illegal parameters 13.83%->6.61%."
+},
+{
+"metric": "structure_gain",
+"value": "F1 improvement of 0.32 (GPT-4o) and 0.16 (DeepSeek-V3) over LLM+Knowledge baseline, same backbone LLMs held fixed",
+"verdict": "CONFIRMED",
+"note": "0.57-0.25=0.32 and 0.50-0.34=0.16, both confirmed. Critically verified that 'LLM+Knowledge' is an ablation variant of VerilogLAVD itself (same LLM, same CWE inputs, just without VeriPG structure/rule-traversal) rather than an external tool - this genuinely satisfies the strict same-model/same-budget representation_only_ablation criterion."
+}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "All numbers confirmed exactly against Table 2/3. Explicitly verified that LLM-only/LLM+Knowledge/VerilogLAVD are three controlled arms using the SAME underlying LLMs (GPT-4o, DeepSeek-V3), validating the strict representation_only_ablation classification. Rule-generation and validation-FSM architecture description confirmed."
+},
+{
+"arxiv_id": "2510.20739",
+"numbers": [
+{
+"metric": "best LLM (full fine-tune) F1",
+"value": "0.915",
+"verdict": "CONFIRMED",
+"note": "DS-Distill-Qwen-7B Full FT = 0.9153, rounds to 0.915."
+},
+{
+"metric": "GNN F1",
+"value": "0.886",
+"verdict": "CONFIRMED"
+},
+{
+"metric": "LLM+GNN hybrid F1",
+"value": "0.902",
+"verdict": "CONFIRMED",
+"note": "Matches Qwen2.5-Coder-7B (Full+GNN FT) row in the results table. Caveat: other hybrid model configurations in the paper's dedicated hybrid-ablation table range widely (0.551-0.912 depending on base LLM), so 0.902 is one specific hybrid configuration among several, not a single canonical 'the hybrid' result - but it is a real, correctly-cited value."
+},
+{
+"metric": "structure_gain",
+"value": "text-only LLM (0.915) outperforms GNN-only (0.886) and LLM+GNN hybrid (0.902)",
+"verdict": "CONFIRMED",
+"note": "Same three numbers as above, all confirmed in the same results table."
+}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "All numbers confirmed. Correctly classified evaluation='ablated_measured' rather than representation_only_ablation since LLM, GNN, and hybrid are different model architectures/systems in the headline comparison; note the paper does separately report a stricter same-base-LLM ablation (with/without GNN embedding concatenation) in a secondary table, but that is not what's cited here. Hybrid architecture description (concatenation, no attention/alignment, end-to-end backprop) confirmed verbatim in §3.4."
+},
+{
+"arxiv_id": "2512.16538",
+"numbers": [
+{
+"metric": "virtualization-obfuscation attack success rate (downgrade), C/C++ datasets",
+"value": "~80%",
+"verdict": "CONFIRMED",
+"note": "Finding #2 box states verbatim: 'virtualization-based obfuscation has the most significant impact ... achieving an attack success rate of up to approximately 80% on the C/C++ datasets.'"
+},
+{
+"metric": "mixed-programming-language obfuscation attack success rate",
+"value": "~75%",
+"verdict": "CONFIRMED",
+"note": "Finding #2: 'mixed-programming-language obfuscation, with an attack success rate of around ~75%.'"
+},
+{
+"metric": "detection success-rate gap, existence-only vs. type+location scoring criterion",
+"value": "~40% average increase under existence-only vs. type/location criterion",
+"verdict": "CONFIRMED",
+"note": "§4.2.3 states verbatim: 'the detection success rate increases by roughly 40% on average compared with our type evaluation (cf. Table 6)', sourced from Table 13 (existence-eval) vs Table 6 (type-eval) as cited."
+},
+{
+"metric": "structure_gain",
+"value": "virtualization obfuscation up to ~80% attack success on C/C++; QWEN-14B on PrimeVul jumps from 0.39 to 0.80 after L1",
+"verdict": "CONFIRMED",
+"note": "Text confirmed verbatim: 'on the PrimeVul dataset the QWEN-14B model's detection success jumps from 0.39 on the original code to 0.80 after applying L1 obfuscation.'"
+}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "All numbers confirmed exactly via full-text PDF read (Finding #2 box, RQ3/Table 13 vs Table 6 comparison, QWEN-14B example all verbatim matches). stop_detail's citation to 'Section 4.1 Evaluation Metrics' correctly located (the 1-4 scoring rubric appears under the Experiment Setup section, before the Obfuscation Technique subsection). Same-model/same-prompt raw-vs-obfuscated-text comparison reasonably supports representation_only_ablation."
+},
+{
+"arxiv_id": "2602.06751",
+"numbers": [
+{
+"metric": "PrimeVul accuracy, function-only vs full CPRVul",
+"value": "56.65% -> 67.78% (+11.13pp)",
+"verdict": "CONFIRMED",
+"note": "Values correct (Table 3), but citation 'Tables 1 and 8' is wrong - the correct tables are Table 1 (56.65% UniXcoder baseline) and Table 3 (67.78% Qwen2.5-32B CPRVul); Table 8 covers a different comparison (function-body-only vs Phase-I-only context). Additionally, this is NOT a same-model comparison: 56.65% is UniXcoder (encoder-only classifier) and 67.78% is Qwen2.5-32B (fine-tuned generative LLM with reasoning traces) - fundamentally different architectures/training regimes, i.e. a cross-system SOTA comparison, not a controlled ablation."
+},
+{
+"metric": "Raw-context degradation (UniXcoder, PrimeVul)",
+"value": "56.65% -> 54.22% when raw unstructured context appended",
+"verdict": "CONFIRMED",
+"note": "Confirmed in Table 1; this one IS a genuine same-model (UniXcoder) controlled comparison."
+},
+{
+"metric": "Reasoning-phase (Phase II) contribution",
+"value": "-15.24pp accuracy when removed",
+"verdict": "CONFIRMED",
+"note": "Value correct (67.78%->52.54%), but the citation 'Table 8' is wrong - this ablation is in Table 7 ('Ablation study results for model variants ... using Qwen2.5-Coder-32B'), not Table 8. This IS a genuine same-model (Qwen2.5-Coder-32B) controlled comparison."
+},
+{
+"metric": "structure_gain",
+"value": "56.65%->54.22% degradation vs 67.78% (+11.13pp) improvement, holding 1,024-token context window and fine-tuning budget (5 epochs) fixed across arms",
+"verdict": "WRONG",
+"correct_value_if_wrong": "Numeric deltas are correct, but 'holding ... fine-tuning budget (5 epochs) fixed across arms' is not substantiated for the headline 56.65%->67.78% comparison.",
+"note": "The paper explicitly states the '5 epochs' fine-tuning detail applies only to Qwen2.5-Coder's training; UniXcoder's own fine-tuning/training regime is not documented in this paper (described only as 'an existing baseline evaluated on the datasets'). Since UniXcoder and Qwen2.5-32B are different architectures with undocumented-vs-documented training budgets respectively, the claim that budget was 'held fixed across arms' for this specific comparison is not supported."
+}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": false,
+"evaluation_suggested": "ablated_measured",
+"stop_detail_fair": true,
+"note": "MOST IMPORTANT: the headline 'representation-only ablation' number (56.65%->67.78%, +11.13pp) actually compares TWO DIFFERENT MODEL ARCHITECTURES (UniXcoder encoder-classifier vs Qwen2.5-32B fine-tuned generative LLM with reasoning), not the same model with representation varied - this is a cross-system SOTA comparison, which per the strict criterion should be 'ablated_measured', not 'representation_only_ablation'. The paper DOES separately contain two genuine same-model ablations (Table 1: UniXcoder ±raw-context; Table 7: Qwen2.5-Coder-32B ±Phase-II) which would individually qualify, but the extraction's chosen headline number and structure_gain framing rest on the cross-model comparison. Also both 'Table 8' citations are incorrect (should be Table 3 and Table 7 respectively)."
+},
+{
+"arxiv_id": "2604.27714",
+"numbers": [
+{
+"metric": "FPR escalation with text fine-tuning (Qwen3-8B, OWASP Java)",
+"value": "0.763 zero-shot -> 0.866 pilot -> 1.000 full-scale, while F1 stays 0.637-0.688",
+"verdict": "CONFIRMED"
+},
+{
+"metric": "FPR reduction switching text-trained model's input to AST, no retraining (Qwen3-8B)",
+"value": "0.866 -> 0.583 (Delta -0.282), F1 0.688 -> 0.637",
+"verdict": "CONFIRMED",
+"note": "Confirmed as a same-model-weights, inference-time-only representation swap ('427 of 1,147 false positives (37.2%) revert to true negatives under AST input alone' with identical parameters)."
+},
+{
+"metric": "Per-CWE heterogeneity (CWE-330)",
+"value": "FPR reduction of Delta=-0.527 under text->AST switch",
+"verdict": "CONFIRMED"
+},
+{
+"metric": "structure_gain",
+"value": "Switching inference-time input from raw text to pruned AST cuts FPR by 0.282-0.527 depending on CWE, F1 cost 0.688->0.637, same model weights and training budget",
+"verdict": "CONFIRMED"
+}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "All numbers confirmed exactly (FPR escalation, cross-representation probe delta, per-CWE CWE-330 delta). This is a textbook same-weights/no-retraining representation swap, strongly supporting representation_only_ablation. stop_detail's claim of 'no deployable technique' is fair: the paper's 'pre-deployment consistency gate' is explicitly presented as a conceptual proposal in the Conclusion, not an implemented tool ('could be explored as a post-hoc alert-filtering layer')."
+},
+{
+"arxiv_id": "2606.04739",
+"numbers": [
+{
+"metric": "pairwise accuracy, Qwen2.5-Coder-32B (reproduction vs original)",
+"value": "identical pairwise accuracy; balanced recall/precision differ by <=2pp",
+"verdict": "CONFIRMED",
+"note": "Pairwise accuracy identical at 0.26; balanced recall identical at 0.59; balanced precision differs by 2pp (0.61->0.59)."
+},
+{
+"metric": "pairwise accuracy, DeepSeek-Coder-V2 (reproduction vs original)",
+"value": "0.30 -> 0.22 (-8pp); 21/586 pairs failed (CUDA OOM)",
+"verdict": "CONFIRMED"
+},
+{
+"metric": "performance plateau across all evaluated open-weight models",
+"value": "~0.30 pairwise accuracy (best reasoning model 0.29)",
+"verdict": "CONFIRMED",
+"note": "Best pairwise accuracy 0.29 (QwQ-32B and DeepSeek-R1-Distill-Qwen-32B), only 4pp above random baseline of 0.25; matches ~0.30 plateau characterization."
+}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "All three numbers confirmed exactly against RQ1 (Table 3) and RQ4 (Table 5). Retrieval mechanism (BM25 + re-ranking on LLM-extracted functional semantics, sequential reasoning over each retrieved item) confirmed verbatim in §3. structure_gain correctly notes representation is held fixed across model comparisons (no representation variation occurs in this study)."
+},
+{
+"arxiv_id": "2607.21983",
+"numbers": [
+{
+"metric": "positive-label rate, slices+knowledge",
+"value": "97.1% (437/450)",
+"verdict": "CONFIRMED",
+"note": "Exact: 437/450 = 97.11%."
+},
+{
+"metric": "positive-label rate, slices-knowledge",
+"value": "87.11% (392/450)",
+"verdict": "CONFIRMED"
+},
+{
+"metric": "positive-label rate, complete contracts-knowledge",
+"value": "73.78% (332/450)",
+"verdict": "CONFIRMED"
+},
+{
+"metric": "structure_gain",
+"value": "73.78% -> 87.11% (+13.33pp) from slicing; -> 97.11% (+10.0pp) from adding knowledge base, same DeepSeek model/config held constant across all three arms",
+"verdict": "WRONG",
+"correct_value_if_wrong": "The percentage-point deltas (+13.33pp, +10.0pp) are correct, but 'same DeepSeek model/config held constant across all three arms' is not substantiated.",
+"note": "The paper explicitly discloses as a limitation that 'the exact DeepSeek model identifier, decoding temperature, token limit, API version, retry policy, and complete knowledge-base text were not recorded, which limits reproducibility' - so constancy of configuration across arms cannot be confirmed. Additionally, the 'complete contracts' condition necessarily uses far more input tokens than the sliced conditions, so the context/token budget is clearly NOT held equal across arms."
+}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": false,
+"evaluation_suggested": "ablated_measured",
+"stop_detail_fair": true,
+"note": "MOST IMPORTANT: evaluation should be 'ablated_measured', not 'representation_only_ablation' - the paper does not confirm the same model/config was used across the three arms (authors admit key settings 'were not recorded', a disclosed reproducibility gap) AND the context/token budget clearly differs between the complete-contract condition (much longer inputs) and the sliced conditions, violating the strict same-model/same-context-budget requirement for representation_only_ablation. All three percentage numbers (97.11%, 87.11%, 73.78%) are exact matches to Table 4. Slicing/knowledge-base/rejection-rule architecture description (Algorithm 1, Prompt 1, regex-based backward/forward balanced-brace slicing, closed label set, 'Return None' rule) confirmed verbatim."
+}
+]

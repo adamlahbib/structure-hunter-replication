@@ -1,0 +1,152 @@
+[
+{
+"id": "2403.06838",
+"title": "ACFIX: Guiding LLMs with Mined Common RBAC Practices for Context-Aware Repair of Access Control Vulnerabilities in Smart Contracts",
+"year": 2024,
+"abstract": "Smart contracts are susceptible to various security issues, among which access control (AC) vulnerabilities are particularly critical. While existing research has proposed multiple detection tools, the automatic and appropriate repair of AC vulnerabilities in smart contracts remains a challenge. Unlike commonly supported vulnerability types by existing repair tools, such as reentrancy, which are usually fixed by template-based approaches, the main obstacle of AC lies in identifying the appropriate roles or permissions amid a long list of non-AC-related source code to generate proper patch code, a task that demands human-level intelligence. Leveraging recent advancements in large language mod"
+},
+{
+"id": "2411.16561",
+"title": "EnStack: An Ensemble Stacking Framework of Large Language Models for Enhanced Vulnerability Detection in Source Code",
+"year": 2024,
+"abstract": "Automated detection of software vulnerabilities is critical for enhancing security, yet existing methods often struggle with the complexity and diversity of modern codebases. In this paper, we introduce EnStack, a novel ensemble stacking framework that enhances vulnerability detection using natural language processing (NLP) techniques. Our approach synergizes multiple pre-trained large language models (LLMs) specialized in code understanding CodeBERT for semantic analysis, GraphCodeBERT for structural representation, and UniXcoder for cross-modal capabilities. By fine-tuning these models on the Draper VDISC dataset and integrating their outputs through meta-classifiers such as Logistic Regre"
+},
+{
+"id": "2509.16275",
+"title": "SecureFixAgent: A Hybrid LLM Agent for Automated Python Static Vulnerability Repair",
+"year": 2025,
+"abstract": "Modern software development pipelines face growing challenges in securing large codebases with extensive dependencies. Static analysis tools like Bandit are effective at vulnerability detection but suffer from high false positives and lack repair capabilities. Large Language Models (LLMs), in contrast, can suggest fixes but often hallucinate changes and lack self-validation. We present SecureFixAgent, a hybrid repair framework integrating Bandit with lightweight local LLMs (<8B parameters) in an iterative detect-repair-validate loop. To improve precision, we apply parameter-efficient LoRA-based fine-tuning on a diverse, curated dataset spanning multiple Python project domains, mitigating dat"
+},
+{
+"id": "2405.19266",
+"title": "PediatricsGPT: Large Language Models as Chinese Medical Assistants for Pediatric Applications",
+"year": 2024,
+"abstract": "Developing intelligent pediatric consultation systems offers promising prospects for improving diagnostic efficiency, especially in China, where healthcare resources are scarce. Despite recent advances in Large Language Models (LLMs) for Chinese medicine, their performance is sub-optimal in pediatric applications due to inadequate instruction data and vulnerable training procedures. To address the above issues, this paper builds PedCorpus, a high-quality dataset of over 300,000 multi-task instructions from pediatric textbooks, guidelines, and knowledge graph resources to fulfil diverse diagnostic demands. Upon well-designed PedCorpus, we propose PediatricsGPT, the first Chinese pediatric LLM"
+},
+{
+"id": "2602.06751",
+"title": "Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vulnerability Detection",
+"year": 2026,
+"abstract": "Recent progress in ML and LLMs has improved vulnerability detection, and recent datasets have reduced label noise and unrelated code changes. However, most existing approaches still operate at the function level, where models are asked to predict whether a single function is vulnerable without inter-procedural context. In practice, vulnerability presence and root cause often depend on contextual information. Naively appending such context is not a reliable solution: real-world context is long, redundant, and noisy, and we find that unstructured context frequently degrades the performance of strong fine-tuned code models. We present CPRVul, a context-aware vulnerability detection framework th"
+},
+{
+"id": "2603.13384",
+"title": "VulnAgent-R2: Evidence-Calibrated Multi-Agent Auditing for Repository-Level Vulnerability Detection",
+"year": 2026,
+"abstract": "Software vulnerabilities often depend on cross-file data flow, build options, framework conventions, and runtime guards, so isolated function classifiers produce fragile and poorly calibrated warnings. Repository-level LLM agents can gather richer evidence, but prior variants under-specify reproducibility, verifier behavior, baseline fairness, and statistical uncertainty. We present VulnAgent-R2, a budget-aware agentic auditing framework with three additional reusable modules: counterfactual evidence reweighting, build-aware verification-plan synthesis, and a cost-risk Pareto scheduler. The system combines graph triage, bounded context optimization, role-specialized agents, sceptic counter-e"
+},
+{
+"id": "2608.03626",
+"title": "A Security-Oriented Lifecycle Model for Large Language Model Systems",
+"year": 2026,
+"abstract": "Large language models are being integrated into critical infrastructure and enterprise workflows at unprecedented scale,yet the lifecycle frameworks governing their development and operations were designed for operational efficiency rather than security analysis. As a result, security-relevant activities such as data provenance verification, artifact signing, agentic permission control, and decommissioning are often left implicit or assumed to receive due care. Governance frameworks, in turn, organise requirements around risk levels or management processes without clearly linking them to the lifecycle stages where they apply. This paper addresses both deficiencies. We propose a lifecycle mod"
+},
+{
+"id": "2401.13169",
+"title": "ReposVul: A Repository-Level High-Quality Vulnerability Dataset",
+"year": 2024,
+"abstract": "Open-Source Software (OSS) vulnerabilities bring great challenges to the software security and pose potential risks to our society. Enormous efforts have been devoted into automated vulnerability detection, among which deep learning (DL)-based approaches have proven to be the most effective. However, the current labeled data present the following limitations: (1) Tangled Patches: Developers may submit code changes unrelated to vulnerability fixes within patches, leading to tangled patches. (2) Lacking Inter-procedural Vulnerabilities: The existing vulnerability datasets typically contain function-level and file-level vulnerabilities, ignoring the relations between functions, thus rendering t"
+},
+{
+"id": "2512.04106",
+"title": "Retrieval-Augmented Few-Shot Prompting Versus Fine-Tuning for Code Vulnerability Detection",
+"year": 2025,
+"abstract": "Few-shot prompting has emerged as a practical alternative to fine-tuning for leveraging the capabilities of large language models (LLMs) in specialized tasks. However, its effectiveness depends heavily on the selection and quality of in-context examples, particularly in complex domains. In this work, we examine retrieval-augmented prompting as a strategy to improve few-shot performance in code vulnerability detection, where the goal is to identify one or more security-relevant weaknesses present in a given code snippet from a predefined set of vulnerability categories. We perform a systematic evaluation using the Gemini-1.5-Flash model across three approaches: (1) standard few-shot prompting"
+},
+{
+"id": "2606.22647",
+"title": "RAVEN: Agentic RAG for Automated Vulnerability Repair",
+"year": 2026,
+"abstract": "Automated vulnerability repair has emerged as a promising direction to mitigate the growing number of software vulnerabilities. Recent advances in Large Language Models (LLMs) have further accelerated research in automated repair. However, existing frameworks remain largely restricted to memory-related vulnerabilities and locally repairable vulnerability settings, leaving generalization to unseen vulnerability types underexplored. Their evaluations are often limited to a single programming language, and largely rely on proprietary models. In this paper, we propose RAVEN, a scalable, efficient and autonomous framework that integrates an agentic retrieval-augmented generation (RAG) pipeline wi"
+},
+{
+"id": "2512.24268",
+"title": "RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning in Retrieval-Augmented Generation",
+"year": 2025,
+"abstract": "Retrieval-Augmented Generation (RAG) has emerged as a promising paradigm to enhance large language models (LLMs) with external knowledge, reducing hallucinations and compensating for outdated information. However, recent studies have exposed a critical vulnerability in RAG pipelines corpus poisoning where adversaries inject malicious documents into the retrieval corpus to manipulate model outputs. In this work, we propose two complementary retrieval-stage defenses: RAGPart and RAGMask. Our defenses operate directly on the retriever, making them computationally lightweight and requiring no modification to the generation model. RAGPart leverages the inherent training dynamics of dense retrieve"
+},
+{
+"id": "2605.04251",
+"title": "Root-Cause-Driven Automated Vulnerability Repair",
+"year": 2026,
+"abstract": "Recent LLM-based systems have made automated vulnerability repair increasingly practical, but two challenges remain. First, without strong signals about where a bug originates, repair agents drift toward shallow edits that silence the observed failure while leaving the underlying defect unresolved. Second, finding the root cause for bugs is hard: even developers familiar with the codebase frequently produce fixes that address symptoms rather than the root cause, and LLM-based agents, operating with noisier context and less program understanding, are no exception. We present Kumushi, a root-cause-driven patching agent that addresses both challenges by combining diversified dynamic fault local"
+},
+{
+"id": "2504.16584",
+"title": "Case Study: Fine-tuning Small Language Models for Accurate and Private CWE Detection in Python Code",
+"year": 2025,
+"abstract": "Large Language Models (LLMs) have demonstrated significant capabilities in understanding and analyzing code for security vulnerabilities, such as Common Weakness Enumerations (CWEs). However, their reliance on cloud infrastructure and substantial computational requirements pose challenges for analyzing sensitive or proprietary codebases due to privacy concerns and inference costs. This work explores the potential of Small Language Models (SLMs) as a viable alternative for accurate, on-premise vulnerability detection. We investigated whether a 350-million parameter pre-trained code model (codegen-mono) could be effectively fine-tuned to detect the MITRE Top 25 CWEs specifically within Python "
+},
+{
+"id": "2608.14668",
+"title": "BRA-Audit: Budgeted Runtime Auditing for LLM Multi-Agent Systems via Cumulative-Exposure Audit-Point Placement",
+"year": 2026,
+"abstract": "LLM-based multi-agent systems (LLM-MAS) solve complex tasks through specialized collaboration, but inter-agent dependencies can propagate hallucinated or malicious outputs into system-level failures. Auditor agents mitigate these risks, yet existing strategies face an efficiency dilemma: end-only auditing reviews long trajectories and final outputs, potentially weakening audit effectiveness and enlarging rollback scope, while auditing every agent each round improves detection and localization at high token cost. How can guard performance be preserved while minimizing token cost? To address this problem, we propose BRA-Audit, a budget-aware runtime auditing framework that models MAS execution"
+},
+{
+"id": "2505.13479",
+"title": "RTL++: Graph-enhanced LLM for RTL Code Generation",
+"year": 2025,
+"abstract": "As hardware design complexity escalates, there is an urgent need for advanced automation in electronic design automation (EDA). Traditional register transfer level (RTL) design methods are manual, time-consuming, and prone to errors. While commercial (instruction-tuned) large language models (LLMs) shows promising performance for automation, they pose security and privacy concerns. Open-source models offer alternatives; however, they frequently fall short in quality/correctness, largely due to limited, high-quality RTL code data essential for effective training and generalization. This paper proposes RTL++, a first-of-its-kind LLM-assisted method for RTL code generation that utilizes graph r"
+},
+{
+"id": "2605.09461",
+"title": "VulTriage: Triple-Path Context Augmentation for LLM-Based Vulnerability Detection",
+"year": 2026,
+"abstract": "Automated vulnerability detection is a fundamental task in software security, yet existing learning-based methods still struggle to capture the structural dependencies, domain-specific vulnerability knowledge, and complex program semantics required for accurate detection. Recent Large Language Models (LLMs) have shown strong code understanding ability, but directly prompting them with raw source code often leads to missed vulnerabilities or false alarms, especially when vulnerable and benign functions differ only in subtle semantic details. To address this, we propose VulTriage, a triple-path context augmentation framework for LLM-based vulnerability detection. VulTriage enhances the LLM inp"
+},
+{
+"id": "a contemporary survey of large language ",
+"title": "A Contemporary Survey of Large Language Model Assisted Program Analysis",
+"year": 2025,
+"abstract": "The increasing complexity of software systems has driven significant advancements in program analysis, as traditional methods unable to meet the demands of modern software development. To address these limitations, deep learning techniques, particularly Large Language Models (LLMs), have gained attention due to their context-aware capabilities in code comprehension. Recognizing the potential of LLMs, researchers have extensively explored their application in program analysis since their introduction. Despite existing surveys on LLM applications in cybersecurity, comprehensive reviews specifically addressing their role in program analysis remain scarce. In this survey, we systematically revie"
+},
+{
+"id": "2310.08275",
+"title": "Harnessing the Power of LLM to Support Binary Taint Analysis",
+"year": 2023,
+"abstract": "This paper proposes LATTE, the first static binary taint analysis that is powered by a large language model (LLM). LATTE is superior to the state of the art (e.g., Emtaint, Arbiter, Karonte) in three aspects. First, LATTE is fully automated while prior static binary taint analyzers need rely on human expertise to manually customize taint propagation rules and vulnerability inspection rules. Second, LATTE is significantly effective in vulnerability detection, demonstrated by our comprehensive evaluations. For example, LATTE has found 37 new bugs in real-world firmware which the baselines failed to find, and 7 of them have been assigned CVE numbers. Lastly, LATTE incurs remarkably low engineer"
+},
+{
+"id": "2411.03079",
+"title": "Utilizing Precise and Complete Code Context to Guide LLM in Automatic False Positive Mitigation",
+"year": 2024,
+"abstract": "Static Application Security Testing (SAST) tools are critical to software quality, identifying potential code issues early in development. However, they often produce false positive warnings that require manual review, slowing down development. Thus, automating false positive mitigation (FPM) is essential. The advent of Large Language Models (LLMs), with their strong abilities in natural language and code understanding, offers promising avenues for FPM. Yet current LLM-based FPM method faces two major limitations: 1. The warning-related code snippets extracted are overly broad and cluttered with irrelevant control/data flows, reducing precision; 2. Critical code contexts are missing, leading"
+},
+{
+"id": "2510.02534",
+"title": "ZeroFalse: Improving Precision in Static Analysis with LLMs",
+"year": 2025,
+"abstract": "Static Application Security Testing (SAST) tools are integral to modern software development, yet their adoption is undermined by excessive false positives that weaken developer trust and demand costly manual triage. We present ZeroFalse, a framework that integrates static analysis with large language models (LLMs) to reduce false positives while preserving coverage. ZeroFalse treats static analyzer outputs as structured contracts, enriching them with flow-sensitive traces, contextual evidence, and CWE-specific knowledge before adjudication by an LLM. This design preserves the systematic reach of static analysis while leveraging the reasoning capabilities of LLMs. We evaluate ZeroFalse acros"
+},
+{
+"id": "2601.10758",
+"title": "Agents at Risk: How Users Unwittingly Undermine LLM Safety",
+"year": 2026,
+"abstract": "Large language model (LLM)-based agents are increasingly deployed in applications, such as trip-planning agents and web-use agents, to perform complex planning and execution tasks. Prior work has shown that LLM-based agents are vulnerable to context confusion, where external adversarial content incorporated into the agent's reasoning context may be treated as task-relevant constraints. However, external malicious content can enter the agent context via channels beyond retrieval. In this work, we introduce the User-Relayed Context Manipulation (UReCoM) attack, in which attackers manipulate benign users into relaying adversarial content within user requests, thereby relocating external adversa"
+},
+{
+"id": "2512.07533",
+"title": "VulnLLM-R: Specialized Reasoning LLM with Agent Scaffold for Vulnerability Detection",
+"year": 2025,
+"abstract": "We propose VulnLLM-R, the~\\emph{first specialized reasoning LLM} for vulnerability detection. Our key insight is that LLMs can reason about program states and analyze the potential vulnerabilities, rather than simple pattern matching. This can improve the model's generalizability and prevent learning shortcuts. However, SOTA reasoning LLMs are typically ultra-large, closed-source, or have limited performance in vulnerability detection. To address this, we propose a novel training recipe with specialized data selection, reasoning data generation, reasoning data filtering and correction, and testing-phase optimization. Using our proposed methodology, we train a reasoning model with seven billi"
+},
+{
+"id": "2602.05868",
+"title": "Persistent Human Feedback, LLMs, and Static Analyzers for Secure Code Generation and Vulnerability Detection",
+"year": 2026,
+"abstract": "Existing literature heavily relies on static analysis tools to evaluate LLMs for secure code generation and vulnerability detection. We reviewed 1,080 LLM-generated code samples, built a human-validated ground-truth, and compared the outputs of two widely used static security tools, CodeQL and Semgrep, against this corpus. While 61% of the samples were genuinely secure, Semgrep and CodeQL classified 60% and 80% as secure, respectively. Despite the apparent agreement in aggregate statistics, per-sample analysis reveals substantial discrepancies: only 65% of Semgrep's and 61% of CodeQL's reports correctly matched the ground truth. These results question the reliability of static analysis tools"
+},
+{
+"id": "2511.04023",
+"title": "LLM-Driven Adaptive Source-Sink Identification and False Positive Mitigation for Static Analysis",
+"year": 2025,
+"abstract": "Static analysis is effective for discovering software vulnerabilities but notoriously suffers from incomplete source--sink specifications and excessive false positives (FPs). We present \\textsc{AdaTaint}, an LLM-driven taint analysis framework that adaptively infers source/sink specifications and filters spurious alerts through neuro-symbolic reasoning. Unlike LLM-only detectors, \\textsc{AdaTaint} grounds model suggestions in program facts and constraint validation, ensuring both adaptability and determinism. We evaluate \\textsc{AdaTaint} on Juliet 1.3, SV-COMP-style C benchmarks, and three large real-world projects. Results show that \\textsc{AdaTaint} reduces false positives by \\textbf{43.7"
+},
+{
+"id": "2505.17416",
+"title": "LLM-BSCVM: An LLM-Based Blockchain Smart Contract Vulnerability Management Framework",
+"year": 2025,
+"abstract": "Smart contracts are a key component of the Web 3.0 ecosystem, widely applied in blockchain services and decentralized applications. However, the automated execution feature of smart contracts makes them vulnerable to potential attacks due to inherent flaws, which can lead to severe security risks and financial losses, even threatening the integrity of the entire decentralized finance system. Currently, research on smart contract vulnerabilities has evolved from traditional program analysis methods to deep learning techniques, with the gradual introduction of Large Language Models. However, existing studies mainly focus on vulnerability detection, lacking systematic cause analysis and Vulnera"
+}
+]

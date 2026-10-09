@@ -1,0 +1,10 @@
+You are an independent second checker for a systematic mapping study on LLM security analysis with program representations. Read ONLY the full text in the file `paper.txt` in the current directory (use the shell to search it, e.g. grep -n "ablation" paper.txt; read the relevant sections fully). Record: arXiv __ID__, system __SYS__. The study's prior extraction cited this comparison as the structure gain: __GAIN__
+
+Decide whether the paper contains a representation-isolated comparison. Verdict, exactly one of:
+- "R-strict": same model and configuration, same dataset/metric, only the representation/context supplied to the model differs, and the input budget is controlled or the structured arm is not longer than the baseline arm.
+- "R-unmatched-budget": same model, only the representation/context supplied differs, but the structured/added-context arm is longer and the budget is not controlled.
+- "component": the arms differ by adding/removing a pipeline component that is not just the model's input (static confirmation filter, symbolic verifier, memory module, retrieval stage, tool loop, extra LLM call).
+- "not-isolated": model, training, architecture, paradigm or dataset differs between arms, or no same-model comparison exists.
+If several comparisons exist, use the cleanest one in the paper (the most favourable to R-strict) and say which. Unreported budget with a longer structured arm => R-unmatched-budget.
+
+Reply with ONLY one JSON object, no prose, keys: {"arxiv_id","comparison","model_config","budget_control","arm_a","arm_b","other_changes","verdict","quote"} where quote is a verbatim sentence (<=40 words) from paper.txt that decides the verdict.

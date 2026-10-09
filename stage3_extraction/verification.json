@@ -1,0 +1,2618 @@
+[
+ {
+  "arxiv_id": "2310.08275",
+  "numbers": [
+   {
+    "metric": "average detection accuracy across CWE types",
+    "value": "77%",
+    "where": "Table 2, Section 6.2",
+    "verdict": "CONFIRMED",
+    "note": "Paper states CWE-78/134/190/606 accuracies are 96.46%/93.88%/62.1%/73.33%, 'average accuracy is 77%' -- exact match."
+   },
+   {
+    "metric": "real-world firmware bugs found",
+    "value": "119 unique bugs, 37 previously unknown, 10 assigned CVEs",
+    "where": "Section 6.6",
+    "verdict": "CONFIRMED",
+    "note": "Full text confirms 119 unique bugs, 37 new, 10 assigned CVEs. Note: the arxiv abstract-page auto-summary (from a different AI reader) said '7 CVEs', but the actual paper full text and its own abstract clearly say 10 -- the record is correct."
+   },
+   {
+    "metric": "GPT-4.0 vs GPT-3.5 accuracy delta",
+    "value": "+13.99 percentage points",
+    "where": "Table 3",
+    "verdict": "CONFIRMED",
+    "note": "Table 3: GPT-4.0 avg 81.44% vs GPT-3.5 avg 67.45%, delta 13.99pp -- exact match."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All three numbers confirmed exactly. The GPT-4 vs GPT-3.5 comparison is a model-swap, not a same-model representation ablation, so ablated_measured (not representation_only_ablation) is the correct call, consistent with structure_gain's own note that no such ablation exists in the paper."
+ },
+ {
+  "arxiv_id": "2405.17238",
+  "numbers": [
+   {
+    "metric": "vulnerabilities detected",
+    "value": "55 (IRIS+GPT-4) vs 27 (CodeQL)",
+    "where": "Table 1",
+    "verdict": "CONFIRMED",
+    "note": "Exact match on the 120-project CWE-Bench-Java dataset."
+   },
+   {
+    "metric": "F1",
+    "value": "0.177 (IRIS+GPT-4) vs 0.076 (CodeQL)",
+    "where": "Table 1",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "sink specification recall (GPT-4 vs CodeQL)",
+    "value": "87.11%",
+    "where": "Figures 6-7",
+    "verdict": "CONFIRMED",
+    "note": "Paper: 'GPT-4 scoring the highest (87.11%)' on sink-spec recall vs CodeQL's specs."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "IRIS+GPT-4 detects 55/120 vulnerabilities vs CodeQL's 27/120, F1 0.177 vs 0.076 (Table 1); this compares the full neurosymbolic taint-context pipeline against a static-only baseline, not the same model with/without structure.",
+    "where": "Table 1",
+    "verdict": "CONFIRMED",
+    "note": "Same numbers as above, correctly re-verified."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed. The +/-5 lines-of-context detail in stop_detail is verified verbatim in Appendix A.3 ('We chose \u00b15 lines as a balanced approach...'). ablated_measured is correctly chosen since the comparison is IRIS+GPT-4 vs the different system CodeQL, not a same-model ablation."
+ },
+ {
+  "arxiv_id": "2411.03079",
+  "numbers": [
+   {
+    "metric": "Juliet F1 (CSA warnings, before vs after)",
+    "value": "93.48% -> 99.75%",
+    "where": "RQ1, Figure 8",
+    "verdict": "CONFIRMED",
+    "note": "Exact match for CSA warnings specifically."
+   },
+   {
+    "metric": "D2A label accuracy",
+    "value": "53% (original) -> 86%",
+    "where": "RQ1",
+    "verdict": "CONFIRMED",
+    "note": "Paper: 'boost label accuracy from the original 53% to 86%'."
+   },
+   {
+    "metric": "Ablation accuracy/F1, no-slice vs full (Qwen2.5-32B)",
+    "value": "95.15%/97.19% vs 98.17%/98.92%",
+    "where": "Table III, RQ3",
+    "verdict": "CONFIRMED",
+    "note": "Exact match to Table III (LLM4FPM-noslice vs full LLM4FPM on Qwen2.5-32B)."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "eCPG-based slicing (vs full-file raw context, LLM4FPM-noslice) improves accuracy by +3.02pp and F1 by +1.73pp on the same Qwen2.5-32B model (Table III); the raw-file variant also fails outright on 40 cases due to context-window overflow.",
+    "where": "Table III",
+    "verdict": "CONFIRMED",
+    "note": "Deltas verified (98.17-95.15=3.02, 98.92-97.19=1.73); the '40 cases exceed LLM's context limit in LLM4FPM-noslice' note is stated verbatim in Table III."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly, including the +3.02pp/+1.73pp deltas and the 40-case context-overflow detail. FARF/SCC-based completeness-guarantee description in stop_detail matches Section III-C verbatim. Genuine same-model (Qwen2.5-32B) ablation supports representation_only_ablation."
+ },
+ {
+  "arxiv_id": "2504.16057",
+  "numbers": [
+   {
+    "metric": "F1 (avg)",
+    "value": "MoCQ 0.51 vs DSL100 (full grammar) 0.31",
+    "where": "Table 8",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "query generation pass rate",
+    "value": "MoCQ 77.4% vs DSL0 (no spec) 9.9% vs DSL100 50.0%",
+    "where": "Table 7",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "detection TP/FP on 343 test vulns",
+    "value": "MoCQ 269 TP/197 FP vs Pure LLM 185 TP/182 FP vs Expert queries 222 TP/184 FP",
+    "where": "Tables 2 and 4",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Providing a subset DSL grammar (MoCQ) instead of no specification raises query-generation pass rate from 9.9% (DSL0) to 77.4%, and F1 from 0.31 (DSL100, full grammar) to 0.51 (MoCQ), same LLM loop (Tables 7-8).",
+    "where": "Tables 7-8",
+    "verdict": "CONFIRMED",
+    "note": "Numbers match; verified DSL0/DSL100/MoCQ arms hold the LLM and underlying CPG/CodeQL query mechanism constant, varying only the amount of DSL grammar exposed."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Numbers all confirmed (up to 20-iteration cap and syntax/runtime/semantic validator feedback confirmed in Algorithm 1). IMPORTANT: the structure_gain's own cited ablation (DSL0/DSL100 vs MoCQ) varies only DSL-grammar amount, not the CPG representation itself -- CPG/CodeQL queries are used in all three arms, so this specific comparison does not by itself justify representation_only_ablation. The classification is still correct via a different in-paper ablation not cited in structure_gain: Pure-LLM (raw code judgment, no CPG) vs MoCQ (CPG-query synthesis), same Claude 3.7 Sonnet model -- 185/182 TP/FP vs 269/197 TP/FP (Tables 2/4). Recommend the extraction cite this comparison instead."
+ },
+ {
+  "arxiv_id": "2506.11561",
+  "numbers": [
+   {
+    "metric": "repair rate per run (Short+CVE+Manual vs GPT-4o baseline)",
+    "value": "18-14-17 vs 11-12-14",
+    "where": "Table 1",
+    "verdict": "CONFIRMED",
+    "note": "Table 1 row is labeled 'Short + CVE Hints + Manual' (18-14-17); GPT-4o baseline row is 11-12-14. Same data, minor label variant."
+   },
+   {
+    "metric": "avg repair rate, CWE vs CVE context",
+    "value": "CWE 29.4% vs CVE 37.3%",
+    "where": "Sec 4, RQ1 answer box",
+    "verdict": "CONFIRMED",
+    "note": "Verbatim: 'CWE descriptions yielded 29.4% and CVE descriptions 37.3% success rate on average.'"
+   },
+   {
+    "metric": "Top-3 prompt ensemble, distinct vulns fixed",
+    "value": "26/42 (61.9%) vs original baseline 17/42 (40.4%) vs GPT-4o reproduction 19/42 (45.2%)",
+    "where": "Sec 4.2, Table 1",
+    "verdict": "CONFIRMED",
+    "note": "Verbatim match to RQ2 answer box."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Combining a CVE-derived repair guideline with manually extracted repository context (Short+CVE Hints+Manual) achieves the best single-prompt result (18-14-17 across 3 runs) vs GPT-4o baseline (11-12-14), same GPT-4o-2024-08-06 model, temperature 0.01 throughout (Table 1).",
+    "where": "Table 1",
+    "verdict": "CONFIRMED",
+    "note": "Same data as key_number 1, re-confirmed; model/temperature details verified in Sec 3.1."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed verbatim against Table 1 and the RQ1/RQ2 answer boxes. stop_detail's list of manually curated context types (class headers, redacted implementations, imports, standardized CWE text, CVE descriptions/guidelines, manual hints) matches Sections 3.2-3.3 exactly."
+ },
+ {
+  "arxiv_id": "2509.15433",
+  "numbers": [
+   {
+    "metric": "Precision/Recall/F1",
+    "value": "SAST-Genius 89.5%/100%/94.5% vs Semgrep 35.7%/73.5%/48.3% vs GPT-4 65.5%/77.1%/70.8%",
+    "where": "Table 1",
+    "verdict": "CONFIRMED",
+    "note": "Exact match to Table 1 (values reordered as P/R/F1 match the table's P/F1/Recall columns)."
+   },
+   {
+    "metric": "false positives",
+    "value": "225 (Semgrep) -> 20 (SAST-Genius), ~91% reduction (~11x fewer)",
+    "where": "Sec IV.B, Fig. 2",
+    "verdict": "CONFIRMED",
+    "note": "Verbatim: 'Semgrep produced 225 false positives, while SAST-Genius reduced this to just 20-an ~11x improvement... and a separate 91% reduction in average triage time.' (Note: the 91% figure is actually for triage time, not FP count itself, but FP count did drop 225->20 = ~91.1% reduction too, so the record's framing is accurate either way.)"
+   },
+   {
+    "metric": "PoC exploit generation success",
+    "value": "~70% of exploitable findings",
+    "where": "Sec III.B",
+    "verdict": "CONFIRMED",
+    "note": "Verbatim: 'SAST-Genius successfully generated valid PoCs for approximately 70% of exploitable findings in our dataset.'"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "SAST-Genius (fine-tuned LLM + structured AST/taint-path JSON prompt) reaches 89.5% precision vs Semgrep's 35.7% (no LLM) and GPT-4's 65.5% (Table 1), but model, fine-tuning, and representation all differ simultaneously across arms.",
+    "where": "Table 1",
+    "verdict": "CONFIRMED",
+    "note": "Numbers match Table 1; the caveat about confounded arms is accurate and well-supported."
+   }
+  ],
+  "repr_primary_agree": false,
+  "repr_primary_suggested": "hybrid",
+  "integration_agree": false,
+  "integration_suggested": "finetune_adapter",
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly (89.5/100/94.5 vs 35.7/73.5/48.3 vs 65.5/77.1/70.8; 225->20 FPs; ~70% PoC success). Facet disagreements: (1) repr_primary should be hybrid, not taint_path alone -- the paper explicitly states the framework 'extracts SAST intermediate representations (ASTs and taint paths)... converts them into structured JSON prompts', plus call-graph/library-dependency context, i.e. multiple representation types combined. (2) integration should be finetune_adapter, not neurosymbolic_analyzer_loop -- this is a single-pass pipeline (SAST finding -> serialize -> fine-tuned Llama-3-8B verdict -> optional PoC generation) with no iterative symbolic-feedback loop; the paper itself attributes its core performance to 'the specialized fine-tuning of the LLM component.'"
+ },
+ {
+  "arxiv_id": "2511.11896",
+  "numbers": [
+   {
+    "metric": "P-Pass@1, VULPO-4B vs Qwen3-4B baseline",
+    "value": "22.60% vs 7.45%",
+    "where": "Table III, Section VII-C",
+    "verdict": "CONFIRMED",
+    "note": "Exact match to Table III."
+   },
+   {
+    "metric": "F1, VULPO-4B vs Qwen3-4B",
+    "value": "40.09% vs 15.20%",
+    "where": "Table III",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "P-Pass@8, VULPO-4B vs DeepSeek-V3.1",
+    "value": "53.91% vs 42.13%",
+    "where": "Table III",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All three numbers confirmed exactly. Judge accuracy in stop_detail (99.75%) verified precisely as 399/400 correct judgments for GPT-OSS-120B in the judge-reliability table. Structure_gain's claim that no dataset-wide quantitative context ablation exists (only a qualitative Sec II-A case study) is independently confirmed -- Sec VII-F ablations concern reward-design components, not context/representation."
+ },
+ {
+  "arxiv_id": "2601.10865",
+  "numbers": [
+   {
+    "metric": "Recall vs CodeQL baseline",
+    "value": "106/162 (65.43%) vs CodeQL 0%",
+    "where": "RQ1 results",
+    "verdict": "CONFIRMED",
+    "note": "Exact match: 'recall of 65.43%... previously undetectable by CodeQL' (CodeQL baseline 0% on this subset by definition)."
+   },
+   {
+    "metric": "TICR candidate call reduction",
+    "value": "94,909 -> 10,184 calls (89.2% reduction)",
+    "where": "RQ2",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "Novel vulnerabilities discovered",
+    "value": "4 in 4 npm packages (CWE-78, CWE-22, CWE-915)",
+    "where": "RQ4",
+    "verdict": "CONFIRMED",
+    "note": "Verbatim: 'span three CWE classes: command injection (CWE-78), path traversal (CWE-22), and prototype pollution (CWE-915)' -- CWE-915 confirmed exactly as used by the paper for prototype pollution."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "LLM-derived taint specs (sources/sinks + repaired call graph) raise recall from 0% (CodeQL baseline, ruleset R1) to 65.43% (106/162) on known vulnerabilities; ablation (RQ3/Table IV) shows 76.4% of catches needed only custom sources/sinks while 23.6% additionally needed call-graph repair.",
+    "where": "RQ1, Table IV",
+    "verdict": "CONFIRMED",
+    "note": "76.4%/23.6% matches Table IV's 81/106=76.42% and 25/106=23.58% exactly (rounds to 76.4%/23.6%). Note the paper elsewhere also reports a 73.0%/27.0% split, but that uses a different denominator (115 combined validation+test vulns vs the 106 test-only figure cited here) -- both numbers exist in the paper and are not contradictory."
+   }
+  ],
+  "repr_primary_agree": false,
+  "repr_primary_suggested": "taint_path",
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly, including exact match of 76.42%/23.58% to Table IV and CWE-915 for prototype pollution. Facet disagreement: repr_primary is listed as interproc_callgraph, but per the paper's own RQ3 ablation, 76.4% of detections needed only LLM-derived source/sink taint specifications, with call-graph repair (TICR) responsible for just the remaining 23.6% -- suggest taint_path as the primary representation instead, given the paper's own title ('Taint Specification Extraction') and this majority-driver evidence."
+ },
+ {
+  "arxiv_id": "2603.27204",
+  "numbers": [
+   {
+    "metric": "F1/Precision/Recall on MalSkillsBench",
+    "value": "F1=0.93, P=0.95, R=0.92 vs best baseline F1=0.88 (Skill Scanner)",
+    "where": "results table",
+    "verdict": "CONFIRMED",
+    "note": "Exact match; paper also notes MalSkills has the lowest FPR (0.05) vs Skill Scanner's 0.23."
+   },
+   {
+    "metric": "Wild-Skills-150K flagged/confirmed",
+    "value": "620 flagged, 400 manually confirmed malicious (64.5% precision open-world)",
+    "where": "wild-deployment RQ",
+    "verdict": "CONFIRMED",
+    "note": "Exact match (400/620=64.5%) on the 150,108-skill corpus."
+   },
+   {
+    "metric": "Ablation w/o Symbolic Extractor recall",
+    "value": "drops to 0.27",
+    "where": "ablation table",
+    "verdict": "CONFIRMED",
+    "note": "Exact match; precision stays at 1.00, described as failing 'in a highly conservative manner'."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Full neuro-symbolic Skill Dependency Graph pipeline reaches F1=0.93 vs 0.88 best baseline on MalSkillsBench; ablation shows removing the symbolic extractor collapses recall to 0.27 and removing the neuro reasoner drops F1 to 0.71 with FPR rising to 0.49 (ablation table), same LLM backbone held fixed across arms.",
+    "where": "ablation table",
+    "verdict": "CONFIRMED",
+    "note": "All figures (0.93, 0.88, 0.27, 0.71, 0.49) verified exactly against the ablation table."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly, including both ablation arms (recall 0.27 w/o symbolic extractor; F1 0.71/FPR 0.49 w/o neuro reasoner). stop_detail fully verified: Semgrep+YASA symbolic extraction, typed SDG edges (contains/has_operand/value_flow), and the neuro-to-symbolic rule-promotion feedback loop all confirmed against the methodology text."
+ },
+ {
+  "arxiv_id": "2605.03697",
+  "numbers": [
+   {
+    "metric": "average positive recall",
+    "value": "0.92 (range 0.73-1.00)",
+    "where": "Results section",
+    "verdict": "CONFIRMED",
+    "note": "Exact match across the 13 vulnerability categories."
+   },
+   {
+    "metric": "average negative recall",
+    "value": "0.85 (range 0.60-1.00)",
+    "where": "Results section",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "CoT vs standard few-shot prompting accuracy",
+    "value": "0.91 vs 0.85",
+    "where": "Ablation (CoT) section",
+    "verdict": "CONFIRMED",
+    "note": "Verbatim: 'increasing the average accuracy across vulnerability types from 0.85 to 0.91'."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "none reported (no raw-code-only baseline for comparison; the only ablation present is CoT vs. standard few-shot prompting, +0.06 accuracy, which is unrelated to the AST-derived context itself)",
+    "where": "Ablation (CoT) section",
+    "verdict": "CONFIRMED",
+    "note": "0.91-0.85=0.06 confirmed. Independently verified: paper reports no ablation isolating AST-context vs. raw-code, and no comparison against traditional static tools (Slither/Mythril) anywhere in the Experiment section."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly. Independently confirmed the paper has no AST-vs-raw-code ablation and no baseline-tool comparison, which strongly supports evaluation=demonstrated over any ablation-based label. Data-grounding description (CoinMarketCap/CertiK/QuantStamp/ConsenSys audit reports matched via commit hashes) verified verbatim."
+ },
+ {
+  "arxiv_id": "2606.25356",
+  "numbers": [
+   {
+    "metric": "AST+PDG curated accuracy",
+    "value": "83.2%",
+    "where": "\u00a75.2 Table 6",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "raw source baseline curated accuracy",
+    "value": "53.5%",
+    "where": "\u00a75.2 Table 6",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "context dilution: source+graph vs. graph-only",
+    "value": "69.4% at 12,938 avg tokens vs. 74.4% at 5,973 avg tokens",
+    "where": "\u00a75.3 Finding 5",
+    "verdict": "CONFIRMED",
+    "note": "Exact match, including both token counts."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "AST+PDG reaches 83.2% curated accuracy vs. 53.5% for raw source alone (+29.7pp), with model (qwen3.6-plus), temperature, prompting/checklist structure, and 50,000-character budget held fixed across all ten representation variants (\u00a74.2, \u00a75.2 Table 6)",
+    "where": "Table 6",
+    "verdict": "CONFIRMED",
+    "note": "Delta confirmed (83.2-53.5=29.7); model name and fixed 50,000-character budget across all ten variants confirmed verbatim in Sections 4.2 and 3.5.7."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly against Table 6 and Finding 5 (RQ3), including exact token counts. The structured-JSON output fields (sink_identified, data_source, validation_present, control_flow_analysis, pdg_dependencies) and the 'curated accuracy = valid binary predictions only' definition are both verified verbatim in Sections 3.5.8/4.4. This is a textbook representation_only_ablation."
+ },
+ {
+  "arxiv_id": "2608.03134",
+  "numbers": [
+   {
+    "metric": "Pairwise-Correct (P-C), CLEAR vs. VulTrial baseline (PrimeVul)",
+    "value": "19.17 vs. 8.31 (+130.7% relative)",
+    "where": "Table 1 main results",
+    "verdict": "CONFIRMED",
+    "note": "Exact match; relative-gain math confirmed ((19.17-8.31)/8.31=130.7%)."
+   },
+   {
+    "metric": "Pairwise-Correct (P-C), CLEAR vs. VulTrial baseline (Java-Pair)",
+    "value": "21.36 +/- 1.48 vs. 12.45 +/- 2.08 (+71.56% relative)",
+    "where": "Table 1 main results",
+    "verdict": "CONFIRMED",
+    "note": "Exact match; relative-gain math confirmed ((21.36-12.45)/12.45=71.57%~71.56%)."
+   },
+   {
+    "metric": "No-VCKG ablation P-C (PrimeVul)",
+    "value": "8.08 (no VCKG) vs. 19.17 (full CLEAR)",
+    "where": "Table 3 node ablation",
+    "verdict": "CONFIRMED",
+    "note": "Exact match; 'No VCKG (Agent Only)' variant keeps the same multi-agent structure minus the causal knowledge graph."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Full CLEAR (with Vulnerability Causal Knowledge Graph context) vs. No-VCKG ablation, same multi-agent LLM pipeline, on PrimeVul: Pairwise-Correct 19.17 vs. 8.08 (Table 3); removing only Fix-Intent nodes drops it to 14.32 vs. 19.17 full.",
+    "where": "Table 3",
+    "verdict": "CONFIRMED",
+    "note": "Both figures (8.08, 14.32) verified exactly against Table 3's node-ablation results."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly, including relative-improvement math and node-ablation figures. VCKG construction and Collector Agent details (offline build from CVE/patch/source, Top-5 similar historical Entrypoint retrieval, Local/Neighborhood/Global edge traversal) all confirmed verbatim -- paper uses 'Neighborhood' rather than 'Neighbor' but this is a trivial naming variant, not a substantive error."
+ },
+ {
+  "arxiv_id": "2401.15459",
+  "numbers": [
+   {
+    "metric": "Exact Match (EM)",
+    "value": "20.0% (up from 10.2% best prior baseline)",
+    "where": "Abstract / main results table",
+    "verdict": "CONFIRMED",
+    "note": "Abstract confirms EM 10.2%->20.0%."
+   },
+   {
+    "metric": "EM ablation w/o AST",
+    "value": "19.0% (-1.0pp vs full 20.0%)",
+    "where": "Ablation study (Sec 6)",
+    "verdict": "CONFIRMED",
+    "note": "Value correct (Table 4: full 20.0%, w/o AST 19.0%) but location is wrong: this is in Section 5.2 (RQ2), not Section 6. Section 6 is the Discussion section (6.1 = case study, 6.5 = threats to validity, incl. the perfect-fault-localization assumption)."
+   },
+   {
+    "metric": "BLEU",
+    "value": "29.3% (up from 21.3%)",
+    "where": "Abstract / main results",
+    "verdict": "CONFIRMED",
+    "note": "Matches abstract exactly."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Removing AST drops EM 20.0%->19.0% (-1.0pp); removing CWE knowledge drops it to 18.9% (-1.1pp); removing full-function input drops it to 18.8% (-1.2pp), same adapted-CodeT5 backbone/training budget",
+    "where": "Table 4, Section 5.2 (RQ2)",
+    "verdict": "CONFIRMED",
+    "note": "All three deltas verified against Table 4 exactly."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Location citation error: the AST ablation is in Sec 5.2/Table 4, not 'Sec 6' as the record states (Sec 6 is Discussion, where the qualitative case study 6.1 and the fault-localization assumption 6.5 actually live). All numeric values are correct; stop_detail is accurate."
+ },
+ {
+  "arxiv_id": "2406.05892",
+  "numbers": [
+   {
+    "metric": "F1 on BigVul (vs best baseline LineVul+DeepDFA)",
+    "value": "0.92 vs 0.88",
+    "where": "Table 3, Section 5.1",
+    "verdict": "CONFIRMED",
+    "note": "Table 3: MSIVD 0.92 vs LineVul+DeepDFA 0.88."
+   },
+   {
+    "metric": "F1 on PreciseBugs (post-cutoff, unseen) vs LineVul",
+    "value": "0.48 vs 0.31",
+    "where": "Table 3, Section 5.1 RQ2",
+    "verdict": "CONFIRMED",
+    "note": "IMPORTANT CAVEAT: in Table 3 the 0.48 is explicitly attributed to 'MSIVD -' (i.e. WITHOUT the GNN/dataflow structural component), not full MSIVD. The paper states DeepDFA's GNN layer was built specifically for BigVul's single-function structure and was NOT applied to PreciseBugs, so only the ablated (no-structure) variant was evaluated there. The number is correct, but citing it as evidence of the structural representation's generalization benefit is misleading -- it actually shows the LLM-only variant's number."
+   },
+   {
+    "metric": "GNN-embedding ablation on BigVul (MSIVD- vs MSIVD)",
+    "value": "F1 0.90 -> 0.92",
+    "where": "Table 4, RQ3",
+    "verdict": "CONFIRMED",
+    "note": "Table 4: Multi-round SIFT (no GNN) 0.90 -> Multi-round SIFT+GNN 0.92."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "GGNN embeddings raise F1 0.90->0.92 on BigVul, same CodeLlama-13B backbone/training budget (Table 4)",
+    "where": "Table 4",
+    "verdict": "CONFIRMED",
+    "note": "Matches Table 4 exactly."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Most important finding: the PreciseBugs 0.48 figure belongs to 'MSIVD -' (without GNN/structure), per the paper's own admission that the GNN layer could not be transferred to PreciseBugs -- so this generalization number does NOT demonstrate the structural representation's benefit, contrary to how it could be read in context. The true representation-only ablation (0.90->0.92) is on BigVul only (Table 4) and is correctly verified."
+ },
+ {
+  "arxiv_id": "2411.06493",
+  "numbers": [
+   {
+    "metric": "F1 (LProtector vs baselines)",
+    "value": "33.49% (LProtector) vs 19.15% (VulDeePecker) vs 22.87% (Reveal)",
+    "where": "Table II",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "ablation F1 (RAG+CoT vs No RAG)",
+    "value": "33.49% vs 23.92%",
+    "where": "Table III",
+    "verdict": "CONFIRMED",
+    "note": "Exact match; Table III also has a 'No CoT' row (26.51%) not cited in the record but not needed."
+   },
+   {
+    "metric": "ablation F1 (No RAG & No CoT)",
+    "value": "18.61%",
+    "where": "Table III",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Removing RAG (holding GPT-4o + CoT fixed) drops F1 33.49%->23.92%, a 9.57pp loss",
+    "where": "Table III",
+    "verdict": "CONFIRMED",
+    "note": "33.49-23.92=9.57, arithmetic correct."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly against Tables II/III. Retrieval mechanism description (OpenAI embeddings, ChromaDB, top-5, 500-instance store, GPT-4o exemplar selection) matches the paper. No issues found."
+ },
+ {
+  "arxiv_id": "2504.16877",
+  "numbers": [
+   {
+    "metric": "F1, DeepSeek-R1+CoT: API-abstraction level A3 vs w/o-API context",
+    "value": "69.09% vs 60.19% (+8.9pp)",
+    "where": "Table 4, Section 5.1.1",
+    "verdict": "WRONG",
+    "correct_value_if_wrong": "69.09% vs 60.89% (+8.20pp)",
+    "note": "Table 4 (DeepSeek-R1+CoT) actually reads: w/o-API F1=60.89%, A3 F1=69.09%. The record's 60.19% is wrong (likely digit transposition of 60.89%), and the stated +8.9pp gap is consequently wrong too -- correct gap is +8.20pp."
+   },
+   {
+    "metric": "F1 vs best context-sampling baseline (API-guided sampling)",
+    "value": "69.09% vs 66.18% (+2.91pp)",
+    "where": "Table 5, Section 5.4",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "CodeLLaMA+BP F1 vs best baseline (hierarchy sampling, HS-C)",
+    "value": "67.48% vs 58.14% (+9.34pp)",
+    "where": "Section 5.4 / Table 5",
+    "verdict": "CONFIRMED",
+    "note": "Exact match, 67.48-58.14=9.34."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "API-abstraction context (A3) raises F1 from 60.19% (w/o-API) to 69.09% on DeepSeek-R1+CoT (Table 4, Sec 5.1.1)",
+    "where": "Table 4, Sec 5.1.1",
+    "verdict": "WRONG",
+    "correct_value_if_wrong": "60.89% (not 60.19%); true gain is +8.20pp not +8.9pp",
+    "note": "Repeats the same digit error as the first key_number."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Most important finding: the w/o-API-context F1 baseline is misquoted as 60.19% in two places (key_numbers and structure_gain); the paper's Table 4 value is 60.89%, making the true gain +8.20pp rather than the stated +8.9pp. All other numbers (Table 5 comparisons) are correct."
+ },
+ {
+  "arxiv_id": "2506.17798",
+  "numbers": [
+   {
+    "metric": "F1 (full vs ablations, same 57-project set)",
+    "value": "89% full; 64% w/o AST fragmentation; 60% w/o cross-file RAG; 77% w/o PoV guidance",
+    "where": "Ablation table",
+    "verdict": "CONFIRMED",
+    "note": "Exact match to ablation Table 2."
+   },
+   {
+    "metric": "Precision/Recall/Accuracy (full)",
+    "value": "84% / 95% / 84%",
+    "where": "Abstract / results",
+    "verdict": "CONFIRMED",
+    "note": "Matches abstract exactly."
+   },
+   {
+    "metric": "Cross-file reliance",
+    "value": "47/57 projects required cross-function/cross-file retrieved fragments",
+    "where": "Results section",
+    "verdict": "CONFIRMED",
+    "note": "Exact quote match: 47 projects needed cross-function/cross-file fragments, 10 were single-function-sufficient."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "w/o cross-file RAG drops F1 89%->60% (-29pp); w/o AST fragmentation drops to 64% (-25pp); w/o PoV drops to 77% (-12pp)",
+    "where": "Ablation table",
+    "verdict": "CONFIRMED",
+    "note": "Arithmetic and values all correct (89-60=29, 89-64=25, 89-77=12)."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly. Stop_detail (Reflector terminates on sufficient inter-procedural coverage OR no new fragments retrieved) matches Algorithm 1's description verbatim. No issues found."
+ },
+ {
+  "arxiv_id": "2509.16275",
+  "numbers": [
+   {
+    "metric": "fix accuracy, fine-tuned SecureFixAgent",
+    "value": "87.83%",
+    "where": "Table III",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "false positive rate",
+    "value": "8.11%",
+    "where": "Table III",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "gains vs baselines (abstract)",
+    "value": "+13.51pp fix accuracy vs pre-trained LLMs; -10.8pp FP vs static analysis alone; -5.46pp FP vs pre-trained LLMs",
+    "where": "Abstract",
+    "verdict": "CONFIRMED",
+    "note": "Matches abstract exactly."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Iterative loop vs single-pass LLM: fix accuracy rises 79.72% (LLM-only, iteration 1) -> 87.83% (SecureFixAgent, iteration 3)",
+    "where": "Fig. 2, Table III",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed 79.72% LLM-only converging at iteration 1, 87.83% SecureFixAgent converging at iteration 3."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly. evaluation=ablated_measured is correctly chosen (not representation_only_ablation) since the gain comes from an iterative multi-round loop with growing interaction/context budget vs a single pass, not a same-budget representation swap."
+ },
+ {
+  "arxiv_id": "2512.04106",
+  "numbers": [
+   {
+    "metric": "F1 / partial-match, 20-shot retrieval-augmented",
+    "value": "74.05% / 83.90%",
+    "where": "Table I",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "F1 / partial-match, zero-shot baseline",
+    "value": "36.35% / 20.30%",
+    "where": "Table I",
+    "verdict": "CONFIRMED",
+    "note": "Exact match, same Gemini-1.5-Flash backbone as the retrieval arm."
+   },
+   {
+    "metric": "fine-tuned comparators",
+    "value": "Fine-tuned Gemini-1.5-Flash 59.31% F1 vs Fine-tuned CodeBERT 91.22% F1",
+    "where": "Table I / results",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Retrieval-augmented 20-shot raises F1 36.35%(zero-shot)->74.05%, same Gemini-1.5-Flash model, retrieval is sole varied factor",
+    "where": "Table I",
+    "verdict": "CONFIRMED",
+    "note": "Numbers correct, but see note on the 'sole varied factor' framing."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "The cited structure_gain comparison (zero-shot vs 20-shot-retrieval) is confounded: shot count goes 0->20, not just retrieval on/off, so 'retrieval is the sole varied factor' overstates isolation for that specific pair. However, evaluation=representation_only_ablation is still fair because the paper DOES contain a clean same-shot-count ablation elsewhere (10-shot retrieval 71.43% F1 vs 10-shot random 65.69% F1) that properly isolates the retrieval/representation effect -- the extractor just cited the wrong (confounded) pair as the example."
+ },
+ {
+  "arxiv_id": "2601.18844",
+  "numbers": [
+   {
+    "metric": "False positive rate among industrial alerts",
+    "value": "76% (328/433 FP)",
+    "where": "RQ1",
+    "verdict": "CONFIRMED",
+    "note": "328/433=75.75%, rounds to 76%; matches 328 FP / 105 TP breakdown in abstract."
+   },
+   {
+    "metric": "Best hybrid method (LLM4PFA, GPT-4o) accuracy/precision/recall",
+    "value": "0.93 / 0.83-0.93 / 0.75-0.88; eliminates 94-98% of FPs",
+    "where": "RQ2, Table 2",
+    "verdict": "CONFIRMED",
+    "note": "Table 2 across 4 backbones (GPT-4o, Claude-Opus-4, Qwen-3-Coder, DeepSeek-R1): precision range 0.83-0.93 and recall range 0.75-0.88 match exactly; accuracy is 0.93-0.94 across backbones (0.93 given is representative, minor rounding). 94-98% FP elimination matches abstract."
+   },
+   {
+    "metric": "Cost per alarm",
+    "value": "2.1-109.5 sec / $0.0011-$0.12",
+    "where": "RQ3, Table 4",
+    "verdict": "CONFIRMED",
+    "note": "Exact match to abstract/Table 4."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "LLM4PFA vs Basic Prompt, same GPT-4o backbone: accuracy 0.50->0.93 (+0.43), FPR_Recall 0.45->0.98 (+0.53)",
+    "where": "Table 2",
+    "verdict": "CONFIRMED",
+    "note": "Table 2: Basic Prompt GPT-4o accuracy=0.50, FPR_R=0.45; LLM4PFA GPT-4o accuracy=0.93, FPR_R=0.98. Deltas correct."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Important nuance confirmed: LLM4PFA is an EXTERNAL prior tool (Du et al. 2025) being re-benchmarked by these authors, while 'Basic Prompt' is the authors' own control condition -- so despite same-GPT-4o-backbone framing, this is comparing two different systems/pipelines, not a pure representation swap within one architecture. evaluation=ablated_measured (not representation_only_ablation) is therefore the correct call, matching the strict rule given."
+ },
+ {
+  "arxiv_id": "2604.08417",
+  "numbers": [
+   {
+    "metric": "GPT-4.1 Mini (C), Code-Only vs Code+Callees",
+    "value": "Accuracy 0.7556 -> 0.5098, F1 0.8608 -> 0.6753",
+    "where": "Table 6",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "GPT-5 Mini (C), Code-Only vs Code+Callers",
+    "value": "Accuracy 0.9052 -> 0.7946, F1 0.9502 -> 0.8855",
+    "where": "Table 6",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "Claude Haiku 4.5 (C), across context conditions",
+    "value": "Accuracy ~0.979-0.980, F1 ~0.989-0.990 (negligible change)",
+    "where": "Table 6",
+    "verdict": "CONFIRMED",
+    "note": "Exact values: CO 0.9803/0.9901, CC 0.9804/0.9901, CK 0.9788/0.9893 - all within stated ranges."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Adding interprocedural context degraded F1 for most models (e.g. GPT-4.1 Mini 0.8608->0.6753); Claude Haiku 4.5 robust; tokens +102% for callees",
+    "where": "Table 6 / token usage discussion",
+    "verdict": "CONFIRMED",
+    "note": "Token increase quote verified verbatim: CO=2367 tokens, CC=4785 (+102%), CK=4586 (+94%) for C."
+   }
+  ],
+  "repr_primary_agree": false,
+  "repr_primary_suggested": "interproc_callgraph",
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "repr_primary disagreement: the paper's stated 'primary independent variable' is explicitly the interprocedural context block (which functions to include, selected via AST-derived caller/callee relationships) -- this is best tagged interproc_callgraph, not raw_text, even though the content inserted for each included function is plain source code. All numeric values confirmed exactly against Table 6."
+ },
+ {
+  "arxiv_id": "2605.04251",
+  "numbers": [
+   {
+    "metric": "Tier-1 plausible patch rate",
+    "value": "Kumushi 85.4% vs Codex 86.0%, PatchAgent 71.9%, LoopRepair 2.2%",
+    "where": "Section 4, Tier 1 results",
+    "verdict": "CONFIRMED",
+    "note": "Exact match (Table 3): 152/178, 153/178, 128/178, 4/178 respectively."
+   },
+   {
+    "metric": "Root-cause fix rate (human assessment)",
+    "value": "Kumushi 84.9% vs Codex 77.8%",
+    "where": "Table 4",
+    "verdict": "CONFIRMED",
+    "note": "Exact match: 129/152 vs 119/153."
+   },
+   {
+    "metric": "Human win-rate vs Codex",
+    "value": "Kumushi preferred 47% vs Codex 27% (26% tied), sign test p=0.0065",
+    "where": "Section 4.5",
+    "verdict": "CONFIRMED",
+    "note": "Exact match (Figure 3): 68/144=47%, 39/144=27%, 37/144=26% tied, p=0.0065."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Evidence-weighted FoI context yields comparable plausibility to Codex (85.4% vs 86.0%) but higher root-cause-fix rate (84.9% vs 77.8%) and human preference (47% vs 27%)",
+    "where": "Section 4, Table 4",
+    "verdict": "CONFIRMED",
+    "note": "Restates already-verified numbers; consistent."
+   }
+  ],
+  "repr_primary_agree": false,
+  "repr_primary_suggested": "hybrid",
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "repr_primary disagreement: the context construction genuinely combines three distinct modalities -- AFL++ dynamic execution traces, CodeQL static intraprocedural dataflow, and bidirectional call-graph BFS -- fused via an evidence-weighted/noisy-OR score into ranked Functions of Interest. This multi-modal fusion is a textbook case for 'hybrid' rather than a single 'slice' tag (dynamic fuzzing traces in particular are not slicing). All numeric values confirmed exactly."
+ },
+ {
+  "arxiv_id": "2607.01138",
+  "numbers": [
+   {
+    "metric": "True positives / FPs (Claude Opus 4.7)",
+    "value": "15/28 TP, 1,345 FP across 4,859 functions",
+    "where": "Table II",
+    "verdict": "CONFIRMED",
+    "note": "Exact match."
+   },
+   {
+    "metric": "Ablation recall, full vs -Local vs -Repo",
+    "value": "Claude: 15 vs 9 vs 9; GPT: 12 vs 8 vs 7",
+    "where": "Table IV",
+    "verdict": "CONFIRMED",
+    "note": "Exact match (out of 28 ground-truth vulnerabilities)."
+   },
+   {
+    "metric": "FP reduction from comparative validation",
+    "value": "1,682 -> 1,345 (20% reduction), no TP loss",
+    "where": "Table V",
+    "verdict": "CONFIRMED",
+    "note": "Exact match; 15 TPs retained, none lost."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Removing either context source roughly halves TP detections (Claude 15->9/9; GPT 12->8/7) at fixed backbone",
+    "where": "Table IV",
+    "verdict": "CONFIRMED",
+    "note": "Matches Table IV exactly."
+   }
+  ],
+  "repr_primary_agree": false,
+  "repr_primary_suggested": "hybrid",
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "repr_primary disagreement: 'retrieved_context' implies similarity-search/RAG retrieval, but Antaeus's context is deterministically constructed -- Tree-sitter depth-one callee extraction (interproc_callgraph) plus a once-per-repo narrative context bundle (nl_structured), with nothing retrieved via embedding search. Given both components are load-bearing (ablating either roughly halves TPs, Table IV), 'hybrid' fits better than either single tag or 'retrieved_context'. All numeric values confirmed exactly."
+ },
+ {
+  "arxiv_id": "2401.16185",
+  "numbers": [
+   {
+    "metric": "knowledge-enhancement effect on F1 (Solidity, foundation models)",
+    "value": "F1 nearly doubling on average with knowledge vs. without",
+    "where": "RQ1 results section",
+    "verdict": "CONFIRMED",
+    "note": "Paper states verbatim: 'knowledge enhancement substantially improves performance in Solidity ... with F1 scores nearly doubling on average' (foundation models only; deep reasoning models showed the opposite effect)."
+   },
+   {
+    "metric": "context-supplementation effect on TP counts across 36 knowledge x prompt combinations",
+    "value": "Solidity 22/36 increased, Java 18/36 increased, C/C++ 28/36 increased",
+    "where": "RQ2 results section",
+    "verdict": "CONFIRMED",
+    "note": "Exact match to full-text: 22/36, 18/36, 28/36 respectively."
+   },
+   {
+    "metric": "zero-day validation",
+    "value": "14 confirmed vulnerabilities of 29 submitted, $3,576 in bounties across 4 projects",
+    "where": "RQ4 results section",
+    "verdict": "CONFIRMED",
+    "note": "Paper: 'we submitted 29 issues across these four projects, and 14 were confirmed ... a total bounty of $3,576' (4 projects: Apebond, Glyph AMM, StakeStone, Hajime)."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Context supplementation (caller/related-function context) increased TP in 22/36 (Solidity), 18/36 (Java), 28/36 (C/C++) knowledge x prompt combinations vs. the no-context condition, same model/budget (RQ2).",
+    "where": "structure_gain field",
+    "verdict": "CONFIRMED",
+    "note": "Restates the RQ2 numbers above, confirmed identically."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All 3 key_numbers plus structure_gain confirmed exactly (RQ1 F1 near-doubling; RQ2 22/18/28 of 36; RQ4 14/29 + $3,576/4 projects). Confirmed via full text that context (callees + related vulnerable code) is statically extracted and that GPT-4.1 is indeed used for knowledge summarization (the arXiv page appears to carry a later revision post-dating GPT-4.1's release), supporting stop_detail as written."
+ },
+ {
+  "arxiv_id": "2406.11147",
+  "numbers": [
+   {
+    "metric": "Pair accuracy gain vs code-level RAG baseline",
+    "value": "16%-27% improvement",
+    "where": "Main results / comparison to code-level RAG",
+    "verdict": "CONFIRMED",
+    "note": "Table 4: GPT-4o 0.32 vs 0.05 (+27pp), Claude 0.27 vs 0.11 (+16pp), Qwen 0.26 vs 0.09 (+17pp), DeepSeek 0.30 vs 0.05 (+25pp)."
+   },
+   {
+    "metric": "Accuracy gain vs plain-LLM baseline",
+    "value": "16%-24% increase in identifying vulnerable/patched pairs",
+    "where": "Abstract",
+    "verdict": "CONFIRMED",
+    "note": "Table 4 vs Table 1 basic prompts: GPT-4o +24pp, Claude +21pp, Qwen +19pp, DeepSeek +16pp."
+   },
+   {
+    "metric": "Manual detection accuracy with generated explanations",
+    "value": "60% -> 77%",
+    "where": "Abstract / human study",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Knowledge-level RAG (structured multi-dimensional vulnerability knowledge) beats code-level RAG (raw code retrieval) by 16-27 points pair accuracy; beats a fine-tuning baseline (LLMAO) by 22-26 points",
+    "where": "structure_gain field",
+    "verdict": "CONFIRMED",
+    "note": "Both deltas verified against Table 4 (16-27pp vs code-level RAG; 22-26pp vs LLMAO)."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": false,
+  "evaluation_suggested": "representation_only_ablation",
+  "stop_detail_fair": true,
+  "note": "Evaluation should be representation_only_ablation, not ablated_measured: confirmed via full text that 'code-level RAG' (Table 4) is Vul-RAG's OWN ablation variant (same LLMs, same PairVul benchmark, same retrieval pipeline) that swaps structured knowledge for raw retrieved code -- exactly the with-structure vs raw-text arm the strict definition asks for -- not a separate baseline system. All 3 key_numbers plus structure_gain confirmed exactly."
+ },
+ {
+  "arxiv_id": "2501.04510",
+  "numbers": [
+   {
+    "metric": "Accuracy drop w/o cross-modal alignment",
+    "value": "-18.75pp (CodeLlama), -14.54pp (CodeGemma), -14.49pp (Qwen)",
+    "where": "Table IV (validation set ablation)",
+    "verdict": "CONFIRMED",
+    "note": "Verified against raw Table IV values: full accuracies 0.6627/0.6154/0.6572 vs ablated 0.4752/0.4700/0.5123 -> drops of 18.75/14.54/14.49pp exactly."
+   },
+   {
+    "metric": "Accuracy drop w/o projector",
+    "value": "-22.93pp (CodeLlama), -13.86pp (CodeGemma), -11.75pp (Qwen)",
+    "where": "Table IV",
+    "verdict": "CONFIRMED",
+    "note": "Ablated accuracies 0.4334/0.4768/0.5397 vs full -> drops of 22.93/13.86/11.75pp exactly."
+   },
+   {
+    "metric": "Dataset scale",
+    "value": "330,000+ samples, 809 projects, 150 CWEs",
+    "where": "Dataset description",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Removing the graph-to-text cross-modal alignment module (which fuses the CPG-derived GAT embeddings into soft prompts) drops accuracy by 14.5-18.75pp across three frozen LLM backbones, same soft-prompt tuning budget otherwise",
+    "where": "structure_gain field",
+    "verdict": "CONFIRMED"
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly against raw Table IV values (initial AI-summarized fetch had rounding errors; re-verified with full table reproduction). Minor nuance: the Table IV ablations (w/o projector, w/o cross-modal alignment) degrade the graph-to-LLM fusion mechanism rather than removing the CPG/graph input entirely -- there is no separate graph-free 'text-only, identical architecture' arm in the paper -- so representation_only_ablation is a defensible but not airtight label."
+ },
+ {
+  "arxiv_id": "2505.17416",
+  "numbers": [
+   {
+    "metric": "Detection accuracy / F1",
+    "value": "91.11% accuracy, F1 0.9104",
+    "where": "Results table (LLM-BSCVM(W))",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "RAG ablation delta",
+    "value": "F1 0.9104 -> 0.8440 (-6.64pp) and accuracy -5.5pp w/o RAG",
+    "where": "Table IV",
+    "verdict": "CONFIRMED",
+    "note": "Accuracy 91.11% -> 85.61% = -5.50pp exactly; F1 0.9104 -> 0.8440 = -6.64pp exactly."
+   },
+   {
+    "metric": "False positive rate vs baseline",
+    "value": "5.1% vs TrustLLM's 7.2%",
+    "where": "Results section",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Removing RAG (retrieved audit reports / similar-contract corpus) drops F1 from 0.9104 to 0.8440 (-6.64pp); a full-context variant LLM-BSCVM(E) that injects more retrieved text actually underperforms (80.42% accuracy) due to noise",
+    "where": "structure_gain field",
+    "verdict": "CONFIRMED",
+    "note": "LLM-BSCVM(E) confirmed at exactly 0.8042 accuracy / 0.7890 F1, with the paper explicitly attributing the drop to 'excessive contextual information' distracting the model."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": false,
+  "integration_suggested": "retrieval_guide",
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Integration should be retrieval_guide, not agent_tool_use: full-text check of all six agents (Detector/Advisor/Assessor/Fixer/Verifier/Reporter) shows a fixed sequential 'Decompose-Retrieve-Generate' pipeline with weighted-fusion/voting and no autonomous, dynamically-triggered tool invocation (no Slither/compiler/etc. called by an agentic loop). All 3 key_numbers plus structure_gain confirmed exactly."
+ },
+ {
+  "arxiv_id": "2506.18394",
+  "numbers": [
+   {
+    "metric": "correct patches, full LTFix vs. LTFix-NT (no context trace) ablation",
+    "value": "22 vs. 15 (+47%)",
+    "where": "Section 5.7 Ablation Analysis (RQ3)",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "total errors fixed, full LTFix vs. LTFix-F (file-level context) ablation",
+    "value": "37 vs. 15 (correct patches 22 vs. 7, +214%)",
+    "where": "Section 5.7 ablation table",
+    "verdict": "CONFIRMED",
+    "note": "LTFix-F: 15 total errors fixed, 7 correct patches; (22-7)/7=214% relative increase in correct patches, exact match."
+   },
+   {
+    "metric": "repair success rate (custom benchmark / SAVER dataset)",
+    "value": "37/49 (75.5%) and 122/153 (79.7%)",
+    "where": "main results section",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Full LTFix (typestate-guided context trace) vs. LTFix-NT (error-propagation path only, no context trace), same LLM (Claude 3.5 Sonnet): 22 vs. 15 correct patches (+47%), 37 vs. 22 total errors fixed (+68%), 1 vs. 4 new errors introduced (Section 5.7 ablation, RQ3).",
+    "where": "structure_gain field",
+    "verdict": "CONFIRMED",
+    "note": "LTFix-NT confirmed at 22 total errors fixed, 15 correct patches, 4 new errors; all deltas match. Claude 3.5 Sonnet confirmed as the sole LLM used across all ablation arms."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly against Section 5.7's ablation table and main results. Same LLM (Claude 3.5 Sonnet) held constant across LTFix/LTFix-NT/LTFix-F confirms a clean representation_only_ablation; stop_detail's description of GDB-based dynamic typestate instrumentation producing an error-propagation path plus context trace is confirmed verbatim."
+ },
+ {
+  "arxiv_id": "2510.02534",
+  "numbers": [
+   {
+    "metric": "F1 (OWASP Java Benchmark)",
+    "value": "0.912",
+    "where": "Abstract / results",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "F1 (OpenVuln)",
+    "value": "0.955",
+    "where": "Abstract / results",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "F1 gain, optimized vs minimal-context prompt (OpenVuln)",
+    "value": "~+0.15 avg (e.g. gpt-5 +0.334, gpt-oss-20b +0.381)",
+    "where": "Table 4",
+    "verdict": "WRONG",
+    "correct_value_if_wrong": "Average F1 gain across the 10 models in Table 4 (OpenVuln) is +0.176, not ~+0.15",
+    "note": "Per-model examples (gpt-5 +0.334, gpt-oss-20b +0.381) are exactly correct. But summing all 10 listed model deltas (0.196, 0.096, -0.243, 0.268, 0.216, 0.077, 0.334, 0.233, 0.381, 0.203) gives an average of +0.176, not '~0.15'; the paper itself states no explicit average figure, so this appears to be a computed estimate that undershoots the true mean by ~0.03 (~17% relative), notably because it doesn't fully account for the Gemini-2.5-Pro regression's small weight."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Optimized prompt (flow-sensitive taint traces + CWE-specific micro-rubric) improves F1 by ~0.15 on average over a minimal-context baseline prompt with the same LLM and decoding settings, e.g. gpt-5 +0.334 F1 on OpenVuln (Table 4)",
+    "where": "structure_gain field",
+    "verdict": "WRONG",
+    "correct_value_if_wrong": "Average gain is +0.176, not ~0.15 (same issue as key_number above)",
+    "note": "Duplicates the same average-gain discrepancy as the key_number above."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "The '~+0.15 avg' F1 gain figure (in both the key_number and structure_gain) is off: the true average across Table 4's 10 OpenVuln models is +0.176. Both headline F1 scores (0.912 OWASP, 0.955 OpenVuln) and the two cited per-model deltas (gpt-5 +0.334, gpt-oss-20b +0.381) are exactly correct; stop_detail's one-shot schema-constrained JSON adjudication description is confirmed verbatim."
+ },
+ {
+  "arxiv_id": "2512.06846",
+  "numbers": [
+   {
+    "metric": "F1 (SFT+DPO) on FORGE",
+    "value": "74.9% (P73.1%/R76.8%)",
+    "where": "Table 1",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "F1 progression Base -> SFT -> SFT+DPO",
+    "value": "57.8% -> 65.5% -> 74.9%",
+    "where": "Table 1",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "avg detection time per contract vs baselines",
+    "value": "11.3s (CKG-LLM) vs 13.5s (Achecker) vs 15.8s (GPTScan)",
+    "where": "Table 2",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "none reported for representation directly (the knowledge-graph structure is held constant); reported gains are from fine-tuning stages: F1 rises Base 57.8% -> SFT 65.5% -> SFT+DPO 74.9% (Table 1), not a raw-text-vs-KG ablation.",
+    "where": "structure_gain field",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed no raw-text-vs-KG ablation exists; the F1 progression numbers cited match Table 1 exactly."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly against Table 1 and Table 2. Confirmed the contract knowledge graph merges AST (ontology layer), control-flow (hasNext edges), invocation, inheritance, and SSA-based data dependencies from Slither IR -- consistent with a CPG-style representation -- and that the SFT+DPO-tuned LLM translates NL vulnerability patterns into SPARQL queries against this graph, matching stop_detail."
+ },
+ {
+  "arxiv_id": "2601.18847",
+  "numbers": [
+   {
+    "metric": "Macro-F1 (type-level detection)",
+    "value": "MulVul 34.79% vs GPT-4o 3.86% vs LLM x CPG 24.58% vs LLMVulExp 22.72% vs VISION 18.12%",
+    "where": "Table 2",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "retrieval ablation Macro-F1",
+    "value": "34.56% (full) -> 21.80% (no retrieval), -30.70pp",
+    "where": "Table 4",
+    "verdict": "WRONG",
+    "correct_value_if_wrong": "34.56% -> 21.80% is a -12.76pp drop, not -30.70pp",
+    "note": "The 34.56% and 21.80% values are correct, but -30.70pp is misattributed: in Table 4's delta (\u0394) column, -30.70 is actually the delta for the GPT-4o baseline row (34.56-3.86=30.70), not for the 'w/o Retrieval' row, whose true delta is -12.76pp (34.56-21.80)."
+   },
+   {
+    "metric": "prompt-evolution ablation gain",
+    "value": "51.6% improvement over manual prompts",
+    "where": "ablation section",
+    "verdict": "CONFIRMED",
+    "note": "w/o Evolution = 22.80% Macro-F1; (34.56-22.80)/22.80 = 51.6% relative improvement, exact match."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Removing retrieval-augmentation alone (agents/base LLM held fixed) drops Macro-F1 from 34.56% to 21.80%, a 30.7pp loss (Table 4) -- a clean representation-only ablation isolating the retrieved vulnerability-knowledge-base context.",
+    "where": "structure_gain field",
+    "verdict": "WRONG",
+    "correct_value_if_wrong": "The drop is 12.76pp, not 30.7pp (same misattribution as the key_number above)",
+    "note": "Repeats the same Table 4 delta-column misattribution."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "The retrieval-ablation drop is wrong in both the key_number and structure_gain: Table 4 shows 'w/o Retrieval' at 21.80% vs full 34.56%, a -12.76pp change, not -30.70pp (that figure is actually the GPT-4o-baseline row's delta in the same table). Macro-F1 comparison table and the 51.6% prompt-evolution figure are both confirmed exactly."
+ },
+ {
+  "arxiv_id": "2604.17948",
+  "numbers": [
+   {
+    "metric": "overall quality/remediation score (LLM-judge)",
+    "value": "54.21% average across tested models",
+    "where": "Results section",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "component quality scores",
+    "value": "Structural Integrity ~7.5/10, Ground Truth Alignment ~6.14/10, Code Reasoning ~7.32/10, Remediation Quality ~6.98/10",
+    "where": "Results section",
+    "verdict": "UNRETRIEVABLE",
+    "note": "These per-dimension values live only in Figure 6, a heatmap for one specific model (Falcon H1R-7B) across RAG configurations, not as an average across all tested models; exact cell values aren't present as extractable text. The one comparable figure found in prose (Code Reasoning = 7.10 for the best config) does not match the claimed 7.32, and Ground Truth Alignment = 6.14 does match, but full confirmation of all four values requires reading the image directly, which is not possible via text-based fetch."
+   },
+   {
+    "metric": "knowledge base size",
+    "value": "70 Google Project Zero reports + 1,321 CWE entries",
+    "where": "RAG engine section",
+    "verdict": "CONFIRMED"
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": false,
+  "integration_suggested": "retrieval_guide",
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Component quality scores are UNRETRIEVABLE as precisely stated (they come from a Figure 6 heatmap for one model only; a text-quoted value for Code Reasoning=7.10 conflicts with the claimed 7.32). Integration should be retrieval_guide, not agent_tool_use: confirmed the Explorer/Analyst/Reporter agents run a fixed deterministic pipeline (RAG-fed prompts chained sequentially) with no autonomous tool invocation. Overall score and KB size both confirmed exactly; no RAG-vs-no-RAG ablation exists, consistent with structure_gain='none reported'."
+ },
+ {
+  "arxiv_id": "2605.09461",
+  "numbers": [
+   {
+    "metric": "P-C (Pair-wise Correct) vs VulTrial",
+    "value": "147 vs 81",
+    "where": "Table 1",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "F1 vs ConColl",
+    "value": "0.6907 vs 0.6287",
+    "where": "Table 1",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "Control Path ablation (P-C / Error)",
+    "value": "Full 55/76 -> w/o Control Path 42/89",
+    "where": "Table 2, 131-pair subset",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Removing the structural Control Path (AST/CFG/DFG-derived) drops P-C from 55 to 42 (-23.6% relative) and raises errors from 76 to 89, same GPT-4o backend and test subset (Table 2).",
+    "where": "structure_gain field",
+    "verdict": "CONFIRMED",
+    "note": "(55-42)/55=23.6% exact; GPT-4o confirmed as the LLM for all methods including this ablation."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": false,
+  "integration_suggested": "prompt_serialization",
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Integration should be prompt_serialization, not retrieval_guide: full text confirms the Control Path (AST/CFG/DFG) -- the basis for repr_primary=cfg_dfg and for structure_gain -- is directly verbalized via templates and inserted into the prompt (a 'verbalization operator', not retrieval); retrieval_guide actually describes the separate Knowledge Path (CWE database via hybrid dense-sparse retrieval), which is not what's being ablated here. Minor note: the paper states removing the Semantic Path (not Control Path) causes the largest overall drop, though the Control-Path numbers reported are themselves accurate. All 3 key_numbers plus structure_gain confirmed exactly."
+ },
+ {
+  "arxiv_id": "2403.06838",
+  "numbers": [
+   {
+    "metric": "repair success rate (full ACFix)",
+    "value": "94.92%",
+    "where": "\u00a7VII-C Table IV",
+    "verdict": "CONFIRMED",
+    "note": "Table IV: full ACFix 94.92% (112/118)."
+   },
+   {
+    "metric": "vanilla GPT-4 baseline success rate",
+    "value": "52.54%",
+    "where": "\u00a7VII-C",
+    "verdict": "CONFIRMED",
+    "note": "Matches abstract and Table IV exactly."
+   },
+   {
+    "metric": "w/o ACG (graph representation) success rate",
+    "value": "89.83%",
+    "where": "\u00a7VII-C Table IV",
+    "verdict": "CONFIRMED",
+    "note": "Table IV: w/o ACG 89.83% (106/113)."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "94.92% -> 89.83% (-5.09pp) removing ACG, same GPT-4 model, RBAC taxonomy and validator held constant",
+    "where": "\u00a7VII-C Table IV",
+    "verdict": "CONFIRMED",
+    "note": "Arithmetic and same-model framing both confirmed."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly. stop_detail's '5 categories of static grammar checks + def-use chain validation + structural-boundary compatibility checks, Eqs 1-7' precisely matches the paper's 7 validation rules in \u00a7VI-B (5 grammar checks + Eq.6 def-use chain + Eq.7 structural compatibility), plus the 3-iteration multi-agent-debate validator cap confirmed in \u00a7VI-C."
+ },
+ {
+  "arxiv_id": "2408.03489",
+  "numbers": [
+   {
+    "metric": "accuracy (BERT on LLVM-IR representation)",
+    "value": "98.25%",
+    "where": "results/evaluation section",
+    "verdict": "CONFIRMED",
+    "note": "Matches Table I exactly."
+   },
+   {
+    "metric": "accuracy (DistilBERT on LLVM-IR representation)",
+    "value": "98.17%",
+    "where": "results section",
+    "verdict": "CONFIRMED",
+    "note": "Matches Table I exactly."
+   },
+   {
+    "metric": "accuracy (VulDeeLocator baseline)",
+    "value": "82.43%",
+    "where": "comparison table",
+    "verdict": "CONFIRMED",
+    "note": "Matches Table I exactly."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All three accuracy numbers confirmed exactly. Interprocedural IR-splicing (callee IR spliced into caller at call sites, iSeVC construction) confirmed matching stop_detail. No raw-source-text baseline exists and comparison is vs. a different tool (VulDeeLocator), so ablated_measured (not representation_only_ablation) is correctly assigned."
+ },
+ {
+  "arxiv_id": "2501.18160",
+  "numbers": [
+   {
+    "metric": "precision (full RepoAudit)",
+    "value": "78.43% (40 TP, 11 FP)",
+    "where": "Table 2 / Table 6",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed via abstract, main text, and Table 2 (40 TP, precision 78.43% implies 11 FP)."
+   },
+   {
+    "metric": "precision, validator ablation (no validator)",
+    "value": "33.33% (19 TP, 38 FP) vs. 78.43% with validator",
+    "where": "Table 6 ablation",
+    "verdict": "WRONG",
+    "correct_value_if_wrong": "51.28% (40 TP, 38 FP) vs. 78.43% with validator",
+    "note": "Table 6's Total row for RepoAudit-NoVal is Old=21, New=19, FP=38; total TP = Old+New = 40 (unchanged from the full system), giving precision 40/78=51.28%. The record appears to have used only the 'New' sub-column (19) as if it were the full TP count, omitting the 'Old' sub-column (21). Main text confirms only an FP change is reported for NoVal ('FPs increases by 245.45%', consistent with 11->38), with no TP change mentioned -- i.e., TP staying at 40 is the internally consistent reading."
+   },
+   {
+    "metric": "precision, abstraction ablation (no program abstraction)",
+    "value": "40.38% (21 TP, 31 FP) vs. 78.43% with abstraction",
+    "where": "Table 6 ablation",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed via Table 6 Total row (Old=13+New=8=21 TP, FP=31) AND via the paper's explicit main-text statement 'leading to a precision degradation to 40.38%', derived cleanly from the stated deltas (TP -47.50% from 40 = 21.0; FP +181.82% from 11 = 31.0)."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "78.43% vs. 40.38% (NoAbs, 21TP/31FP) and 78.43% vs. 33.33% (NoVal)",
+    "where": "Table 6",
+    "verdict": "WRONG",
+    "correct_value_if_wrong": "NoAbs part (78.43% vs 40.38%, 21TP/31FP) is correct; NoVal part should be 78.43% vs 51.28% (40TP/38FP), not 33.33%",
+    "note": "Same error as the validator-ablation key_number above, embedded in the combined structure_gain sentence."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Most important finding: the no-validator ablation precision is WRONG. Table 6's own Total row shows NoVal = 40 TP (Old 21 + New 19, not just 19) / 38 FP = 51.28% precision, not 33.33% (19TP/38FP) -- likely an extraction error that dropped the 'Old' TP subtotal. The no-abstraction ablation (40.38%, 21TP/31FP) and the full-system precision (78.43%, 40TP/11FP) are both confirmed exactly, including cross-checks against the paper's own stated percentage deltas. Verified via direct PDF read of Tables 2 and 6 (WebFetch's HTML/ar5iv renderer was unreliable and returned 3+ mutually inconsistent readings of this specific table across attempts)."
+ },
+ {
+  "arxiv_id": "2505.19828",
+  "numbers": [
+   {
+    "metric": "Claude-3.7-Sonnet statement-level F1",
+    "value": "23.83%",
+    "where": "\u00a75 results",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed via abstract and Table 3."
+   },
+   {
+    "metric": "GPT-4.1 statement-level F1",
+    "value": "22.38%",
+    "where": "\u00a75 results",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed via Table 3."
+   },
+   {
+    "metric": "context extraction validation accuracy (GPT-4.1, 100-sample check)",
+    "value": "82.98%",
+    "where": "\u00a73.4",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed as 82.98\u00b19.68% in \u00a73.4."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All three numbers confirmed exactly. Confirmed no with/without-context ablation exists anywhere in the paper (correctly not_evaluated). Manual validation of exactly 300 samples for detection correctness confirmed via direct quote in \u00a75.1 ('we randomly selected 300 samples ... and manually validated the outputs')."
+ },
+ {
+  "arxiv_id": "2507.16585",
+  "numbers": [
+   {
+    "metric": "LLMxCPG accuracy / F1 (SVEN, function-level)",
+    "value": "0.602 / 0.705",
+    "where": "Table 5",
+    "verdict": "CONFIRMED",
+    "note": "Table 5: Accuracy=0.6020, F1=0.7048, both round to the stated values."
+   },
+   {
+    "metric": "ReGVD (GNN baseline) F1 (SVEN)",
+    "value": "0.55",
+    "where": "Table 5",
+    "verdict": "CONFIRMED",
+    "note": "Matches Table 5 exactly."
+   },
+   {
+    "metric": "code size reduction via CPG-based slicing",
+    "value": "67.84%-90.93%",
+    "where": "\u00a74.3.1",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed: 67.84% (PrimeVul), 70.22% (SVEN), 90.93% (ReposVul) -- the stated range correctly bounds all three."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": false,
+  "evaluation_suggested": "representation_only_ablation",
+  "stop_detail_fair": true,
+  "note": "IMPORTANT: the record's structure_gain claim that Appendix C 'results are not detailed' is WRONG. Appendix C explicitly reports LLMxCPG-D accuracy WITH vs WITHOUT slicing (same model, full code bypassing the CPG slicing step) for all three datasets: FormAI 0.8146->0.6762, PrimeVul 0.7250->0.4875, SVEN 0.6020->0.5078 (matching Table 5's 0.6020 exactly). This is a genuine same-model, same-LLM representation-only ablation with exact numbers, so evaluation should be representation_only_ablation, not ablated_measured. All three original key_numbers (Table 5 scores, ReGVD F1, code-size-reduction range) are confirmed exactly."
+ },
+ {
+  "arxiv_id": "2510.17919",
+  "numbers": [
+   {
+    "metric": "F1 (single-label detection, full ParaVul)",
+    "value": "0.9398",
+    "where": "abstract / results section",
+    "verdict": "CONFIRMED",
+    "note": "Matches abstract exactly."
+   },
+   {
+    "metric": "F1 (multi-label detection, full ParaVul)",
+    "value": "0.9330",
+    "where": "abstract / results section",
+    "verdict": "CONFIRMED",
+    "note": "Matches abstract exactly."
+   },
+   {
+    "metric": "F1, SLoRA-only LLM detector (single-label / multi-label)",
+    "value": "0.9021 / 0.9396",
+    "where": "Table IV",
+    "verdict": "CONFIRMED",
+    "note": "Matches Table IV exactly (LLaMA13b+SLoRA)."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "verification/fusion module >= 4% over LLM-only and >= 12% over RAG-only in F1 for single-label detection",
+    "where": "Figure 4",
+    "verdict": "CONFIRMED",
+    "note": "The 4%/12% figures are confirmed verbatim in the introduction ('the verification module achieves at least a 4% improvement over LLMs and a 12% improvement over RAG'), though the paper states this as a general claim, not explicitly restricted to single-label detection as the record implies -- a minor scope nuance, not a numeric error."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All three F1 numbers confirmed exactly via Table IV. Fusion mechanism confirmed as post-hoc meta-learning MLP combining independent LLM+RAG pathway outputs, not prompt-level concatenation, matching stop_detail. Minor nuance: the 4%/12% improvement claim in the paper is general/unqualified, not stated as single-label-specific."
+ },
+ {
+  "arxiv_id": "2512.07533",
+  "numbers": [
+   {
+    "metric": "C/C++ F1, full vs no-reasoning ablation",
+    "value": "~0.65 full vs ~0.58 NoReason",
+    "where": "Ablation table",
+    "verdict": "WRONG",
+    "correct_value_if_wrong": "No C/C++-specific numbers exist; Figure 5 shows aggregate 'Overall F1 Score' bars for 'All' testing data and 'OOD' CWEs only. Approximate bar-chart readings: All -- NoReason ~0.71 vs VulnLLM-R ~0.78; OOD -- NoReason ~0.58 vs VulnLLM-R ~0.81 (no exact table values are given in text).",
+    "note": "There is no table, and no C/C++-language-specific breakdown for this ablation -- Figure 5 (Section 5.2) only plots aggregate 'All' and 'OOD' groups across all languages combined. The 0.58 value happens to match NoReason's OOD bar, but it is paired with '~0.65' for the full model which matches neither the All (~0.78) nor OOD (~0.81) bar for full VulnLLM-R."
+   },
+   {
+    "metric": "Zero-day findings",
+    "value": "15 zero-day vulnerabilities found in actively maintained repos via project-level agent",
+    "where": "Agent deployment results",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed verbatim: 'the agent discovered 15 zero-day vulnerabilities' in real-world deployment."
+   },
+   {
+    "metric": "Training-data yield from constitution-based correction",
+    "value": "~30% more correct-answer reasoning training data",
+    "where": "Training data construction section",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed verbatim: 'Through the constitution-based correction, we can obtain around 30% more training data with the correct answers.'"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Removing reasoning trajectories drops C/C++ F1 from ~0.65 to ~0.58, largest degradation on OOD CWEs",
+    "where": "Figure 5",
+    "verdict": "WRONG",
+    "correct_value_if_wrong": "Same correction as the C/C++ F1 key_number above -- not C/C++-specific, and approximate values are All ~0.78->~0.71 / OOD ~0.81->~0.58",
+    "note": "The qualitative claim ('largest degradation on OOD CWEs') IS confirmed correct -- the paper explicitly states VulnLLM-R's advantage over NoReason is especially pronounced on OOD CWEs -- but the specific C/C++ language attribution and ~0.65/~0.58 values are not supported by the actual figure."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": false,
+  "evaluation_suggested": "not_evaluated",
+  "stop_detail_fair": true,
+  "note": "Key ablation number is WRONG on two counts: (1) location -- it's Figure 5 (a bar chart), not a table, and (2) content -- Figure 5 shows aggregate 'All'/'OOD' overall F1, not a C/C++-specific breakdown; approximate readings are All: NoReason~0.71/full~0.78, OOD: NoReason~0.58/full~0.81. Also, this ablation (VulnLLM-R vs VulnLLM-R-NoReason) varies whether the model was trained to produce a reasoning/CoT trace, not the program representation itself (repr_primary=raw_text is unchanged in both conditions), so per this SLR's strict definition it likely should not be classified as representation_only_ablation -- not_evaluated (or demonstrated) fits better since no structural-representation ablation exists in this paper. Zero-day count (15) and ~30% training-data yield are both confirmed via direct quotes."
+ },
+ {
+  "arxiv_id": "2601.19239",
+  "numbers": [
+   {
+    "metric": "average recall on known vulnerabilities (LLM-based tools)",
+    "value": "21.09% (C/C++), 33.82% (Java)",
+    "where": "Table IV, Section V-A, Finding 1",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed exactly (27/128 C/C++, 69/204 Java)."
+   },
+   {
+    "metric": "suspicious/false discovery rate (SFDR) on real-world projects",
+    "value": "best tool avg 85.3%, up to 97.0% (RepoAudit, C/C++), 94.4% (IRIS, Java)",
+    "where": "Tables V-VI, Finding 2, Section V-B",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed via direct quotes: 'even the best-performing tool averages 85.3%'; RepoAudit 'average SFDR of 97.0%'; IRIS 'average SFDR of 94.4%'."
+   },
+   {
+    "metric": "compute overhead (RepoAudit)",
+    "value": "up to 225M input / 38M output tokens, ~448 min/project average",
+    "where": "Table VII, Section V-D",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed: up to 225,493,970 input / 38,078,260 output tokens; average runtime 448.31 min/project."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly via direct quotes. structure_gain's IRIS (46.15%) vs LLMDFA (0%) on CWE-078 also confirmed. Architectural descriptions of INFERROI (CFG path exploration), RepoAudit (3-layer interprocedural exploration), and IRIS (CodeQL query templates) all confirmed."
+ },
+ {
+  "arxiv_id": "2604.20179",
+  "numbers": [
+   {
+    "metric": "overall valid-exploit confirmation rate vs best baseline (Explode.js Pkg mode)",
+    "value": "433/517 = 83.75% vs 43.13%",
+    "where": "Table 3, Section 5.2.1",
+    "verdict": "WRONG",
+    "correct_value_if_wrong": "433/517 = 83.75% (LLMVD.js, correct) vs. Explode.js 'File' mode 223/517 = 43.13% (not 'Pkg' mode). Actual Pkg-mode rate is 61/517 = 11.80%.",
+    "note": "The paper explicitly states the 43.13% confirmation rate belongs to Explode.js in 'File' mode ('the best-performing baseline...Explode.js in \"File\" mode, manages to confirm only 223 vulnerabilities...43.13%'), not 'Pkg' mode. Table 3's Overall Total row shows Pkg mode Det=79/Expl=61, i.e., 61/517=11.80%, a very different number. The LLMVD.js figure itself (433/517=83.75%) is correct."
+   },
+   {
+    "metric": "private NodeMedic dataset valid PoC rate vs NodeMedic-FINE",
+    "value": "244/259 = 94.2% vs 127/259 = 49.0%",
+    "where": "Table 5, Section 5.2.4",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed exactly via Table 5 and direct text quote."
+   },
+   {
+    "metric": "newly crawled npm packages (Wild): validated vulnerabilities found",
+    "value": "36/260 valid PoCs vs traditional tools <=2",
+    "where": "Table 5, Section 5.2.5, Abstract",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed via Table 5 (LLMVD.js Val=36/260; best traditional tool FAST Expl=2)."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "83.75% vs 43.13% confirmation rate (Table 3); outperforms PoCGen at lower cost (Table 4)",
+    "where": "Table 3 / Table 4",
+    "verdict": "CONFIRMED",
+    "note": "This instance doesn't repeat the 'Pkg mode' mislabel. Table 4 also confirms LLMVD.js outperforms PoCGen (268/299=89.6% valid vs 253/299=84.6% valid) at lower average cost ($0.085 vs $0.097)."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Found one mislabeling: the 43.13% Explode.js confirmation rate is 'File' mode per the paper's own text, not 'Pkg' mode as the first key_number claims (actual Pkg-mode rate is 61/517=11.80%). All other numbers (LLMVD.js 83.75%, NodeMedic 94.2% vs 49.0%, Wild 36/260) confirmed exactly. Agent pipeline stage names (Finder->Judge->Constraints Inferencer->Exploiter) and oracle-guided execution checking concrete side effects both confirmed verbatim from Figure 3 and Section 4.4."
+ },
+ {
+  "arxiv_id": "2605.17444",
+  "numbers": [
+   {
+    "metric": "resolution rate, SEC-Bench memory ablation",
+    "value": "Full MemRepair 58.0% vs Loop-only (no memory) 36.0% vs OpenHands baseline 38.5%",
+    "where": "Table 3",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed exactly via Table 3."
+   },
+   {
+    "metric": "resolution rate, PatchEval cross-language",
+    "value": "58.2% overall (JS 74.7%, Go 53.0%, Python 46.2%) vs SWE-agent(Gemini-2.5-pro) 37.80% / OpenHands(Gemini-2.5-pro) 35.60%",
+    "where": "Table 4",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed exactly via Table 4, including per-language breakdown."
+   },
+   {
+    "metric": "resolution rate, Multi-SWE-bench C++",
+    "value": "MemRepair 30.58% vs InfCode-C++(GPT-5) 25.60%",
+    "where": "Table 2",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed exactly via Table 2."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "36.0% (loop-only) -> 58.0% (full L1+L2+L3), +22pp, L3 alone contributing 50.5%",
+    "where": "Table 3",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed exactly, including the L3-alone contribution figure."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly across Tables 2, 3, and 4, backbone confirmed as DeepSeek-v3.2. Agent tool descriptions (file viewer with line numbers, ripgrep regex search, Iter_grep AST-based tool ranking by proximity to error location) confirmed verbatim."
+ },
+ {
+  "arxiv_id": "2607.13439",
+  "numbers": [
+   {
+    "metric": "Pair-Correctness (P-C), function-only baseline vs DREA",
+    "value": "DeepSeek-V3.2 19%->42%, GLM-4.7 26%->34%, GPT-5.2 21%->30%",
+    "where": "Table 1",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed exactly for all three LLMs via Table 1."
+   },
+   {
+    "metric": "token offload to explorer agent",
+    "value": ">93% of tokens offloaded to the lightweight Explorer agent",
+    "where": "Results",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed verbatim: '93.7-97.9% of tokens are offloaded to the local model'."
+   },
+   {
+    "metric": "billable API cost reduction",
+    "value": "16-48x lower cost vs baseline",
+    "where": "Results",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed verbatim, same sentence as the token-offload figure."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Pair-Correctness rises from function-only baseline (19-26% across three LLMs) to 30-42% with DREA",
+    "where": "Table 1",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed: baseline range 19-26% and DREA range 30-42% both match the per-LLM values in Table 1."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly via Table 1 and direct quotes. Explorer/Planner architecture (read-only ls/glob/grep/read_file tools; Repository Context/Code Evidence/Security Findings categories reported back to the Planning agent) confirmed verbatim."
+ },
+ {
+  "arxiv_id": "2403.19096",
+  "numbers": [
+   {
+    "metric": "F1 on Reveal",
+    "value": "62.85% (SCALE) vs 49.10% best baseline (CodeBERT)",
+    "verdict": "WRONG",
+    "correct_value_if_wrong": "62.85% (SCALE) vs 56.04% best baseline (UniXcoder)",
+    "note": "Both raw numbers (62.85%, 49.10%) do appear in Table 3, but CodeBERT is NOT the best baseline on Reveal - it is the WORST of the pretrained baselines (Devign 33.91, ReVeal 41.62, CodeBERT 49.10, CodeT5 52.78, EPVD 55.22, UniXcoder 56.04). UniXcoder (56.04%) is the actual best baseline."
+   },
+   {
+    "metric": "F1 on FFMPeg+Qemu",
+    "value": "65.11% (SCALE) vs 63.24% (CodeT5)",
+    "verdict": "CONFIRMED",
+    "note": "CodeT5 (63.24%) is indeed the best baseline on FFMPeg+Qemu; matches Table 3 exactly."
+   },
+   {
+    "metric": "CodeBERT F1 gain from SCT-enhanced representation",
+    "value": "+10.87% on FFMPeg+Qemu",
+    "verdict": "CONFIRMED",
+    "note": "Table 4/RQ2: CodeBERT F1 54.07% -> 64.94% = +10.87%, matches exactly."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "SCALE improves F1 by 1.17-13.47 points over best pre-trained/LLM baseline across three datasets (Table 3)",
+    "verdict": "CONFIRMED",
+    "note": "Paper's own RQ1 text states verbatim: 'improvements of 2.96%, 13.47%, and 1.17% ... on the FFMPeg+Qemu, Reveal, and SVulD datasets'. The extracted range's endpoints (1.17 and 13.47) match exactly; these are the paper's own reported relative-improvement percentages (not simple absolute point-differences from Table 3 raw values, which would give different numbers like 1.87/6.81/1.17)."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Key_number 'F1 on Reveal' mislabels CodeBERT (49.10%, actually the worst baseline on Reveal) as the 'best baseline' - the true best baseline on Reveal is UniXcoder at 56.04%. All other numbers, structure_gain, facets, and stop_detail are confirmed accurate; Table 6 RQ4 ablation (Without SCTC/SER) is a genuine same-model representation-only ablation supporting the evaluation label."
+ },
+ {
+  "arxiv_id": "2409.09661",
+  "numbers": [
+   {
+    "metric": "valid patches fixing vulnerability",
+    "value": "23/48 (48%)",
+    "verdict": "CONFIRMED",
+    "note": "\u00a74.2.2 confirms 23/48 = 47.9% \u2248 48% valid patches; also 10/48 (21%) require minor modification."
+   },
+   {
+    "metric": "top-3 strategy success rate",
+    "value": "91.6%",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "single-strategy (GPT-3.5) success rate",
+    "value": "70.4%",
+    "verdict": "CONFIRMED"
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All three key numbers confirmed exactly against \u00a74.2.1-4.2.2. Paper contains no baseline comparisons and no CDG-ablation, confirming both structure_gain='none reported' and evaluation='demonstrated'. Architecture description (CDG pruning via Slither \u00a72.2, CoT \u00a72.3, multi-agent debate + compilation/GPT-4 validation \u00a72.4/\u00a74.2.2) matches verbatim."
+ },
+ {
+  "arxiv_id": "2502.00064",
+  "numbers": [
+   {
+    "metric": "benchmark scale",
+    "value": "74 vulnerabilities / 140 Java files / 25 CWE types",
+    "verdict": "CONFIRMED",
+    "note": "Matches paper text verbatim: '140 Java files corresponding to 74 unique vulnerabilities' across 25 CWE types."
+   },
+   {
+    "metric": "models robust to context-length (both null hypotheses accepted)",
+    "value": "GPT-4; Mistral-7B and Mixtral-8x7B at 32,768-token context window",
+    "verdict": "CONFIRMED",
+    "note": "GPT-4 quoted as consistently accepting both null hypotheses; Mistral-7B and Mixtral-8x7B both show both hypotheses accepted specifically at the 32,768-token context window in Table II."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Both key numbers confirmed exactly. Stop_detail confirmed: no grounding mechanism, all files intentionally vulnerable ('All files contain vulnerabilities'), manual Correct/Incorrect/Irrelevant classification with no inter-annotator agreement reported."
+ },
+ {
+  "arxiv_id": "2505.22010",
+  "numbers": [
+   {
+    "metric": "Accuracy CWE-134",
+    "value": "99.74% (VulBinLLM) vs 93.88% (LATTE)",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "F1 CWE-190",
+    "value": "98.99% (VulBinLLM) vs 62.05% (LATTE)",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "Overall accuracy gain vs LATTE",
+    "value": "~10% increase",
+    "verdict": "CONFIRMED",
+    "note": "Matches abstract's 'approximately 10% increased accuracy'; independent average-across-CWEs recomputation gives ~11%, consistent with the ~10% approximation."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "~10% average accuracy gain and up to ~37-point F1 gain (CWE-190) over LATTE baseline on Juliet binaries (Table 3); no controlled representation-only ablation is reported",
+    "verdict": "CONFIRMED",
+    "note": "98.99-62.05=36.94\u224837 points, confirmed; paper compares only against LATTE as an external baseline system, no internal representation ablation exists, confirmed."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly against Table 3. Architecture (GPT-4o annotation of Ghidra pseudocode, memory-management agent with SQL store and function queue) confirmed. Comparison is only vs. LATTE (different baseline system, no internal ablation), correctly supporting evaluation='ablated_measured' rather than representation_only_ablation."
+ },
+ {
+  "arxiv_id": "2508.13092",
+  "numbers": [
+   {
+    "metric": "F1 (GPT-4o + VerilogLAVD)",
+    "value": "0.57 vs 0.25 (LLM+Knowledge baseline)",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "F1 (DeepSeek-V3 + VerilogLAVD)",
+    "value": "0.50 vs 0.34 (LLM+Knowledge baseline)",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "Illegal rule-usage rate with validation FSM",
+    "value": "40.87% -> 10.10% (87.10% reduction)",
+    "verdict": "CONFIRMED",
+    "note": "Table 3 confirms; breakdown also given: illegal traversal rules 27.04%->3.49%, illegal parameters 13.83%->6.61%."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "F1 improvement of 0.32 (GPT-4o) and 0.16 (DeepSeek-V3) over LLM+Knowledge baseline, same backbone LLMs held fixed",
+    "verdict": "CONFIRMED",
+    "note": "0.57-0.25=0.32 and 0.50-0.34=0.16, both confirmed. Critically verified that 'LLM+Knowledge' is an ablation variant of VerilogLAVD itself (same LLM, same CWE inputs, just without VeriPG structure/rule-traversal) rather than an external tool - this genuinely satisfies the strict same-model/same-budget representation_only_ablation criterion."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly against Table 2/3. Explicitly verified that LLM-only/LLM+Knowledge/VerilogLAVD are three controlled arms using the SAME underlying LLMs (GPT-4o, DeepSeek-V3), validating the strict representation_only_ablation classification. Rule-generation and validation-FSM architecture description confirmed."
+ },
+ {
+  "arxiv_id": "2510.20739",
+  "numbers": [
+   {
+    "metric": "best LLM (full fine-tune) F1",
+    "value": "0.915",
+    "verdict": "CONFIRMED",
+    "note": "DS-Distill-Qwen-7B Full FT = 0.9153, rounds to 0.915."
+   },
+   {
+    "metric": "GNN F1",
+    "value": "0.886",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "LLM+GNN hybrid F1",
+    "value": "0.902",
+    "verdict": "CONFIRMED",
+    "note": "Matches Qwen2.5-Coder-7B (Full+GNN FT) row in the results table. Caveat: other hybrid model configurations in the paper's dedicated hybrid-ablation table range widely (0.551-0.912 depending on base LLM), so 0.902 is one specific hybrid configuration among several, not a single canonical 'the hybrid' result - but it is a real, correctly-cited value."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "text-only LLM (0.915) outperforms GNN-only (0.886) and LLM+GNN hybrid (0.902)",
+    "verdict": "CONFIRMED",
+    "note": "Same three numbers as above, all confirmed in the same results table."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed. Correctly classified evaluation='ablated_measured' rather than representation_only_ablation since LLM, GNN, and hybrid are different model architectures/systems in the headline comparison; note the paper does separately report a stricter same-base-LLM ablation (with/without GNN embedding concatenation) in a secondary table, but that is not what's cited here. Hybrid architecture description (concatenation, no attention/alignment, end-to-end backprop) confirmed verbatim in \u00a73.4."
+ },
+ {
+  "arxiv_id": "2512.16538",
+  "numbers": [
+   {
+    "metric": "virtualization-obfuscation attack success rate (downgrade), C/C++ datasets",
+    "value": "~80%",
+    "verdict": "CONFIRMED",
+    "note": "Finding #2 box states verbatim: 'virtualization-based obfuscation has the most significant impact ... achieving an attack success rate of up to approximately 80% on the C/C++ datasets.'"
+   },
+   {
+    "metric": "mixed-programming-language obfuscation attack success rate",
+    "value": "~75%",
+    "verdict": "CONFIRMED",
+    "note": "Finding #2: 'mixed-programming-language obfuscation, with an attack success rate of around ~75%.'"
+   },
+   {
+    "metric": "detection success-rate gap, existence-only vs. type+location scoring criterion",
+    "value": "~40% average increase under existence-only vs. type/location criterion",
+    "verdict": "CONFIRMED",
+    "note": "\u00a74.2.3 states verbatim: 'the detection success rate increases by roughly 40% on average compared with our type evaluation (cf. Table 6)', sourced from Table 13 (existence-eval) vs Table 6 (type-eval) as cited."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "virtualization obfuscation up to ~80% attack success on C/C++; QWEN-14B on PrimeVul jumps from 0.39 to 0.80 after L1",
+    "verdict": "CONFIRMED",
+    "note": "Text confirmed verbatim: 'on the PrimeVul dataset the QWEN-14B model's detection success jumps from 0.39 on the original code to 0.80 after applying L1 obfuscation.'"
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly via full-text PDF read (Finding #2 box, RQ3/Table 13 vs Table 6 comparison, QWEN-14B example all verbatim matches). stop_detail's citation to 'Section 4.1 Evaluation Metrics' correctly located (the 1-4 scoring rubric appears under the Experiment Setup section, before the Obfuscation Technique subsection). Same-model/same-prompt raw-vs-obfuscated-text comparison reasonably supports representation_only_ablation."
+ },
+ {
+  "arxiv_id": "2602.06751",
+  "numbers": [
+   {
+    "metric": "PrimeVul accuracy, function-only vs full CPRVul",
+    "value": "56.65% -> 67.78% (+11.13pp)",
+    "verdict": "CONFIRMED",
+    "note": "Values correct (Table 3), but citation 'Tables 1 and 8' is wrong - the correct tables are Table 1 (56.65% UniXcoder baseline) and Table 3 (67.78% Qwen2.5-32B CPRVul); Table 8 covers a different comparison (function-body-only vs Phase-I-only context). Additionally, this is NOT a same-model comparison: 56.65% is UniXcoder (encoder-only classifier) and 67.78% is Qwen2.5-32B (fine-tuned generative LLM with reasoning traces) - fundamentally different architectures/training regimes, i.e. a cross-system SOTA comparison, not a controlled ablation."
+   },
+   {
+    "metric": "Raw-context degradation (UniXcoder, PrimeVul)",
+    "value": "56.65% -> 54.22% when raw unstructured context appended",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed in Table 1; this one IS a genuine same-model (UniXcoder) controlled comparison."
+   },
+   {
+    "metric": "Reasoning-phase (Phase II) contribution",
+    "value": "-15.24pp accuracy when removed",
+    "verdict": "CONFIRMED",
+    "note": "Value correct (67.78%->52.54%), but the citation 'Table 8' is wrong - this ablation is in Table 7 ('Ablation study results for model variants ... using Qwen2.5-Coder-32B'), not Table 8. This IS a genuine same-model (Qwen2.5-Coder-32B) controlled comparison."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "56.65%->54.22% degradation vs 67.78% (+11.13pp) improvement, holding 1,024-token context window and fine-tuning budget (5 epochs) fixed across arms",
+    "verdict": "WRONG",
+    "correct_value_if_wrong": "Numeric deltas are correct, but 'holding ... fine-tuning budget (5 epochs) fixed across arms' is not substantiated for the headline 56.65%->67.78% comparison.",
+    "note": "The paper explicitly states the '5 epochs' fine-tuning detail applies only to Qwen2.5-Coder's training; UniXcoder's own fine-tuning/training regime is not documented in this paper (described only as 'an existing baseline evaluated on the datasets'). Since UniXcoder and Qwen2.5-32B are different architectures with undocumented-vs-documented training budgets respectively, the claim that budget was 'held fixed across arms' for this specific comparison is not supported."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": false,
+  "evaluation_suggested": "ablated_measured",
+  "stop_detail_fair": true,
+  "note": "MOST IMPORTANT: the headline 'representation-only ablation' number (56.65%->67.78%, +11.13pp) actually compares TWO DIFFERENT MODEL ARCHITECTURES (UniXcoder encoder-classifier vs Qwen2.5-32B fine-tuned generative LLM with reasoning), not the same model with representation varied - this is a cross-system SOTA comparison, which per the strict criterion should be 'ablated_measured', not 'representation_only_ablation'. The paper DOES separately contain two genuine same-model ablations (Table 1: UniXcoder \u00b1raw-context; Table 7: Qwen2.5-Coder-32B \u00b1Phase-II) which would individually qualify, but the extraction's chosen headline number and structure_gain framing rest on the cross-model comparison. Also both 'Table 8' citations are incorrect (should be Table 3 and Table 7 respectively)."
+ },
+ {
+  "arxiv_id": "2604.27714",
+  "numbers": [
+   {
+    "metric": "FPR escalation with text fine-tuning (Qwen3-8B, OWASP Java)",
+    "value": "0.763 zero-shot -> 0.866 pilot -> 1.000 full-scale, while F1 stays 0.637-0.688",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "FPR reduction switching text-trained model's input to AST, no retraining (Qwen3-8B)",
+    "value": "0.866 -> 0.583 (Delta -0.282), F1 0.688 -> 0.637",
+    "verdict": "CONFIRMED",
+    "note": "Confirmed as a same-model-weights, inference-time-only representation swap ('427 of 1,147 false positives (37.2%) revert to true negatives under AST input alone' with identical parameters)."
+   },
+   {
+    "metric": "Per-CWE heterogeneity (CWE-330)",
+    "value": "FPR reduction of Delta=-0.527 under text->AST switch",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Switching inference-time input from raw text to pruned AST cuts FPR by 0.282-0.527 depending on CWE, F1 cost 0.688->0.637, same model weights and training budget",
+    "verdict": "CONFIRMED"
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly (FPR escalation, cross-representation probe delta, per-CWE CWE-330 delta). This is a textbook same-weights/no-retraining representation swap, strongly supporting representation_only_ablation. stop_detail's claim of 'no deployable technique' is fair: the paper's 'pre-deployment consistency gate' is explicitly presented as a conceptual proposal in the Conclusion, not an implemented tool ('could be explored as a post-hoc alert-filtering layer')."
+ },
+ {
+  "arxiv_id": "2606.04739",
+  "numbers": [
+   {
+    "metric": "pairwise accuracy, Qwen2.5-Coder-32B (reproduction vs original)",
+    "value": "identical pairwise accuracy; balanced recall/precision differ by <=2pp",
+    "verdict": "CONFIRMED",
+    "note": "Pairwise accuracy identical at 0.26; balanced recall identical at 0.59; balanced precision differs by 2pp (0.61->0.59)."
+   },
+   {
+    "metric": "pairwise accuracy, DeepSeek-Coder-V2 (reproduction vs original)",
+    "value": "0.30 -> 0.22 (-8pp); 21/586 pairs failed (CUDA OOM)",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "performance plateau across all evaluated open-weight models",
+    "value": "~0.30 pairwise accuracy (best reasoning model 0.29)",
+    "verdict": "CONFIRMED",
+    "note": "Best pairwise accuracy 0.29 (QwQ-32B and DeepSeek-R1-Distill-Qwen-32B), only 4pp above random baseline of 0.25; matches ~0.30 plateau characterization."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All three numbers confirmed exactly against RQ1 (Table 3) and RQ4 (Table 5). Retrieval mechanism (BM25 + re-ranking on LLM-extracted functional semantics, sequential reasoning over each retrieved item) confirmed verbatim in \u00a73. structure_gain correctly notes representation is held fixed across model comparisons (no representation variation occurs in this study)."
+ },
+ {
+  "arxiv_id": "2607.21983",
+  "numbers": [
+   {
+    "metric": "positive-label rate, slices+knowledge",
+    "value": "97.1% (437/450)",
+    "verdict": "CONFIRMED",
+    "note": "Exact: 437/450 = 97.11%."
+   },
+   {
+    "metric": "positive-label rate, slices-knowledge",
+    "value": "87.11% (392/450)",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "positive-label rate, complete contracts-knowledge",
+    "value": "73.78% (332/450)",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "73.78% -> 87.11% (+13.33pp) from slicing; -> 97.11% (+10.0pp) from adding knowledge base, same DeepSeek model/config held constant across all three arms",
+    "verdict": "WRONG",
+    "correct_value_if_wrong": "The percentage-point deltas (+13.33pp, +10.0pp) are correct, but 'same DeepSeek model/config held constant across all three arms' is not substantiated.",
+    "note": "The paper explicitly discloses as a limitation that 'the exact DeepSeek model identifier, decoding temperature, token limit, API version, retry policy, and complete knowledge-base text were not recorded, which limits reproducibility' - so constancy of configuration across arms cannot be confirmed. Additionally, the 'complete contracts' condition necessarily uses far more input tokens than the sliced conditions, so the context/token budget is clearly NOT held equal across arms."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": false,
+  "evaluation_suggested": "ablated_measured",
+  "stop_detail_fair": true,
+  "note": "MOST IMPORTANT: evaluation should be 'ablated_measured', not 'representation_only_ablation' - the paper does not confirm the same model/config was used across the three arms (authors admit key settings 'were not recorded', a disclosed reproducibility gap) AND the context/token budget clearly differs between the complete-contract condition (much longer inputs) and the sliced conditions, violating the strict same-model/same-context-budget requirement for representation_only_ablation. All three percentage numbers (97.11%, 87.11%, 73.78%) are exact matches to Table 4. Slicing/knowledge-base/rejection-rule architecture description (Algorithm 1, Prompt 1, regex-based backward/forward balanced-brace slicing, closed label set, 'Return None' rule) confirmed verbatim."
+ },
+ {
+  "arxiv_id": "2405.04994",
+  "numbers": [
+   {
+    "metric": "Pass@3 repairs (ChatGPT-4, with vs without SPVR)",
+    "value": "143/547 vs 65/547",
+    "where": "Table 3, Section 5.1.1",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "CodeBLEU (ChatGPT-4)",
+    "value": "0.4109 (SPVR) vs 0.3025 (baseline)",
+    "where": "Table 3",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "Ablation Pass@3 (ChatGPT-3.5-turbo, with vs without MET info)",
+    "value": "138/547 vs 55/547",
+    "where": "Table 10, Section 5.4",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "~151% relative gain (55->138 on Pass@3, ChatGPT-3.5-turbo, same model/samples/metric, Table 10)",
+    "where": "Table 10, Section 5.4",
+    "verdict": "CONFIRMED",
+    "note": "(138-55)/55=150.9%, matches 'roughly 151%'"
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All three key numbers and structure_gain confirmed exactly in Tables 3 and 10. Table 10 with/without-MET ablation on the same model (ChatGPT-3.5-turbo) is a textbook representation_only_ablation."
+ },
+ {
+  "arxiv_id": "2409.18395",
+  "numbers": [
+   {
+    "metric": "Detection rate (Copilot)",
+    "value": "76% (118/156)",
+    "where": "Table I",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "Repair rate, no context",
+    "value": "15% (24/156)",
+    "where": "Table I",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "Repair rate, context-aware prompt tuning",
+    "value": "63% (>4x improvement)",
+    "where": "Table I",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "15% -> 63% repair success, >4x, same LLM (Copilot) throughout",
+    "where": "Table I",
+    "verdict": "CONFIRMED",
+    "note": "63/15=4.2x; paper itself calls it 'more than four times'"
+   }
+  ],
+  "repr_primary_agree": false,
+  "repr_primary_suggested": "nl_structured",
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Facet disagreement: repr_primary 'retrieved_context' is a mismatch -- there is no retrieval mechanism (no corpus/search); the paper manually stages CWE description plus four hand-authored structured cues (buffer id, bound selection, range precision, placement) directly into the prompt. 'nl_structured' fits better. All numbers and stop_detail confirmed."
+ },
+ {
+  "arxiv_id": "2503.03586",
+  "numbers": [
+   {
+    "metric": "F1, Plain LLM vanilla (GPT-4o)",
+    "value": "65.96",
+    "where": "results table (Table 2)",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "Pairwise accuracy (pAcc), ReAct+CoT (GPT-4o)",
+    "value": "19.13",
+    "where": "results table (Table 2)",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "pAcc improvement of ReAct over Plain LLM",
+    "value": "0.1% to 16.61%",
+    "where": "abstract/results",
+    "verdict": "CONFIRMED",
+    "note": "Exact quoted range in Section 5.1"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Plain LLM pAcc ~1-17.6% vs ReAct up to 19.13%; Plain LLM F1 65.96 vs ReAct F1 57-58",
+    "where": "Table 2",
+    "verdict": "CONFIRMED",
+    "note": "Table 2 full breakdown: Plain LLM pAcc = 1.02/15.02/4.44/17.63 across prompting strategies (matches ~1-17.6%); ReAct F1 for Vanilla/CoT = 57.77/58.07 (matches '57-58'), though ReAct FS/CoT+FS variants go as low as 52.61, outside that narrow window."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": false,
+  "evaluation_suggested": "ablated_measured",
+  "stop_detail_fair": true,
+  "note": "Facet disagreement: evaluation 'representation_only_ablation' is too strict a label -- ReAct Agent vs Plain LLM is not a fixed-budget representation swap; ReAct adds an entirely different interaction paradigm (multi-step tool-calling loop with get_callers/get_callees/get_definition), expanding effective context/compute, which the strict rule treats as a different system, i.e. ablated_measured. All numbers confirmed exactly against Table 2."
+ },
+ {
+  "arxiv_id": "2506.10322",
+  "numbers": [
+   {
+    "metric": "False positive filter rate (FPR_P)",
+    "value": "0.97-1.0 (filters 72-96% of FPs)",
+    "where": "Abstract, Table 1",
+    "verdict": "WRONG",
+    "correct_value_if_wrong": "FPR_P per bug type in Table 1 is 0.98 (NPD), 1.0 (BOF), 1.0 (UAF) -- i.e. range 0.98-1.0, not 0.97-1.0.",
+    "note": "Also the '72-96% of FPs filtered' parenthetical actually describes a different metric, FPR_R (measured across baseline analyzers/projects), not FPR_P -- the value conflates two distinct metrics from the paper."
+   },
+   {
+    "metric": "Recall on true bugs",
+    "value": "42/45 (0.93), misses only 3 bugs",
+    "where": "Abstract",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "Ablation gain over NoContext/BatchSol",
+    "value": "136.7%-173.1% improvement in FPR_R",
+    "where": "Table 4, Section 4.4",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "vs LLM4SA: NPD FPR_R 0.51->0.72 (+41.2%); vs LLMDFA: NPD FPR_R 0.35->0.72 (+105.7%)",
+    "where": "Table 1",
+    "verdict": "CONFIRMED",
+    "note": "Both deltas match exactly, same GPT-4o-mini/dataset/temperature=0 setup."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "FPR_P key number is WRONG: correct range is 0.98-1.0 not 0.97-1.0, and the '72-96%' parenthetical actually describes the separate FPR_R metric, not FPR_P. Recall, ablation gain, and structure_gain all confirmed exactly."
+ },
+ {
+  "arxiv_id": "2509.00882",
+  "numbers": [
+   {
+    "metric": "Accuracy/F1/Recall on OWASP Benchmark",
+    "value": "97.85% / 97.97% / 100%",
+    "where": "Abstract; Table II",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "vs CodeQL accuracy/precision",
+    "value": "CodeQL 52-57%/50-54% vs VULSOLVER 93.66-96.92% precision, 100% recall",
+    "where": "Section V-A2",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "Real-world vulnerabilities found",
+    "value": "15 previously unknown, CVSS 7.5-9.8",
+    "where": "Section V-C1, Abstract",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "vs CWE-DF: 48-52% accuracy vs VULSOLVER's 96.64-98.41%",
+    "where": "Table IV",
+    "verdict": "CONFIRMED"
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly. Verification mechanism confirmed self-contained (sequential caller-callee state derivation) with no external SMT solver (Z3 or otherwise) used, matching stop_detail; paper frames it as semantic/LLM-driven rather than purely symbolic, a minor nuance not affecting fairness."
+ },
+ {
+  "arxiv_id": "2511.04023",
+  "numbers": [
+   {
+    "metric": "Precision/Recall/F1 vs IRIS",
+    "value": "84.3/75.4/79.6 (AdaTaint) vs 81.2/74.8/77.8 (IRIS)",
+    "where": "Table 1",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "Average false-positive reduction vs baselines",
+    "value": "43.7%",
+    "where": "Abstract",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "Developer triage time",
+    "value": "42.3s -> 29.1s per alert (31% reduction)",
+    "where": "Table 3",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "F1 79.6 (AdaTaint) vs 77.8 (IRIS) vs 66.4 (static-only); FPR 17.5% vs 38.7% static-only",
+    "where": "Table 1",
+    "verdict": "CONFIRMED"
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly against Tables 1 and 3. Stop_detail's description of LLM source/sink classification plus a separate trained binary classifier (logistic regression/gradient-boosted trees) filtering alerts is confirmed verbatim in the architecture section."
+ },
+ {
+  "arxiv_id": "2601.00254",
+  "numbers": [
+   {
+    "metric": "RAG accuracy / F1",
+    "value": "0.86 / 0.85",
+    "where": "Results table",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "base (un-augmented) LLM F1",
+    "value": "0.67",
+    "where": "Results table",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "SFT F1",
+    "value": "0.80",
+    "where": "Results table",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "RAG 0.85 F1 vs base 0.67 F1 (+0.18)",
+    "where": "Results tables",
+    "verdict": "CONFIRMED"
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly. RAG top-20-chunk retrieval + re-ranking from MITRE CWE database (Sec III-C) and Dual-Agent validator auditing for logical inconsistencies/unsupported assumptions (Sec III-E) both confirmed verbatim."
+ },
+ {
+  "arxiv_id": "2603.13384",
+  "numbers": [
+   {
+    "metric": "F1/AUROC (Devign)",
+    "value": "0.798/0.895",
+    "where": "Table 4 main results",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "F1/AUROC (PrimeVul)",
+    "value": "0.385/0.781",
+    "where": "Table 4 main results",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "F1 ablation on PrimeVul, full vs. w/o graph optimizer",
+    "value": "0.385 vs. 0.337",
+    "where": "Table 10 ablation",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "full 0.385 vs w/o graph optimizer 0.337; w/o CER 0.359; w/o Sceptic 0.352; w/o VPS 0.346",
+    "where": "Table 10",
+    "verdict": "CONFIRMED",
+    "note": "All four ablation values match exactly."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly. CPG description (typed heterogeneous graph, AST+CFG+DFG+CALL+IMP+TEST+HIST edges) with token-budgeted greedy selection (max 16 blocks, 8000-token limit) matches stop_detail; w/o-graph-optimizer ablation on the same base LLM (Qwen2.5-Coder-32B) is a fair representation_only_ablation."
+ },
+ {
+  "arxiv_id": "2605.01885",
+  "numbers": [
+   {
+    "metric": "F1, QASecClaw vs. standalone Semgrep",
+    "value": "90.93% vs. 78.39%",
+    "where": "abstract / results table",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "false positives, QASecClaw vs. standalone Semgrep",
+    "value": "64 vs. 560 (-88.6%)",
+    "where": "results table",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "recall, QASecClaw vs. standalone Semgrep",
+    "value": "87.1% vs. 90.0% (-3.2 pp)",
+    "where": "results table",
+    "verdict": "WRONG",
+    "correct_value_if_wrong": "87.1% vs 90.0% is a -2.9 percentage-point difference. The paper's own '3.2%' figure is explicitly a RELATIVE reduction ((0.900-0.871)/0.900=3.2%), not a percentage-point (pp) difference.",
+    "note": "Unit mislabeled: '-3.2 pp' should be '-2.9 pp' (or '-3.2% relative')."
+   },
+   {
+    "metric": "structure_gain",
+    "value": "F1 90.93% vs 78.39%, precision 95.1% vs 69.5%, false positives 64 vs 560 (-88.6%), recall 87.1% vs 90.0% (-3.2 pp)",
+    "where": "results table",
+    "verdict": "WRONG",
+    "correct_value_if_wrong": "Precision 95.1% vs 69.5% is confirmed correct; the recall figure repeats the same pp/relative-% conflation as above (-2.9 pp actual, not -3.2 pp).",
+    "note": "Same recall unit error carried into structure_gain restatement."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Recall delta mislabeled as '-3.2 pp' in both the key_number and structure_gain; actual pp difference is -2.9 (90.0% -> 87.1%), and the paper's 3.2% is a relative reduction, not percentage points. F1, precision, and false-positive numbers all confirmed exactly."
+ },
+ {
+  "arxiv_id": "2606.22647",
+  "numbers": [
+   {
+    "metric": "repair success rate (Java, 10 CWEs, 83 instances)",
+    "value": "86.75%",
+    "where": "main results table",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "repair success rate (C, 29 instances)",
+    "value": "86.94%",
+    "where": "cross-language results table",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "out-of-distribution repair success rate (Vul4J, 23 unseen CWEs)",
+    "value": "65.22%",
+    "where": "OOD evaluation section",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "Table III: RAVEN 7/9 correct vs. fewer for SAN2PATCH/PatchAgent on unseen C vulnerabilities",
+    "where": "Table III",
+    "verdict": "CONFIRMED",
+    "note": "7/9 confirmed; paper describes RAVEN 'outperforming or matching' the two baselines rather than giving their exact counts, but the qualitative claim holds."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All three per-table success rates confirmed exactly; note the abstract's headline figure (83.13% aggregate across all settings) differs from these table-specific numbers, but that is not what the record cites, so no conflict. Curator Agent tools and BM25/Joern-CPG retriever confirmed verbatim."
+ },
+ {
+  "arxiv_id": "2607.29422",
+  "numbers": [
+   {
+    "metric": "Repair success rate (full AgenticRepair, GPT-5.2)",
+    "value": "75.0% on 200-CVE strict subset; abstract reports 73% overall, outperforming strongest baseline by 29pp",
+    "where": "Abstract and ablation table",
+    "verdict": "CONFIRMED",
+    "note": "Table II: 75.0% (150/200) strict; abstract 73.3% (220/300) overall, rounds to '73%'."
+   },
+   {
+    "metric": "Context-facet ablation deltas",
+    "value": "w/o code-structure -1.5pp, w/o execution context -0.5pp, w/o commit-history -2.0pp (75.0% -> 73.0-74.5%)",
+    "where": "Ablation table",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "Scaffold ablation",
+    "value": "single-agent scaffold 30.5% (-44.5pp) vs full multi-agent 75.0%",
+    "where": "Ablation table",
+    "verdict": "CONFIRMED"
+   },
+   {
+    "metric": "structure_gain",
+    "value": "context-facet removal costs 0.5-2pp (75.0%->73.0-74.5%); single-agent scaffold costs 44.5pp",
+    "where": "Ablation table",
+    "verdict": "CONFIRMED"
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly against the ablation table. Context-facet ablation (same model GPT-5.2, same multi-agent scaffold, only context facet varied) is a clean representation_only_ablation. Synthesis-verification loop stop condition (sanitizer harness, 75-step budget) confirmed verbatim."
+ },
+ {
+  "arxiv_id": "2607.03963",
+  "numbers": [
+   {
+    "metric": "CWE-415 F1 gain (Claude Code, LeanGuard vs Pure LLM)",
+    "verdict": "CONFIRMED",
+    "correct_value_if_wrong": null,
+    "note": "Table IV: 0.3385 -> 0.5432, confirmed."
+   },
+   {
+    "metric": "CWE-416 F1 gain (Codex, LeanGuard vs Pure LLM)",
+    "verdict": "CONFIRMED",
+    "correct_value_if_wrong": null,
+    "note": "Table IV: 0.4727 -> 0.6165, confirmed."
+   },
+   {
+    "metric": "CWE-416 / CWE-415 F1 vs Pure LLM (same DeepSeek-V4-Pro)",
+    "verdict": "CONFIRMED",
+    "correct_value_if_wrong": null,
+    "note": "Table IV Pure LLM row: 0.3652->0.5000 / 0.4324->0.6237, confirmed."
+   },
+   {
+    "metric": "structure_gain",
+    "verdict": "CONFIRMED",
+    "correct_value_if_wrong": null,
+    "note": "Same-backend (DeepSeek-V4-Pro), temperature-zero design confirmed in paper text ('isolates the effect of the pipeline')."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Record was skipped by its batch verifier; author-verified 2026-08-30 directly against arxiv.org/html/2607.03963. All numbers exact; the same-model temperature-0 ablation design and the Sec IV-G/Table III evidence-graded adjudication mechanism both confirmed \u2014 representation_only_ablation coding stands."
+ },
+ {
+  "arxiv_id": "2308.03314",
+  "numbers": [
+   {
+    "metric": "Precision (DefiHacks) / precision (Web3Bugs large projects)",
+    "verdict": "CONFIRMED",
+    "correct_value_if_wrong": null,
+    "note": "Sec 5.1: DefiHacks precision 90.91%; Web3Bugs 57.14% \u2014 both verified verbatim."
+   },
+   {
+    "metric": "Recall / F1 (Web3Bugs; DefiHacks)",
+    "verdict": "CONFIRMED",
+    "correct_value_if_wrong": null,
+    "note": "Sec 5.2/Table 3: Web3Bugs recall 83.33%, F1 67.8%; DefiHacks recall 71.43%, F1 80% \u2014 verified."
+   },
+   {
+    "metric": "Static confirmation filters false-positive candidate functions",
+    "verdict": "CONFIRMED",
+    "correct_value_if_wrong": null,
+    "note": "Sec 5.3/Table 4: 65.84% filtered, 647->221 functions \u2014 verified."
+   },
+   {
+    "metric": "structure_gain",
+    "verdict": "CONFIRMED",
+    "correct_value_if_wrong": null,
+    "note": "Same-model (GPT-3.5-turbo) component ablation confirmed in Sec 5.3; cost/speed figures (14.39 s, $0.01/KLoC, Sec 5.4 Table 5) also verified."
+   }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Handoff-loss restoration: author-extracted AND author-verified in one documented pass against arxiv.org/html/2308.03314 (2026-08-30). Extraction and verification are not independent for this record \u2014 disclosed in Appendix B alongside its exclusion from the blind second coding."
+ }
+]

@@ -1,0 +1,188 @@
+[
+{
+"id": "2309.05520",
+"title": "When ChatGPT Meets Smart Contract Vulnerability Detection: How Far Are We?",
+"year": 2023,
+"abstract": "With the development of blockchain technology, smart contracts have become an important component of blockchain applications. Despite their crucial role, the development of smart contracts may introduce vulnerabilities and potentially lead to severe consequences, such as financial losses. Meanwhile, large language models, represented by ChatGPT, have gained great attentions, showcasing great capabilities in code analysis tasks. In this paper, we presented an empirical study to investigate the performance of ChatGPT in identifying smart contract vulnerabilities. Initially, we evaluated ChatGPT's effectiveness using a publicly available smart contract dataset. Our findings discover that while "
+},
+{
+"id": "2401.16185",
+"title": "LLM4Vuln: A Unified Evaluation Framework for Decoupling and Enhancing LLMs' Vulnerability Reasoning",
+"year": 2024,
+"abstract": "Large language models (LLMs) have demonstrated significant potential in various tasks, including those requiring human-level intelligence, such as vulnerability detection. However, recent efforts to use LLMs for vulnerability detection remain preliminary, as they lack a deep understanding of whether a subject LLM's vulnerability reasoning capability stems from the model itself or from external aids such as knowledge retrieval and tooling support. In this paper, we aim to decouple LLMs' vulnerability reasoning from other capabilities, such as vulnerability knowledge adoption, context information retrieval, and advanced prompt schemes. We introduce LLM4Vuln, a unified evaluation framework that"
+},
+{
+"id": "2405.04994",
+"title": "SPVR: syntax-to-prompt vulnerability repair based on large language models",
+"year": 2024,
+"abstract": "Purpose: In the field of vulnerability repair, previous research has leveraged pretrained models and LLM-based prompt engineering, among which LLM-based approaches show better generalizability and achieve the best performance. However, the LLM-based approaches generally regard vulnerability repair as a sequence-to-sequence task, and do not explicitly capture the syntax patterns for different vulnerability types, leading to limited accuracy. We aim to create a method that ensures the specificity of prompts targeting vulnerable code while also leveraging the generative capabilities of Large Language Models. Methods: We propose SPVR (Syntax-to-Prompt Vulnerability Repair), a novel framework tha"
+},
+{
+"id": "2406.05892",
+"title": "Security Vulnerability Detection with Multitask Self-Instructed Fine-Tuning of Large Language Models",
+"year": 2024,
+"abstract": "Software security vulnerabilities allow attackers to perform malicious activities to disrupt software operations. Recent Transformer-based language models have significantly advanced vulnerability detection, surpassing the capabilities of static analysis based deep learning models. However, language models trained solely on code tokens do not capture either the explanation of vulnerability type or the data flow structure information of code, both of which are crucial for vulnerability detection. We propose a novel technique that integrates a multitask sequence-to-sequence LLM with pro-gram control flow graphs encoded as a graph neural network to achieve sequence-to-classification vulnerabili"
+},
+{
+"id": "2408.03489",
+"title": "Harnessing the Power of LLMs in Source Code Vulnerability Detection",
+"year": 2024,
+"abstract": "Software vulnerabilities, caused by unintentional flaws in source code, are a primary root cause of cyberattacks. Static analysis of source code has been widely used to detect these unintentional defects introduced by software developers. Large Language Models (LLMs) have demonstrated human-like conversational abilities due to their capacity to capture complex patterns in sequential data, such as natural languages. In this paper, we harness LLMs' capabilities to analyze source code and detect known vulnerabilities. To ensure the proposed vulnerability detection method is universal across multiple programming languages, we convert source code to LLVM IR and train LLMs on these intermediate re"
+},
+{
+"id": "2409.17275",
+"title": "On the Vulnerability of Applying Retrieval-Augmented Generation within Knowledge-Intensive Application Domains",
+"year": 2024,
+"abstract": "Retrieval-Augmented Generation (RAG) has been empirically shown to enhance the performance of large language models (LLMs) in knowledge-intensive domains such as healthcare, finance, and legal contexts. Given a query, RAG retrieves relevant documents from a corpus and integrates them into the LLMs' generation process. In this study, we investigate the adversarial robustness of RAG, focusing specifically on examining the retrieval system. First, across 225 different setup combinations of corpus, retriever, query, and targeted information, we show that retrieval systems are vulnerable to universal poisoning attacks in medical Q\\&A. In such attacks, adversaries generate poisoned documents conta"
+},
+{
+"id": "2411.03079",
+"title": "Utilizing Precise and Complete Code Context to Guide LLM in Automatic False Positive Mitigation",
+"year": 2024,
+"abstract": "Static Application Security Testing (SAST) tools are critical to software quality, identifying potential code issues early in development. However, they often produce false positive warnings that require manual review, slowing down development. Thus, automating false positive mitigation (FPM) is essential. The advent of Large Language Models (LLMs), with their strong abilities in natural language and code understanding, offers promising avenues for FPM. Yet current LLM-based FPM method faces two major limitations: 1. The warning-related code snippets extracted are overly broad and cluttered with irrelevant control/data flows, reducing precision; 2. Critical code contexts are missing, leading"
+},
+{
+"id": "2411.19234",
+"title": "SmartLLMSentry: A Comprehensive LLM Based Smart Contract Vulnerability Detection Framework",
+"year": 2024,
+"abstract": "Smart contracts are essential for managing digital assets in blockchain networks, highlighting the need for effective security measures. This paper introduces SmartLLMSentry, a novel framework that leverages large language models (LLMs), specifically ChatGPT with in-context training, to advance smart contract vulnerability detection. Traditional rule-based frameworks have limitations in integrating new detection rules efficiently. In contrast, SmartLLMSentry utilizes LLMs to streamline this process. We created a specialized dataset of five randomly selected vulnerabilities for model training and evaluation. Our results show an exact match accuracy of 91.1% with sufficient data, although GPT-"
+},
+{
+"id": "2503.17885",
+"title": "Reasoning with LLMs for Zero-Shot Vulnerability Detection",
+"year": 2025,
+"abstract": "Automating software vulnerability detection (SVD) remains a critical challenge in an era of increasingly complex and interdependent software systems. Despite significant advances in Large Language Models (LLMs) for code analysis, prevailing evaluation methodologies often lack the \\textbf{context-aware robustness} necessary to capture real-world intricacies and cross-component interactions. To address these limitations, we present \\textbf{VulnSage}, a comprehensive evaluation framework and a dataset curated from diverse, large-scale open-source system software projects developed in C/C++. Unlike prior datasets, it leverages a heuristic noise pre-filtering approach combined with LLM-based reas"
+},
+{
+"id": "2504.18423",
+"title": "LLMpatronous: Harnessing the Power of LLMs For Vulnerability Detection",
+"year": 2025,
+"abstract": "Despite the transformative impact of Artificial Intelligence (AI) across various sectors, cyber security continues to rely on traditional static and dynamic analysis tools, hampered by high false positive rates and superficial code comprehension. While generative AI offers promising automation capabilities for software development, leveraging Large Language Models (LLMs) for vulnerability detection presents unique challenges. This paper explores the potential and limitations of LLMs in identifying vulnerabilities, acknowledging inherent weaknesses such as hallucinations, limited context length, and knowledge cut-offs. Previous attempts employing machine learning models for vulnerability dete"
+},
+{
+"id": "2505.17460",
+"title": "Learning to Focus: Context Extraction for Efficient Code Vulnerability Detection with Language Models",
+"year": 2025,
+"abstract": "Language models (LMs) show promise for vulnerability detection but struggle with long, real-world code due to sparse and uncertain vulnerability locations. These issues, exacerbated by token limits, often cause models to miss vulnerability-related signals, thereby impairing effective learning. A key intuition is to enhance LMs with concise, information-rich context. Commit-based annotations offer precise, CWE-agnostic supervision, but are unavailable during inference, as they depend on historical code changes. Moreover, their extreme sparsity, often covering only a few lines, makes it difficult for LMs to process directly. In this paper, we propose FocusVul, a model-agnostic framework that i"
+},
+{
+"id": "2506.10322",
+"title": "Minimizing False Positives in Static Bug Detection via LLM-Enhanced Path Feasibility Analysis",
+"year": 2025,
+"abstract": "Static bug analyzers play a crucial role in ensuring software quality. However, existing analyzers for bug detection in large codebases often suffer from high false positive rates. This is primarily due to the limited capabilities of analyzers in path feasibility validation with multiple conditional branches and complex data dependencies. While current LLM-based approaches attempt to address this issue, their effectiveness remains limited due to insufficient constraint cascade analysis and scalability challenges in large projects. To address this challenge, we propose an iterative path feasibility analysis framework LLM4PFA. By leveraging LLM agent based targeted constraint reasoning, and ke"
+},
+{
+"id": "2506.17798",
+"title": "CognixShield: PoV-Guided Vulnerable API Usage Detection in Large Codebases via LLMs",
+"year": 2025,
+"abstract": "The integration of open-source libraries in Java development introduces severe security risks through vulnerable APIs. Existing program analysis and deep learning tools face the challenge of capturing inter-procedural vulnerability semantics at scale. While LLMs show promise for semantic reasoning, they cannot handle large codebases because of context limits and a lack of vulnerability-specific understanding needed to determine exploitability. We present CognixShield, an LLM-powered framework for detecting vulnerable API usage through three core components. First, semantic-preserving AST-based fragmentation partitions large codebases while maintaining syntactic completeness within LLM contex"
+},
+{
+"id": "2508.11710",
+"title": "Code Vulnerability Detection Across Different Programming Languages with AI Models",
+"year": 2025,
+"abstract": "Security vulnerabilities present in a code that has been written in diverse programming languages are among the most critical yet complicated aspects of source code to detect. Static analysis tools based on rule-based patterns usually do not work well at detecting the context-dependent bugs and lead to high false positive rates. Recent developments in artificial intelligence, specifically the use of transformer-based models like CodeBERT and CodeLlama, provide light to this problem, as they show potential in finding such flaws better. This paper presents the implementations of these models on various datasets of code vulnerability, showing how off-the-shelf models can successfully produce pr"
+},
+{
+"id": "2509.15433",
+"title": "LLM-Driven SAST-Genius: A Hybrid Static Analysis Framework for Comprehensive and Actionable Security",
+"year": 2025,
+"abstract": "This report examines the synergy between Large Language Models (LLMs) and Static Application Security Testing (SAST) to improve vulnerability discovery. Traditional SAST tools, while effective for proactive security, are limited by high false-positive rates and a lack of contextual understanding. Conversely, LLMs excel at code analysis and pattern recognition but can be prone to inconsistencies and hallucinations. By integrating these two technologies, a more intelligent and efficient system is created. This combination moves beyond mere vulnerability detection optimization, transforming security into a deeply integrated, contextual process that provides tangible benefits like improved triag"
+},
+{
+"id": "2510.02534",
+"title": "ZeroFalse: Improving Precision in Static Analysis with LLMs",
+"year": 2025,
+"abstract": "Static Application Security Testing (SAST) tools are integral to modern software development, yet their adoption is undermined by excessive false positives that weaken developer trust and demand costly manual triage. We present ZeroFalse, a framework that integrates static analysis with large language models (LLMs) to reduce false positives while preserving coverage. ZeroFalse treats static analyzer outputs as structured contracts, enriching them with flow-sensitive traces, contextual evidence, and CWE-specific knowledge before adjudication by an LLM. This design preserves the systematic reach of static analysis while leveraging the reasoning capabilities of LLMs. We evaluate ZeroFalse acros"
+},
+{
+"id": "2511.04023",
+"title": "LLM-Driven Adaptive Source-Sink Identification and False Positive Mitigation for Static Analysis",
+"year": 2025,
+"abstract": "Static analysis is effective for discovering software vulnerabilities but notoriously suffers from incomplete source--sink specifications and excessive false positives (FPs). We present \\textsc{AdaTaint}, an LLM-driven taint analysis framework that adaptively infers source/sink specifications and filters spurious alerts through neuro-symbolic reasoning. Unlike LLM-only detectors, \\textsc{AdaTaint} grounds model suggestions in program facts and constraint validation, ensuring both adaptability and determinism. We evaluate \\textsc{AdaTaint} on Juliet 1.3, SV-COMP-style C benchmarks, and three large real-world projects. Results show that \\textsc{AdaTaint} reduces false positives by \\textbf{43.7"
+},
+{
+"id": "2512.06846",
+"title": "CKG-LLM: LLM-Assisted Detection of Smart Contract Access Control Vulnerabilities Based on Knowledge Graphs",
+"year": 2025,
+"abstract": "Traditional approaches for smart contract analysis often rely on intermediate representations such as abstract syntax trees, control-flow graphs, or static single assignment form. However, these methods face limitations in capturing both semantic structures and control logic. Knowledge graphs, by contrast, offer a structured representation of entities and relations, enabling richer intermediate abstractions of contract code and supporting the use of graph query languages to identify rule-violating elements. This paper presents CKG-LLM, a framework for detecting access-control vulnerabilities in smart contracts. Leveraging the reasoning and code generation capabilities of large language model"
+},
+{
+"id": "2512.23760",
+"title": "Audited Skill-Graph Self-Improvement for Agentic LLMs via Verifiable Rewards, Experience Synthesis, and Continual Memory",
+"year": 2025,
+"abstract": "Reinforcement learning is increasingly used to transform large language models into agentic systems that act over long horizons, invoke tools, and manage memory under partial observability. While recent work has demonstrated performance gains through tool learning, verifiable rewards, and continual training, deployed self-improving agents raise unresolved security and governance challenges: optimization pressure can incentivize reward hacking, behavioral drift is difficult to audit or reproduce, and improvements are often entangled in opaque parameter updates rather than reusable, verifiable artifacts. This paper proposes Audited Skill-Graph Self-Improvement (ASG-SI), a framework that treats"
+},
+{
+"id": "2601.10758",
+"title": "Agents at Risk: How Users Unwittingly Undermine LLM Safety",
+"year": 2026,
+"abstract": "Large language model (LLM)-based agents are increasingly deployed in applications, such as trip-planning agents and web-use agents, to perform complex planning and execution tasks. Prior work has shown that LLM-based agents are vulnerable to context confusion, where external adversarial content incorporated into the agent's reasoning context may be treated as task-relevant constraints. However, external malicious content can enter the agent context via channels beyond retrieval. In this work, we introduce the User-Relayed Context Manipulation (UReCoM) attack, in which attackers manipulate benign users into relaying adversarial content within user requests, thereby relocating external adversa"
+},
+{
+"id": "2601.19239",
+"title": "LLM-based Vulnerability Detection at Project Scale: An Empirical Study",
+"year": 2026,
+"abstract": "In this paper, we present the first comprehensive empirical study of specialized LLM-based detectors and compare them with traditional static analyzers at the project scale. Specifically, our study evaluates five latest and representative LLM-based methods and two traditional tools using: 1) an in-house benchmark of 222 known real-world vulnerabilities (C/C++ and Java) to assess detection capability, and 2) 24 active open-source projects, where we manually inspected 385 warnings to assess their practical usability and underlying root causes of failures. Our evaluation yields three key findings: First, while LLM-based detectors exhibit low recall on the in-house benchmark, they still uncover "
+},
+{
+"id": "2602.23647",
+"title": "SGAgent: Suggestion-Guided LLM-Based Multi-Agent Framework for Repository-Level Software Repair",
+"year": 2026,
+"abstract": "Large Language Models (LLMs) have enabled intelligent agents that autonomously interact with environments and invoke external tools. Recently, agent-based software repair has drawn wide attention, as repair agents can localize bugs, generate patches, and achieve state-of-the-art performance on repository-level benchmarks (e.g., SWE-Bench). However, existing approaches usually adopt a localize-then-fix paradigm, jumping directly from \"where the bug is\" to \"how to fix it\", leaving a fundamental reasoning gap. To this end, we propose SGAgent, a Suggestion-Guided multi-Agent framework for repository-level software repair, which follows a localize-suggest-fix paradigm. SGAgent introduces a sugges"
+},
+{
+"id": "2603.27204",
+"title": "MalSkills: Detecting Malicious Skills in the Agentic Supply Chain via Neuro-symbolic Reasoning",
+"year": 2026,
+"abstract": "Skills are increasingly used to extend LLM agents by packaging prompts, code, and configurations into reusable modules. As public registries and marketplaces expand, they form an emerging agentic supply chain, but also introduce a new attack surface for malicious skills. Detecting malicious skills is challenging because relevant evidence is often distributed across heterogeneous artifacts and must be reasoned in context. Existing static, LLM-based, and dynamic approaches each capture only part of this problem, making them insufficient for robust real-world detection. In this paper, we present MalSkills, a neuro-symbolic framework for malicious skills detection. MalSkills first extracts secur"
+},
+{
+"id": "2604.20179",
+"title": "Taint-Style Vulnerability Detection and Confirmation for Node.js Packages Using LLM Agent Reasoning",
+"year": 2026,
+"abstract": "The rapidly evolving Node$.$js ecosystem currently includes millions of packages and is a critical part of modern software supply chains, making vulnerability detection of Node$.$js packages increasingly important. However, traditional program analysis struggles in this setting because of dynamic JavaScript features and the large number of package dependencies. Recent advances in large language models (LLMs) and the emerging paradigm of LLM-based agents offer an alternative to handcrafted program models. This raises the question of whether an LLM-centric, tool-augmented approach can effectively detect and confirm taint-style vulnerabilities (e.g., arbitrary command injection) in Node$.$js pa"
+},
+{
+"id": "2605.03697",
+"title": "Tailored Prompts, Targeted Protection: Vulnerability-Specific LLM Analysis for Smart Contracts",
+"year": 2026,
+"abstract": "Smart contracts on blockchains are prone to diverse security vulnerabilities that can lead to significant financial losses due to their immutable nature. Existing detection approaches often lack flexibility across vulnerability types and rely heavily on manually crafted expert rules. In this paper, we present an LLM-based framework for practical smart contract vulnerability detection. We construct and release a large-scale dataset comprising 31,165 professionally annotated vulnerability instances collected from over 3,200 real-world projects across 15 major blockchain platforms. Our approach leverages precise AST-based context extraction and vulnerability-specific prompt design to instantiat"
+},
+{
+"id": "2605.16646",
+"title": "LLM-based vs. Search-based Merge Conflict Resolution: An Empirical Study of Competing Paradigms",
+"year": 2026,
+"abstract": "Context: The resolution of software merge conflicts is being reshaped by two competing paradigms: generative approaches based on Large Language Models (LLMs) and optimization approaches from Search-Based Software Engineering (SBSE). While tools from both paradigms have shown promise, their relative strengths, weaknesses, and trade-offs are not yet well understood. Objective: This paper presents the first in-depth empirical study directly comparing these paradigms to identify their capabilities and limitations in real-world scenarios. Method: We evaluated MergeGen, a state-of-the-art LLM-based tool, against SBCR, a novel SBSE approach employing a Random Restart Hill Climbing (RRHC) algorithm."
+},
+{
+"id": "2606.22647",
+"title": "RAVEN: Agentic RAG for Automated Vulnerability Repair",
+"year": 2026,
+"abstract": "Automated vulnerability repair has emerged as a promising direction to mitigate the growing number of software vulnerabilities. Recent advances in Large Language Models (LLMs) have further accelerated research in automated repair. However, existing frameworks remain largely restricted to memory-related vulnerabilities and locally repairable vulnerability settings, leaving generalization to unseen vulnerability types underexplored. Their evaluations are often limited to a single programming language, and largely rely on proprietary models. In this paper, we propose RAVEN, a scalable, efficient and autonomous framework that integrates an agentic retrieval-augmented generation (RAG) pipeline wi"
+},
+{
+"id": "2607.03963",
+"title": "Neuro-Symbolic Reasoning for Vulnerability Detection",
+"year": 2026,
+"abstract": "Ask a large language model (LLM) whether a pointer dereference is safe, and it can often produce a plausible justification for ``yes''. The difficulty is that a fluent justification is not a proof. This gap is precisely where automated vulnerability detection lives: deciding, for a given operation in source code, whether a memory safety defect such as a null dereference, use-after-free, or double free can actually occur. We trace the unreliability of LLM-based vulnerability detection to a mechanism, the premature discharge of safety obligations, and argue that the remedy is not better prompting but a separation of roles: the component that interprets the code must not also be the one that de"
+},
+{
+"id": "2607.29422",
+"title": "AgenticRepair: Multi-Faceted Program Context Engineering for Agentic Vulnerability Repair",
+"year": 2026,
+"abstract": "Automated vulnerability repair aims to reduce the time and effort required to patch security flaws from a vulnerability triage report. Recent agentic AI approaches have shown promising results in automated program repair. However, vulnerability repair demands richer program context than general bug repair - context that security engineers routinely assemble in practice but that existing agentic approaches do not engineer. We identify three critical gaps: code-structure context capturing cross-file data flows and memory operation patterns, runtime-execution context revealing crash semantics and memory origins, and commit-history context recovering how fragile code patterns were introduced. We"
+},
+{
+"id": "2608.16187",
+"title": "Securing AI-Generated Code: A Just-in-Time Vulnerability Detection and Remediation Pipeline",
+"year": 2026,
+"abstract": "AI-assisted development tools generate vulnerable code at significant rates, yet few automated mechanisms exist to detect, enrich, fix, and verify security issues at development velocity, particularly ones that ground remediation in real-world threat context. This paper presents an automated security evaluation pipeline that generates Python code from LLMSecEval prompts, scans for vulnerabilities using CodeQL and Bandit in parallel with an independent Code Validator LLM, enriches the Code Validator findings with MITRE ATT&CK techniques, CWE Observed Examples, and Python best practice guidelines, generates fixes via the Code Generation LLM, and re-scans with CodeQL and Bandit to verify outcom"
+},
+{
+"id": "human resource management in the age of ",
+"title": "Human resource management in the age of generative artificial intelligence: Perspectives and research directions on ChatGPT",
+"year": 2023,
+"abstract": "Abstract ChatGPT and its variants that use generative artificial intelligence (AI) models have rapidly become a focal point in academic and media discussions about their potential benefits and drawbacks across various sectors of the economy, democracy, society, and environment. It remains unclear whether these technologies result in job displacement or creation, or if they merely shift human labour by generating new, potentially trivial or practically irrelevant, information and decisions. According to the CEO of ChatGPT, the potential impact of this new family of AI technology could be as big as \u201cthe printing press\u201d, with significant implications for employment, stakeholder relationships, b"
+}
+]

@@ -1,0 +1,368 @@
+[
+ {
+  "arxiv_id": "2308.03314",
+  "system": "GPTScan",
+  "title": "GPTScan: Detecting Logic Vulnerabilities in Smart Contracts by Combining GPT with Program Analysis",
+  "venue": "ICSE 2024 (accepted)",
+  "repr_classes": [
+   "raw_text",
+   "cfg_dfg"
+  ],
+  "integration": "neurosymbolic_analyzer_loop",
+  "task": "detection",
+  "datasets": [
+   "Top200",
+   "Web3Bugs",
+   "DefiHacks"
+  ],
+  "key_numbers": [
+   {
+    "metric": "Precision (DefiHacks) / precision (Web3Bugs large projects)",
+    "value": "90.91% / 57.14%",
+    "where": "Sec 5.1 (RQ1), Table 3"
+   },
+   {
+    "metric": "Recall / F1 (Web3Bugs; DefiHacks)",
+    "value": "83.33% / 67.8%; 71.43% / 80%",
+    "where": "Sec 5.2 (RQ2), Table 3"
+   },
+   {
+    "metric": "Static confirmation filters false-positive candidate functions",
+    "value": "65.84% filtered (647 raw -> 221 confirmed functions)",
+    "where": "Sec 5.3 (RQ3), Table 4"
+   }
+  ],
+  "structure_gain": "Static (dataflow) confirmation of GPT-recognized key variables/statements filters 65.84% of false-positive candidates on the same GPT-3.5-turbo pipeline (647->221 functions, Sec 5.3 Table 4) \u2014 a same-model component ablation isolating the symbolic stage, consistent with the corpus's RepoAudit-style neuro-symbolic isolation coding.",
+  "confound_note": "RQ3 ablation holds model (GPT-3.5-turbo), prompts, and candidate set constant and varies only the presence of static confirmation \u2014 component-isolated; cross-dataset precision differences (90.91% vs 57.14%) reflect dataset difficulty, not the ablation.",
+  "threats_to_datum": "Record restored after a screening-to-extraction handoff loss (screened include in decisions_chunk1 under its OpenAlex/DOI identity, which carried no arxiv_id; documented in decisions_adjudication.json D2). Author-extracted and author-verified directly against arxiv.org/html/2308.03314 (2026-08-30); not covered by the blind second coding (corpus coverage 67/68), disclosed in Appendix B."
+ },
+ {
+  "arxiv_id": "2403.19096",
+  "system": "SCALE",
+  "title": "SCALE: Constructing Structured Natural Language Comment Trees for Software Vulnerability Detection",
+  "venue": "ISSTA 2024",
+  "repr_classes": [
+   "hybrid",
+   "ast",
+   "nl_structured"
+  ],
+  "integration": "finetune_adapter",
+  "task": "detection",
+  "datasets": [
+   "FFMPeg+Qemu",
+   "Reveal",
+   "SVulD"
+  ],
+  "key_numbers": [
+   {
+    "metric": "F1 on Reveal",
+    "value": "62.85% (SCALE) vs 56.04% best baseline (UniXcoder; CodeBERT 49.10% is the worst, not best, baseline)",
+    "where": "Table 3"
+   },
+   {
+    "metric": "F1 on FFMPeg+Qemu",
+    "value": "65.11% (SCALE) vs 63.24% (CodeT5)",
+    "where": "Table 3"
+   },
+   {
+    "metric": "CodeBERT F1 gain from SCT-enhanced representation",
+    "value": "+10.87% on FFMPeg+Qemu",
+    "where": "Table 4, RQ2"
+   }
+  ],
+  "structure_gain": "SCALE (AST + LLM-generated comment tree) improves F1 by 1.17-13.47 points over best pre-trained/LLM baseline across three datasets (Table 3); RQ4 ablation shows removing SCT-Enhanced Representation module degrades performance.",
+  "confound_note": "Main comparison (Table 3) varies both representation and underlying model architecture (SCALE-augmented UniXcoder vs. CodeBERT/CodeT5/ChatGPT baselines); RQ4 ablation (with/without SCTC, with/without SER) isolates representation components while holding the base encoder fixed.",
+  "threats_to_datum": "Self-reported: limited to C/C++ (no Java/Python generalization claim), only 11 structured rules covering 4 statement categories, and evaluation restricted to models under 1B parameters (Section 6.2)."
+ },
+ {
+  "arxiv_id": "2409.18395",
+  "system": "Khan24",
+  "title": "Code Vulnerability Repair with Large Language Model using Context-Aware Prompt Tuning",
+  "venue": "IEEE Security and Privacy Workshops (SPW) 2025",
+  "repr_classes": [
+   "nl_structured",
+   "retrieved_context"
+  ],
+  "integration": "prompt_serialization",
+  "task": "repair",
+  "datasets": [
+   "custom (156 buffer-overflow snippets)",
+   "custom (88 snippets, 4 other vulnerability types)"
+  ],
+  "key_numbers": [
+   {
+    "metric": "Detection rate (Copilot)",
+    "value": "76% (118/156)",
+    "where": "Table I"
+   },
+   {
+    "metric": "Repair rate, no context",
+    "value": "15% (24/156)",
+    "where": "Table I"
+   },
+   {
+    "metric": "Repair rate, context-aware prompt tuning",
+    "value": "63% (>4x improvement)",
+    "where": "Table I"
+   }
+  ],
+  "structure_gain": "Repair success rises from 15% (no context) to 63% (full context-aware prompt combining CWE knowledge + structured code-context cues), a >4x improvement, same LLM (Copilot) throughout (Table I).",
+  "confound_note": "Same LLM (GitHub Copilot) and same 156 snippets across all conditions; only prompt content varies in staged fashion (no context -> vulnerability disclosure -> CWE detail -> full structured context), isolating context amount as the manipulated variable.",
+  "threats_to_datum": "No explicit threats-to-validity section; single commercial LLM (Copilot) tested, small custom dataset (156 snippets) with manual success labeling, and programming language not explicitly stated (examples appear C/C++)."
+ },
+ {
+  "arxiv_id": "2501.18160",
+  "system": "RepoAudit",
+  "title": "RepoAudit: An Autonomous LLM-Agent for Repository-Level Code Auditing",
+  "venue": "arXiv",
+  "repr_classes": [
+   "taint_path",
+   "interproc_callgraph",
+   "raw_text"
+  ],
+  "integration": "neurosymbolic_analyzer_loop",
+  "task": "multi",
+  "datasets": [
+   "custom benchmark of 15 real-world C/C++ projects",
+   "9 additional high-profile OSS projects (real-world validation set)"
+  ],
+  "key_numbers": [
+   {
+    "metric": "precision (full RepoAudit)",
+    "value": "78.43% (40 TP, 11 FP)",
+    "where": "Table 2 / Table 6"
+   },
+   {
+    "metric": "precision, validator ablation (no validator)",
+    "value": "78.43% with validator vs 51.28% without (40TP/38FP)",
+    "where": "Table 6"
+   },
+   {
+    "metric": "precision, abstraction ablation (no program abstraction)",
+    "value": "40.38% (21 TP, 31 FP) vs. 78.43% with abstraction",
+    "where": "Table 6 ablation"
+   }
+  ],
+  "structure_gain": "Ablations, same agent: no-abstraction precision 40.38% (21TP/31FP) and no-validator 51.28% (40TP/38FP) vs full RepoAudit 78.43% (Table 6).",
+  "confound_note": "Table 6 ablations vary only one component at a time (program abstraction on/off; validator on/off) holding the LLM and benchmark fixed -- a clean representation/verification-only ablation.",
+  "threats_to_datum": "Interprocedural analysis is explicitly bounded to a maximum calling-context depth of 4 functions and the authors state RepoAudit 'is not sound' for longer call chains; residual false positives/negatives from LLM hallucination persist despite the validator."
+ },
+ {
+  "arxiv_id": "2506.11561",
+  "system": "Antal25",
+  "title": "Identifying Helpful Context for LLM-based Vulnerability Repair: A Preliminary Study",
+  "venue": "EASE 2025 (28th->29th International Conference on Evaluation and Assessment in Software Engineering, ACM proceedings, Istanbul)",
+  "repr_classes": [
+   "retrieved_context",
+   "raw_text",
+   "nl_structured"
+  ],
+  "integration": "prompt_serialization",
+  "task": "repair",
+  "datasets": [
+   "Vul4J"
+  ],
+  "key_numbers": [
+   {
+    "metric": "repair rate per run (Short+CVE+Manual vs GPT-4o baseline)",
+    "value": "18-14-17 vs 11-12-14",
+    "where": "Table 1"
+   },
+   {
+    "metric": "avg repair rate, CWE vs CVE context",
+    "value": "CWE 29.4% vs CVE 37.3%",
+    "where": "Sec 4, RQ1 answer box"
+   },
+   {
+    "metric": "Top-3 prompt ensemble, distinct vulns fixed",
+    "value": "26/42 (61.9%) vs original baseline 17/42 (40.4%) vs GPT-4o reproduction 19/42 (45.2%)",
+    "where": "Sec 4.2, Table 1"
+   }
+  ],
+  "structure_gain": "Combining a CVE-derived repair guideline with manually extracted repository context (Short+CVE Hints+Manual) achieves the best single-prompt result (18-14-17 across 3 runs) vs GPT-4o baseline (11-12-14), same GPT-4o-2024-08-06 model, temperature 0.01 throughout (Table 1).",
+  "confound_note": "The central ablation (Table 1) holds the LLM (GPT-4o) and temperature fixed while varying only prompt context content (code visibility, docs, CWE, CVE, manual hints) -- a clean representation-only ablation; the separate GPT-4 vs GPT-4o comparison confounds model version with non-identical evaluation methodology (Sec 5).",
+  "threats_to_datum": "Authors' own stated threats: Java-only generalizability, GPT-4o non-determinism even at temp 0.01, manual context extraction introduces subjectivity, and the GPT-4 vs GPT-4o comparison used non-identical evaluation methodology (Sec 5)."
+ },
+ {
+  "arxiv_id": "2508.13092",
+  "system": "VerilogLAVD",
+  "title": "VerilogLAVD: LLM-Aided Rule Generation for Vulnerability Detection in Verilog",
+  "venue": "arXiv",
+  "repr_classes": [
+   "cpg",
+   "ast",
+   "cfg_dfg"
+  ],
+  "integration": "neurosymbolic_analyzer_loop",
+  "task": "detection",
+  "datasets": [
+   "custom (77 Verilog designs, 12 CWE types, mutation-synthesized)"
+  ],
+  "key_numbers": [
+   {
+    "metric": "F1 (GPT-4o + VerilogLAVD)",
+    "value": "0.57 vs 0.25 (LLM+Knowledge baseline)",
+    "where": "Table 2"
+   },
+   {
+    "metric": "F1 (DeepSeek-V3 + VerilogLAVD)",
+    "value": "0.50 vs 0.34 (LLM+Knowledge baseline)",
+    "where": "Table 2"
+   },
+   {
+    "metric": "Illegal rule-usage rate with validation FSM",
+    "value": "40.87% -> 10.10% (87.10% reduction)",
+    "where": "Table 3"
+   }
+  ],
+  "structure_gain": "VeriPG graph (AST + control/data dependency) plus LLM-generated traversal rules improves F1 over LLM+external-knowledge baseline by 0.32 (GPT-4o: 0.57 vs 0.25) and 0.16 (DeepSeek-V3: 0.50 vs 0.34), same backbone LLMs held fixed (Table 2).",
+  "confound_note": "Same two backbone LLMs (GPT-4o, DeepSeek-V3) used across LLM-only, LLM+Knowledge, and VerilogLAVD arms; representation/context is the varied factor (raw code -> raw code+CWE text -> VeriPG graph+generated rules), though the full pipeline adds a rule-generation-and-traversal step beyond passive context.",
+  "threats_to_datum": "No explicit threats-to-validity section; small dataset (77 designs, largely mutation-synthesized rather than real-world), single-module scope only, and no experimental comparison against traditional RTL security tools (e.g., Spyglass) due to unavailable code."
+ },
+ {
+  "arxiv_id": "2601.10865",
+  "system": "SemTaint",
+  "title": "Multi-Agent Taint Specification Extraction for Vulnerability Detection",
+  "venue": "arXiv",
+  "repr_classes": [
+   "taint_path",
+   "interproc_callgraph",
+   "cpg"
+  ],
+  "integration": "neurosymbolic_analyzer_loop",
+  "task": "detection",
+  "datasets": [
+   "Known Vulnerability Dataset (172 total / 162 test, from Brito et al.)",
+   "OSS Dataset (102 npm packages from top 5,000 by SourceRank)"
+  ],
+  "key_numbers": [
+   {
+    "metric": "Recall vs CodeQL baseline",
+    "value": "106/162 (65.43%) vs CodeQL 0%",
+    "where": "RQ1 results"
+   },
+   {
+    "metric": "TICR candidate call reduction",
+    "value": "94,909 -> 10,184 calls (89.2% reduction)",
+    "where": "RQ2"
+   },
+   {
+    "metric": "Novel vulnerabilities discovered",
+    "value": "4 in 4 npm packages (CWE-78, CWE-22, CWE-915)",
+    "where": "RQ4"
+   }
+  ],
+  "structure_gain": "LLM-derived taint specs (sources/sinks + repaired call graph) raise recall from 0% (CodeQL baseline, ruleset R1) to 65.43% (106/162) on known vulnerabilities; ablation (RQ3/Table IV) shows 76.4% of catches needed only custom sources/sinks while 23.6% additionally needed call-graph repair.",
+  "confound_note": "CodeQL analysis engine held constant across rulesets R1-R7; varied factor is which LLM-derived representation component (sources/sinks vs repaired call graph vs both) is supplied, reasonably isolating representation contribution, though LLM backbone differs slightly per agent role (GPT-4 vs GPT-4-mini).",
+  "threats_to_datum": "Self-reported: callback-mediated taint propagation unmodeled, TICR can miss calls across intra-procedural gaps, JS/npm-only scope, 1M-token limit excludes 21 large packages, dataset from June 2021 may not generalize to current code, and OSS filtering biases toward packages with prior GHSA records."
+ },
+ {
+  "arxiv_id": "2604.08417",
+  "system": "Lira26",
+  "title": "Vulnerability Detection with Interprocedural Context in Multiple Languages: Assessing Effectiveness and Cost of Modern LLMs",
+  "venue": "arXiv (cs.SE / cs.CR)",
+  "repr_classes": [
+   "interproc_callgraph",
+   "raw_text"
+  ],
+  "integration": "prompt_serialization",
+  "task": "detection",
+  "datasets": [
+   "ReposVul (509 vulnerabilities, C/C++/Python)"
+  ],
+  "key_numbers": [
+   {
+    "metric": "GPT-4.1 Mini (C), Code-Only vs Code+Callees",
+    "value": "Accuracy 0.7556 -> 0.5098, F1 0.8608 -> 0.6753",
+    "where": "Table 6"
+   },
+   {
+    "metric": "GPT-5 Mini (C), Code-Only vs Code+Callers",
+    "value": "Accuracy 0.9052 -> 0.7946, F1 0.9502 -> 0.8855",
+    "where": "Table 6"
+   },
+   {
+    "metric": "Claude Haiku 4.5 (C), across context conditions",
+    "value": "Accuracy ~0.979-0.980, F1 ~0.989-0.990 (negligible change)",
+    "where": "Table 6"
+   }
+  ],
+  "structure_gain": "Adding interprocedural context (callee/caller code) DEGRADED performance for most models -- e.g. GPT-4.1 Mini F1 dropped 0.8608 -> 0.6753 (Code-Only vs Code+Callees, C, same model/prompt/temperature=0); only Claude Haiku 4.5 was robust. Token usage nearly doubled (+102%) without proportional gains.",
+  "confound_note": "Clean representation-only ablation: identical model, prompt template, temperature=0, and output length across conditions -- only the amount/type of interprocedural context varies (Code-Only vs +Callees vs +Callers).",
+  "threats_to_datum": "Dataset has no negative (non-vulnerable) examples, so 'accuracy' is effectively recall; possible training-data contamination from public CVE reports; single-evaluator manual scoring of explanations (RQ4); C++ sample sizes as small as 5-18 excluded from statistical testing."
+ },
+ {
+  "arxiv_id": "2606.25356",
+  "system": "RepBench",
+  "title": "Representation Matters: An Empirical Study of Program Representations for LLM Vulnerability Reasoning",
+  "venue": "arXiv",
+  "repr_classes": [
+   "hybrid",
+   "ast",
+   "cfg_dfg",
+   "raw_text"
+  ],
+  "integration": "prompt_serialization",
+  "task": "detection",
+  "datasets": [
+   "PrimeVul-derived corpus (107 Joern-based testcases, 30 projects, 5 CWE categories)",
+   "19 auxiliary ePDG (LLVM-IR-enriched) testcases"
+  ],
+  "key_numbers": [
+   {
+    "metric": "AST+PDG curated accuracy",
+    "value": "83.2%",
+    "where": "\u00a75.2 Table 6"
+   },
+   {
+    "metric": "raw source baseline curated accuracy",
+    "value": "53.5%",
+    "where": "\u00a75.2 Table 6"
+   },
+   {
+    "metric": "context dilution: source+graph vs. graph-only",
+    "value": "69.4% at 12,938 avg tokens vs. 74.4% at 5,973 avg tokens",
+    "where": "\u00a75.3 Finding 5"
+   }
+  ],
+  "structure_gain": "AST+PDG reaches 83.2% curated accuracy vs. 53.5% for raw source alone (+29.7pp), with model (qwen3.6-plus), temperature, prompting/checklist structure, and 50,000-character budget held fixed across all ten representation variants (\u00a74.2, \u00a75.2 Table 6)",
+  "confound_note": "Model, temperature, prompting structure, and character budget are held constant across representation variants; program representation is the sole varied factor (\u00a74.2) -- this is the study's central, deliberately isolated ablation",
+  "threats_to_datum": "Modest corpus (107 testcases); CWE-190 dominates (56/107) while CWE-122 and CWE-191 have only 4 and 2 cases respectively (inadequate for category-level conclusions); single-model, single-run evaluation with acknowledged prompt-serialization and few-shot-selection bias (\u00a77)"
+ },
+ {
+  "arxiv_id": "2608.03134",
+  "system": "CLEAR",
+  "title": "CLEAR: Causal Context-Based Agentic Reasoning for Vulnerability Detection",
+  "venue": "arXiv",
+  "repr_classes": [
+   "retrieved_context",
+   "hybrid"
+  ],
+  "integration": "retrieval_guide",
+  "task": "detection",
+  "datasets": [
+   "PrimeVul",
+   "Java-Pair (curated from CVEFixes, MegaVul, CleanVul)"
+  ],
+  "key_numbers": [
+   {
+    "metric": "Pairwise-Correct (P-C), CLEAR vs. VulTrial baseline (PrimeVul)",
+    "value": "19.17 vs. 8.31 (+130.7% relative)",
+    "where": "Table 1 main results"
+   },
+   {
+    "metric": "Pairwise-Correct (P-C), CLEAR vs. VulTrial baseline (Java-Pair)",
+    "value": "21.36 +/- 1.48 vs. 12.45 +/- 2.08 (+71.56% relative)",
+    "where": "Table 1 main results"
+   },
+   {
+    "metric": "No-VCKG ablation P-C (PrimeVul)",
+    "value": "8.08 (no VCKG) vs. 19.17 (full CLEAR)",
+    "where": "Table 3 node ablation"
+   }
+  ],
+  "structure_gain": "Full CLEAR (with Vulnerability Causal Knowledge Graph context) vs. No-VCKG ablation, same multi-agent LLM pipeline, on PrimeVul: Pairwise-Correct 19.17 vs. 8.08 (Table 3); removing only Fix-Intent nodes drops it to 14.32 vs. 19.17 full.",
+  "confound_note": "Table 3's node-ablation removes individual VCKG node types (or the whole VCKG) while holding the multi-agent (Collector/Claim/Critic/Judge) architecture and base LLM fixed, isolating the causal-context representation's contribution; the headline 130.7%/71.56% figures instead compare CLEAR's full pipeline against a different prior system (VulTrial), which is not representation-isolated.",
+  "threats_to_datum": "Authors note semantic similarity used to build VCKG edges does not guarantee causal consistency (nodes can be linked despite being causally unrelated, or left disconnected despite sharing a mechanism); human inter-rater agreement on Global Edge validity is only moderate (kappa=0.51); causal claims are LLM-derived, not symbolically verified."
+ }
+]

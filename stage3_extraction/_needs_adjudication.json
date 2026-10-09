@@ -1,0 +1,217 @@
+[
+ {
+  "arxiv_id": "2509.15433",
+  "kind": "repr_primary",
+  "suggested": "hybrid",
+  "note": "All numbers confirmed exactly (89.5/100/94.5 vs 35.7/73.5/48.3 vs 65.5/77.1/70.8; 225->20 FPs; ~70% PoC success). Facet disagreements: (1) repr_primary should be hybrid, not taint_path alone -- the pa"
+ },
+ {
+  "arxiv_id": "2509.15433",
+  "kind": "integration",
+  "suggested": "finetune_adapter",
+  "note": "All numbers confirmed exactly (89.5/100/94.5 vs 35.7/73.5/48.3 vs 65.5/77.1/70.8; 225->20 FPs; ~70% PoC success). Facet disagreements: (1) repr_primary should be hybrid, not taint_path alone -- the pa"
+ },
+ {
+  "arxiv_id": "2601.10865",
+  "kind": "repr_primary",
+  "suggested": "taint_path",
+  "note": "All numbers confirmed exactly, including exact match of 76.42%/23.58% to Table IV and CWE-915 for prototype pollution. Facet disagreement: repr_primary is listed as interproc_callgraph, but per the pa"
+ },
+ {
+  "arxiv_id": "2504.16877",
+  "kind": "number",
+  "metric": "F1, DeepSeek-R1+CoT: API-abstraction level A3 vs w/o-API context",
+  "correct": "69.09% vs 60.89% (+8.20pp)",
+  "note": "Table 4 (DeepSeek-R1+CoT) actually reads: w/o-API F1=60.89%, A3 F1=69.09%. The record's 60.19% is wrong (likely digit transposition of 60.89%), and the stated +8.9pp gap is consequently wrong too -- correct gap is +8.20pp."
+ },
+ {
+  "arxiv_id": "2504.16877",
+  "kind": "number",
+  "metric": "structure_gain",
+  "correct": "60.89% (not 60.19%); true gain is +8.20pp not +8.9pp",
+  "note": "Repeats the same digit error as the first key_number."
+ },
+ {
+  "arxiv_id": "2604.08417",
+  "kind": "repr_primary",
+  "suggested": "interproc_callgraph",
+  "note": "repr_primary disagreement: the paper's stated 'primary independent variable' is explicitly the interprocedural context block (which functions to include, selected via AST-derived caller/callee relatio"
+ },
+ {
+  "arxiv_id": "2605.04251",
+  "kind": "repr_primary",
+  "suggested": "hybrid",
+  "note": "repr_primary disagreement: the context construction genuinely combines three distinct modalities -- AFL++ dynamic execution traces, CodeQL static intraprocedural dataflow, and bidirectional call-graph"
+ },
+ {
+  "arxiv_id": "2607.01138",
+  "kind": "repr_primary",
+  "suggested": "hybrid",
+  "note": "repr_primary disagreement: 'retrieved_context' implies similarity-search/RAG retrieval, but Antaeus's context is deterministically constructed -- Tree-sitter depth-one callee extraction (interproc_cal"
+ },
+ {
+  "arxiv_id": "2406.11147",
+  "kind": "evaluation",
+  "suggested": "representation_only_ablation",
+  "note": "Evaluation should be representation_only_ablation, not ablated_measured: confirmed via full text that 'code-level RAG' (Table 4) is Vul-RAG's OWN ablation variant (same LLMs, same PairVul benchmark, s"
+ },
+ {
+  "arxiv_id": "2505.17416",
+  "kind": "integration",
+  "suggested": "retrieval_guide",
+  "note": "Integration should be retrieval_guide, not agent_tool_use: full-text check of all six agents (Detector/Advisor/Assessor/Fixer/Verifier/Reporter) shows a fixed sequential 'Decompose-Retrieve-Generate' "
+ },
+ {
+  "arxiv_id": "2510.02534",
+  "kind": "number",
+  "metric": "F1 gain, optimized vs minimal-context prompt (OpenVuln)",
+  "correct": "Average F1 gain across the 10 models in Table 4 (OpenVuln) is +0.176, not ~+0.15",
+  "note": "Per-model examples (gpt-5 +0.334, gpt-oss-20b +0.381) are exactly correct. But summing all 10 listed model deltas (0.196, 0.096, -0.243, 0.268, 0.216, 0.077, 0.334, 0.233, 0.381, 0.203) gives an average of +0.176, not '~0.15'; the paper itself states no explicit average figure, so this appears to be a computed estimate that undershoots the true mean by ~0.03 (~17% relative), notably because it doesn't fully account for the Gemini-2.5-Pro regression's small weight."
+ },
+ {
+  "arxiv_id": "2510.02534",
+  "kind": "number",
+  "metric": "structure_gain",
+  "correct": "Average gain is +0.176, not ~0.15 (same issue as key_number above)",
+  "note": "Duplicates the same average-gain discrepancy as the key_number above."
+ },
+ {
+  "arxiv_id": "2601.18847",
+  "kind": "number",
+  "metric": "retrieval ablation Macro-F1",
+  "correct": "34.56% -> 21.80% is a -12.76pp drop, not -30.70pp",
+  "note": "The 34.56% and 21.80% values are correct, but -30.70pp is misattributed: in Table 4's delta (\u0394) column, -30.70 is actually the delta for the GPT-4o baseline row (34.56-3.86=30.70), not for the 'w/o Retrieval' row, whose true delta is -12.76pp (34.56-21.80)."
+ },
+ {
+  "arxiv_id": "2601.18847",
+  "kind": "number",
+  "metric": "structure_gain",
+  "correct": "The drop is 12.76pp, not 30.7pp (same misattribution as the key_number above)",
+  "note": "Repeats the same Table 4 delta-column misattribution."
+ },
+ {
+  "arxiv_id": "2604.17948",
+  "kind": "integration",
+  "suggested": "retrieval_guide",
+  "note": "Component quality scores are UNRETRIEVABLE as precisely stated (they come from a Figure 6 heatmap for one model only; a text-quoted value for Code Reasoning=7.10 conflicts with the claimed 7.32). Inte"
+ },
+ {
+  "arxiv_id": "2605.09461",
+  "kind": "integration",
+  "suggested": "prompt_serialization",
+  "note": "Integration should be prompt_serialization, not retrieval_guide: full text confirms the Control Path (AST/CFG/DFG) -- the basis for repr_primary=cfg_dfg and for structure_gain -- is directly verbalize"
+ },
+ {
+  "arxiv_id": "2501.18160",
+  "kind": "number",
+  "metric": "precision, validator ablation (no validator)",
+  "correct": "51.28% (40 TP, 38 FP) vs. 78.43% with validator",
+  "note": "Table 6's Total row for RepoAudit-NoVal is Old=21, New=19, FP=38; total TP = Old+New = 40 (unchanged from the full system), giving precision 40/78=51.28%. The record appears to have used only the 'New' sub-column (19) as if it were the full TP count, omitting the 'Old' sub-column (21). Main text confirms only an FP change is reported for NoVal ('FPs increases by 245.45%', consistent with 11->38), with no TP change mentioned -- i.e., TP staying at 40 is the internally consistent reading."
+ },
+ {
+  "arxiv_id": "2501.18160",
+  "kind": "number",
+  "metric": "structure_gain",
+  "correct": "NoAbs part (78.43% vs 40.38%, 21TP/31FP) is correct; NoVal part should be 78.43% vs 51.28% (40TP/38FP), not 33.33%",
+  "note": "Same error as the validator-ablation key_number above, embedded in the combined structure_gain sentence."
+ },
+ {
+  "arxiv_id": "2507.16585",
+  "kind": "evaluation",
+  "suggested": "representation_only_ablation",
+  "note": "IMPORTANT: the record's structure_gain claim that Appendix C 'results are not detailed' is WRONG. Appendix C explicitly reports LLMxCPG-D accuracy WITH vs WITHOUT slicing (same model, full code bypass"
+ },
+ {
+  "arxiv_id": "2512.07533",
+  "kind": "number",
+  "metric": "C/C++ F1, full vs no-reasoning ablation",
+  "correct": "No C/C++-specific numbers exist; Figure 5 shows aggregate 'Overall F1 Score' bars for 'All' testing data and 'OOD' CWEs only. Approximate bar-chart readings: All -- NoReason ~0.71 vs VulnLLM-R ~0.78; OOD -- NoReason ~0.58 vs VulnLLM-R ~0.81 (no exact table values are given in text).",
+  "note": "There is no table, and no C/C++-language-specific breakdown for this ablation -- Figure 5 (Section 5.2) only plots aggregate 'All' and 'OOD' groups across all languages combined. The 0.58 value happens to match NoReason's OOD bar, but it is paired with '~0.65' for the full model which matches neither the All (~0.78) nor OOD (~0.81) bar for full VulnLLM-R."
+ },
+ {
+  "arxiv_id": "2512.07533",
+  "kind": "number",
+  "metric": "structure_gain",
+  "correct": "Same correction as the C/C++ F1 key_number above -- not C/C++-specific, and approximate values are All ~0.78->~0.71 / OOD ~0.81->~0.58",
+  "note": "The qualitative claim ('largest degradation on OOD CWEs') IS confirmed correct -- the paper explicitly states VulnLLM-R's advantage over NoReason is especially pronounced on OOD CWEs -- but the specific C/C++ language attribution and ~0.65/~0.58 values are not supported by the actual figure."
+ },
+ {
+  "arxiv_id": "2512.07533",
+  "kind": "evaluation",
+  "suggested": "not_evaluated",
+  "note": "Key ablation number is WRONG on two counts: (1) location -- it's Figure 5 (a bar chart), not a table, and (2) content -- Figure 5 shows aggregate 'All'/'OOD' overall F1, not a C/C++-specific breakdown"
+ },
+ {
+  "arxiv_id": "2604.20179",
+  "kind": "number",
+  "metric": "overall valid-exploit confirmation rate vs best baseline (Explode.js Pkg mode)",
+  "correct": "433/517 = 83.75% (LLMVD.js, correct) vs. Explode.js 'File' mode 223/517 = 43.13% (not 'Pkg' mode). Actual Pkg-mode rate is 61/517 = 11.80%.",
+  "note": "The paper explicitly states the 43.13% confirmation rate belongs to Explode.js in 'File' mode ('the best-performing baseline...Explode.js in \"File\" mode, manages to confirm only 223 vulnerabilities...43.13%'), not 'Pkg' mode. Table 3's Overall Total row shows Pkg mode Det=79/Expl=61, i.e., 61/517=11.80%, a very different number. The LLMVD.js figure itself (433/517=83.75%) is correct."
+ },
+ {
+  "arxiv_id": "2403.19096",
+  "kind": "number",
+  "metric": "F1 on Reveal",
+  "correct": "62.85% (SCALE) vs 56.04% best baseline (UniXcoder)",
+  "note": "Both raw numbers (62.85%, 49.10%) do appear in Table 3, but CodeBERT is NOT the best baseline on Reveal - it is the WORST of the pretrained baselines (Devign 33.91, ReVeal 41.62, CodeBERT 49.10, CodeT5 52.78, EPVD 55.22, UniXcoder 56.04). UniXcoder (56.04%) is the actual best baseline."
+ },
+ {
+  "arxiv_id": "2602.06751",
+  "kind": "number",
+  "metric": "structure_gain",
+  "correct": "Numeric deltas are correct, but 'holding ... fine-tuning budget (5 epochs) fixed across arms' is not substantiated for the headline 56.65%->67.78% comparison.",
+  "note": "The paper explicitly states the '5 epochs' fine-tuning detail applies only to Qwen2.5-Coder's training; UniXcoder's own fine-tuning/training regime is not documented in this paper (described only as 'an existing baseline evaluated on the datasets'). Since UniXcoder and Qwen2.5-32B are different architectures with undocumented-vs-documented training budgets respectively, the claim that budget was 'held fixed across arms' for this specific comparison is not supported."
+ },
+ {
+  "arxiv_id": "2602.06751",
+  "kind": "evaluation",
+  "suggested": "ablated_measured",
+  "note": "MOST IMPORTANT: the headline 'representation-only ablation' number (56.65%->67.78%, +11.13pp) actually compares TWO DIFFERENT MODEL ARCHITECTURES (UniXcoder encoder-classifier vs Qwen2.5-32B fine-tune"
+ },
+ {
+  "arxiv_id": "2607.21983",
+  "kind": "number",
+  "metric": "structure_gain",
+  "correct": "The percentage-point deltas (+13.33pp, +10.0pp) are correct, but 'same DeepSeek model/config held constant across all three arms' is not substantiated.",
+  "note": "The paper explicitly discloses as a limitation that 'the exact DeepSeek model identifier, decoding temperature, token limit, API version, retry policy, and complete knowledge-base text were not recorded, which limits reproducibility' - so constancy of configuration across arms cannot be confirmed. Additionally, the 'complete contracts' condition necessarily uses far more input tokens than the sliced conditions, so the context/token budget is clearly NOT held equal across arms."
+ },
+ {
+  "arxiv_id": "2607.21983",
+  "kind": "evaluation",
+  "suggested": "ablated_measured",
+  "note": "MOST IMPORTANT: evaluation should be 'ablated_measured', not 'representation_only_ablation' - the paper does not confirm the same model/config was used across the three arms (authors admit key setting"
+ },
+ {
+  "arxiv_id": "2409.18395",
+  "kind": "repr_primary",
+  "suggested": "nl_structured",
+  "note": "Facet disagreement: repr_primary 'retrieved_context' is a mismatch -- there is no retrieval mechanism (no corpus/search); the paper manually stages CWE description plus four hand-authored structured c"
+ },
+ {
+  "arxiv_id": "2503.03586",
+  "kind": "evaluation",
+  "suggested": "ablated_measured",
+  "note": "Facet disagreement: evaluation 'representation_only_ablation' is too strict a label -- ReAct Agent vs Plain LLM is not a fixed-budget representation swap; ReAct adds an entirely different interaction "
+ },
+ {
+  "arxiv_id": "2506.10322",
+  "kind": "number",
+  "metric": "False positive filter rate (FPR_P)",
+  "correct": "FPR_P per bug type in Table 1 is 0.98 (NPD), 1.0 (BOF), 1.0 (UAF) -- i.e. range 0.98-1.0, not 0.97-1.0.",
+  "note": "Also the '72-96% of FPs filtered' parenthetical actually describes a different metric, FPR_R (measured across baseline analyzers/projects), not FPR_P -- the value conflates two distinct metrics from the paper."
+ },
+ {
+  "arxiv_id": "2605.01885",
+  "kind": "number",
+  "metric": "recall, QASecClaw vs. standalone Semgrep",
+  "correct": "87.1% vs 90.0% is a -2.9 percentage-point difference. The paper's own '3.2%' figure is explicitly a RELATIVE reduction ((0.900-0.871)/0.900=3.2%), not a percentage-point (pp) difference.",
+  "note": "Unit mislabeled: '-3.2 pp' should be '-2.9 pp' (or '-3.2% relative')."
+ },
+ {
+  "arxiv_id": "2605.01885",
+  "kind": "number",
+  "metric": "structure_gain",
+  "correct": "Precision 95.1% vs 69.5% is confirmed correct; the recall figure repeats the same pp/relative-% conflation as above (-2.9 pp actual, not -3.2 pp).",
+  "note": "Same recall unit error carried into structure_gain restatement."
+ }
+]

@@ -1,0 +1,90 @@
+[
+{
+  "arxiv_id": "2405.04994",
+  "title": "SPVR: syntax-to-prompt vulnerability repair based on large language models",
+  "repr_primary": "ast",
+  "integration": "prompt_serialization",
+  "evaluation": "ablated_measured",
+  "note": "Abstract-only; rules extract syntax-tree info + CWE description into NL prompts for ChatGPT-4; compared against fine-tuning/prompt baselines, representation not isolated."
+},
+{
+  "arxiv_id": "2409.18395",
+  "title": "Code Vulnerability Repair with Large Language Model using Context-Aware Prompt Tuning",
+  "repr_primary": "raw_text",
+  "integration": "prompt_serialization",
+  "evaluation": "ablated_measured",
+  "note": "Full-text (HTML); progressively injects textual vuln-disclosure/CWE-detail context into Copilot prompts (15%->63% repair rate); context quantity varied, not a budget-controlled representation ablation."
+},
+{
+  "arxiv_id": "2503.03586",
+  "title": "Benchmarking LLMs and LLM-based Agents in Practical Vulnerability Detection for Code Repositories",
+  "repr_primary": "interproc_callgraph",
+  "integration": "agent_tool_use",
+  "evaluation": "ablated_measured",
+  "note": "Full-text (HTML); benchmarks Plain LLM (raw text) vs Dep-Aug LLM (retrieved callers/callees) vs ReAct Agent (get_callers/get_callees/get_definition tool calls for interprocedural context); no context-budget-matched representation-only ablation."
+},
+{
+  "arxiv_id": "2506.10322",
+  "title": "Minimizing False Positives in Static Bug Detection via LLM-Enhanced Path Feasibility Analysis",
+  "repr_primary": "taint_path",
+  "integration": "neurosymbolic_analyzer_loop",
+  "evaluation": "ablated_measured",
+  "note": "Full-text (HTML); CFG-derived branch conditions plus source-sink function call trace fed to an LLM agent that iteratively converts constraints to SMT and invokes Z3; ablations (NoContext, BatchSol) are component-level, not representation-isolated; beats baselines by 41-106%."
+},
+{
+  "arxiv_id": "2509.00882",
+  "title": "VULSOLVER: Vulnerability Detection via LLM-Driven Constraint Solving",
+  "repr_primary": "taint_path",
+  "integration": "prompt_serialization",
+  "evaluation": "ablated_measured",
+  "note": "Full-text (HTML); SAST extracts JSON-structured main source-to-sink paths plus caller-callee branch trees, serialized into per-subtask LLM prompts for constraint solving; component ablations (branch analysis, context maintenance), not representation-isolated; 97.85% OWASP accuracy + 15 zero-days found."
+},
+{
+  "arxiv_id": "2511.04023",
+  "title": "LLM-Driven Adaptive Source-Sink Identification and False Positive Mitigation for Static Analysis",
+  "repr_primary": "taint_path",
+  "integration": "neurosymbolic_analyzer_loop",
+  "evaluation": "ablated_measured",
+  "note": "Full-text (HTML); LLM classifies source/sink over code snippets + static path-feasibility features, then a neuro-symbolic validation step prunes infeasible flows against program facts/constraints; component-level ablations, compared to CodeQL/Joern/IRIS baselines (-43.7% FP, +11.2% recall)."
+},
+{
+  "arxiv_id": "2601.00254",
+  "title": "An Empirical Evaluation of LLM-Based Approaches for Code Vulnerability Detection: RAG, SFT, and Dual-Agent Systems",
+  "repr_primary": "retrieved_context",
+  "integration": "retrieval_guide",
+  "evaluation": "ablated_measured",
+  "note": "Abstract-only; empirically compares RAG (CWE/internet knowledge retrieval, best F1=0.85), SFT (QLoRA adapters), and Dual-Agent auditing against a baseline LLM; representation and integration mechanism confounded across the three arms, not budget-isolated."
+},
+{
+  "arxiv_id": "2603.13384",
+  "title": "VulnAgent-R2: Evidence-Calibrated Multi-Agent Auditing for Repository-Level Vulnerability Detection",
+  "repr_primary": "cpg",
+  "integration": "agent_tool_use",
+  "evaluation": "ablated_measured",
+  "note": "Full-text (HTML); role-specialized agents tool-read a heterogeneous repository graph (AST∪CFG∪DFG∪CALL∪IMP∪TEST∪HIST, built via tree-sitter/Joern-CPG/CodeQL/Semgrep) plus compile/test verification; bootstrap-tested gains over prior VulnAgent-X across 5 datasets, no representation-only ablation."
+},
+{
+  "arxiv_id": "2605.01885",
+  "title": "QASecClaw: A Multi-Agent LLM Approach for False Positive Reduction in Static Application Security Testing",
+  "repr_primary": "raw_text",
+  "integration": "agent_tool_use",
+  "evaluation": "ablated_measured",
+  "note": "Abstract-only; a Mission Orchestrator coordinates specialized agents (SAST filter, security validation, evidence correlation) that review SAST findings with raw source-code context; F1 90.93% vs standalone Semgrep 78.39%, no representation isolation."
+},
+{
+  "arxiv_id": "2606.22647",
+  "title": "RAVEN: Agentic RAG for Automated Vulnerability Repair",
+  "repr_primary": "retrieved_context",
+  "integration": "agent_tool_use",
+  "evaluation": "ablated_measured",
+  "note": "Abstract-only; agentic RAG pipeline retrieves historically relevant fixes and a Curator Agent retrieves cross-file dependencies to guide patch generation; 83.13% repair success outperforming SOTA frameworks, no ablation isolating retrieval/representation contribution."
+},
+{
+  "arxiv_id": "2607.29422",
+  "title": "AgenticRepair: Multi-Faceted Program Context Engineering for Agentic Vulnerability Repair",
+  "repr_primary": "hybrid",
+  "integration": "agent_tool_use",
+  "evaluation": "ablated_measured",
+  "note": "Abstract-only; three specialized subagents engineer co-primary contexts (cross-file dataflow/memory-op structure, runtime crash semantics, commit history) embedded into a repair subagent's memory; facet-level ablation (73% vs ~44% on SEC-Bench) conflates representation with context quantity."
+}
+]

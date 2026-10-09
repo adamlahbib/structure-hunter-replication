@@ -1,0 +1,46 @@
+[
+{
+"arxiv_id": "2403.19096",
+"title": "SCALE: Constructing Structured Natural Language Comment Trees for Software Vulnerability Detection"
+},
+{
+"arxiv_id": "2409.09661",
+"title": "ContractTinker: LLM-Empowered Vulnerability Repair for Real-World Smart Contracts"
+},
+{
+"arxiv_id": "2502.00064",
+"title": "Evaluating Large Language Models in Vulnerability Detection Under Variable Context Windows"
+},
+{
+"arxiv_id": "2505.22010",
+"title": "VulBinLLM: LLM-powered Vulnerability Detection for Stripped Binaries"
+},
+{
+"arxiv_id": "2508.13092",
+"title": "VerilogLAVD: LLM-Aided Rule Generation for Vulnerability Detection in Verilog"
+},
+{
+"arxiv_id": "2510.20739",
+"title": "Learning to Triage Vulnerability Reports from Program Analysis: An Empirical Study in Node.js"
+},
+{
+"arxiv_id": "2512.16538",
+"title": "A Systematic Study of Code Obfuscation Against LLM-based Vulnerability Detection"
+},
+{
+"arxiv_id": "2602.06751",
+"title": "Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vulnerability Detection"
+},
+{
+"arxiv_id": "2604.27714",
+"title": "How Code Representation Shapes False-Positive Dynamics in Cross-Language LLM Vulnerability Detection"
+},
+{
+"arxiv_id": "2606.04739",
+"title": "Revisiting Vul-RAG: Reproducibility and Replicability of RAG-based Vulnerability Detection with Open-Weight Models"
+},
+{
+"arxiv_id": "2607.21983",
+"title": "Ethereum NFT Smart Contracts: Knowledge-Guided Vulnerability Detection with LLM and Code Slicing"
+}
+]

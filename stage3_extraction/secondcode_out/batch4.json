@@ -1,0 +1,90 @@
+[
+{
+"arxiv_id": "2403.19096",
+"title": "SCALE: Constructing Structured Natural Language Comment Trees for Software Vulnerability Detection",
+"repr_primary": "nl_structured",
+"integration": "finetune_adapter",
+"evaluation": "representation_only_ablation",
+"note": "Full-text (ar5iv). SCT = AST + LLM comments flattened to structured NL text, fused via cross-attention during pre-trained model fine-tuning; RQ4 ablates SCTC/SER components on same base model, isolating the representation's contribution."
+},
+{
+"arxiv_id": "2409.09661",
+"title": "ContractTinker: LLM-Empowered Vulnerability Repair for Real-World Smart Contracts",
+"repr_primary": "hybrid",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "demonstrated",
+"note": "Full-text (ar5iv). Builds dependency graph from call graph+AST+DFG, prunes via slicing into a Contextual Dependency Graph, serialized as text across a multi-step (Q1-Q6) prompting/validation pipeline; 48 real-world contracts, no baseline comparison or ablation, only self-reported patch success rates."
+},
+{
+"arxiv_id": "2502.00064",
+"title": "Evaluating Large Language Models in Vulnerability Detection Under Variable Context Windows",
+"repr_primary": "raw_text",
+"integration": "prompt_serialization",
+"evaluation": "ablated_measured",
+"note": "Full-text (ar5iv). Raw unprocessed Java code (comments stripped) fed directly in prompts to 10 LLMs; token-length vs accuracy correlation measured via chi-square across models, not a representation-type ablation (representation is always raw text)."
+},
+{
+"arxiv_id": "2505.22010",
+"title": "VulBinLLM: LLM-powered Vulnerability Detection for Stripped Binaries",
+"repr_primary": "raw_text",
+"integration": "prompt_serialization",
+"evaluation": "ablated_measured",
+"note": "Full-text (ar5iv). Decompiled pseudocode enriched with LLM-added vulnerability comments/renamed variables, plus a memory-management prompting scheme (no external tool calls); quantified vs LATTE baseline on Juliet dataset per-CWE, no ablation isolating components."
+},
+{
+"arxiv_id": "2508.13092",
+"title": "VerilogLAVD: LLM-Aided Rule Generation for Vulnerability Detection in Verilog",
+"repr_primary": "cpg",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "ablated_measured",
+"note": "Full-text (ar5iv). Verilog Property Graph (VeriPG) fuses AST+CFG+DFG; LLM generates graph-traversal detection rules with a validation tool giving real-time feedback (loop), then a deterministic executor traverses VeriPG; quantified vs LLM-only and LLM+external-knowledge baselines, no raw-text-vs-graph ablation."
+},
+{
+"arxiv_id": "2510.20739",
+"title": "Learning to Triage Vulnerability Reports from Program Analysis: An Empirical Study in Node.js",
+"repr_primary": "raw_text",
+"integration": "finetune_adapter",
+"evaluation": "ablated_measured",
+"note": "Full-text (ar5iv). Best model (fine-tuned LLM) receives only a tool-guided truncated code snippet (raw text, selection guided by NodeMedic-FINE taint analysis) around the sink; compared across classical ML/GNN/LLM/hybrid architectures and a provenance-graph baseline, not a controlled representation-only ablation."
+},
+{
+"arxiv_id": "2512.16538",
+"title": "A Systematic Study of Code Obfuscation Against LLM-based Vulnerability Detection",
+"repr_primary": "raw_text",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"note": "Full-text (PDF, html unavailable/404). Raw source code (obfuscated vs original) given directly in prompts to 15 LLMs + 2 coding agents; core design holds model/prompt template fixed while varying only the obfuscation applied to the code text."
+},
+{
+"arxiv_id": "2602.06751",
+"title": "Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vulnerability Detection",
+"repr_primary": "interproc_callgraph",
+"integration": "finetune_adapter",
+"evaluation": "representation_only_ablation",
+"note": "Full-text (ar5iv, CPRVul). Code property graph used internally to extract caller/callee/global-variable inter-procedural context (not serialized itself), profiled/ranked context fed as text and used to generate reasoning traces for LoRA fine-tuning; Table 8 ablates function-only vs +context vs +context+reasoning on same base LLM (Qwen2.5-32B)."
+},
+{
+"arxiv_id": "2604.27714",
+"title": "How Code Representation Shapes False-Positive Dynamics in Cross-Language LLM Vulnerability Detection",
+"repr_primary": "hybrid",
+"integration": "finetune_adapter",
+"evaluation": "representation_only_ablation",
+"note": "Full-text (ar5iv). Explicit controlled comparison of raw source text vs pruned-AST-as-text input, LoRA fine-tuned on the same two 8B LLMs; cross-representation probe (text-trained weights on AST input, no retrain) isolates representation effect on FPR/recall across C/C++/Java/Python."
+},
+{
+"arxiv_id": "2606.04739",
+"title": "Revisiting Vul-RAG: Reproducibility and Replicability of RAG-based Vulnerability Detection with Open-Weight Models",
+"repr_primary": "retrieved_context",
+"integration": "retrieval_guide",
+"evaluation": "ablated_measured",
+"note": "Full-text (ar5iv). Retrieved CVE-derived knowledge entries (functional semantics, vulnerability cause, fixing solution) injected into prompts alongside code; reproduces Vul-RAG across many open-weight models, quantified against original results/random baseline, but no RAG-vs-no-RAG ablation on identical models."
+},
+{
+"arxiv_id": "2607.21983",
+"title": "Ethereum NFT Smart Contracts: Knowledge-Guided Vulnerability Detection with LLM and Code Slicing",
+"repr_primary": "hybrid",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"note": "Full-text (ar5iv). Regex+structure-aware slicing extracts line-numbered vulnerability-focused code slices, concatenated with a static ERC-721 domain-knowledge template into one DeepSeek prompt (no retrieval, no loop); ablation compares full system vs no-knowledge vs no-slicing/full-contract on same model, but metric is self-reported positive-label rate with no ground-truth labels."
+}
+]

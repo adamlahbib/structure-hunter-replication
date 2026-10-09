@@ -1,0 +1,50 @@
+[
+{
+"arxiv_id": "2310.08275",
+"title": "Harnessing the Power of LLM to Support Binary Taint Analysis"
+},
+{
+"arxiv_id": "2405.17238",
+"title": "IRIS: LLM-Assisted Static Analysis for Detecting Security Vulnerabilities"
+},
+{
+"arxiv_id": "2411.03079",
+"title": "Utilizing Precise and Complete Code Context to Guide LLM in Automatic False Positive Mitigation"
+},
+{
+"arxiv_id": "2504.16057",
+"title": "Neuro-symbolic Static Analysis with LLM-generated Vulnerability Patterns"
+},
+{
+"arxiv_id": "2506.11561",
+"title": "Identifying Helpful Context for LLM-based Vulnerability Repair: A Preliminary Study"
+},
+{
+"arxiv_id": "2509.15433",
+"title": "LLM-Driven SAST-Genius: A Hybrid Static Analysis Framework for Comprehensive and Actionable Security"
+},
+{
+"arxiv_id": "2511.11896",
+"title": "VULPO: Context-Aware Vulnerability Detection via On-Policy LLM Optimization"
+},
+{
+"arxiv_id": "2601.10865",
+"title": "Multi-Agent Taint Specification Extraction for Vulnerability Detection"
+},
+{
+"arxiv_id": "2603.27204",
+"title": "MalSkills: Detecting Malicious Skills in the Agentic Supply Chain via Neuro-symbolic Reasoning"
+},
+{
+"arxiv_id": "2605.03697",
+"title": "Tailored Prompts, Targeted Protection: Vulnerability-Specific LLM Analysis for Smart Contracts"
+},
+{
+"arxiv_id": "2606.25356",
+"title": "Representation Matters: An Empirical Study of Program Representations for LLM Vulnerability Reasoning"
+},
+{
+"arxiv_id": "2608.03134",
+"title": "CLEAR: Causal Context-Based Agentic Reasoning for Vulnerability Detection"
+}
+]

@@ -1,0 +1,20 @@
+[
+ {
+  "arxiv_id": "2607.03963",
+  "numbers": [
+   {"metric": "CWE-415 F1 gain (Claude Code, LeanGuard vs Pure LLM)", "verdict": "CONFIRMED",
+    "correct_value_if_wrong": null, "note": "Table IV: 0.3385 -> 0.5432, confirmed."},
+   {"metric": "CWE-416 F1 gain (Codex, LeanGuard vs Pure LLM)", "verdict": "CONFIRMED",
+    "correct_value_if_wrong": null, "note": "Table IV: 0.4727 -> 0.6165, confirmed."},
+   {"metric": "CWE-416 / CWE-415 F1 vs Pure LLM (same DeepSeek-V4-Pro)", "verdict": "CONFIRMED",
+    "correct_value_if_wrong": null, "note": "Table IV Pure LLM row: 0.3652->0.5000 / 0.4324->0.6237, confirmed."},
+   {"metric": "structure_gain", "verdict": "CONFIRMED", "correct_value_if_wrong": null,
+    "note": "Same-backend (DeepSeek-V4-Pro), temperature-zero design confirmed in paper text ('isolates the effect of the pipeline')."}
+  ],
+  "repr_primary_agree": true, "repr_primary_suggested": null,
+  "integration_agree": true, "integration_suggested": null,
+  "evaluation_agree": true, "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Record was skipped by its batch verifier; author-verified 2026-08-30 directly against arxiv.org/html/2607.03963. All numbers exact; the same-model temperature-0 ablation design and the Sec IV-G/Table III evidence-graded adjudication mechanism both confirmed — representation_only_ablation coding stands."
+ }
+]

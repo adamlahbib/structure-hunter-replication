@@ -1,0 +1,334 @@
+[
+ {
+  "arxiv_id": "2401.15459",
+  "system": "VulMaster",
+  "title": "Multi-LLM Collaboration + Data-Centric Innovation = 2x Better Vulnerability Repair",
+  "venue": "ICSE 2024 Research Track (published as \"Out of Sight, Out of Mind: Better Automatic Vulnerability Repair by Broadening Input Ranges and Sources\")",
+  "repr_classes": [
+   "ast",
+   "retrieved_context",
+   "raw_text"
+  ],
+  "integration": "finetune_adapter",
+  "task": "repair",
+  "datasets": [
+   "CVEFixes",
+   "Big-Vul",
+   "Vul4J"
+  ],
+  "key_numbers": [
+   {
+    "metric": "Exact Match (EM)",
+    "value": "20.0% (up from 10.2% best prior baseline)",
+    "where": "Abstract / main results table"
+   },
+   {
+    "metric": "EM ablation w/o AST",
+    "value": "19.0% (-1.0pp vs full 20.0%)",
+    "where": "Ablation study (Sec 6)"
+   },
+   {
+    "metric": "BLEU",
+    "value": "29.3% (up from 21.3%)",
+    "where": "Abstract / main results"
+   }
+  ],
+  "structure_gain": "Removing serialized AST sequence drops EM by 1.0pp (20.0%->19.0%); removing CWE knowledge drops it 1.1pp; removing full-function input drops it 1.2pp, all on the same adapted-CodeT5 backbone and training budget",
+  "confound_note": "Ablation removes one input component at a time (full function / AST / CWE knowledge) while holding backbone (adapted-CodeT5) and training budget fixed, isolating each representation's contribution",
+  "threats_to_datum": "Assumes perfect fault localization (not realistic deployment); EM metric can penalize semantically-correct but syntactically different patches (Sec 6.5 Threats to Validity)"
+ },
+ {
+  "arxiv_id": "2405.04994",
+  "system": "SPVR",
+  "title": "SPVR: syntax-to-prompt vulnerability repair based on large language models",
+  "venue": "Automated Software Engineering (Springer journal), vol. 33 (2026), article 38",
+  "repr_classes": [
+   "ast",
+   "nl_structured"
+  ],
+  "integration": "prompt_serialization",
+  "task": "repair",
+  "datasets": [
+   "CVEFixes"
+  ],
+  "key_numbers": [
+   {
+    "metric": "Pass@3 repairs (ChatGPT-4, with vs without SPVR)",
+    "value": "143/547 vs 65/547",
+    "where": "Table 3, Section 5.1.1"
+   },
+   {
+    "metric": "CodeBLEU (ChatGPT-4)",
+    "value": "0.4109 (SPVR) vs 0.3025 (baseline)",
+    "where": "Table 3"
+   },
+   {
+    "metric": "Ablation Pass@3 (ChatGPT-3.5-turbo, with vs without MET info)",
+    "value": "138/547 vs 55/547",
+    "where": "Table 10, Section 5.4"
+   }
+  ],
+  "structure_gain": "Removing MET-derived (AST-diff) syntax info dropped pass@3 from 138/547 to 55/547 on ChatGPT-3.5-turbo, same model/samples/metric (Table 10, Sec 5.4) -- roughly 151% relative gain from the structured syntax cues.",
+  "confound_note": "Ablation in Table 10 holds model and dataset fixed, varying only whether MET-derived syntax info is in the prompt -- a clean representation-only comparison; the headline comparison to VRepair (Table 5) confounds model/architecture and decoding strategy (pass@3 vs beam size 50).",
+  "threats_to_datum": "C/C++ only; hand-derived extraction rules cover only 61.39% of samples and were mined from under 5% of the dataset (Table 2); correctness judged by string/CodeBLEU match to ground truth, no runtime or semantic verification."
+ },
+ {
+  "arxiv_id": "2411.03079",
+  "system": "LLM4FPM",
+  "title": "Utilizing Precise and Complete Code Context to Guide LLM in Automatic False Positive Mitigation",
+  "venue": "arXiv",
+  "repr_classes": [
+   "cpg",
+   "slice",
+   "interproc_callgraph"
+  ],
+  "integration": "prompt_serialization",
+  "task": "triage_fp_reduction",
+  "datasets": [
+   "Juliet",
+   "D2A",
+   "8 real-world GitHub C/C++ repositories"
+  ],
+  "key_numbers": [
+   {
+    "metric": "Juliet F1 (CSA warnings, before vs after)",
+    "value": "93.48% -> 99.75%",
+    "where": "RQ1, Figure 8"
+   },
+   {
+    "metric": "D2A label accuracy",
+    "value": "53% (original) -> 86%",
+    "where": "RQ1"
+   },
+   {
+    "metric": "Ablation accuracy/F1, no-slice vs full (Qwen2.5-32B)",
+    "value": "95.15%/97.19% vs 98.17%/98.92%",
+    "where": "Table III, RQ3"
+   }
+  ],
+  "structure_gain": "eCPG-based slicing (vs full-file raw context, LLM4FPM-noslice) improves accuracy by +3.02pp and F1 by +1.73pp on the same Qwen2.5-32B model (Table III); the raw-file variant also fails outright on 40 cases due to context-window overflow.",
+  "confound_note": "RQ3 ablation (Table III) isolates representation by holding the LLM fixed while toggling eCPG-slicing and FARF; the RQ1 comparison to prior SOTA LLM4SA confounds representation with differing prompting strategy and self-consistency voting.",
+  "threats_to_datum": "Most real-world false negatives traced to Joern parsing failures (macros, function pointers, #ifdef); slicing granularity is file-level, not function/variable-level; C/C++ only, no cross-language evaluation."
+ },
+ {
+  "arxiv_id": "2504.16057",
+  "system": "MoCQ",
+  "title": "Neuro-symbolic Static Analysis with LLM-generated Vulnerability Patterns",
+  "venue": "arXiv",
+  "repr_classes": [
+   "cpg",
+   "hybrid"
+  ],
+  "integration": "neurosymbolic_analyzer_loop",
+  "task": "detection",
+  "datasets": [
+   "CWE-Bench-Java",
+   "PrimeVul",
+   "Silent-Spring",
+   "CVE database / GitHub patches (custom curated set)"
+  ],
+  "key_numbers": [
+   {
+    "metric": "F1 (avg)",
+    "value": "MoCQ 0.51 vs DSL100 (full grammar) 0.31",
+    "where": "Table 8"
+   },
+   {
+    "metric": "query generation pass rate",
+    "value": "MoCQ 77.4% vs DSL0 (no spec) 9.9% vs DSL100 50.0%",
+    "where": "Table 7"
+   },
+   {
+    "metric": "detection TP/FP on 343 test vulns",
+    "value": "MoCQ 269 TP/197 FP vs Pure LLM 185 TP/182 FP vs Expert queries 222 TP/184 FP",
+    "where": "Tables 2 and 4"
+   }
+  ],
+  "structure_gain": "Providing a subset DSL grammar (MoCQ) instead of no specification raises query-generation pass rate from 9.9% (DSL0) to 77.4%, and F1 from 0.31 (DSL100, full grammar) to 0.51 (MoCQ), same LLM loop (Tables 7-8).",
+  "confound_note": "The DSL0/DSL100/MoCQ ablation varies only the amount/form of structured grammar given to the same iterative LLM loop -- a clean representation-only ablation; the SOTA comparison (Table 4, vs Pure LLM/GRACE/KNighter/IRIS) also changes analysis architecture entirely.",
+  "threats_to_datum": "Numbers span multiple ablation tables (2, 4, 7, 8) in a still-revised preprint (v5, 2026); CPG/CodeQL backend differs per language, which may confound the cross-language comparison."
+ },
+ {
+  "arxiv_id": "2506.17798",
+  "system": "CognixShield",
+  "title": "CognixShield: PoV-Guided Vulnerable API Usage Detection in Large Codebases via LLMs",
+  "venue": "ESEM 2026",
+  "repr_classes": [
+   "retrieved_context",
+   "ast",
+   "taint_path",
+   "interproc_callgraph"
+  ],
+  "integration": "agent_tool_use",
+  "task": "detection",
+  "datasets": [
+   "57 Java projects (transfer benchmark + GitHub, 26 vulnerabilities)"
+  ],
+  "key_numbers": [
+   {
+    "metric": "F1 (full vs ablations, same 57-project set)",
+    "value": "89% full; 64% w/o AST fragmentation; 60% w/o cross-file RAG; 77% w/o PoV guidance",
+    "where": "Ablation table"
+   },
+   {
+    "metric": "Precision/Recall/Accuracy (full)",
+    "value": "84% / 95% / 84%",
+    "where": "Abstract / results"
+   },
+   {
+    "metric": "Cross-file reliance",
+    "value": "47/57 projects required cross-function/cross-file retrieved fragments",
+    "where": "Results section"
+   }
+  ],
+  "structure_gain": "w/o cross-file RAG (single-function context only) drops F1 from 89% to 60% (-29pp); w/o AST-based fragmentation drops F1 to 64% (-25pp); w/o PoV-guided reasoning drops F1 to 77% (-12pp), all on the same 57-project dataset",
+  "confound_note": "Each ablation arm removes one mechanism (AST fragmentation, multi-agent cross-file RAG, or PoV guidance) on the same dataset, isolating that component's contribution reasonably cleanly, though underlying LLM/agent budget per arm is not explicitly confirmed identical",
+  "threats_to_datum": "Ground truth relies on only two human annotators; PoV-guided reasoning applicable to only ~51% of vulnerabilities that have available PoV tests (Sec 6 Threats to Validity)"
+ },
+ {
+  "arxiv_id": "2510.02534",
+  "system": "ZeroFalse",
+  "title": "ZeroFalse: Improving Precision in Static Analysis with LLMs",
+  "venue": "arXiv",
+  "repr_classes": [
+   "taint_path",
+   "retrieved_context",
+   "interproc_callgraph"
+  ],
+  "integration": "prompt_serialization",
+  "task": "triage_fp_reduction",
+  "datasets": [
+   "OWASP Java Benchmark (1,974 cases)",
+   "OpenVuln (7 OSS projects, 58 real-world alerts)"
+  ],
+  "key_numbers": [
+   {
+    "metric": "F1 (OWASP Java Benchmark)",
+    "value": "0.912",
+    "where": "Abstract / results"
+   },
+   {
+    "metric": "F1 (OpenVuln)",
+    "value": "0.955",
+    "where": "Abstract / results"
+   },
+   {
+    "metric": "F1 gain, optimized vs minimal-context prompt (OpenVuln)",
+    "value": "+0.176 average across the 10 models (OpenVuln)",
+    "where": "Table 4"
+   }
+  ],
+  "structure_gain": "Optimized vs minimal-context prompt: average F1 +0.176 across 10 models (OpenVuln, Table 4), same models.",
+  "confound_note": "Baseline-prompt vs optimized-prompt comparison holds the LLM and decoding (temperature=0, schema-constrained JSON) fixed and varies only the structured context content (taint trace + CWE rubric vs minimal alert text)",
+  "threats_to_datum": "gemini-2.5-pro F1 drops from 0.91 on synthetic OWASP to 0.37 on real-world OpenVuln, suggesting possible benchmark-specific overfitting (Threats to Validity)"
+ },
+ {
+  "arxiv_id": "2601.18847",
+  "system": "MulVul",
+  "title": "MulVul: Retrieval-augmented Multi-Agent Code Vulnerability Detection via Cross-Model Prompt Evolution",
+  "venue": "arXiv",
+  "repr_classes": [
+   "retrieved_context",
+   "raw_text"
+  ],
+  "integration": "agent_tool_use",
+  "task": "detection",
+  "datasets": [
+   "PrimeVul"
+  ],
+  "key_numbers": [
+   {
+    "metric": "Macro-F1 (type-level detection)",
+    "value": "MulVul 34.79% vs GPT-4o 3.86% vs LLM x CPG 24.58% vs LLMVulExp 22.72% vs VISION 18.12%",
+    "where": "Table 2"
+   },
+   {
+    "metric": "retrieval ablation Macro-F1",
+    "value": "34.56% -> 21.80% Macro-F1 without retrieval (-12.76pp)",
+    "where": "ablation table"
+   },
+   {
+    "metric": "prompt-evolution ablation gain",
+    "value": "51.6% improvement over manual prompts",
+    "where": "ablation section"
+   }
+  ],
+  "structure_gain": "Removing retrieval: Macro-F1 34.56% -> 21.80% (-12.76pp), same model (the -30.70 figure belongs to the GPT-4o baseline row).",
+  "confound_note": "Main SOTA comparison (Table 2, vs GPT-4o/LLM x CPG/LLMVulExp/VISION) changes architecture, model, and representation simultaneously; only the internal Table 4 ablation isolates retrieval while holding agents/LLM fixed.",
+  "threats_to_datum": "Evaluated only on PrimeVul (C/C++); authors themselves flag generalizability to other languages as unexplored; numbers from a v1 arXiv preprint, not yet peer reviewed; one baseline (LLM x CPG) is itself GNN-assisted, complicating a like-for-like comparison."
+ },
+ {
+  "arxiv_id": "2604.27714",
+  "system": "Chen26",
+  "title": "How Code Representation Shapes False-Positive Dynamics in Cross-Language LLM Vulnerability Detection",
+  "venue": "arXiv",
+  "repr_classes": [
+   "raw_text",
+   "ast"
+  ],
+  "integration": "finetune_adapter",
+  "task": "detection",
+  "datasets": [
+   "NIST Juliet v1.3 (C/C++)",
+   "OWASP Benchmark v1.2 (Java)",
+   "BenchmarkPython v0.1"
+  ],
+  "key_numbers": [
+   {
+    "metric": "FPR escalation with text fine-tuning (Qwen3-8B, OWASP Java)",
+    "value": "0.763 zero-shot -> 0.866 pilot -> 1.000 full-scale, while F1 stays 0.637-0.688",
+    "where": "Results section"
+   },
+   {
+    "metric": "FPR reduction switching text-trained model's input to AST, no retraining (Qwen3-8B)",
+    "value": "0.866 -> 0.583 (Delta -0.282), F1 0.688 -> 0.637",
+    "where": "Cross-representation probe results"
+   },
+   {
+    "metric": "Per-CWE heterogeneity (CWE-330)",
+    "value": "FPR reduction of Delta=-0.527 under text->AST switch",
+    "where": "Per-CWE analysis"
+   }
+  ],
+  "structure_gain": "Switching a text-fine-tuned model's inference-time input from raw text to pruned AST (no retraining) cuts FPR by 0.282-0.527 depending on CWE, with only a modest F1 cost (e.g. 0.688->0.637 for Qwen3-8B), same model weights and training budget -- a pure representation-only manipulation",
+  "confound_note": "Full factorial design fixes the base model and LoRA training budget while independently varying training-time representation (text/AST) and inference-time representation (text/AST), including a cross-representation probe that isolates representation from training adaptation",
+  "threats_to_datum": "Restricted to intra-procedural code units by design; only two 8B models and two target languages tested; ~9.9% of BenchmarkPython samples excluded for being AST-unparseable, a potential selection bias (Limitations)"
+ },
+ {
+  "arxiv_id": "2607.01138",
+  "system": "Antaeus",
+  "title": "Antaeus: Hunting Repository-Level Logic Vulnerabilities via Context-Grounded LLM Reasoning",
+  "venue": "arXiv",
+  "repr_classes": [
+   "hybrid",
+   "retrieved_context",
+   "raw_text",
+   "interproc_callgraph"
+  ],
+  "integration": "prompt_serialization",
+  "task": "detection",
+  "datasets": [
+   "ReposVul subset (28 CVEs: 12 CWE-200, 16 CWE-284)"
+  ],
+  "key_numbers": [
+   {
+    "metric": "True positives / FPs (Claude Opus 4.7)",
+    "value": "15/28 TP, 1,345 FP across 4,859 functions",
+    "where": "Table II"
+   },
+   {
+    "metric": "Ablation recall, full vs -Local vs -Repo",
+    "value": "Claude: 15 vs 9 vs 9; GPT: 12 vs 8 vs 7",
+    "where": "Table IV"
+   },
+   {
+    "metric": "FP reduction from comparative validation",
+    "value": "1,682 -> 1,345 (20% reduction), no TP loss",
+    "where": "Table V"
+   }
+  ],
+  "structure_gain": "Removing either context source (local callee augmentation or repository-context bundle) roughly halves true-positive detections (Claude: 15->9/9; GPT: 12->8/7) at fixed LLM backbone (Table IV), directly isolating representation contribution.",
+  "confound_note": "Table IV ablation holds the LLM backbone fixed (separately for Claude and GPT) and toggles context components (local augmentation, repo bundle) individually, a clean representation-only comparison; Table III's comparison to function-level and agentic baselines instead varies approach and context together.",
+  "threats_to_datum": "Self-reported: depth-one call-graph expansion may miss deeper interprocedural evidence, LLM sink identification can be incomplete or spurious, prioritization heuristic is imperfect and unproven optimal, small evaluation set (28 CVEs, 2 CWE types) may not generalize across languages or proprietary code (Section V)."
+ }
+]

@@ -1,0 +1,334 @@
+[
+ {
+  "arxiv_id": "2403.06838",
+  "system": "ACFix",
+  "title": "ACFIX: Guiding LLMs with Mined Common RBAC Practices for Context-Aware Repair of Access Control Vulnerabilities in Smart Contracts",
+  "venue": "arXiv (technical report, Nanyang Technological University; no conference/journal acceptance stated as of v3)",
+  "repr_classes": [
+   "hybrid",
+   "retrieved_context",
+   "interproc_callgraph"
+  ],
+  "integration": "neurosymbolic_analyzer_loop",
+  "task": "repair",
+  "datasets": [
+   "118 real-world AC vulnerability benchmark (CVEs, DefiHackLabs, tintinweb, SmartFix, media reports)",
+   "344,251 on-chain contracts (RBAC taxonomy mining)"
+  ],
+  "key_numbers": [
+   {
+    "metric": "repair success rate (full ACFix)",
+    "value": "94.92%",
+    "where": "\u00a7VII-C Table IV"
+   },
+   {
+    "metric": "vanilla GPT-4 baseline success rate",
+    "value": "52.54%",
+    "where": "\u00a7VII-C"
+   },
+   {
+    "metric": "w/o ACG (graph representation) success rate",
+    "value": "89.83%",
+    "where": "\u00a7VII-C Table IV"
+   }
+  ],
+  "structure_gain": "Removing the AC Context Graph (ACG, built from interprocedural slicing+PDG+call graph) drops success from 94.92% to 89.83% (-5.09pp) on the same GPT-4 model with RBAC taxonomy and validator held constant (\u00a7VII-C Table IV)",
+  "confound_note": "Headline comparison (vanilla GPT-4 vs full ACFix) varies representation (ACG), retrieved knowledge (RBAC taxonomy), and agent loop (validator) simultaneously; a component-wise ablation (Table IV) isolates ACG's contribution alone by holding RBAC+validator+model fixed",
+  "threats_to_datum": "RBAC taxonomy mining had 9.5% inter-annotator disagreement; ANTLR-based AST analysis has reduced accuracy/granularity vs IR-based approaches when source is not compilable (\u00a7V-B, \u00a7IX)"
+ },
+ {
+  "arxiv_id": "2406.11147",
+  "system": "Vul-RAG",
+  "title": "Vul-RAG: Enhancing LLM-based Vulnerability Detection via Knowledge-level RAG",
+  "venue": "arXiv",
+  "repr_classes": [
+   "retrieved_context",
+   "raw_text"
+  ],
+  "integration": "retrieval_guide",
+  "task": "detection",
+  "datasets": [
+   "PairVul (Linux kernel, top-10 CWEs)"
+  ],
+  "key_numbers": [
+   {
+    "metric": "Pair accuracy gain vs code-level RAG baseline",
+    "value": "16%-27% improvement",
+    "where": "Main results / comparison to code-level RAG"
+   },
+   {
+    "metric": "Accuracy gain vs plain-LLM baseline",
+    "value": "16%-24% increase in identifying vulnerable/patched pairs",
+    "where": "Abstract"
+   },
+   {
+    "metric": "Manual detection accuracy with generated explanations",
+    "value": "60% -> 77%",
+    "where": "Abstract / human study"
+   }
+  ],
+  "structure_gain": "Knowledge-level RAG (structured multi-dimensional vulnerability knowledge) beats code-level RAG (raw code retrieval) by 16-27 points pair accuracy; beats a fine-tuning baseline (LLMAO) by 22-26 points",
+  "confound_note": "Compares knowledge-level RAG vs code-level RAG vs fine-tuned baseline -- retrieval content type differs across arms and the fine-tuning comparator changes the adaptation mechanism entirely, so representation is not cleanly isolated from model/training differences",
+  "threats_to_datum": "Single language (C/C++, Linux kernel only); authors note generalizability to other LLMs requires further investigation (Limitations)"
+ },
+ {
+  "arxiv_id": "2501.04510",
+  "system": "CGP-Tuning",
+  "title": "CGP-Tuning: Structure-Aware Soft Prompt Tuning for Code Vulnerability Detection",
+  "venue": "IEEE Transactions on Software Engineering",
+  "repr_classes": [
+   "cpg",
+   "raw_text"
+  ],
+  "integration": "finetune_adapter",
+  "task": "detection",
+  "datasets": [
+   "DiverseVul"
+  ],
+  "key_numbers": [
+   {
+    "metric": "Accuracy drop w/o cross-modal alignment",
+    "value": "-18.75pp (CodeLlama), -14.54pp (CodeGemma), -14.49pp (Qwen)",
+    "where": "Table IV (validation set ablation)"
+   },
+   {
+    "metric": "Accuracy drop w/o projector",
+    "value": "-22.93pp (CodeLlama), -13.86pp (CodeGemma), -11.75pp (Qwen)",
+    "where": "Table IV"
+   },
+   {
+    "metric": "Dataset scale",
+    "value": "330,000+ samples, 809 projects, 150 CWEs",
+    "where": "Dataset description"
+   }
+  ],
+  "structure_gain": "Removing the graph-to-text cross-modal alignment module (which fuses the CPG-derived GAT embeddings into soft prompts) drops accuracy by 14.5-18.75pp across three frozen LLM backbones, same soft-prompt tuning budget otherwise",
+  "confound_note": "Ablation removes individual graph-fusion components (cross-modal alignment, projector, positional/type embeddings) one at a time while the frozen LLM backbone and PEFT training budget stay fixed -- a clean representation-fusion ablation",
+  "threats_to_datum": "Only 7B-parameter LLMs tested (hardware constraints); possible pretraining data contamination acknowledged but only partially mitigated by using latest DiverseVul release (Sec VII Threats to Validity)"
+ },
+ {
+  "arxiv_id": "2506.10322",
+  "system": "LLM4PFA",
+  "title": "Minimizing False Positives in Static Bug Detection via LLM-Enhanced Path Feasibility Analysis",
+  "venue": "arXiv",
+  "repr_classes": [
+   "taint_path",
+   "cfg_dfg",
+   "interproc_callgraph"
+  ],
+  "integration": "neurosymbolic_analyzer_loop",
+  "task": "triage_fp_reduction",
+  "datasets": [
+   "SAFP-Bench-C (Linux Kernel, OpenSSL, Libav)"
+  ],
+  "key_numbers": [
+   {
+    "metric": "False positive filter rate (FPR_P)",
+    "value": "FPR_P 0.98-1.0 per bug type (NPD 0.98, BOF 1.0, UAF 1.0); the 72-96% range describes FPR_R, a different metric",
+    "where": "Table 1"
+   },
+   {
+    "metric": "Recall on true bugs",
+    "value": "42/45 (0.93), misses only 3 bugs",
+    "where": "Abstract"
+   },
+   {
+    "metric": "Ablation gain over NoContext/BatchSol",
+    "value": "136.7%-173.1% improvement in FPR_R",
+    "where": "Table 4, Section 4.4"
+   }
+  ],
+  "structure_gain": "vs LLM4SA baseline (broad context, no localized constraint analysis), same GPT-4o-mini/dataset/temperature=0: NPD FPR_R 0.51 -> 0.72 (+41.2% relative, Table 1); vs LLMDFA (exhaustive path traversal): NPD FPR_R 0.35 -> 0.72 (+105.7%).",
+  "confound_note": "Section 4.4 ablation (NoContext, BatchSol) holds the LLM fixed and varies only presence of iterative agent-driven context retrieval/constraint solving -- a clean isolation; the headline comparisons to LLM4SA/LLMDFA baselines (Table 1) vary both representation and the underlying analysis algorithm together.",
+  "threats_to_datum": "Ground-truth labeling required ~100 person-hours with only 2 annotators; max context-retrieval depth of 5 may miss deeper dependencies; evaluated on 3 C/C++ projects only, no cross-language evaluation."
+ },
+ {
+  "arxiv_id": "2507.16585",
+  "system": "LLMxCPG",
+  "title": "LLMxCPG: Context-Aware Vulnerability Detection Through Code Property Graph-Guided Large Language Models",
+  "venue": "USENIX 2025",
+  "repr_classes": [
+   "slice",
+   "taint_path",
+   "cpg"
+  ],
+  "integration": "finetune_adapter",
+  "task": "detection",
+  "datasets": [
+   "FormAI-v2 (331K synthetic programs)",
+   "PrimeVul (228.8K functions)",
+   "SVEN (1,600 functions)",
+   "ReposVul (6,134 CVEs)"
+  ],
+  "key_numbers": [
+   {
+    "metric": "LLMxCPG accuracy / F1 (SVEN, function-level)",
+    "value": "0.602 / 0.705",
+    "where": "Table 5"
+   },
+   {
+    "metric": "ReGVD (GNN baseline) F1 (SVEN)",
+    "value": "0.55",
+    "where": "Table 5"
+   },
+   {
+    "metric": "code size reduction via CPG-based slicing",
+    "value": "67.84%-90.93%",
+    "where": "\u00a74.3.1"
+   }
+  ],
+  "structure_gain": "Appendix C same-model slicing ablation: slice-based vs full-code F1 0.8146 vs 0.6762 (FormAI), 0.7250 vs 0.4875 (PrimeVul), 0.6020 vs 0.5078 (SVEN) \u2014 the extractor's claim that these were 'not detailed' was wrong.",
+  "confound_note": "Baselines (ReGVD, VulBERTA, VulSim) differ from LLMxCPG in both representation (embeddings/graphs vs CPG-derived slice) and model architecture (GNN/BERT vs fine-tuned LLM) simultaneously; not a same-architecture ablation",
+  "threats_to_datum": "CPG cannot model runtime-dependent vulnerabilities (race conditions); accuracy drops sharply on deep nesting (>7 levels: 0.33 accuracy); imbalanced CWE representation in training data, e.g. CWE-121/122 have 1-2 samples (\u00a74.4.2, \u00a75)"
+ },
+ {
+  "arxiv_id": "2512.16538",
+  "system": "Li25",
+  "title": "A Systematic Study of Code Obfuscation Against LLM-based Vulnerability Detection",
+  "venue": "arXiv",
+  "repr_classes": [
+   "raw_text"
+  ],
+  "integration": "prompt_serialization",
+  "task": "multi",
+  "datasets": [
+   "Smart-bugs",
+   "PrimeVul",
+   "ReposVul_cpp",
+   "ReposVul_py"
+  ],
+  "key_numbers": [
+   {
+    "metric": "virtualization-obfuscation attack success rate (downgrade), C/C++ datasets",
+    "value": "~80%",
+    "where": "Finding #2 / Section 4.2.1"
+   },
+   {
+    "metric": "mixed-programming-language obfuscation attack success rate",
+    "value": "~75%",
+    "where": "Finding #2"
+   },
+   {
+    "metric": "detection success-rate gap, existence-only vs. type+location scoring criterion",
+    "value": "~40% average increase under existence-only vs. type/location criterion",
+    "where": "Section 4.2.3 (RQ3), cf. Table 6 and Table 13 (appendix)"
+   }
+  ],
+  "structure_gain": "Central ablation compares raw code text vs. its obfuscated (layout/data-flow/control-flow-transformed) counterpart, same LLM/prompt: virtualization obfuscation degrades detection with up to ~80% attack success rate on C/C++ (Finding #2); conversely some layout obfuscations (e.g., L1) 'upgrade' detection by removing misleading surface cues, e.g. QWEN-14B on PrimeVul jumps from 0.39 to 0.80 success after L1 (Section 4.2.3).",
+  "confound_note": "Table 6's original-vs-obfuscated comparison holds the LLM, prompt template, and underlying ground-truth vulnerability fixed and varies only the raw-text obfuscation transformation -- a clean representation-only ablation, though 'representation' here means raw-text surface form (layout/data-flow/control-flow perturbation) rather than a structured alternative such as AST or CFG.",
+  "threats_to_datum": "Obfuscation transformations are generated by GPT-4o itself rather than a verified-correctness obfuscation tool, so semantic preservation of the obfuscated code is not independently confirmed; temperature fixed near zero for reproducibility, but reasoning-model output variance is not otherwise addressed."
+ },
+ {
+  "arxiv_id": "2603.27204",
+  "system": "MalSkills",
+  "title": "MalSkills: Detecting Malicious Skills in the Agentic Supply Chain via Neuro-symbolic Reasoning",
+  "venue": "ASE 2026 (Automated Software Engineering)",
+  "repr_classes": [
+   "hybrid",
+   "cpg",
+   "nl_structured"
+  ],
+  "integration": "neurosymbolic_analyzer_loop",
+  "task": "detection",
+  "datasets": [
+   "MalSkillsBench (200 skills)",
+   "Wild-Skills-150K (150,108 skills, 7 registries)"
+  ],
+  "key_numbers": [
+   {
+    "metric": "F1/Precision/Recall on MalSkillsBench",
+    "value": "F1=0.93, P=0.95, R=0.92 vs best baseline F1=0.88 (Skill Scanner)",
+    "where": "results table"
+   },
+   {
+    "metric": "Wild-Skills-150K flagged/confirmed",
+    "value": "620 flagged, 400 manually confirmed malicious (64.5% precision open-world)",
+    "where": "wild-deployment RQ"
+   },
+   {
+    "metric": "Ablation w/o Symbolic Extractor recall",
+    "value": "drops to 0.27",
+    "where": "ablation table"
+   }
+  ],
+  "structure_gain": "Full neuro-symbolic Skill Dependency Graph pipeline reaches F1=0.93 vs 0.88 best baseline on MalSkillsBench; ablation shows removing the symbolic extractor collapses recall to 0.27 and removing the neuro reasoner drops F1 to 0.71 with FPR rising to 0.49 (ablation table), same LLM backbone held fixed across arms.",
+  "confound_note": "Baseline comparison (vs 5 community tools) runs different tools with the same LLM where applicable, but tools differ in overall pipeline, not representation alone; internal ablation (w/o symbolic/neuro extractor or reasoner) holds the LLM backbone (GPT-5.3-CodeX-Medium) fixed while varying which representation/reasoning component is active, more cleanly isolating representation contribution.",
+  "threats_to_datum": "Self-reported: MalSkillsBench may not capture full diversity of in-the-wild malicious skills, deep operand resolution limited to 4 languages (Python/JS/Java/Go), and attackers may adapt to reduce explicit security signals or exploit AI-evasion, degrading detection over time."
+ },
+ {
+  "arxiv_id": "2605.17444",
+  "system": "MemRepair",
+  "title": "MemRepair: Hierarchical Memory for Agentic Repository-Level Vulnerability Repair",
+  "venue": "arXiv (contains an unresolved LaTeX template placeholder in place of a venue name; no confirmed venue)",
+  "repr_classes": [
+   "retrieved_context",
+   "ast",
+   "raw_text"
+  ],
+  "integration": "agent_tool_use",
+  "task": "repair",
+  "datasets": [
+   "SEC-Bench",
+   "PatchEval",
+   "Multi-SWE-bench (C++ subset)"
+  ],
+  "key_numbers": [
+   {
+    "metric": "resolution rate, SEC-Bench memory ablation",
+    "value": "Full MemRepair 58.0% vs Loop-only (no memory) 36.0% vs OpenHands baseline 38.5%",
+    "where": "Table 3"
+   },
+   {
+    "metric": "resolution rate, PatchEval cross-language",
+    "value": "58.2% overall (JS 74.7%, Go 53.0%, Python 46.2%) vs SWE-agent(Gemini-2.5-pro) 37.80% / OpenHands(Gemini-2.5-pro) 35.60%",
+    "where": "Table 4"
+   },
+   {
+    "metric": "resolution rate, Multi-SWE-bench C++",
+    "value": "MemRepair 30.58% vs InfCode-C++(GPT-5) 25.60%",
+    "where": "Table 2"
+   }
+  ],
+  "structure_gain": "Adding all three memory layers on the same DeepSeek-v3.2 backbone raises SEC-Bench resolution from 36.0% (loop-only, no memory) to 58.0% (full L1+L2+L3), a +22pp gain, with L3 (Refinement-Trajectory) alone contributing most (50.5%) (Table 3).",
+  "confound_note": "Table 3's ablation cleanly isolates memory-layer contribution holding the DeepSeek-v3.2 backbone fixed; but the main baseline comparisons (Tables 2 and 4, vs OpenHands/SWE-agent/InfCode-C++) also change the base LLM (e.g. Gemini-2.5-pro vs DeepSeek-v3.2 vs GPT-5), confounding model with framework.",
+  "threats_to_datum": "Paper contains an unresolved LaTeX template placeholder (\"Conference: Make sure to enter the correct conference title\"), indicating an unfinished/unedited preprint; cost and resolution numbers are single-run, self-reported figures across three benchmarks with differing baseline model configurations."
+ },
+ {
+  "arxiv_id": "2607.29422",
+  "system": "AgenticRepair",
+  "title": "AgenticRepair: Multi-Faceted Program Context Engineering for Agentic Vulnerability Repair",
+  "venue": "Under review, IEEE TSE",
+  "repr_classes": [
+   "hybrid",
+   "cfg_dfg",
+   "taint_path",
+   "retrieved_context",
+   "nl_structured"
+  ],
+  "integration": "agent_tool_use",
+  "task": "repair",
+  "datasets": [
+   "SEC-Bench (300 instances: 200 CVE C/C++ + 100 OSS-Fuzz)"
+  ],
+  "key_numbers": [
+   {
+    "metric": "Repair success rate (full AgenticRepair, GPT-5.2)",
+    "value": "75.0% on 200-CVE strict subset; abstract reports 73% overall, outperforming strongest baseline by 29pp",
+    "where": "Abstract and ablation table"
+   },
+   {
+    "metric": "Context-facet ablation deltas",
+    "value": "w/o code-structure -1.5pp, w/o execution context -0.5pp, w/o commit-history -2.0pp (75.0% -> 73.0-74.5%)",
+    "where": "Ablation table"
+   },
+   {
+    "metric": "Scaffold ablation",
+    "value": "single-agent scaffold 30.5% (-44.5pp) vs full multi-agent 75.0%",
+    "where": "Ablation table"
+   }
+  ],
+  "structure_gain": "Removing any single context facet (code-structure/data-flow, runtime-execution, or commit-history) costs only 0.5-2pp success rate (75.0%->73.0-74.5%) on the same model (GPT-5.2) and multi-agent scaffold, showing the three facets are complementary rather than individually dominant; collapsing to a single-agent scaffold costs 44.5pp",
+  "confound_note": "Context-facet ablations hold the model (GPT-5.2) and multi-agent scaffold fixed while removing one context type at a time, cleanly isolating each facet; separate ablations of model capacity (GPT-5-mini) and agent scaffold (single vs multi-agent) are not representation-only and confound architecture with context",
+  "threats_to_datum": "Evaluated only on SEC-Bench C/C++ memory-safety vulnerabilities; authors explicitly flag the need for further study on other languages and vulnerability types (Limitations); patch novelty checked via Jaccard similarity (avg 0.1177) to rule out memorization"
+ }
+]

@@ -1,0 +1,226 @@
+{
+ "adjudicator": "author",
+ "date": "2026-08-30",
+ "rule": "Uncertains and dual-screen disagreements adjudicated from abstract; unresolvable I2 cases marked include-provisional and confirmed at full-text extraction (demotion logged with criterion).",
+ "amendments": [
+  "A1 (2026-08-30, during extraction): records author-withdrawn from arXiv with a withdrawal notice citing methodological error are demoted E6 (superseded/withdrawn) — their reported numbers are disowned by their own authors and cannot carry map claims. Applied to 2505.17460 (FocusVul), whose full text was otherwise codeable; enforcement is deterministic in merge_extraction.py, so the demotion survives re-runs.",
+  "D1 (2026-08-30, deviation): the protocol's promised post-screening backward/forward snowballing pass over included records was NOT executed (only the up-front known-item seeding was). Logged as an unexecuted protocol step and disclosed in the report's threats section; search-strategy claims in the manuscript describe only what was executed.",
+  "D2 (2026-08-30, audit fix): GPTScan (screened include in decisions_chunk1 under its OpenAlex/DOI identity, no arxiv_id) was silently lost in the screening->extraction handoff because the corpus builder keyed records by arxiv_id. Caught by an independent post-hoc audit (58 batch-includes + 15 adjudicated + 2 rescues = 75 expected vs 74 extracted). RESTORED: extracted from arXiv 2308.03314 (extraction_chunk7.json), author-verified (verify_out/batch7.json), N=67->68. Not covered by the blind second coding (disclosed). The same audit resolved an apparent 'phantom' venue addition: 'Source Code Vulnerability Detection: Combining Code LMs and CPGs' (2404.14719) is the CoRR identity of Vul-LMGNNs, already excluded E2 under rule B1 (GNN-primary fusion) — the add-candidate entry was a double-listing of one work under two titles, superseded by the E2 ruling.",
+  "A2 (2026-10-09, reviewer-requested re-audit): all 37 records coded representation_only_ablation were re-judged at full text by two independent checkers (Claude agents, isoaudit_out/; GPT via codex, stage3_extraction/isoaudit2/out/) under a sharper four-level rule (R-strict / R-unmatched-budget / component / not-isolated); cleanest comparison per paper counts. 27/37 agreed; the authors decided the 10 disagreements (isoaudit2/human_decisions.json). The evaluation level representation_only_ablation is replaced by repr_strict (7), repr_unmatched_budget (13), component_ablation (15); not-isolated (2) -> ablated_measured. Seven extraction errors fixed and six primary-study inconsistencies recorded (apply_adjudications.py section 1b). Applied deterministically by apply_adjudications.py section 3."
+ ],
+ "boundary_rules_added": [
+  "B1: pre-trained transformer code-LMs (CodeBERT/GraphCodeBERT/UniXcoder family) count as language models when the record's CONTRIBUTION is a structural representation or context mechanism for the LM (integration point: fine-tuning); GNN-primary fusions where the neural-graph model does the detection are E2.",
+  "B2: training-method papers (RL/GRPO, instruction tuning) with no structural representation in the input fail E1 — the map is about what grounds the model, not how it is optimized.",
+  "B3: empirical studies that VARY context or code surface form (context-window length, prompt scope, obfuscation transforms, project-scale context) are in scope as representation/context-effect studies (I2, second clause).",
+  "B4: malicious-code/skill detection via code analysis is in scope (I1); attacks ON agent loops remain E3."
+ ],
+ "decisions": [
+  {
+   "id": "2403.19096",
+   "was": "uncertain",
+   "decision": "include",
+   "criterion": "I-all (B1)",
+   "reason": "SCALE (gold): structured NL comment trees as representation for a pre-trained code-LM."
+  },
+  {
+   "id": "2409.09661",
+   "was": "uncertain",
+   "decision": "include-provisional",
+   "criterion": "I-all?",
+   "reason": "ContractTinker repair; confirm slicing/program-analysis grounding at full text."
+  },
+  {
+   "id": "2505.22010",
+   "was": "uncertain",
+   "decision": "include-provisional",
+   "criterion": "I-all?",
+   "reason": "VulBinLLM: decompilation-derived context for binary detection; confirm mechanism."
+  },
+  {
+   "id": "2507.03051",
+   "was": "uncertain",
+   "decision": "exclude",
+   "criterion": "E1 (B2)",
+   "reason": "GRPO fine-tuning study; no structural representation in the input."
+  },
+  {
+   "id": "2509.17337",
+   "was": "uncertain",
+   "decision": "exclude",
+   "criterion": "E1",
+   "reason": "LLaVul QA pairing; no structural grounding or context study."
+  },
+  {
+   "id": "2601.18844",
+   "was": "uncertain",
+   "decision": "include",
+   "criterion": "I-all (B3)",
+   "reason": "Industrial empirical study of LLM false-positive triage with code context; triage task, context-effect evidence."
+  },
+  {
+   "id": "2408.02329",
+   "was": "uncertain",
+   "decision": "exclude",
+   "criterion": "E1",
+   "reason": "CWE-specific classifier specialization; no representation/context mechanism."
+  },
+  {
+   "id": "2505.17416",
+   "was": "uncertain",
+   "decision": "include-provisional",
+   "criterion": "I-all?",
+   "reason": "LLM-BSCVM framework; confirm RAG/knowledge grounding at full text."
+  },
+  {
+   "id": "2509.00882",
+   "was": "uncertain",
+   "decision": "include-provisional",
+   "criterion": "I-all?",
+   "reason": "VULSOLVER constraint solving; confirm constraints derive from dataflow/structural analysis."
+  },
+  {
+   "id": "2512.16538",
+   "was": "uncertain",
+   "decision": "include",
+   "criterion": "I-all (B3)",
+   "reason": "Systematic obfuscation study = code-surface/representation-effect study on LLM detection."
+  },
+  {
+   "id": "2605.01885",
+   "was": "uncertain",
+   "decision": "include-provisional",
+   "criterion": "I-all?",
+   "reason": "QASecClaw SAST triage with source-code context; confirm context type at full text."
+  },
+  {
+   "id": "2606.21397",
+   "was": "uncertain",
+   "decision": "include",
+   "criterion": "I-all (B3)",
+   "reason": "Benchmarks web-vuln detection under varying prompt scope = context-effect study."
+  },
+  {
+   "id": "2503.17885",
+   "was": "uncertain",
+   "decision": "include-provisional",
+   "criterion": "I-all?",
+   "reason": "VulnSage context-aware robustness evaluation; confirm context variation at full text."
+  },
+  {
+   "id": "2509.15433",
+   "was": "uncertain",
+   "decision": "include-provisional",
+   "criterion": "I3?",
+   "reason": "SAST+LLM hybrid report; confirm quantitative substance (I3) at full text."
+  },
+  {
+   "id": "2601.19239",
+   "was": "uncertain",
+   "decision": "include",
+   "criterion": "I-all (B3)",
+   "reason": "Project-scale empirical comparison; repository-scope context effect is the object."
+  },
+  {
+   "id": "2603.27204",
+   "was": "uncertain",
+   "decision": "include",
+   "criterion": "I-all (B4)",
+   "reason": "MalSkills: neuro-symbolic malicious-code/skill detection over code artifacts; analyzer not under attack, so not E3."
+  },
+  {
+   "id": "2607.03963",
+   "was": "uncertain",
+   "decision": "include",
+   "criterion": "I-all",
+   "reason": "Neuro-symbolic memory-safety detection (gold-adjacent): symbolic obligations ground the LLM."
+  },
+  {
+   "id": "2512.07533",
+   "was": "uncertain",
+   "decision": "include-provisional",
+   "criterion": "I-all?",
+   "reason": "VulnLLM-R agent scaffold; confirm program-state/structural grounding at full text."
+  }
+ ],
+ "dual_disagreements_resolved": [
+  {
+   "id": "2403.06838",
+   "primary": "include",
+   "dual": "uncertain",
+   "resolution": "include — mined RBAC practices are engineered repair context."
+  },
+  {
+   "id": "2411.16561",
+   "primary": "include",
+   "dual": "uncertain",
+   "resolution": "include (B1) — GraphCodeBERT dataflow representation inside the ensemble; representation-for-LM contribution."
+  },
+  {
+   "id": "2509.16275",
+   "primary": "include",
+   "dual": "uncertain",
+   "resolution": "include — Bandit static-analysis findings injected as iterative repair context."
+  },
+  {
+   "id": "2603.13384",
+   "primary": "include",
+   "dual": "uncertain",
+   "resolution": "include — graph triage + bounded cross-file context optimization, repository scope."
+  },
+  {
+   "id": "2606.22647",
+   "primary": "include",
+   "dual": "uncertain",
+   "resolution": "include — agentic RAG context assembly for repair."
+  },
+  {
+   "id": "2605.04251",
+   "primary": "include",
+   "dual": "uncertain",
+   "resolution": "include — dynamic fault-localization grounding before patching."
+  },
+  {
+   "id": "2605.09461",
+   "primary": "include",
+   "dual": "uncertain",
+   "resolution": "include — VulTriage (gold): triple-path context augmentation."
+  },
+  {
+   "id": "2411.03079",
+   "primary": "include",
+   "dual": "uncertain",
+   "resolution": "include — control/data-flow code context for SAST false-positive mitigation."
+  }
+ ],
+ "author_additions": [
+  {
+   "id": "2502.00064",
+   "reason": "Borderline gold item (context-window-length effect on detection, B3); not retrieved by the query set — known-item rescue, logged as amendment."
+  },
+  {
+   "id": "repoaudit-2501.18160",
+   "reason": "Gold item retrieved but dropped by pre-filter regex (audit caught it); pre-filter false-negative rescue, logged as amendment."
+  }
+ ],
+ "venue_check_outcomes": [
+  {
+   "item": "Source Code Vulnerability Detection: Combining Code LMs and CPGs (CoRR 2024)",
+   "decision": "superseded-duplicate",
+   "reason": "Same work as Vul-LMGNNs (arXiv 2404.14719 is its CoRR identity), already excluded E2/B1 as a GNN-primary fusion; the earlier add-candidate entry was a double-listing (see amendment D2).",
+   "criterion": "E2 (B1)"
+  },
+  {
+   "item": "VulKiller (ICASSP 2025); MANDO-LLM (TOSEM 2026); Smart-contract LLM+graph (CMC 2025)",
+   "decision": "identified-not-retrievable",
+   "criterion": "E7",
+   "reason": "Venue hits without accessible full text; logged per accessibility rule."
+  },
+  {
+   "item": "Vul-LMGNNs; XGV-BERT; A1BERT; Vulnsense",
+   "decision": "exclude",
+   "criterion": "E2 (B1)",
+   "reason": "GNN-primary fusion detectors; the graph network, not an LM, performs detection."
+  }
+ ],
+ "dual_screen_note": "Binary kappa=0.38 (17/25): the second screener was systematically more conservative on the I2 boundary (10 uncertains). All 8 include-vs-uncertain disagreements upheld as include with named mechanisms; boundary rules B1-B4 added to the codebook in response. Reported honestly in the paper as moderate screening agreement resolved by written-rule adjudication."
+}

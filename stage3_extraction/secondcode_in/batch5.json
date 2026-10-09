@@ -1,0 +1,46 @@
+[
+{
+"arxiv_id": "2405.04994",
+"title": "SPVR: syntax-to-prompt vulnerability repair based on large language models"
+},
+{
+"arxiv_id": "2409.18395",
+"title": "Code Vulnerability Repair with Large Language Model using Context-Aware Prompt Tuning"
+},
+{
+"arxiv_id": "2503.03586",
+"title": "Benchmarking LLMs and LLM-based Agents in Practical Vulnerability Detection for Code Repositories"
+},
+{
+"arxiv_id": "2506.10322",
+"title": "Minimizing False Positives in Static Bug Detection via LLM-Enhanced Path Feasibility Analysis"
+},
+{
+"arxiv_id": "2509.00882",
+"title": "VULSOLVER: Vulnerability Detection via LLM-Driven Constraint Solving"
+},
+{
+"arxiv_id": "2511.04023",
+"title": "LLM-Driven Adaptive Source-Sink Identification and False Positive Mitigation for Static Analysis"
+},
+{
+"arxiv_id": "2601.00254",
+"title": "An Empirical Evaluation of LLM-Based Approaches for Code Vulnerability Detection: RAG, SFT, and Dual-Agent Systems"
+},
+{
+"arxiv_id": "2603.13384",
+"title": "VulnAgent-R2: Evidence-Calibrated Multi-Agent Auditing for Repository-Level Vulnerability Detection"
+},
+{
+"arxiv_id": "2605.01885",
+"title": "QASecClaw: A Multi-Agent LLM Approach for False Positive Reduction in Static Application Security Testing"
+},
+{
+"arxiv_id": "2606.22647",
+"title": "RAVEN: Agentic RAG for Automated Vulnerability Repair"
+},
+{
+"arxiv_id": "2607.29422",
+"title": "AgenticRepair: Multi-Faceted Program Context Engineering for Agentic Vulnerability Repair"
+}
+]

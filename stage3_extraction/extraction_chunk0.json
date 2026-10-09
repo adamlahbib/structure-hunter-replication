@@ -1,0 +1,430 @@
+[
+{
+  "arxiv_id": "2310.08275",
+  "system": "LATTE",
+  "year": 2023,
+  "venue": "TOSEM 2025 (ACM Transactions on Software Engineering and Methodology)",
+  "peer_reviewed": true,
+  "eligible": true,
+  "repr_classes": [
+    "taint_path",
+    "slice"
+  ],
+  "integration": "prompt_serialization",
+  "task": "detection",
+  "scope": "interprocedural",
+  "domain": "binary",
+  "evaluation": "ablated_measured",
+  "datasets": [
+    "Juliet Test Suite v1.3",
+    "Karonte firmware dataset"
+  ],
+  "cross_language": false,
+  "wieringa": "validation",
+  "record_type": "technique_tool",
+  "key_numbers": [
+    {
+      "metric": "average detection accuracy across CWE types",
+      "value": "77%",
+      "where": "Table 2, Section 6.2"
+    },
+    {
+      "metric": "real-world firmware bugs found",
+      "value": "119 unique bugs, 37 previously unknown, 10 assigned CVEs",
+      "where": "Section 6.6"
+    },
+    {
+      "metric": "GPT-4.0 vs GPT-3.5 accuracy delta",
+      "value": "+13.99 percentage points",
+      "where": "Table 3"
+    }
+  ],
+  "structure_gain": "none reported (no ablation isolates the dangerous-flow/slicing representation itself against raw decompiled code on the same model)",
+  "confound_note": "Central comparison against Emtaint/Arbiter/Karonte varies tool architecture, internal representation, and often binary form (stripped vs symbol-table) together; the one clean ablation (Table 3) varies model (GPT-4 vs GPT-3.5), not representation.",
+  "stop_detail": "Backward interprocedural data-dependency slicing from taint sources to vulnerable sinks builds 'dangerous flow' call chains (Def 4.2, Sec 5) that ground the LLM's step-by-step function-by-function analysis via sequential prompt templates (Sec 5.3).",
+  "threats_to_datum": "LLM output instability under temperature noted as a limitation (Sec 6.2.1); source/sink identification precision is imperfect (~82% avg, Table 4); no explicit check for training-data contamination on Juliet, though Karonte firmware was confirmed unseen."
+},
+{
+  "arxiv_id": "2406.05892",
+  "system": "MSIVD",
+  "year": 2024,
+  "venue": "arXiv",
+  "peer_reviewed": false,
+  "eligible": true,
+  "repr_classes": [
+    "cfg_dfg",
+    "raw_text"
+  ],
+  "integration": "finetune_adapter",
+  "task": "multi",
+  "scope": "function",
+  "domain": "general",
+  "evaluation": "representation_only_ablation",
+  "datasets": [
+    "BigVul",
+    "PreciseBugs"
+  ],
+  "cross_language": false,
+  "wieringa": "validation",
+  "record_type": "technique_tool",
+  "key_numbers": [
+    {
+      "metric": "F1 on BigVul (vs best baseline LineVul+DeepDFA)",
+      "value": "0.92 vs 0.88",
+      "where": "Table 3, Section 5.1"
+    },
+    {
+      "metric": "F1 on PreciseBugs (post-cutoff, unseen) vs LineVul",
+      "value": "0.48 vs 0.31",
+      "where": "Table 3, Section 5.1 RQ2"
+    },
+    {
+      "metric": "GNN-embedding ablation on BigVul (MSIVD- vs MSIVD)",
+      "value": "F1 0.90 -> 0.92",
+      "where": "Table 4, RQ3"
+    }
+  ],
+  "structure_gain": "Adding CFG/DFA-derived GGNN embeddings to the fine-tuned LLM's hidden states raises F1 from 0.90 (LLM-only, MSIVD-) to 0.92 (MSIVD) on BigVul, holding the CodeLlama-13B backbone and training budget fixed (Table 4).",
+  "confound_note": "The GNN-presence ablation (Table 4) cleanly holds model/budget fixed and varies only representation; but the headline BigVul-vs-baselines and BigVul-vs-PreciseBugs comparisons vary model, training data, and dataset simultaneously, and PreciseBugs evaluation drops the GNN component entirely.",
+  "stop_detail": "Reaching-definition dataflow analysis computed over each function's CFG is embedded via a GGNN and concatenated to the LLM's final hidden states before classification (Section 3.3).",
+  "threats_to_datum": "Likely LLM memorization of BigVul is only partly mitigated via the temporally-filtered PreciseBugs set; BigVul itself has known label noise/selection bias from bug-fix-commit mining; the GNN was tuned specifically for BigVul's CFGs so the PreciseBugs generalization test omits it (Section 6)."
+},
+{
+  "arxiv_id": "2411.16561",
+  "system": "EnStack",
+  "year": 2024,
+  "venue": "IEEE BigData 2024",
+  "peer_reviewed": true,
+  "eligible": false,
+  "demote_criterion": "E1",
+  "demote_reason": "Full text confirms EnStack simply fine-tunes and ensembles standard pretrained code-LMs (CodeBERT, GraphCodeBERT, UniXcoder) via stacking meta-classifiers on their output probability vectors; no novel program representation or context-construction mechanism is introduced or studied. GraphCodeBERT's built-in DFG handling is used off-the-shelf and is never isolated or varied -- the only ablation (Fig. 4) varies model combination and meta-classifier choice, not representation."
+},
+{
+  "arxiv_id": "2504.16877",
+  "system": "PacVD",
+  "year": 2025,
+  "venue": "arXiv",
+  "peer_reviewed": false,
+  "eligible": true,
+  "repr_classes": [
+    "cfg_dfg",
+    "interproc_callgraph"
+  ],
+  "integration": "prompt_serialization",
+  "task": "detection",
+  "scope": "interprocedural",
+  "domain": "general",
+  "evaluation": "representation_only_ablation",
+  "datasets": [
+    "NVD-New"
+  ],
+  "cross_language": false,
+  "wieringa": "validation",
+  "record_type": "technique_tool",
+  "key_numbers": [
+    {
+      "metric": "F1, DeepSeek-R1+CoT: API-abstraction level A3 vs w/o-API context",
+      "value": "69.09% vs 60.19% (+8.9pp)",
+      "where": "Table 4, Section 5.1.1"
+    },
+    {
+      "metric": "F1 vs best context-sampling baseline (API-guided sampling)",
+      "value": "69.09% vs 66.18% (+2.91pp)",
+      "where": "Table 5, Section 5.4"
+    },
+    {
+      "metric": "CodeLLaMA+BP F1 vs best baseline (hierarchy sampling, HS-C)",
+      "value": "67.48% vs 58.14% (+9.34pp)",
+      "where": "Section 5.4 / Table 5"
+    }
+  ],
+  "structure_gain": "API-abstraction context (level A3) raises F1 from 60.19% (w/o-API context) to 69.09% on DeepSeek-R1+CoT, same model and prompting strategy, only representation varied (Table 4, Sec 5.1.1).",
+  "confound_note": "The primary ablation (w/o-API vs A1-A4) holds model and code content fixed and varies only context abstraction level -- a clean representation-only comparison; the baseline comparison against All-Callees/Random/Hierarchy sampling additionally varies prompting strategy across models, so representation is not perfectly isolated there.",
+  "stop_detail": "Control-flow and data-flow analysis over the target function and its callees (up to 3 call layers) extracts four API-usage features (fuzzy/concrete branches, call counts, key variables) at four increasing abstraction levels A1-A4, appended directly into the LLM prompt (Section 3.2.2, 3.3.1).",
+  "threats_to_datum": "Static alias-analysis imprecision degrades the most abstract level (A4); DeepSeek-V3 shows high run-to-run performance volatility; evaluation limited to 623 historical CVE samples with no cross-project or production validation (Sections 5.1.3, 5.3.1, 6.2)."
+},
+{
+  "arxiv_id": "2506.15790",
+  "system": "ETrace",
+  "year": 2025,
+  "venue": "Internetware 2025 (16th Asia-Pacific Symposium on Internetware), ACM ICPS, New Idea track",
+  "peer_reviewed": true,
+  "eligible": false,
+  "demote_criterion": "E5",
+  "demote_reason": "Full text shows only qualitative validation on four real-world attack incidents (Table 5), each checked by whether the LLM's narrative output named the correct known attack type; no precision, recall, F1, detection rate, or any other quantitative detection metric is reported anywhere in the paper (Section 4.1)."
+},
+{
+  "arxiv_id": "2509.16275",
+  "system": "SecureFixAgent",
+  "year": 2025,
+  "venue": "ICMLA 2025 (Robustness and Security of Large Language Models -- ROSE-LLM -- special session)",
+  "peer_reviewed": true,
+  "eligible": true,
+  "repr_classes": [
+    "raw_text",
+    "nl_structured"
+  ],
+  "integration": "neurosymbolic_analyzer_loop",
+  "task": "repair",
+  "scope": "function",
+  "domain": "general",
+  "evaluation": "ablated_measured",
+  "datasets": [
+    "Synthetic (740 samples, 52 vulnerability types)",
+    "CVE-Bench",
+    "PySecDB",
+    "SecurityEval"
+  ],
+  "cross_language": false,
+  "wieringa": "validation",
+  "record_type": "technique_tool",
+  "key_numbers": [
+    {
+      "metric": "fix accuracy, fine-tuned SecureFixAgent",
+      "value": "87.83%",
+      "where": "Table III"
+    },
+    {
+      "metric": "false positive rate",
+      "value": "8.11%",
+      "where": "Table III"
+    },
+    {
+      "metric": "gains vs baselines (abstract)",
+      "value": "+13.51pp fix accuracy vs pre-trained LLMs; -10.8pp FP vs static analysis alone; -5.46pp FP vs pre-trained LLMs",
+      "where": "Abstract"
+    }
+  ],
+  "structure_gain": "No representation-only ablation; reported gain is from the iterative validate-loop vs single-pass LLM: fix accuracy rises from 79.72% (LLM-only, converges at iteration 1) to 87.83% (SecureFixAgent, converges at iteration 3) (Fig. 2, Table III).",
+  "confound_note": "Central comparison (SecureFixAgent vs Bandit-only vs single-pass LLM) varies presence of the iterative detect-repair-validate agent loop and fine-tuning together, not representation alone; the code+Bandit-report input format is held constant across arms.",
+  "stop_detail": "Bandit static-analysis findings (vulnerable segment, rule report) plus full source are fed to the LLM each iteration, and each proposed patch is re-validated by re-running Bandit until convergence or the iteration limit (Algorithm 1, Sec III-B/III-E).",
+  "threats_to_datum": "Detection scope is bounded by Bandit's rule set; multi-file/distributed-logic patches often remain incomplete after the iteration cap; developer study is small (n=15) and Likert-based; no comparison to commercial tools like Copilot/Semgrep (Section VI-B)."
+},
+{
+  "arxiv_id": "2512.06846",
+  "system": "CKG-LLM",
+  "year": 2025,
+  "venue": "arXiv",
+  "peer_reviewed": false,
+  "eligible": true,
+  "repr_classes": [
+    "cpg",
+    "retrieved_context"
+  ],
+  "integration": "retrieval_guide",
+  "task": "detection",
+  "scope": "interprocedural",
+  "domain": "smart_contract",
+  "evaluation": "ablated_measured",
+  "datasets": [
+    "FORGE"
+  ],
+  "cross_language": false,
+  "wieringa": "validation",
+  "record_type": "technique_tool",
+  "key_numbers": [
+    {
+      "metric": "F1 (SFT+DPO) on FORGE",
+      "value": "74.9% (P73.1%/R76.8%)",
+      "where": "Table 1"
+    },
+    {
+      "metric": "F1 progression Base -> SFT -> SFT+DPO",
+      "value": "57.8% -> 65.5% -> 74.9%",
+      "where": "Table 1"
+    },
+    {
+      "metric": "avg detection time per contract vs baselines",
+      "value": "11.3s (CKG-LLM) vs 13.5s (Achecker) vs 15.8s (GPTScan)",
+      "where": "Table 2"
+    }
+  ],
+  "structure_gain": "none reported for representation directly (the knowledge-graph structure is held constant); reported gains are from fine-tuning stages: F1 rises Base 57.8% -> SFT 65.5% -> SFT+DPO 74.9% (Table 1), not a raw-text-vs-KG ablation.",
+  "confound_note": "The Base/SFT/SFT+DPO comparison holds the knowledge-graph representation fixed and varies only the model training regime; the comparison against Achecker/GPTScan baselines (Table 2) varies representation and tool architecture together, not representation alone.",
+  "stop_detail": "Slither's IR is traversed to build a two-layer (ontology+instance) contract knowledge graph capturing control-flow, invocation, and inheritance relations (Sec 3.1); the SFT+DPO-tuned LLM translates NL vulnerability patterns into SPARQL queries executed against this graph to ground detections (Sec 3.2).",
+  "threats_to_datum": "Authors note the KG is built from static AST/IR extraction and may yield 'shallow semantic representations' for complex cases; evaluation is restricted to one dataset (FORGE) and one CWE family (access control), with unclear transfer to other LLM backbones (Section 1, 5)."
+},
+{
+  "arxiv_id": "2601.19239",
+  "system": "Li26",
+  "year": 2026,
+  "venue": "arXiv",
+  "peer_reviewed": false,
+  "eligible": true,
+  "repr_classes": [
+    "interproc_callgraph",
+    "cfg_dfg",
+    "retrieved_context"
+  ],
+  "integration": "agent_tool_use",
+  "task": "detection",
+  "scope": "repository",
+  "domain": "general",
+  "evaluation": "ablated_measured",
+  "datasets": [
+    "ReposVul",
+    "CWE-Bench-Java",
+    "JLeaks",
+    "24 real-world open-source projects (in-house benchmark)"
+  ],
+  "cross_language": true,
+  "wieringa": "evaluation",
+  "record_type": "empirical_study",
+  "key_numbers": [
+    {
+      "metric": "average recall on known vulnerabilities (LLM-based tools)",
+      "value": "21.09% (C/C++), 33.82% (Java)",
+      "where": "Table IV, Section V-A, Finding 1"
+    },
+    {
+      "metric": "suspicious/false discovery rate (SFDR) on real-world projects",
+      "value": "best tool avg 85.3%, up to 97.0% (RepoAudit, C/C++), 94.4% (IRIS, Java)",
+      "where": "Tables V-VI, Finding 2, Section V-B"
+    },
+    {
+      "metric": "compute overhead (RepoAudit)",
+      "value": "up to 225M input / 38M output tokens, ~448 min/project average",
+      "where": "Table VII, Section V-D"
+    }
+  ],
+  "structure_gain": "No controlled representation ablation; qualitative contrast: IRIS's systematic API enumeration reaches 46.15% recall on CWE-078 vs LLMDFA's LLM-inferred sources/sinks at 0% on the same CWE (Section V-A) -- but model, workflow, and representation all differ simultaneously.",
+  "confound_note": "Compares five published tools 'as-is' (RepoAudit, KNighter, IRIS, LLMDFA, INFERROI): LLM backbone, source/sink specification method, workflow architecture, and representation (CFG/CPG/call-graph/CodeQL-template) all vary simultaneously across arms; not a controlled ablation.",
+  "stop_detail": "Different tools ground detections differently -- e.g., INFERROI explores paths over the CFG, RepoAudit performs 3-layer interprocedural callee/caller exploration to bound path explosion, IRIS embeds LLM inferences into CodeQL query templates (Introduction, Section V).",
+  "threats_to_datum": "False-positive labeling by two authors (>150 human hours) with double-coding to reduce subjectivity, but classification may still reflect labeler interpretation; study limited to C/C++ and Java, 5 LLM tools + 2 traditional tools, so findings 'may not generalize uniformly' to other languages or newer models (Section VI-B)."
+},
+{
+  "arxiv_id": "2604.20179",
+  "system": "LLMVD.js",
+  "year": 2026,
+  "venue": "arXiv",
+  "peer_reviewed": false,
+  "eligible": true,
+  "repr_classes": [
+    "raw_text"
+  ],
+  "integration": "agent_tool_use",
+  "task": "multi",
+  "scope": "repository",
+  "domain": "web_js",
+  "evaluation": "ablated_measured",
+  "datasets": [
+    "VulcaN",
+    "SecBench.js",
+    "NodeMedic (private)",
+    "code-transformed VulcaN/SecBench.js variant",
+    "Wild (17,151 recently crawled npm packages)"
+  ],
+  "cross_language": false,
+  "wieringa": "evaluation",
+  "record_type": "technique_tool",
+  "key_numbers": [
+    {
+      "metric": "overall valid-exploit confirmation rate vs best baseline (Explode.js Pkg mode)",
+      "value": "433/517 = 83.75% vs 43.13%",
+      "where": "Table 3, Section 5.2.1"
+    },
+    {
+      "metric": "private NodeMedic dataset valid PoC rate vs NodeMedic-FINE",
+      "value": "244/259 = 94.2% vs 127/259 = 49.0%",
+      "where": "Table 5, Section 5.2.4"
+    },
+    {
+      "metric": "newly crawled npm packages (Wild): validated vulnerabilities found",
+      "value": "36/260 valid PoCs vs traditional tools <=2",
+      "where": "Table 5, Section 5.2.5, Abstract"
+    }
+  ],
+  "structure_gain": "Paper argues a representation-light agent (raw source + lightweight tooling, no dedicated static/dynamic taint engine) outperforms CPG/taint-provenance-graph-based tools (83.75% vs 43.13% confirmation rate, Table 3) and an LLM+program-analysis hybrid, PoCGen, at lower cost (Table 4) -- i.e. less built-in structure yields better results here, the opposite direction from most representation-gain findings.",
+  "confound_note": "Central comparison (LLMVD.js vs FAST/NodeMedic-FINE/Explode.js/PoCGen) varies representation (raw-code+agent-search vs CPG/taint-provenance-graph/CodeQL-derived structure), LLM backbone use, and tool architecture simultaneously -- not an isolated representation ablation on one fixed model.",
+  "stop_detail": "A ReAct-style multi-agent pipeline (Finder -> Judge -> Constraints Inferencer -> Exploiter) reasons over raw source retrieved via pattern-based file search, then grounds each finding via oracle-guided PoC execution that checks concrete side effects rather than relying on model self-report (Sections 4.3-4.4).",
+  "threats_to_datum": "Public benchmarks predate the LLM's training cutoff and memorization is only partly mitigated by a code-transformed variant; the NodeMedic dataset has distribution bias (only NodeMedic-FINE-flagged packages); evaluation is restricted to 4 taint-style vulnerability classes, limiting generalizability (Section 6, Threats to Validity)."
+},
+{
+  "arxiv_id": "2606.04739",
+  "system": "Vul-RAG",
+  "year": 2026,
+  "venue": "AI&CCPS 2026 workshop (co-located with ARES 2026)",
+  "peer_reviewed": true,
+  "eligible": true,
+  "repr_classes": [
+    "retrieved_context",
+    "raw_text"
+  ],
+  "integration": "retrieval_guide",
+  "task": "detection",
+  "scope": "function",
+  "domain": "general",
+  "evaluation": "ablated_measured",
+  "datasets": [
+    "PairVul"
+  ],
+  "cross_language": false,
+  "wieringa": "validation",
+  "record_type": "benchmark_eval",
+  "key_numbers": [
+    {
+      "metric": "pairwise accuracy, Qwen2.5-Coder-32B (reproduction vs original)",
+      "value": "identical pairwise accuracy; balanced recall/precision differ by <=2pp",
+      "where": "RQ1, Table 3"
+    },
+    {
+      "metric": "pairwise accuracy, DeepSeek-Coder-V2 (reproduction vs original)",
+      "value": "0.30 -> 0.22 (-8pp); 21/586 pairs failed (CUDA OOM)",
+      "where": "RQ1, Section 5"
+    },
+    {
+      "metric": "performance plateau across all evaluated open-weight models",
+      "value": "~0.30 pairwise accuracy (best reasoning model 0.29)",
+      "where": "RQ4, Tables 3 and 5, Section 5"
+    }
+  ],
+  "structure_gain": "none reported -- the RAG knowledge-base/retrieval representation is held fixed (reused from the original Vul-RAG) across all comparisons; gains/losses are attributed to model family, scale, and reasoning capability, not to representation variation.",
+  "confound_note": "All RQs vary the underlying LLM (family, code-specialization, reasoning ability, parameter scale 3B-32B) while holding the Vul-RAG retrieval pipeline and knowledge base fixed -- the inverse of a representation ablation, so representation's own contribution is not isolated from base LLM capability.",
+  "stop_detail": "Vul-RAG retrieves top-n knowledge-base entries (functional semantics, vulnerability causes, fixing solutions) via BM25 plus re-ranking keyed on LLM-extracted code semantics, then has the LLM sequentially reason over each retrieved item before a final verdict (Section 3, Figure 1).",
+  "threats_to_datum": "Several evaluated models were released after PairVul's publication, so training-data contamination cannot be ruled out; output-format compliance issues bias results toward instruction-following models; the DeepSeek-Coder-V2 evaluation is incomplete due to GPU memory constraints (Section 6)."
+},
+{
+  "arxiv_id": "2607.21983",
+  "system": "Yang26",
+  "year": 2026,
+  "venue": "arXiv",
+  "peer_reviewed": false,
+  "eligible": true,
+  "repr_classes": [
+    "slice",
+    "retrieved_context"
+  ],
+  "integration": "prompt_serialization",
+  "task": "detection",
+  "scope": "function",
+  "domain": "smart_contract",
+  "evaluation": "representation_only_ablation",
+  "datasets": [
+    "450 NFT contract samples (custom, from real NFT projects / public vulnerability datasets)"
+  ],
+  "cross_language": false,
+  "wieringa": "validation",
+  "record_type": "technique_tool",
+  "key_numbers": [
+    {
+      "metric": "positive-label rate, slices+knowledge",
+      "value": "97.1% (437/450)",
+      "where": "Table 4, Abstract, Section 5.4"
+    },
+    {
+      "metric": "positive-label rate, slices-knowledge",
+      "value": "87.11% (392/450)",
+      "where": "Table 4, Section 5.4"
+    },
+    {
+      "metric": "positive-label rate, complete contracts-knowledge",
+      "value": "73.78% (332/450)",
+      "where": "Table 4, Section 5.4"
+    }
+  ],
+  "structure_gain": "Slicing (vs complete contract, no knowledge) raises positive-label rate 73.78% -> 87.11% (+13.33pp); adding the ERC-721 knowledge base on top of slices raises it further to 97.11% (+10.0pp), with the same DeepSeek model/config held constant across all three arms (Section 5.4, Table 4).",
+  "confound_note": "The three-arm ablation (slice+knowledge / slice-knowledge / full-contract-knowledge) holds the LLM (DeepSeek) fixed and cleanly varies representation and knowledge-injection, but the outcome metric is a raw 'positive label rate' with no independent ground truth, so the delta may partly reflect a shift toward over-flagging rather than true detection accuracy.",
+  "stop_detail": "A structure-aware context-window algorithm regex-locates candidate statements, expands to a syntactically balanced function-scoped slice, and embeds an ERC-721-specific knowledge base plus a closed label set and explicit 'return None if insufficient evidence' rejection rule directly in the prompt (Section 4.2-4.3, Algorithm 1, Prompt 1).",
+  "threats_to_datum": "Authors explicitly warn the positive-label rate 'must not be interpreted as classification accuracy' since there is no independently annotated ground truth, confusion matrix, or per-class precision/recall; model ID, temperature, and full knowledge-base content are unrecorded, limiting reproducibility (Section 6)."
+}
+]

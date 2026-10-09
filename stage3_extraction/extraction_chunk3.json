@@ -1,0 +1,318 @@
+[
+{
+  "arxiv_id": "2403.06838",
+  "system": "ACFix",
+  "year": 2024,
+  "venue": "arXiv (technical report, Nanyang Technological University; no conference/journal acceptance stated as of v3)",
+  "peer_reviewed": false,
+  "eligible": true,
+  "repr_classes": [
+    "hybrid",
+    "retrieved_context",
+    "interproc_callgraph"
+  ],
+  "integration": "neurosymbolic_analyzer_loop",
+  "task": "repair",
+  "scope": "interprocedural",
+  "domain": "smart_contract",
+  "evaluation": "representation_only_ablation",
+  "datasets": [
+    "118 real-world AC vulnerability benchmark (CVEs, DefiHackLabs, tintinweb, SmartFix, media reports)",
+    "344,251 on-chain contracts (RBAC taxonomy mining)"
+  ],
+  "cross_language": false,
+  "wieringa": "validation",
+  "record_type": "technique_tool",
+  "key_numbers": [
+    {"metric": "repair success rate (full ACFix)", "value": "94.92%", "where": "§VII-C Table IV"},
+    {"metric": "vanilla GPT-4 baseline success rate", "value": "52.54%", "where": "§VII-C"},
+    {"metric": "w/o ACG (graph representation) success rate", "value": "89.83%", "where": "§VII-C Table IV"}
+  ],
+  "structure_gain": "Removing the AC Context Graph (ACG, built from interprocedural slicing+PDG+call graph) drops success from 94.92% to 89.83% (-5.09pp) on the same GPT-4 model with RBAC taxonomy and validator held constant (§VII-C Table IV)",
+  "confound_note": "Headline comparison (vanilla GPT-4 vs full ACFix) varies representation (ACG), retrieved knowledge (RBAC taxonomy), and agent loop (validator) simultaneously; a component-wise ablation (Table IV) isolates ACG's contribution alone by holding RBAC+validator+model fixed",
+  "stop_detail": "Five categories of static grammar checks + def-use chain validation + structural-boundary compatibility checks on generated patches (§VI-B, Eqs 1-7), plus an independent validator-agent semantic check in a multi-agent-debate loop capped at 3 iterations (§VI-C)",
+  "threats_to_datum": "RBAC taxonomy mining had 9.5% inter-annotator disagreement; ANTLR-based AST analysis has reduced accuracy/granularity vs IR-based approaches when source is not compilable (§V-B, §IX)"
+},
+{
+  "arxiv_id": "2409.09661",
+  "system": "ContractTinker",
+  "year": 2024,
+  "venue": "ASE 2024",
+  "peer_reviewed": true,
+  "eligible": true,
+  "repr_classes": [
+    "hybrid",
+    "slice"
+  ],
+  "integration": "neurosymbolic_analyzer_loop",
+  "task": "repair",
+  "scope": "interprocedural",
+  "domain": "smart_contract",
+  "evaluation": "demonstrated",
+  "datasets": [
+    "48 real-world high-risk findings (Code4rena audit reports)"
+  ],
+  "cross_language": false,
+  "wieringa": "solution_proposal",
+  "record_type": "technique_tool",
+  "key_numbers": [
+    {"metric": "valid patches fixing vulnerability", "value": "23/48 (48%)", "where": "§4.2.2 evaluation"},
+    {"metric": "top-3 strategy success rate", "value": "91.6%", "where": "§4"},
+    {"metric": "single-strategy (GPT-3.5) success rate", "value": "70.4%", "where": "§4"}
+  ],
+  "structure_gain": "none reported (no raw-code-only baseline or no-CDG condition tested)",
+  "confound_note": "No comparator arm exists; only the full Slither-derived Contextual-Dependency-Graph (CDG)-guided pipeline is evaluated -- no raw-code or no-pruning condition tested",
+  "stop_detail": "Slither-derived Contextual Dependency Graph prunes to vulnerability-relevant elements before Chain-of-Thought prompting; multi-agent debate with an independent LLM validator plus a compilation check gates accepted patches (§2.2-§2.4, §4.2.2)",
+  "threats_to_datum": "Small dataset (48 vulnerabilities), no baseline comparison against prior repair tools (SGuard, EVMPatch, SCRepair, SmartFix mentioned but not benchmarked), manual evaluation introduces subjectivity (§4 limitations)"
+},
+{
+  "arxiv_id": "2502.00064",
+  "system": "Lin25",
+  "year": 2025,
+  "venue": "ICMLA 2024",
+  "peer_reviewed": true,
+  "eligible": true,
+  "repr_classes": [
+    "raw_text"
+  ],
+  "integration": "prompt_serialization",
+  "task": "detection",
+  "scope": "file",
+  "domain": "general",
+  "evaluation": "ablated_measured",
+  "datasets": [
+    "Vul4J (140 Java files, 74 unique vulnerabilities, 25 CWE types)"
+  ],
+  "cross_language": false,
+  "wieringa": "evaluation",
+  "record_type": "empirical_study",
+  "key_numbers": [
+    {"metric": "benchmark scale", "value": "74 vulnerabilities / 140 Java files / 25 CWE types", "where": "Dataset description"},
+    {"metric": "models robust to context-length (both null hypotheses accepted)", "value": "GPT-4; Mistral-7B and Mixtral-8x7B at 32,768-token context window", "where": "Results / chi-square tests"}
+  ],
+  "structure_gain": "none reported (raw-text only study; no structured representation compared, only context-window truncation of raw text)",
+  "confound_note": "Central comparison across ten LLMs confounds model family, parameter count (7B-70B), quantization (q5_K_M vs fp16), and context-window size (2048-32,768 tokens) simultaneously; not an isolated context ablation",
+  "stop_detail": "No explicit grounding mechanism; all files are known-vulnerable by construction, and responses are manually classified Correct/Incorrect/Irrelevant with no inter-annotator agreement reported",
+  "threats_to_datum": "Single Java dataset (74 vulnerabilities); reports only chi-square hypothesis outcomes, not absolute accuracy/F1; manual annotation without inter-rater reliability; confounded model/quantization/context-window design"
+},
+{
+  "arxiv_id": "2505.19828",
+  "system": "SecVulEval",
+  "year": 2025,
+  "venue": "arXiv",
+  "peer_reviewed": false,
+  "eligible": true,
+  "repr_classes": [
+    "retrieved_context",
+    "raw_text"
+  ],
+  "integration": "agent_tool_use",
+  "task": "multi",
+  "scope": "function",
+  "domain": "general",
+  "evaluation": "not_evaluated",
+  "datasets": [
+    "SecVulEval (25,440 functions, 5,867 CVEs, 707 projects, 145 CWE types, 1999-2024)"
+  ],
+  "cross_language": false,
+  "wieringa": "evaluation",
+  "record_type": "benchmark_eval",
+  "key_numbers": [
+    {"metric": "Claude-3.7-Sonnet statement-level F1", "value": "23.83%", "where": "§5 results"},
+    {"metric": "GPT-4.1 statement-level F1", "value": "22.38%", "where": "§5 results"},
+    {"metric": "context extraction validation accuracy (GPT-4.1, 100-sample check)", "value": "82.98%", "where": "§3.4"}
+  ],
+  "structure_gain": "none reported (no with-context vs without-context detection comparison performed; context is always provided, and its identification accuracy is assessed separately from detection F1)",
+  "confound_note": "Models compared (Claude-3.7-Sonnet, GPT-4.1, 22B-33B open models) vary in architecture, size, and vendor with context always supplied; no controlled with/without-context arm for a fixed model",
+  "stop_detail": "Multi-agent pipeline (Normalization/Planning/Context/Detection/Validation agents) with tree-sitter symbol extraction for external definitions/types/globals; manual validation of 300 samples defines correctness as exact vulnerable statement plus correct reasoning (§4.1, §5.1)",
+  "threats_to_datum": "Contextual info extracted by an LLM (GPT-4.1), not fully human-verified at scale; model-size variability unexplored due to resource constraints; no repository-wide/transitive dependency context included (Appendix A)"
+},
+{
+  "arxiv_id": "2507.16585",
+  "system": "LLMxCPG",
+  "year": 2025,
+  "venue": "USENIX 2025",
+  "peer_reviewed": true,
+  "eligible": true,
+  "repr_classes": [
+    "slice",
+    "taint_path",
+    "cpg"
+  ],
+  "integration": "finetune_adapter",
+  "task": "detection",
+  "scope": "interprocedural",
+  "domain": "general",
+  "evaluation": "ablated_measured",
+  "datasets": [
+    "FormAI-v2 (331K synthetic programs)",
+    "PrimeVul (228.8K functions)",
+    "SVEN (1,600 functions)",
+    "ReposVul (6,134 CVEs)"
+  ],
+  "cross_language": true,
+  "wieringa": "validation",
+  "record_type": "technique_tool",
+  "key_numbers": [
+    {"metric": "LLMxCPG accuracy / F1 (SVEN, function-level)", "value": "0.602 / 0.705", "where": "Table 5"},
+    {"metric": "ReGVD (GNN baseline) F1 (SVEN)", "value": "0.55", "where": "Table 5"},
+    {"metric": "code size reduction via CPG-based slicing", "value": "67.84%-90.93%", "where": "§4.3.1"}
+  ],
+  "structure_gain": "none reported in main text as a same-model raw-code-vs-slice delta; Appendix C mentions an LLMxCPG-D-on-full-code (no slicing) condition but results are not detailed",
+  "confound_note": "Baselines (ReGVD, VulBERTA, VulSim) differ from LLMxCPG in both representation (embeddings/graphs vs CPG-derived slice) and model architecture (GNN/BERT vs fine-tuned LLM) simultaneously; not a same-architecture ablation",
+  "stop_detail": "Backward taint slicing via Joern's reachableByFlows() grounds the LLM's input in CPG-derived data/control dependencies; three security experts manually audited 50 generated CPGQL queries, Fleiss' kappa 0.6429 (§3.2, §4.3.1)",
+  "threats_to_datum": "CPG cannot model runtime-dependent vulnerabilities (race conditions); accuracy drops sharply on deep nesting (>7 levels: 0.33 accuracy); imbalanced CWE representation in training data, e.g. CWE-121/122 have 1-2 samples (§4.4.2, §5)"
+},
+{
+  "arxiv_id": "2510.20739",
+  "system": "Ni25",
+  "year": 2025,
+  "venue": "ASE 2026 (41st IEEE/ACM International Conference on Automated Software Engineering)",
+  "peer_reviewed": true,
+  "eligible": true,
+  "repr_classes": [
+    "raw_text",
+    "taint_path"
+  ],
+  "integration": "finetune_adapter",
+  "task": "triage_fp_reduction",
+  "scope": "file",
+  "domain": "web_js",
+  "evaluation": "ablated_measured",
+  "datasets": [
+    "Triage-JS (1,883 Node.js packages; 1,250 exploitable / 633 benign)"
+  ],
+  "cross_language": false,
+  "wieringa": "evaluation",
+  "record_type": "empirical_study",
+  "key_numbers": [
+    {"metric": "best LLM (full fine-tune) F1", "value": "0.915", "where": "Results table"},
+    {"metric": "GNN F1", "value": "0.886", "where": "Results table"},
+    {"metric": "LLM+GNN hybrid F1", "value": "0.902", "where": "Results table"}
+  ],
+  "structure_gain": "The text-only LLM (raw code snippet + nearby data-flow context, 0.915 F1) outperforms the graph-only GNN (0.886 F1) and the concatenated LLM+GNN hybrid (0.902 F1); adding graph structure does not improve over the text representation alone here",
+  "confound_note": "Comparison of LLM vs GNN vs Hybrid arms confounds representation (text vs provenance-graph) with model architecture (transformer vs GNN) and fine-tuning strategy; not a same-architecture ablation. LLM is the independent, primary component (not a GNN-primary fusion) -- graph input is exclusive to the GNN, LLM sees only truncated code text",
+  "stop_detail": "No cross-modal grounding; the hybrid model concatenates independently-learned LLM text embeddings and GNN provenance-graph embeddings with end-to-end backprop, no attention/alignment mechanism (§3.4)",
+  "threats_to_datum": "All data from a single dynamic taint-analysis tool (NodeMedic-FINE), single ecosystem (Node.js), single vulnerability class (ACE/ACI); manual labeling of 1,239 packages introduces residual human error (§6)"
+},
+{
+  "arxiv_id": "2601.00254",
+  "system": "Saju26",
+  "year": 2026,
+  "venue": "CASCON 2025",
+  "peer_reviewed": true,
+  "eligible": true,
+  "repr_classes": [
+    "retrieved_context",
+    "raw_text"
+  ],
+  "integration": "retrieval_guide",
+  "task": "detection",
+  "scope": "function",
+  "domain": "general",
+  "evaluation": "ablated_measured",
+  "datasets": [
+    "Big-Vul",
+    "proprietary enterprise codebase (research partner)"
+  ],
+  "cross_language": false,
+  "wieringa": "evaluation",
+  "record_type": "empirical_study",
+  "key_numbers": [
+    {"metric": "RAG accuracy / F1", "value": "0.86 / 0.85", "where": "Results table"},
+    {"metric": "base (un-augmented) LLM F1", "value": "0.67", "where": "Results table"},
+    {"metric": "SFT F1", "value": "0.80", "where": "Results table"}
+  ],
+  "structure_gain": "RAG (retrieved MITRE CWE-database context) reaches 0.85 F1 vs the un-augmented base LLaMA-3.2-3B baseline's 0.67 F1 (+0.18); however RAG, SFT, and Dual-Agent each add a different, confounded mechanism atop the same base model rather than a pure representation-only swap",
+  "confound_note": "RAG adds a retrieval pipeline + external CWE knowledge; SFT adds trained QLoRA adapter weights; Dual-Agent adds a second validating agent -- three distinct augmentation types compared against one shared un-augmented base model, not isolated to representation alone",
+  "stop_detail": "RAG grounds responses in the MITRE CWE database via top-20-chunk retrieval + re-ranking (§III-C); the Dual-Agent's second agent audits the first agent's reasoning for logical inconsistencies and unsupported assumptions (§III-E)",
+  "threats_to_datum": "Only 5 CWE categories, single proprietary enterprise codebase, 5,000 training examples; authors acknowledge the confounded design cannot isolate whether gains stem from retrieval, fine-tuning, or added inference"
+},
+{
+  "arxiv_id": "2603.24837",
+  "system": "codebadger",
+  "year": 2026,
+  "venue": "Software Vulnerability Management Workshop @ ICSE 2026 (accepted)",
+  "peer_reviewed": true,
+  "eligible": false,
+  "demote_criterion": "E5",
+  "demote_reason": "Full text confirms this is a purely qualitative solution proposal: three illustrative case studies (GGML memory-safety audit, libtiff buffer-overflow discovery, libxml2 CVE-2025-6021 patch) with no ablation, no baseline comparison, and no quantitative metrics (F1/precision/recall/success rate). Authors explicitly state in §6 that 'large-scale quantitative evaluation against benchmark datasets remains critical future work.' No quantitative result to extract (E5)."
+},
+{
+  "arxiv_id": "2605.03697",
+  "system": "Zhang26",
+  "year": 2026,
+  "venue": "arXiv",
+  "peer_reviewed": false,
+  "eligible": true,
+  "repr_classes": [
+    "ast",
+    "nl_structured"
+  ],
+  "integration": "prompt_serialization",
+  "task": "detection",
+  "scope": "function",
+  "domain": "smart_contract",
+  "evaluation": "demonstrated",
+  "datasets": [
+    "31,165 professionally annotated vulnerability instances across 2,874+ projects, 15 blockchain platforms"
+  ],
+  "cross_language": false,
+  "wieringa": "solution_proposal",
+  "record_type": "technique_tool",
+  "key_numbers": [
+    {"metric": "average positive recall", "value": "0.92 (range 0.73-1.00)", "where": "Results section"},
+    {"metric": "average negative recall", "value": "0.85 (range 0.60-1.00)", "where": "Results section"},
+    {"metric": "CoT vs standard few-shot prompting accuracy", "value": "0.91 vs 0.85", "where": "Ablation (CoT) section"}
+  ],
+  "structure_gain": "none reported (no raw-code-only baseline for comparison; the only ablation present is CoT vs. standard few-shot prompting, +0.06 accuracy, which is unrelated to the AST-derived context itself)",
+  "confound_note": "The only ablation present (CoT vs. standard few-shot prompting) varies reasoning strategy, not representation; no with/without AST-context comparison is provided, and no comparison against traditional detection tools or other LLM baselines",
+  "stop_detail": "Vulnerability instances are grounded in professionally produced audit reports (CoinMarketCap, CertiK, QuantStamp, ConsenSys) matched to GitHub source via audited commit hashes; no automated static/dynamic verification of the LLM's own output",
+  "threats_to_datum": "No comparison against traditional detection tools or other LLM baselines; possible overlap between few-shot example instances and test positives; no false-positive-cost analysis for real auditing workflows"
+},
+{
+  "arxiv_id": "2606.25356",
+  "system": "RepBench",
+  "year": 2026,
+  "venue": "arXiv",
+  "peer_reviewed": false,
+  "eligible": true,
+  "repr_classes": [
+    "hybrid",
+    "ast",
+    "cfg_dfg",
+    "raw_text"
+  ],
+  "integration": "prompt_serialization",
+  "task": "detection",
+  "scope": "function",
+  "domain": "general",
+  "evaluation": "representation_only_ablation",
+  "datasets": [
+    "PrimeVul-derived corpus (107 Joern-based testcases, 30 projects, 5 CWE categories)",
+    "19 auxiliary ePDG (LLVM-IR-enriched) testcases"
+  ],
+  "cross_language": false,
+  "wieringa": "evaluation",
+  "record_type": "empirical_study",
+  "key_numbers": [
+    {"metric": "AST+PDG curated accuracy", "value": "83.2%", "where": "§5.2 Table 6"},
+    {"metric": "raw source baseline curated accuracy", "value": "53.5%", "where": "§5.2 Table 6"},
+    {"metric": "context dilution: source+graph vs. graph-only", "value": "69.4% at 12,938 avg tokens vs. 74.4% at 5,973 avg tokens", "where": "§5.3 Finding 5"}
+  ],
+  "structure_gain": "AST+PDG reaches 83.2% curated accuracy vs. 53.5% for raw source alone (+29.7pp), with model (qwen3.6-plus), temperature, prompting/checklist structure, and 50,000-character budget held fixed across all ten representation variants (§4.2, §5.2 Table 6)",
+  "confound_note": "Model, temperature, prompting structure, and character budget are held constant across representation variants; program representation is the sole varied factor (§4.2) -- this is the study's central, deliberately isolated ablation",
+  "stop_detail": "Structured JSON output required with reasoning fields (sink_identified, data_source, validation_present, control_flow_analysis, pdg_dependencies); curated accuracy computed only on valid binary predictions matching expected labels (§3.5.8, §4.4)",
+  "threats_to_datum": "Modest corpus (107 testcases); CWE-190 dominates (56/107) while CWE-122 and CWE-191 have only 4 and 2 cases respectively (inadequate for category-level conclusions); single-model, single-run evaluation with acknowledged prompt-serialization and few-shot-selection bias (§7)"
+},
+{
+  "arxiv_id": "2608.16187",
+  "system": "Surikov26",
+  "year": 2026,
+  "venue": "Georgia Institute of Technology Master's practicum project (not peer-reviewed)",
+  "peer_reviewed": false,
+  "eligible": false,
+  "demote_criterion": "E4",
+  "demote_reason": "Full text confirms the entire pipeline targets securing AI-generated code itself: Python code is generated from LLMSecEval prompts by a Code Generation LLM, vulnerabilities are found by CodeQL/Bandit static analyzers (not by an LLM-based representation/context mechanism as the analysis technique), and the LLM's role is generation and remediation of its own output, enriched with MITRE ATT&CK/CWE context. This is security of LLM-generated code, not use of program representations/context to drive LLM-based security analysis of arbitrary code (E4)."
+}
+]

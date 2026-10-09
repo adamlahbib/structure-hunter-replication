@@ -1,0 +1,20 @@
+[
+ {
+  "arxiv_id": "2308.03314",
+  "numbers": [
+   {"metric": "Precision (DefiHacks) / precision (Web3Bugs large projects)", "verdict": "CONFIRMED",
+    "correct_value_if_wrong": null, "note": "Sec 5.1: DefiHacks precision 90.91%; Web3Bugs 57.14% — both verified verbatim."},
+   {"metric": "Recall / F1 (Web3Bugs; DefiHacks)", "verdict": "CONFIRMED",
+    "correct_value_if_wrong": null, "note": "Sec 5.2/Table 3: Web3Bugs recall 83.33%, F1 67.8%; DefiHacks recall 71.43%, F1 80% — verified."},
+   {"metric": "Static confirmation filters false-positive candidate functions", "verdict": "CONFIRMED",
+    "correct_value_if_wrong": null, "note": "Sec 5.3/Table 4: 65.84% filtered, 647->221 functions — verified."},
+   {"metric": "structure_gain", "verdict": "CONFIRMED", "correct_value_if_wrong": null,
+    "note": "Same-model (GPT-3.5-turbo) component ablation confirmed in Sec 5.3; cost/speed figures (14.39 s, $0.01/KLoC, Sec 5.4 Table 5) also verified."}
+  ],
+  "repr_primary_agree": true, "repr_primary_suggested": null,
+  "integration_agree": true, "integration_suggested": null,
+  "evaluation_agree": true, "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Handoff-loss restoration: author-extracted AND author-verified in one documented pass against arxiv.org/html/2308.03314 (2026-08-30). Extraction and verification are not independent for this record — disclosed in Appendix B alongside its exclusion from the blind second coding."
+ }
+]

@@ -1,0 +1,90 @@
+[
+{
+"arxiv_id": "2403.06838",
+"title": "ACFIX: Guiding LLMs with Mined Common RBAC Practices for Context-Aware Repair of Access Control Vulnerabilities in Smart Contracts",
+"repr_primary": "retrieved_context",
+"integration": "prompt_serialization",
+"evaluation": "ablated_measured",
+"note": "Abstract only; mined RBAC role-permission taxonomy (49 pairs from 344K contracts) retrieved and injected via CoT prompt; compared vs GPT-4 baseline (94.92% vs 52.54%), not a representation-isolated ablation."
+},
+{
+"arxiv_id": "2408.03489",
+"title": "Harnessing the Power of LLMs in Source Code Vulnerability Detection",
+"repr_primary": "slice",
+"integration": "finetune_adapter",
+"evaluation": "ablated_measured",
+"note": "Full text; source converted to LLVM IR then dependency-graph-sliced into iSeVC code gadgets, tokenized and used to finetune BERT/DistilBERT; compared vs VulDeeLocator/LSTM, ablation only varies classifier FC-layer count, not representation."
+},
+{
+"arxiv_id": "2501.18160",
+"title": "RepoAudit: An Autonomous LLM-Agent for Repository-Level Code Auditing",
+"repr_primary": "hybrid",
+"integration": "agent_tool_use",
+"evaluation": "ablated_measured",
+"note": "Full text; agent traverses call graph and data-dependence graph via tree-sitter/static-analysis tool calls plus an LLM validator loop; ablation table (w/o abstraction, w/o validator, w/o caching) plus baseline comparison vs Meta Infer/CodeGuru/CoT/LLMDFA, but not a fixed-context-budget representation isolation."
+},
+{
+"arxiv_id": "2505.19828",
+"title": "SecVulEval: Benchmarking LLMs for Real-World C/C++ Vulnerability Detection",
+"repr_primary": "hybrid",
+"integration": "prompt_serialization",
+"evaluation": "ablated_measured",
+"note": "Full text; benchmark of 25,440 functions with statement-level labels; a multi-agent (Normalization/Planning/Context/Detection) pipeline extracts interprocedural symbol context via tree-sitter and concatenates it into the detection prompt; benchmarks SOTA LLMs (best F1 23.83%), no clean context-ablation numbers surfaced."
+},
+{
+"arxiv_id": "2507.16585",
+"title": "LLMxCPG: Context-Aware Vulnerability Detection Through Code Property Graph-Guided Large Language Models",
+"repr_primary": "cpg",
+"integration": "prompt_serialization",
+"evaluation": "ablated_measured",
+"note": "Full text; CPG-derived backward slices (67.84-90.93% size reduction) serialized as text into the prompt; Appendix C compares full-code vs sliced input on the same model but context length necessarily differs (confound), and headline results are vs SOTA baselines (+15-40% F1), not a fixed-budget isolation."
+},
+{
+"arxiv_id": "2510.17919",
+"title": "ParaVul: A Parallel Large Language Model and Retrieval-Augmented Framework for Smart Contract Vulnerability Detection",
+"repr_primary": "hybrid",
+"integration": "retrieval_guide",
+"evaluation": "ablated_measured",
+"note": "Full text; parallel architecture: an LLM branch finetuned (SLoRA) on raw contract text plus a hybrid dense+BM25 RAG branch retrieving similar vulnerable contracts, fused via a meta-learning model; measured F1 vs baselines (0.94/0.93 single/multi-label), no clean RAG-removed ablation confirmed."
+},
+{
+"arxiv_id": "2512.07533",
+"title": "VulnLLM-R: Specialized Reasoning LLM with Agent Scaffold for Vulnerability Detection",
+"repr_primary": "interproc_callgraph",
+"integration": "agent_tool_use",
+"evaluation": "ablated_measured",
+"note": "Full text; static call-graph paths seed context and the model (finetuned on agentic trajectories) can invoke a function-retrieval-by-name tool at inference; measured vs CodeQL/AFL++/RepoAudit/commercial models; reported ablations target training-recipe components, not context representation."
+},
+{
+"arxiv_id": "2601.19239",
+"title": "LLM-based Vulnerability Detection at Project Scale: An Empirical Study",
+"repr_primary": "hybrid",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "ablated_measured",
+"note": "Full text; empirical black-box comparison of 5 heterogeneous LLM tools (RepoAudit: agent/call-graph; KNighter: CSA-checker gen; IRIS: CodeQL loop; LLMDFA: agent/dataflow; INFERROI: CFG loop) plus 2 traditional tools on 222 CVEs/24 projects; explicitly not a controlled representation ablation, a cross-tool benchmark."
+},
+{
+"arxiv_id": "2604.20179",
+"title": "Taint-Style Vulnerability Detection and Confirmation for Node.js Packages Using LLM Agent Reasoning",
+"repr_primary": "raw_text",
+"integration": "agent_tool_use",
+"evaluation": "ablated_measured",
+"note": "Abstract only (html and ar5iv both 404); explicitly avoids dedicated static/dynamic taint engines, LLM agent reasons over raw package code through a scan-propose-generate PoC-execution-validate pipeline; compared vs prior program-analysis tools (<=22% confirmation) and a prior LLM-hybrid tool (84%), no representation ablation."
+},
+{
+"arxiv_id": "2605.17444",
+"title": "MemRepair: Hierarchical Memory for Agentic Repository-Level Vulnerability Repair",
+"repr_primary": "retrieved_context",
+"integration": "agent_tool_use",
+"evaluation": "ablated_measured",
+"note": "Full text; agent with view/search/Iter_grep(AST-based)/str_replace tools plus a 3-layer memory (History-Fix, Security-Pattern, Refinement-Trajectory) retrieved into prompts; Table 3 ablates memory layers (Loop-only 36% to full 58% on SEC-Bench, vs OpenHands 38.5%), a strong component ablation but per-arm context budget not confirmed fixed."
+},
+{
+"arxiv_id": "2607.13439",
+"title": "DREA: Decoupled Reasoning and Exploration Agents for Repository-Level Vulnerability Detection",
+"repr_primary": "retrieved_context",
+"integration": "agent_tool_use",
+"evaluation": "ablated_measured",
+"note": "Full text; explorer agent (ls/glob/grep/read_file tools) retrieves repo facts synthesized into the planner's hypothesis-update loop; Table 3 ablation (Function-Only 19% / Whole-File 26% / DREA 42% Pair-Correctness) holds the planner LLM fixed but token budget varies sharply (3K/20K/88K), so not a strict fixed-budget isolation despite authors' own framing."
+}
+]

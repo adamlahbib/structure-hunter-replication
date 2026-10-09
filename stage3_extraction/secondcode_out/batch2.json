@@ -1,0 +1,90 @@
+[
+{
+"arxiv_id": "2401.16185",
+"title": "LLM4Vuln: A Unified Evaluation Framework for Decoupling and Enhancing LLMs' Vulnerability Reasoning",
+"repr_primary": "raw_text",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"note": "Full-text (html, good quality). Factorial design (3 knowledge x 2 context x 2 prompt x 6 LLMs) isolates 'context supplementation' (callees/interproc code) with same LLM and other factors held fixed."
+},
+{
+"arxiv_id": "2406.11147",
+"title": "Vul-RAG: Enhancing LLM-based Vulnerability Detection via Knowledge-level RAG",
+"repr_primary": "retrieved_context",
+"integration": "retrieval_guide",
+"evaluation": "representation_only_ablation",
+"note": "Full-text (html, good quality). Table 4 compares vanilla LLM vs code-level RAG vs knowledge-level RAG (Vul-RAG) across same 4 LLMs, isolating the retrieved-representation type."
+},
+{
+"arxiv_id": "2501.04510",
+"title": "CGP-Tuning: Structure-Aware Soft Prompt Tuning for Code Vulnerability Detection",
+"repr_primary": "cpg",
+"integration": "finetune_adapter",
+"evaluation": "representation_only_ablation",
+"note": "Full-text (html, good quality). CPG = AST+CFG+PDG via Joern, injected through soft-prompt/cross-modal alignment; Table IV ablates the cross-modal alignment (graph signal) module, holding base LLM and training fixed (~14-19pt drops)."
+},
+{
+"arxiv_id": "2505.17416",
+"title": "LLM-BSCVM: An LLM-Based Blockchain Smart Contract Vulnerability Management Framework",
+"repr_primary": "retrieved_context",
+"integration": "agent_tool_use",
+"evaluation": "ablated_measured",
+"note": "Full-text (html, good quality). Six-agent Decompose-Retrieve-Generate pipeline over raw contract text + retrieved corpus/knowledge-base evidence; w/o-RAG and w/o-Static ablations exist but are confounded with the broader multi-agent architecture, not a clean single-factor isolation."
+},
+{
+"arxiv_id": "2506.18394",
+"title": "Tracing Errors, Constructing Fixes: Repository-Level Memory Error Repair via Typestate-Guided Context Retrieval",
+"repr_primary": "taint_path",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"note": "Full-text (html, good quality). LTFix builds an error-propagation path + typestate context trace (via FTA/GDB) serialized into a structured prompt for Claude 3.5 Sonnet; LTFix-NT ablation removes only the context trace, same LLM held fixed."
+},
+{
+"arxiv_id": "2510.02534",
+"title": "ZeroFalse: Improving Precision in Static Analysis with LLMs",
+"repr_primary": "hybrid",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"note": "Full-text (html, good quality). Hybrid of source-to-sink dataflow/taint trace + CWE micro-rubric knowledge, single-pass serialized prompt (no analyzer-LLM loop). Table 4 baseline (snippet-only) vs optimized (trace+CWE) across same models."
+},
+{
+"arxiv_id": "2512.06846",
+"title": "CKG-LLM: LLM-Assisted Detection of Smart Contract Access Control Vulnerabilities Based on Knowledge Graphs",
+"repr_primary": "cpg",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "ablated_measured",
+"note": "Full-text (html, good quality). Contract Knowledge Graph built from Slither IR (AST+CFG+SSA dataflow+call/inheritance edges); LLM generates SPARQL executed by a symbolic query engine. Only compared vs other tools (AChecker, GPTScan); no raw-code-LLM ablation isolating the graph representation."
+},
+{
+"arxiv_id": "2601.18847",
+"title": "MulVul: Retrieval-augmented Multi-Agent Code Vulnerability Detection via Cross-Model Prompt Evolution",
+"repr_primary": "hybrid",
+"integration": "agent_tool_use",
+"evaluation": "representation_only_ablation",
+"note": "Full-text (html, good quality). Hybrid of SCALE representation (LLM-generated NL comments attached to AST nodes + encoded control flow) plus retrieved knowledge-base examples, fed to Router/Detector agents. Ablation removes evidence retrieval only, same agent architecture, Macro-F1 34.56->21.80."
+},
+{
+"arxiv_id": "2604.17948",
+"title": "RAVEN: Retrieval-Augmented Vulnerability Exploration Network for Memory Corruption Analysis in User Code and Binary Programs",
+"repr_primary": "retrieved_context",
+"integration": "agent_tool_use",
+"evaluation": "ablated_measured",
+"note": "Full-text (html, good quality). Despite title, only source code (NIST-SARD) is analyzed via 4-agent pipeline (Explorer/RAG-engine/Analyst/Reporter) retrieving Project Zero + CWE knowledge; Table II compares RAG configs (chunking/retriever/reranker) but no no-RAG baseline or external comparator."
+},
+{
+"arxiv_id": "2605.09461",
+"title": "VulTriage: Triple-Path Context Augmentation for LLM-Based Vulnerability Detection",
+"repr_primary": "hybrid",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"note": "Full-text (html, good quality). Triple-path hybrid: verbalized AST/CFG/DFG (control path) + CWE-knowledge retrieval (knowledge path) + NL functional summary (semantic path), unified into one prompt. Table 2 ablates each path individually, same GPT-4o backend."
+},
+{
+"arxiv_id": "2607.03963",
+"title": "Neuro-Symbolic Reasoning for Vulnerability Detection",
+"repr_primary": "ast",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "representation_only_ablation",
+"note": "Full-text (html, good quality). LeanGuard: LLM filters AST-derived candidate facts, symbolic side compiles survivors into Lean 4 proofs, evidence-aware adjudicator combines verdicts. Table V w/o-AST ablation holds LLM/backend fixed across 3 backends x 5 CWEs."
+}
+]

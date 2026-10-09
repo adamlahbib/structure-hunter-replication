@@ -1,0 +1,46 @@
+[
+{
+"arxiv_id": "2403.06838",
+"title": "ACFIX: Guiding LLMs with Mined Common RBAC Practices for Context-Aware Repair of Access Control Vulnerabilities in Smart Contracts"
+},
+{
+"arxiv_id": "2408.03489",
+"title": "Harnessing the Power of LLMs in Source Code Vulnerability Detection"
+},
+{
+"arxiv_id": "2501.18160",
+"title": "RepoAudit: An Autonomous LLM-Agent for Repository-Level Code Auditing"
+},
+{
+"arxiv_id": "2505.19828",
+"title": "SecVulEval: Benchmarking LLMs for Real-World C/C++ Vulnerability Detection"
+},
+{
+"arxiv_id": "2507.16585",
+"title": "LLMxCPG: Context-Aware Vulnerability Detection Through Code Property Graph-Guided Large Language Models"
+},
+{
+"arxiv_id": "2510.17919",
+"title": "ParaVul: A Parallel Large Language Model and Retrieval-Augmented Framework for Smart Contract Vulnerability Detection"
+},
+{
+"arxiv_id": "2512.07533",
+"title": "VulnLLM-R: Specialized Reasoning LLM with Agent Scaffold for Vulnerability Detection"
+},
+{
+"arxiv_id": "2601.19239",
+"title": "LLM-based Vulnerability Detection at Project Scale: An Empirical Study"
+},
+{
+"arxiv_id": "2604.20179",
+"title": "Taint-Style Vulnerability Detection and Confirmation for Node.js Packages Using LLM Agent Reasoning"
+},
+{
+"arxiv_id": "2605.17444",
+"title": "MemRepair: Hierarchical Memory for Agentic Repository-Level Vulnerability Repair"
+},
+{
+"arxiv_id": "2607.13439",
+"title": "DREA: Decoupled Reasoning and Exploration Agents for Repository-Level Vulnerability Detection"
+}
+]

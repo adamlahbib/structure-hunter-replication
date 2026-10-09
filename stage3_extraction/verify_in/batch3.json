@@ -1,0 +1,299 @@
+[
+{
+"arxiv_id": "2403.06838",
+"title": "ACFIX: Guiding LLMs with Mined Common RBAC Practices for Context-Aware Repair of Access Control Vulnerabilities in Smart Contracts",
+"system": "ACFix",
+"key_numbers": [
+{
+"metric": "repair success rate (full ACFix)",
+"value": "94.92%",
+"where": "\u00a7VII-C Table IV"
+},
+{
+"metric": "vanilla GPT-4 baseline success rate",
+"value": "52.54%",
+"where": "\u00a7VII-C"
+},
+{
+"metric": "w/o ACG (graph representation) success rate",
+"value": "89.83%",
+"where": "\u00a7VII-C Table IV"
+}
+],
+"repr_primary": "hybrid",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "representation_only_ablation",
+"structure_gain": "Removing the AC Context Graph (ACG, built from interprocedural slicing+PDG+call graph) drops success from 94.92% to 89.83% (-5.09pp) on the same GPT-4 model with RBAC taxonomy and validator held constant (\u00a7VII-C Table IV)",
+"stop_detail": "Five categories of static grammar checks + def-use chain validation + structural-boundary compatibility checks on generated patches (\u00a7VI-B, Eqs 1-7), plus an independent validator-agent semantic check in a multi-agent-debate loop capped at 3 iterations (\u00a7VI-C)"
+},
+{
+"arxiv_id": "2408.03489",
+"title": "Harnessing the Power of LLMs in Source Code Vulnerability Detection",
+"system": "Mahyari24",
+"key_numbers": [
+{
+"metric": "accuracy (BERT on LLVM-IR representation)",
+"value": "98.25%",
+"where": "results/evaluation section"
+},
+{
+"metric": "accuracy (DistilBERT on LLVM-IR representation)",
+"value": "98.17%",
+"where": "results section"
+},
+{
+"metric": "accuracy (VulDeeLocator baseline)",
+"value": "82.43%",
+"where": "comparison table"
+}
+],
+"repr_primary": "hybrid",
+"integration": "finetune_adapter",
+"evaluation": "ablated_measured",
+"structure_gain": "No raw-source-text baseline is reported; all three evaluated methods (BERT, DistilBERT, LSTM) use the LLVM-IR representation. Against prior tool VulDeeLocator: 98.25% vs. 82.43% accuracy, but method/representation/training pipeline differ simultaneously.",
+"stop_detail": "Source code is compiled to LLVM IR; for each function call the callee's IR is spliced into the caller at the call site (interprocedural composition) before tokenization and fine-tuning of BERT/DistilBERT/LSTM (preprocessing/iSeVC construction section)."
+},
+{
+"arxiv_id": "2501.18160",
+"title": "RepoAudit: An Autonomous LLM-Agent for Repository-Level Code Auditing",
+"system": "RepoAudit",
+"key_numbers": [
+{
+"metric": "precision (full RepoAudit)",
+"value": "78.43% (40 TP, 11 FP)",
+"where": "Table 2 / Table 6"
+},
+{
+"metric": "precision, validator ablation (no validator)",
+"value": "78.43% with validator vs 51.28% without (40TP/38FP)",
+"where": "Table 6"
+},
+{
+"metric": "precision, abstraction ablation (no program abstraction)",
+"value": "40.38% (21 TP, 31 FP) vs. 78.43% with abstraction",
+"where": "Table 6 ablation"
+}
+],
+"repr_primary": "taint_path",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "representation_only_ablation",
+"structure_gain": "Ablations, same agent: no-abstraction precision 40.38% (21TP/31FP) and no-validator 51.28% (40TP/38FP) vs full RepoAudit 78.43% (Table 6).",
+"stop_detail": "Demand-driven, call-graph-guided exploration produces LLM-derived data-flow facts (u@s -> v@s notation) along feasible paths, cached in an agent memory keyed by (function, value); a validator cross-checks control-flow ordering and path feasibility before reporting (Explorer/Validator sections, Table 6)."
+},
+{
+"arxiv_id": "2505.19828",
+"title": "SecVulEval: Benchmarking LLMs for Real-World C/C++ Vulnerability Detection",
+"system": "SecVulEval",
+"key_numbers": [
+{
+"metric": "Claude-3.7-Sonnet statement-level F1",
+"value": "23.83%",
+"where": "\u00a75 results"
+},
+{
+"metric": "GPT-4.1 statement-level F1",
+"value": "22.38%",
+"where": "\u00a75 results"
+},
+{
+"metric": "context extraction validation accuracy (GPT-4.1, 100-sample check)",
+"value": "82.98%",
+"where": "\u00a73.4"
+}
+],
+"repr_primary": "retrieved_context",
+"integration": "agent_tool_use",
+"evaluation": "not_evaluated",
+"structure_gain": "none reported (no with-context vs without-context detection comparison performed; context is always provided, and its identification accuracy is assessed separately from detection F1)",
+"stop_detail": "Multi-agent pipeline (Normalization/Planning/Context/Detection/Validation agents) with tree-sitter symbol extraction for external definitions/types/globals; manual validation of 300 samples defines correctness as exact vulnerable statement plus correct reasoning (\u00a74.1, \u00a75.1)"
+},
+{
+"arxiv_id": "2507.16585",
+"title": "LLMxCPG: Context-Aware Vulnerability Detection Through Code Property Graph-Guided Large Language Models",
+"system": "LLMxCPG",
+"key_numbers": [
+{
+"metric": "LLMxCPG accuracy / F1 (SVEN, function-level)",
+"value": "0.602 / 0.705",
+"where": "Table 5"
+},
+{
+"metric": "ReGVD (GNN baseline) F1 (SVEN)",
+"value": "0.55",
+"where": "Table 5"
+},
+{
+"metric": "code size reduction via CPG-based slicing",
+"value": "67.84%-90.93%",
+"where": "\u00a74.3.1"
+}
+],
+"repr_primary": "slice",
+"integration": "finetune_adapter",
+"evaluation": "representation_only_ablation",
+"structure_gain": "Appendix C same-model slicing ablation: slice-based vs full-code F1 0.8146 vs 0.6762 (FormAI), 0.7250 vs 0.4875 (PrimeVul), 0.6020 vs 0.5078 (SVEN) \u2014 the extractor's claim that these were 'not detailed' was wrong.",
+"stop_detail": "Backward taint slicing via Joern's reachableByFlows() grounds the LLM's input in CPG-derived data/control dependencies; three security experts manually audited 50 generated CPGQL queries, Fleiss' kappa 0.6429 (\u00a73.2, \u00a74.3.1)"
+},
+{
+"arxiv_id": "2510.17919",
+"title": "ParaVul: A Parallel Large Language Model and Retrieval-Augmented Framework for Smart Contract Vulnerability Detection",
+"system": "ParaVul",
+"key_numbers": [
+{
+"metric": "F1 (single-label detection, full ParaVul)",
+"value": "0.9398",
+"where": "abstract / results section"
+},
+{
+"metric": "F1 (multi-label detection, full ParaVul)",
+"value": "0.9330",
+"where": "abstract / results section"
+},
+{
+"metric": "F1, SLoRA-only LLM detector (single-label / multi-label)",
+"value": "0.9021 / 0.9396",
+"where": "Table IV"
+}
+],
+"repr_primary": "retrieved_context",
+"integration": "retrieval_guide",
+"evaluation": "ablated_measured",
+"structure_gain": "Verification/fusion module reported to outperform LLM-only and RAG-only baselines by 'at least 4% (vs. LLM) and 12% (vs. RAG)' in F1 for single-label detection (Figure 4); exact per-configuration numbers not stated in the accessible text.",
+"stop_detail": "Hybrid retrieval (dense embeddings over sliding-window segments + BM25) over a corpus of labeled vulnerable code fragments supplies inherited vulnerability labels that are fused with the SLoRA-fine-tuned LLM's prediction via a meta-learning MLP, rather than being concatenated into the LLM's prompt (retrieval/fusion methodology section)."
+},
+{
+"arxiv_id": "2512.07533",
+"title": "VulnLLM-R: Specialized Reasoning LLM with Agent Scaffold for Vulnerability Detection",
+"system": "VulnLLM-R",
+"key_numbers": [
+{
+"metric": "C/C++ F1, full vs no-reasoning ablation",
+"value": "Figure-derived aggregates only: All-data F1 ~0.71->~0.78, OOD-CWE F1 ~0.58->~0.81 with reasoning-chain training (no C/C++ breakdown exists)",
+"where": "Figure 5 (bar chart; figure-derived)"
+},
+{
+"metric": "Zero-day findings",
+"value": "15 zero-day vulnerabilities found in actively maintained repos via project-level agent",
+"where": "Agent deployment results"
+},
+{
+"metric": "Training-data yield from constitution-based correction",
+"value": "~30% more correct-answer reasoning training data",
+"where": "Training data construction section"
+}
+],
+"repr_primary": "raw_text",
+"integration": "finetune_adapter",
+"evaluation": "ablated_measured",
+"structure_gain": "None representation-specific: the Figure 5 ablation varies reasoning-chain training, not program representation (figure-derived aggregates All ~0.71->0.78, OOD ~0.58->0.81).",
+"stop_detail": "Reasoning generation is truncated at a fixed token budget (~8,192 tokens at eval, 32K max) forcing a final answer; the project-level agent scaffold caps tool-use interaction rounds for efficiency (inference / agent scaffold section)"
+},
+{
+"arxiv_id": "2601.19239",
+"title": "LLM-based Vulnerability Detection at Project Scale: An Empirical Study",
+"system": "Li26",
+"key_numbers": [
+{
+"metric": "average recall on known vulnerabilities (LLM-based tools)",
+"value": "21.09% (C/C++), 33.82% (Java)",
+"where": "Table IV, Section V-A, Finding 1"
+},
+{
+"metric": "suspicious/false discovery rate (SFDR) on real-world projects",
+"value": "best tool avg 85.3%, up to 97.0% (RepoAudit, C/C++), 94.4% (IRIS, Java)",
+"where": "Tables V-VI, Finding 2, Section V-B"
+},
+{
+"metric": "compute overhead (RepoAudit)",
+"value": "up to 225M input / 38M output tokens, ~448 min/project average",
+"where": "Table VII, Section V-D"
+}
+],
+"repr_primary": "interproc_callgraph",
+"integration": "agent_tool_use",
+"evaluation": "ablated_measured",
+"structure_gain": "No controlled representation ablation; qualitative contrast: IRIS's systematic API enumeration reaches 46.15% recall on CWE-078 vs LLMDFA's LLM-inferred sources/sinks at 0% on the same CWE (Section V-A) -- but model, workflow, and representation all differ simultaneously.",
+"stop_detail": "Different tools ground detections differently -- e.g., INFERROI explores paths over the CFG, RepoAudit performs 3-layer interprocedural callee/caller exploration to bound path explosion, IRIS embeds LLM inferences into CodeQL query templates (Introduction, Section V)."
+},
+{
+"arxiv_id": "2604.20179",
+"title": "Taint-Style Vulnerability Detection and Confirmation for Node.js Packages Using LLM Agent Reasoning",
+"system": "LLMVD.js",
+"key_numbers": [
+{
+"metric": "overall valid-exploit confirmation rate vs best baseline (Explode.js Pkg mode)",
+"value": "83.75% (433/517) vs Explode.js File mode 43.13% (223/517); Pkg mode is 11.80% (61/517)",
+"where": "evaluation table"
+},
+{
+"metric": "private NodeMedic dataset valid PoC rate vs NodeMedic-FINE",
+"value": "244/259 = 94.2% vs 127/259 = 49.0%",
+"where": "Table 5, Section 5.2.4"
+},
+{
+"metric": "newly crawled npm packages (Wild): validated vulnerabilities found",
+"value": "36/260 valid PoCs vs traditional tools <=2",
+"where": "Table 5, Section 5.2.5, Abstract"
+}
+],
+"repr_primary": "raw_text",
+"integration": "agent_tool_use",
+"evaluation": "ablated_measured",
+"structure_gain": "Paper argues a representation-light agent (raw source + lightweight tooling, no dedicated static/dynamic taint engine) outperforms CPG/taint-provenance-graph-based tools (83.75% vs 43.13% confirmation rate, Table 3) and an LLM+program-analysis hybrid, PoCGen, at lower cost (Table 4) -- i.e. less built-in structure yields better results here, the opposite direction from most representation-gain findings.",
+"stop_detail": "A ReAct-style multi-agent pipeline (Finder -> Judge -> Constraints Inferencer -> Exploiter) reasons over raw source retrieved via pattern-based file search, then grounds each finding via oracle-guided PoC execution that checks concrete side effects rather than relying on model self-report (Sections 4.3-4.4)."
+},
+{
+"arxiv_id": "2605.17444",
+"title": "MemRepair: Hierarchical Memory for Agentic Repository-Level Vulnerability Repair",
+"system": "MemRepair",
+"key_numbers": [
+{
+"metric": "resolution rate, SEC-Bench memory ablation",
+"value": "Full MemRepair 58.0% vs Loop-only (no memory) 36.0% vs OpenHands baseline 38.5%",
+"where": "Table 3"
+},
+{
+"metric": "resolution rate, PatchEval cross-language",
+"value": "58.2% overall (JS 74.7%, Go 53.0%, Python 46.2%) vs SWE-agent(Gemini-2.5-pro) 37.80% / OpenHands(Gemini-2.5-pro) 35.60%",
+"where": "Table 4"
+},
+{
+"metric": "resolution rate, Multi-SWE-bench C++",
+"value": "MemRepair 30.58% vs InfCode-C++(GPT-5) 25.60%",
+"where": "Table 2"
+}
+],
+"repr_primary": "retrieved_context",
+"integration": "agent_tool_use",
+"evaluation": "representation_only_ablation",
+"structure_gain": "Adding all three memory layers on the same DeepSeek-v3.2 backbone raises SEC-Bench resolution from 36.0% (loop-only, no memory) to 58.0% (full L1+L2+L3), a +22pp gain, with L3 (Refinement-Trajectory) alone contributing most (50.5%) (Table 3).",
+"stop_detail": "Agent tools return file content with line numbers, ripgrep-based regex search, and Iter_grep (parses the repository AST to locate definitions/use-sites, ranked by proximity to the error location); History-Fix/Security-Pattern/Refinement-Trajectory memories retrieve prior fixes, defense patterns, and failure trajectories to ground each repair attempt."
+},
+{
+"arxiv_id": "2607.13439",
+"title": "DREA: Decoupled Reasoning and Exploration Agents for Repository-Level Vulnerability Detection",
+"system": "DREA",
+"key_numbers": [
+{
+"metric": "Pair-Correctness (P-C), function-only baseline vs DREA",
+"value": "DeepSeek-V3.2 19%->42%, GLM-4.7 26%->34%, GPT-5.2 21%->30%",
+"where": "Table 1"
+},
+{
+"metric": "token offload to explorer agent",
+"value": ">93% of tokens offloaded to the lightweight Explorer agent",
+"where": "Results"
+},
+{
+"metric": "billable API cost reduction",
+"value": "16-48x lower cost vs baseline",
+"where": "Results"
+}
+],
+"repr_primary": "retrieved_context",
+"integration": "agent_tool_use",
+"evaluation": "ablated_measured",
+"structure_gain": "DREA's on-demand repository exploration raises Pair-Correctness from a function-only baseline (19-26% across three LLMs) to 30-42% with DREA (Table 1).",
+"stop_detail": "The lightweight Explorer agent uses read-only repo tools (ls, glob, grep, read_file) to gather Repository Context, Code Evidence, and Security Findings on demand, reporting back to the Planning agent, which forms and refines vulnerability hypotheses (Planner-Explorer architecture section)."
+}
+]

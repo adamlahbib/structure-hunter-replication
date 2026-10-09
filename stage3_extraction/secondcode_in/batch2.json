@@ -1,0 +1,46 @@
+[
+{
+"arxiv_id": "2401.16185",
+"title": "LLM4Vuln: A Unified Evaluation Framework for Decoupling and Enhancing LLMs' Vulnerability Reasoning"
+},
+{
+"arxiv_id": "2406.11147",
+"title": "Vul-RAG: Enhancing LLM-based Vulnerability Detection via Knowledge-level RAG"
+},
+{
+"arxiv_id": "2501.04510",
+"title": "CGP-Tuning: Structure-Aware Soft Prompt Tuning for Code Vulnerability Detection"
+},
+{
+"arxiv_id": "2505.17416",
+"title": "LLM-BSCVM: An LLM-Based Blockchain Smart Contract Vulnerability Management Framework"
+},
+{
+"arxiv_id": "2506.18394",
+"title": "Tracing Errors, Constructing Fixes: Repository-Level Memory Error Repair via Typestate-Guided Context Retrieval"
+},
+{
+"arxiv_id": "2510.02534",
+"title": "ZeroFalse: Improving Precision in Static Analysis with LLMs"
+},
+{
+"arxiv_id": "2512.06846",
+"title": "CKG-LLM: LLM-Assisted Detection of Smart Contract Access Control Vulnerabilities Based on Knowledge Graphs"
+},
+{
+"arxiv_id": "2601.18847",
+"title": "MulVul: Retrieval-augmented Multi-Agent Code Vulnerability Detection via Cross-Model Prompt Evolution"
+},
+{
+"arxiv_id": "2604.17948",
+"title": "RAVEN: Retrieval-Augmented Vulnerability Exploration Network for Memory Corruption Analysis in User Code and Binary Programs"
+},
+{
+"arxiv_id": "2605.09461",
+"title": "VulTriage: Triple-Path Context Augmentation for LLM-Based Vulnerability Detection"
+},
+{
+"arxiv_id": "2607.03963",
+"title": "Neuro-Symbolic Reasoning for Vulnerability Detection"
+}
+]

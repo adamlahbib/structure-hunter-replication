@@ -1,0 +1,331 @@
+[
+    {
+        "arxiv_id": "2405.17238",
+        "system": "IRIS",
+        "year": 2024,
+        "venue": "arXiv",
+        "peer_reviewed": false,
+        "eligible": true,
+        "repr_classes": [
+            "taint_path",
+            "cfg_dfg",
+            "interproc_callgraph"
+        ],
+        "integration": "neurosymbolic_analyzer_loop",
+        "task": "detection",
+        "scope": "repository",
+        "domain": "general",
+        "evaluation": "ablated_measured",
+        "datasets": [
+            "CWE-Bench-Java"
+        ],
+        "cross_language": false,
+        "wieringa": "evaluation",
+        "record_type": "technique_tool",
+        "key_numbers": [
+            {"metric": "vulnerabilities detected", "value": "55 (IRIS+GPT-4) vs 27 (CodeQL)", "where": "Table 1"},
+            {"metric": "F1", "value": "0.177 (IRIS+GPT-4) vs 0.076 (CodeQL)", "where": "Table 1"},
+            {"metric": "sink specification recall (GPT-4 vs CodeQL)", "value": "87.11%", "where": "Figures 6-7"}
+        ],
+        "structure_gain": "IRIS+GPT-4 detects 55/120 vulnerabilities vs CodeQL's 27/120, F1 0.177 vs 0.076 (Table 1); this compares the full neurosymbolic taint-context pipeline against a static-only baseline, not the same model with/without structure.",
+        "confound_note": "Central comparison is IRIS (LLM-inferred taint specs + static dataflow engine) vs CodeQL alone (no LLM) -- both model and analysis method differ simultaneously, so representation is not isolated. A secondary ablation (Table 3) swaps LLM- vs CodeQL-derived source/sink specs.",
+        "stop_detail": "LLM-inferred taint specifications (source/sink/sanitizer/propagator) populate an inter-procedural dataflow graph; detected source-to-sink code paths are serialized with surrounding +/-5 lines for contextual LLM analysis (Sec 3.1-3.5, Appendix A.3).",
+        "threats_to_datum": "Numbers taken from the paper's own tables/figures across a multi-revision preprint (v3); GPT-4 API version and exact CodeQL configuration not independently verified by extractor."
+    },
+    {
+        "arxiv_id": "2411.06493",
+        "system": "LProtector",
+        "year": 2024,
+        "venue": "arXiv (preprint; stated to appear in IEEE conference proceedings, specific venue unconfirmed)",
+        "peer_reviewed": false,
+        "eligible": true,
+        "repr_classes": [
+            "retrieved_context",
+            "raw_text"
+        ],
+        "integration": "retrieval_guide",
+        "task": "detection",
+        "scope": "function",
+        "domain": "general",
+        "evaluation": "representation_only_ablation",
+        "datasets": [
+            "Big-Vul"
+        ],
+        "cross_language": false,
+        "wieringa": "evaluation",
+        "record_type": "technique_tool",
+        "key_numbers": [
+            {"metric": "F1 (LProtector vs baselines)", "value": "33.49% (LProtector) vs 19.15% (VulDeePecker) vs 22.87% (Reveal)", "where": "Table II"},
+            {"metric": "ablation F1 (RAG+CoT vs No RAG)", "value": "33.49% vs 23.92%", "where": "Table III"},
+            {"metric": "ablation F1 (No RAG & No CoT)", "value": "18.61%", "where": "Table III"}
+        ],
+        "structure_gain": "Removing RAG context (holding GPT-4o and CoT fixed) drops F1 from 33.49% to 23.92%, a 9.57pp loss (Table III).",
+        "confound_note": "Table III ablation varies retrieval context and CoT prompting independently while holding the GPT-4o model fixed -- a genuine representation-only ablation for the RAG factor; Table II comparison to VulDeePecker/Reveal changes model and method entirely.",
+        "stop_detail": "Input code is embedded via OpenAI embeddings; top-5 cosine-similar CWE/CVE examples are retrieved from a 500-instance Big-Vul vector store (ChromaDB); GPT-4o selects the best-matching exemplar to ground its classification (RAG formula, Sec III).",
+        "threats_to_datum": "5-page short preprint; single-run reported numbers with no confidence intervals or variance; retrieval corpus drawn from the same Big-Vul dataset used for evaluation, raising potential train/retrieval-test leakage concerns."
+    },
+    {
+        "arxiv_id": "2504.16057",
+        "system": "MoCQ",
+        "year": 2025,
+        "venue": "arXiv",
+        "peer_reviewed": false,
+        "eligible": true,
+        "repr_classes": [
+            "cpg",
+            "hybrid"
+        ],
+        "integration": "neurosymbolic_analyzer_loop",
+        "task": "detection",
+        "scope": "file",
+        "domain": "general",
+        "evaluation": "representation_only_ablation",
+        "datasets": [
+            "CWE-Bench-Java",
+            "PrimeVul",
+            "Silent-Spring",
+            "CVE database / GitHub patches (custom curated set)"
+        ],
+        "cross_language": true,
+        "wieringa": "evaluation",
+        "record_type": "technique_tool",
+        "key_numbers": [
+            {"metric": "F1 (avg)", "value": "MoCQ 0.51 vs DSL100 (full grammar) 0.31", "where": "Table 8"},
+            {"metric": "query generation pass rate", "value": "MoCQ 77.4% vs DSL0 (no spec) 9.9% vs DSL100 50.0%", "where": "Table 7"},
+            {"metric": "detection TP/FP on 343 test vulns", "value": "MoCQ 269 TP/197 FP vs Pure LLM 185 TP/182 FP vs Expert queries 222 TP/184 FP", "where": "Tables 2 and 4"}
+        ],
+        "structure_gain": "Providing a subset DSL grammar (MoCQ) instead of no specification raises query-generation pass rate from 9.9% (DSL0) to 77.4%, and F1 from 0.31 (DSL100, full grammar) to 0.51 (MoCQ), same LLM loop (Tables 7-8).",
+        "confound_note": "The DSL0/DSL100/MoCQ ablation varies only the amount/form of structured grammar given to the same iterative LLM loop -- a clean representation-only ablation; the SOTA comparison (Table 4, vs Pure LLM/GRACE/KNighter/IRIS) also changes analysis architecture entirely.",
+        "stop_detail": "LLM iteratively generates CPG/CodeQL queries from a BNF-grammar DSL spec, receiving symbolic-validator feedback (syntax/runtime/semantic errors) and intermediate program states after each query block, refining over up to 20 iterations (Algorithm 1).",
+        "threats_to_datum": "Numbers span multiple ablation tables (2, 4, 7, 8) in a still-revised preprint (v5, 2026); CPG/CodeQL backend differs per language, which may confound the cross-language comparison."
+    },
+    {
+        "arxiv_id": "2506.11561",
+        "system": "Antal25",
+        "year": 2025,
+        "venue": "EASE 2025 (28th->29th International Conference on Evaluation and Assessment in Software Engineering, ACM proceedings, Istanbul)",
+        "peer_reviewed": true,
+        "eligible": true,
+        "repr_classes": [
+            "retrieved_context",
+            "raw_text",
+            "nl_structured"
+        ],
+        "integration": "prompt_serialization",
+        "task": "repair",
+        "scope": "function",
+        "domain": "general",
+        "evaluation": "representation_only_ablation",
+        "datasets": [
+            "Vul4J"
+        ],
+        "cross_language": false,
+        "wieringa": "evaluation",
+        "record_type": "empirical_study",
+        "key_numbers": [
+            {"metric": "repair rate per run (Short+CVE+Manual vs GPT-4o baseline)", "value": "18-14-17 vs 11-12-14", "where": "Table 1"},
+            {"metric": "avg repair rate, CWE vs CVE context", "value": "CWE 29.4% vs CVE 37.3%", "where": "Sec 4, RQ1 answer box"},
+            {"metric": "Top-3 prompt ensemble, distinct vulns fixed", "value": "26/42 (61.9%) vs original baseline 17/42 (40.4%) vs GPT-4o reproduction 19/42 (45.2%)", "where": "Sec 4.2, Table 1"}
+        ],
+        "structure_gain": "Combining a CVE-derived repair guideline with manually extracted repository context (Short+CVE Hints+Manual) achieves the best single-prompt result (18-14-17 across 3 runs) vs GPT-4o baseline (11-12-14), same GPT-4o-2024-08-06 model, temperature 0.01 throughout (Table 1).",
+        "confound_note": "The central ablation (Table 1) holds the LLM (GPT-4o) and temperature fixed while varying only prompt context content (code visibility, docs, CWE, CVE, manual hints) -- a clean representation-only ablation; the separate GPT-4 vs GPT-4o comparison confounds model version with non-identical evaluation methodology (Sec 5).",
+        "stop_detail": "Manually curated context -- class headers, redacted-but-named referenced methods, imports, standardized CWE text, raw/GPT-summarized CVE descriptions, and manually identified project-specific hints -- is inserted directly into a zero-shot prompt (Sec 3.2-3.3, Table 1).",
+        "threats_to_datum": "Authors' own stated threats: Java-only generalizability, GPT-4o non-determinism even at temp 0.01, manual context extraction introduces subjectivity, and the GPT-4 vs GPT-4o comparison used non-identical evaluation methodology (Sec 5)."
+    },
+    {
+        "arxiv_id": "2509.15433",
+        "system": "SAST-Genius",
+        "year": 2025,
+        "venue": "arXiv (\"submitted to the IEEE for possible publication\"; not yet accepted anywhere -- note: an initial abstract-only fetch incorrectly suggested IEEE S&P 2025 acceptance, which full text does not support)",
+        "peer_reviewed": false,
+        "eligible": true,
+        "repr_classes": [
+            "taint_path",
+            "ast",
+            "interproc_callgraph"
+        ],
+        "integration": "neurosymbolic_analyzer_loop",
+        "task": "multi",
+        "scope": "repository",
+        "domain": "general",
+        "evaluation": "ablated_measured",
+        "datasets": [
+            "custom dataset: 25 GitHub repositories (~250K LOC, Python/Java/JavaScript), authors' own ground truth of 170 vulnerabilities"
+        ],
+        "cross_language": true,
+        "wieringa": "evaluation",
+        "record_type": "technique_tool",
+        "key_numbers": [
+            {"metric": "Precision/Recall/F1", "value": "SAST-Genius 89.5%/100%/94.5% vs Semgrep 35.7%/73.5%/48.3% vs GPT-4 65.5%/77.1%/70.8%", "where": "Table 1"},
+            {"metric": "false positives", "value": "225 (Semgrep) -> 20 (SAST-Genius), ~91% reduction (~11x fewer)", "where": "Sec IV.B, Fig. 2"},
+            {"metric": "PoC exploit generation success", "value": "~70% of exploitable findings", "where": "Sec III.B"}
+        ],
+        "structure_gain": "SAST-Genius (fine-tuned LLM + structured AST/taint-path JSON prompt) reaches 89.5% precision vs Semgrep's 35.7% (no LLM) and GPT-4's 65.5% (Table 1), but model, fine-tuning, and representation all differ simultaneously across arms.",
+        "confound_note": "Table 1's three-way comparison (Semgrep vs GPT-4 vs SAST-Genius) varies representation, base model, and fine-tuning status all at once -- not a representation-only ablation; no experiment holds the model fixed while toggling only the AST/taint-path context.",
+        "stop_detail": "Semgrep's intermediate representations (AST nodes and source-to-sink taint paths) plus call-graph/library-dependency context and the original rule/severity are serialized into a structured JSON prompt fed to a fine-tuned Llama-3-8B triage engine, which outputs a verdict plus reasoning summary (Sec III.A, Fig. 1).",
+        "threats_to_datum": "Evaluation dataset (25 GitHub repos, ground truth via manual expert review) is a custom, unreleased dataset built by the authors -- selection/labeling bias risk; unreviewed preprint explicitly \"submitted to IEEE for possible publication\" (not accepted); authors disclose using ChatGPT/Gemini for writing assistance; fine-tuning data partly proprietary and undisclosed."
+    },
+    {
+        "arxiv_id": "2512.04106",
+        "system": "Trad25",
+        "year": 2025,
+        "venue": "FLLM2025 (3rd International Conference on Foundation and Large Language Models)",
+        "peer_reviewed": true,
+        "eligible": true,
+        "repr_classes": [
+            "retrieved_context",
+            "raw_text"
+        ],
+        "integration": "retrieval_guide",
+        "task": "detection",
+        "scope": "function",
+        "domain": "general",
+        "evaluation": "representation_only_ablation",
+        "datasets": [
+            "Draper VDISC-derived labeled snippets (Russell et al. 2018), 4 CWE categories: CWE-119/120/469/476"
+        ],
+        "cross_language": false,
+        "wieringa": "evaluation",
+        "record_type": "empirical_study",
+        "key_numbers": [
+            {"metric": "F1 / partial-match, 20-shot retrieval-augmented", "value": "74.05% / 83.90%", "where": "Table I"},
+            {"metric": "F1 / partial-match, zero-shot baseline", "value": "36.35% / 20.30%", "where": "Table I"},
+            {"metric": "fine-tuned comparators", "value": "Fine-tuned Gemini-1.5-Flash 59.31% F1 vs Fine-tuned CodeBERT 91.22% F1", "where": "Table I / results"}
+        ],
+        "structure_gain": "Retrieval-augmented 20-shot prompting raises F1 from 36.35% (zero-shot) to 74.05%, same Gemini-1.5-Flash model (Table I) -- retrieval of semantically similar labeled examples is the sole varied factor across the few-shot arms.",
+        "confound_note": "Few-shot arms (random vs retrieval-augmented vs retrieval-based labeling) hold the base model fixed and vary only the example-selection mechanism -- a clean representation-only ablation; the separate fine-tuned CodeBERT/Gemini comparisons change both model and training paradigm.",
+        "stop_detail": "Query code is embedded via gemini-embedding-001; top-k semantically similar labeled code+vulnerability-label pairs are retrieved via cosine similarity from a ChromaDB store and inserted as few-shot exemplars in the prompt (retrieval mechanism section).",
+        "threats_to_datum": "Dataset restricted to 4 CWE categories from a single source (Russell et al. 2018), limiting generalizability; only one base LLM (Gemini-1.5-Flash) tested across the prompting arms."
+    },
+    {
+        "arxiv_id": "2601.18847",
+        "system": "MulVul",
+        "year": 2026,
+        "venue": "arXiv",
+        "peer_reviewed": false,
+        "eligible": true,
+        "repr_classes": [
+            "retrieved_context",
+            "raw_text"
+        ],
+        "integration": "agent_tool_use",
+        "task": "detection",
+        "scope": "function",
+        "domain": "general",
+        "evaluation": "representation_only_ablation",
+        "datasets": [
+            "PrimeVul"
+        ],
+        "cross_language": false,
+        "wieringa": "evaluation",
+        "record_type": "technique_tool",
+        "key_numbers": [
+            {"metric": "Macro-F1 (type-level detection)", "value": "MulVul 34.79% vs GPT-4o 3.86% vs LLM x CPG 24.58% vs LLMVulExp 22.72% vs VISION 18.12%", "where": "Table 2"},
+            {"metric": "retrieval ablation Macro-F1", "value": "34.56% (full) -> 21.80% (no retrieval), -30.70pp", "where": "Table 4"},
+            {"metric": "prompt-evolution ablation gain", "value": "51.6% improvement over manual prompts", "where": "ablation section"}
+        ],
+        "structure_gain": "Removing retrieval-augmentation alone (agents/base LLM held fixed) drops Macro-F1 from 34.56% to 21.80%, a 30.7pp loss (Table 4) -- a clean representation-only ablation isolating the retrieved vulnerability-knowledge-base context.",
+        "confound_note": "Main SOTA comparison (Table 2, vs GPT-4o/LLM x CPG/LLMVulExp/VISION) changes architecture, model, and representation simultaneously; only the internal Table 4 ablation isolates retrieval while holding agents/LLM fixed.",
+        "stop_detail": "Router and Detector agents call retrieval tools to pull evidence from vulnerability knowledge bases (CWE/pattern databases) during multi-agent coarse-to-fine classification, grounding predictions to reduce hallucination (retrieval-augmented multi-agent framework section, Table 4 ablation).",
+        "threats_to_datum": "Evaluated only on PrimeVul (C/C++); authors themselves flag generalizability to other languages as unexplored; numbers from a v1 arXiv preprint, not yet peer reviewed; one baseline (LLM x CPG) is itself GNN-assisted, complicating a like-for-like comparison."
+    },
+    {
+        "arxiv_id": "2604.17948",
+        "system": "RAVEN",
+        "year": 2026,
+        "venue": "arXiv",
+        "peer_reviewed": false,
+        "eligible": true,
+        "repr_classes": [
+            "retrieved_context",
+            "raw_text"
+        ],
+        "integration": "agent_tool_use",
+        "task": "multi",
+        "scope": "function",
+        "domain": "general",
+        "evaluation": "demonstrated",
+        "datasets": [
+            "NIST-SARD (105 memory-focused vulnerable samples, 15 CWE types)"
+        ],
+        "cross_language": false,
+        "wieringa": "evaluation",
+        "record_type": "technique_tool",
+        "key_numbers": [
+            {"metric": "overall quality/remediation score (LLM-judge)", "value": "54.21% average across tested models", "where": "Results section"},
+            {"metric": "component quality scores", "value": "Structural Integrity ~7.5/10, Ground Truth Alignment ~6.14/10, Code Reasoning ~7.32/10, Remediation Quality ~6.98/10", "where": "Results section"},
+            {"metric": "knowledge base size", "value": "70 Google Project Zero reports + 1,321 CWE entries", "where": "RAG engine section"}
+        ],
+        "structure_gain": "none reported (no RAG-vs-no-RAG ablation; single-system LLM-judge quality scores only, no unstructured/raw-text baseline comparator)",
+        "confound_note": "No baseline or ablation is reported at all -- the 54.21% quality score is not compared against any raw-text-only or no-retrieval configuration, so the retrieval contribution cannot be isolated (paper states no RAG-vs-non-RAG ablation is provided).",
+        "stop_detail": "A RAG engine embeds and retrieves from 70 Google Project Zero root-cause-analysis reports and 1,321 MITRE CWE entries using vector similarity, BM25-hybrid, or HyPE (hypothetical-question) retrieval, feeding passages to the Analyst/Reporter agents that draft the vulnerability report.",
+        "threats_to_datum": "Quality metric is an LLM-judge score, not a standard detection/repair metric, and no baseline/ablation isolates the retrieval contribution; task is report-generation rather than detection/localization/repair proper; title claims binary-program analysis but evaluation covers only source-code samples from NIST-SARD -- a scope mismatch between claimed and demonstrated capability."
+    },
+    {
+        "arxiv_id": "2605.17444",
+        "system": "MemRepair",
+        "year": 2026,
+        "venue": "arXiv (contains an unresolved LaTeX template placeholder in place of a venue name; no confirmed venue)",
+        "peer_reviewed": false,
+        "eligible": true,
+        "repr_classes": [
+            "retrieved_context",
+            "ast",
+            "raw_text"
+        ],
+        "integration": "agent_tool_use",
+        "task": "repair",
+        "scope": "repository",
+        "domain": "general",
+        "evaluation": "representation_only_ablation",
+        "datasets": [
+            "SEC-Bench",
+            "PatchEval",
+            "Multi-SWE-bench (C++ subset)"
+        ],
+        "cross_language": true,
+        "wieringa": "evaluation",
+        "record_type": "technique_tool",
+        "key_numbers": [
+            {"metric": "resolution rate, SEC-Bench memory ablation", "value": "Full MemRepair 58.0% vs Loop-only (no memory) 36.0% vs OpenHands baseline 38.5%", "where": "Table 3"},
+            {"metric": "resolution rate, PatchEval cross-language", "value": "58.2% overall (JS 74.7%, Go 53.0%, Python 46.2%) vs SWE-agent(Gemini-2.5-pro) 37.80% / OpenHands(Gemini-2.5-pro) 35.60%", "where": "Table 4"},
+            {"metric": "resolution rate, Multi-SWE-bench C++", "value": "MemRepair 30.58% vs InfCode-C++(GPT-5) 25.60%", "where": "Table 2"}
+        ],
+        "structure_gain": "Adding all three memory layers on the same DeepSeek-v3.2 backbone raises SEC-Bench resolution from 36.0% (loop-only, no memory) to 58.0% (full L1+L2+L3), a +22pp gain, with L3 (Refinement-Trajectory) alone contributing most (50.5%) (Table 3).",
+        "confound_note": "Table 3's ablation cleanly isolates memory-layer contribution holding the DeepSeek-v3.2 backbone fixed; but the main baseline comparisons (Tables 2 and 4, vs OpenHands/SWE-agent/InfCode-C++) also change the base LLM (e.g. Gemini-2.5-pro vs DeepSeek-v3.2 vs GPT-5), confounding model with framework.",
+        "stop_detail": "Agent tools return file content with line numbers, ripgrep-based regex search, and Iter_grep (parses the repository AST to locate definitions/use-sites, ranked by proximity to the error location); History-Fix/Security-Pattern/Refinement-Trajectory memories retrieve prior fixes, defense patterns, and failure trajectories to ground each repair attempt.",
+        "threats_to_datum": "Paper contains an unresolved LaTeX template placeholder (\"Conference: Make sure to enter the correct conference title\"), indicating an unfinished/unedited preprint; cost and resolution numbers are single-run, self-reported figures across three benchmarks with differing baseline model configurations."
+    },
+    {
+        "arxiv_id": "2607.13439",
+        "system": "DREA",
+        "year": 2026,
+        "venue": "Internetware 2026 (\"Accepted for presentation\", per arXiv comments field)",
+        "peer_reviewed": true,
+        "eligible": true,
+        "repr_classes": [
+            "retrieved_context",
+            "raw_text"
+        ],
+        "integration": "agent_tool_use",
+        "task": "detection",
+        "scope": "repository",
+        "domain": "general",
+        "evaluation": "ablated_measured",
+        "datasets": [
+            "RepoPairBench"
+        ],
+        "cross_language": false,
+        "wieringa": "evaluation",
+        "record_type": "technique_tool",
+        "key_numbers": [
+            {"metric": "Pair-Correctness (P-C), function-only baseline vs DREA", "value": "DeepSeek-V3.2 19%->42%, GLM-4.7 26%->34%, GPT-5.2 21%->30%", "where": "Table 1"},
+            {"metric": "token offload to explorer agent", "value": ">93% of tokens offloaded to the lightweight Explorer agent", "where": "Results"},
+            {"metric": "billable API cost reduction", "value": "16-48x lower cost vs baseline", "where": "Results"}
+        ],
+        "structure_gain": "DREA's on-demand repository exploration raises Pair-Correctness from a function-only baseline (19-26% across three LLMs) to 30-42% with DREA (Table 1).",
+        "confound_note": "Paper explicitly notes its baselines (Function-Only, Whole-File, Single-Agent) conflate representation (amount of code seen) with exploration strategy (tool access, planner/explorer decoupling), so the reported gains are not a clean representation-only ablation.",
+        "stop_detail": "The lightweight Explorer agent uses read-only repo tools (ls, glob, grep, read_file) to gather Repository Context, Code Evidence, and Security Findings on demand, reporting back to the Planning agent, which forms and refines vulnerability hypotheses (Planner-Explorer architecture section).",
+        "threats_to_datum": "RepoPairBench is small (100 vulnerability-fix pairs / 200 instances) and Python-only, with C/C++ extension left as future work; the pair-correctness metric requires both vulnerable and fixed versions to be classified correctly, a stricter and less standard metric than typical F1/precision, complicating cross-paper comparison."
+    }
+]

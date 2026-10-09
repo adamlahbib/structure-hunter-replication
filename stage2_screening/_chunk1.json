@@ -1,0 +1,194 @@
+[
+{
+"id": "2304.00409",
+"title": "DiverseVul: A New Vulnerable Source Code Dataset for Deep Learning Based Vulnerability Detection",
+"year": 2023,
+"abstract": "We propose and release a new vulnerable source code dataset. We curate the dataset by crawling security issue websites, extracting vulnerability-fixing commits and source codes from the corresponding projects. Our new dataset contains 18,945 vulnerable functions spanning 150 CWEs and 330,492 non-vulnerable functions extracted from 7,514 commits. Our dataset covers 295 more projects than all previous datasets combined. Combining our new dataset with previous datasets, we present an analysis of the challenges and promising research directions of using deep learning for detecting software vulnerabilities. We study 11 model architectures belonging to 4 families. Our results show that deep learni"
+},
+{
+"id": "2401.15459",
+"title": "Multi-LLM Collaboration + Data-Centric Innovation = 2x Better Vulnerability Repair",
+"year": 2024,
+"abstract": "The advances of deep learning (DL) have paved the way for automatic software vulnerability repair approaches, which effectively learn the mapping from the vulnerable code to the fixed code. Nevertheless, existing DL-based vulnerability repair methods face notable limitations: 1) they struggle to handle lengthy vulnerable code, 2) they treat code as natural language texts, neglecting its inherent structure, and 3) they do not tap into the valuable expert knowledge present in the expert system. To address this, we propose VulMaster, a Transformer-based neural network model that excels at generating vulnerability repairs through data-centric innovation. Specifically, VulMaster introduces the ut"
+},
+{
+"id": "2404.08817",
+"title": "Revisiting Code Similarity Evaluation with Abstract Syntax Tree Edit Distance",
+"year": 2024,
+"abstract": "This paper revisits recent code similarity evaluation metrics, particularly focusing on the application of Abstract Syntax Tree (AST) editing distance in diverse programming languages. In particular, we explore the usefulness of these metrics and compare them to traditional sequence similarity metrics. Our experiments showcase the effectiveness of AST editing distance in capturing intricate code structures, revealing a high correlation with established metrics. Furthermore, we explore the strengths and weaknesses of AST editing distance and prompt-based GPT similarity scores in comparison to BLEU score, execution match, and Jaccard Similarity. We propose, optimize, and publish an adaptable m"
+},
+{
+"id": "2405.19266",
+"title": "PediatricsGPT: Large Language Models as Chinese Medical Assistants for Pediatric Applications",
+"year": 2024,
+"abstract": "Developing intelligent pediatric consultation systems offers promising prospects for improving diagnostic efficiency, especially in China, where healthcare resources are scarce. Despite recent advances in Large Language Models (LLMs) for Chinese medicine, their performance is sub-optimal in pediatric applications due to inadequate instruction data and vulnerable training procedures. To address the above issues, this paper builds PedCorpus, a high-quality dataset of over 300,000 multi-task instructions from pediatric textbooks, guidelines, and knowledge graph resources to fulfil diverse diagnostic demands. Upon well-designed PedCorpus, we propose PediatricsGPT, the first Chinese pediatric LLM"
+},
+{
+"id": "2408.02329",
+"title": "From Generalist to Specialist: Exploring CWE-Specific Vulnerability Detection",
+"year": 2024,
+"abstract": "Vulnerability Detection (VD) using machine learning faces a significant challenge: the vast diversity of vulnerability types. Each Common Weakness Enumeration (CWE) represents a unique category of vulnerabilities with distinct characteristics, code semantics, and patterns. Treating all vulnerabilities as a single label with a binary classification approach may oversimplify the problem, as it fails to capture the nuances and context-specific to each CWE. As a result, a single binary classifier might merely rely on superficial text patterns rather than understanding the intricacies of each vulnerability type. Recent reports showed that even the state-of-the-art Large Language Model (LLM) with "
+},
+{
+"id": "2409.12369",
+"title": "Program Slicing in the Era of Large Language Models",
+"year": 2024,
+"abstract": "Program slicing is a critical technique in software engineering, enabling developers to isolate relevant portions of code for tasks such as bug detection, code comprehension, and debugging. In this study, we investigate the application of large language models (LLMs) to both static and dynamic program slicing, with a focus on Java programs. We evaluate the performance of four state-of-the-art LLMs- GPT-4o, GPT-3.5 Turbo, Llama-2, and Gemma-7B leveraging advanced prompting techniques, including few-shot learning and chain-of-thought reasoning. Using a dataset of 100 Java programs derived from LeetCode problems, our experiments reveal that GPT-4o performs the best in both static and dynamic sl"
+},
+{
+"id": "2410.12096",
+"title": "Bridging Large Language Models and Graph Structure Learning Models for Robust Representation Learning",
+"year": 2024,
+"abstract": "Graph representation learning, involving both node features and graph structures, is crucial for real-world applications but often encounters pervasive noise. State-of-the-art methods typically address noise by focusing separately on node features with large language models (LLMs) and on graph structures with graph structure learning models (GSLMs). In this paper, we introduce LangGSL, a robust framework that integrates the complementary strengths of pre-trained language models and GSLMs to jointly enhance both node feature and graph structure learning. In LangGSL, we first leverage LLMs to filter noise in the raw data and extract valuable cleaned information as features, enhancing the syner"
+},
+{
+"id": "2411.16561",
+"title": "EnStack: An Ensemble Stacking Framework of Large Language Models for Enhanced Vulnerability Detection in Source Code",
+"year": 2024,
+"abstract": "Automated detection of software vulnerabilities is critical for enhancing security, yet existing methods often struggle with the complexity and diversity of modern codebases. In this paper, we introduce EnStack, a novel ensemble stacking framework that enhances vulnerability detection using natural language processing (NLP) techniques. Our approach synergizes multiple pre-trained large language models (LLMs) specialized in code understanding CodeBERT for semantic analysis, GraphCodeBERT for structural representation, and UniXcoder for cross-modal capabilities. By fine-tuning these models on the Draper VDISC dataset and integrating their outputs through meta-classifiers such as Logistic Regre"
+},
+{
+"id": "2503.03586",
+"title": "Benchmarking LLMs and LLM-based Agents in Practical Vulnerability Detection for Code Repositories",
+"year": 2025,
+"abstract": "Large Language Models (LLMs) have shown promise in software vulnerability detection, particularly on function-level benchmarks like Devign and BigVul. However, real-world detection requires interprocedural analysis, as vulnerabilities often emerge through multi-hop function calls rather than isolated functions. While repository-level benchmarks like ReposVul and VulEval introduce interprocedural context, they remain computationally expensive, lack pairwise evaluation of vulnerability fixes, and explore limited context retrieval, limiting their practicality. We introduce JitVul, a JIT vulnerability detection benchmark linking each function to its vulnerability-introducing and fixing commits. "
+},
+{
+"id": "2504.16877",
+"title": "Context-Enhanced Vulnerability Detection Based on Large Language Model",
+"year": 2025,
+"abstract": "Vulnerability detection is a critical aspect of software security. Accurate detection is essential to prevent potential security breaches and protect software systems from malicious attacks. Recently, vulnerability detection methods leveraging deep learning and large language models (LLMs) have garnered increasing attention. However, existing approaches often focus on analyzing individual files or functions, which limits their ability to gather sufficient contextual information. Analyzing entire repositories to gather context introduces significant noise and computational overhead. To address these challenges, we propose a context-enhanced vulnerability detection approach that combines progr"
+},
+{
+"id": "2505.17416",
+"title": "LLM-BSCVM: An LLM-Based Blockchain Smart Contract Vulnerability Management Framework",
+"year": 2025,
+"abstract": "Smart contracts are a key component of the Web 3.0 ecosystem, widely applied in blockchain services and decentralized applications. However, the automated execution feature of smart contracts makes them vulnerable to potential attacks due to inherent flaws, which can lead to severe security risks and financial losses, even threatening the integrity of the entire decentralized finance system. Currently, research on smart contract vulnerabilities has evolved from traditional program analysis methods to deep learning techniques, with the gradual introduction of Large Language Models. However, existing studies mainly focus on vulnerability detection, lacking systematic cause analysis and Vulnera"
+},
+{
+"id": "2506.03850",
+"title": "Vulnerability-Aware Alignment: Mitigating Uneven Forgetting in Harmful Fine-Tuning",
+"year": 2025,
+"abstract": "Harmful fine-tuning (HFT), performed directly on open-source LLMs or through Fine-tuning-as-a-Service, breaks safety alignment and poses significant threats. Existing methods aim to mitigate HFT risks by learning robust representation on alignment data or making harmful data unlearnable, but they treat each data sample equally, leaving data vulnerability patterns understudied. In this work, we reveal that certain subsets of alignment data are consistently more prone to forgetting during HFT across different fine-tuning tasks. Inspired by these findings, we propose Vulnerability-Aware Alignment (VAA), which estimates data vulnerability, partitions data into \"vulnerable\" and \"invulnerable\" gro"
+},
+{
+"id": "2506.15790",
+"title": "ETrace:Event-Driven Vulnerability Detection in Smart Contracts via LLM-Based Trace Analysis",
+"year": 2025,
+"abstract": "With the advance application of blockchain technology in various fields, ensuring the security and stability of smart contracts has emerged as a critical challenge. Current security analysis methodologies in vulnerability detection can be categorized into static analysis and dynamic analysis methods.However, these existing traditional vulnerability detection methods predominantly rely on analyzing original contract code, not all smart contracts provide accessible code.We present ETrace, a novel event-driven vulnerability detection framework for smart contracts, which uniquely identifies potential vulnerabilities through LLM-powered trace analysis without requiring source code access. By extr"
+},
+{
+"id": "2507.16585",
+"title": "LLMxCPG: Context-Aware Vulnerability Detection Through Code Property Graph-Guided Large Language Models",
+"year": 2025,
+"abstract": "Software vulnerabilities present a persistent security challenge, with over 25,000 new vulnerabilities reported in the Common Vulnerabilities and Exposures (CVE) database in 2024 alone. While deep learning based approaches show promise for vulnerability detection, recent studies reveal critical limitations in terms of accuracy and robustness: accuracy drops by up to 45% on rigorously verified datasets, and performance degrades significantly under simple code modifications. This paper presents LLMxCPG, a novel framework integrating Code Property Graphs (CPG) with Large Language Models (LLM) for robust vulnerability detection. Our CPG-based slice construction technique reduces code size by 67."
+},
+{
+"id": "2509.00882",
+"title": "VULSOLVER: Vulnerability Detection via LLM-Driven Constraint Solving",
+"year": 2025,
+"abstract": "Traditional vulnerability detection methods rely heavily on predefined rule matching, which often fails to capture vulnerabilities accurately. With the rise of large language models (LLMs), leveraging their ability to understand code semantics has emerged as a promising direction for achieving more accurate and efficient vulnerability detection. However, current LLM-based approaches face significant challenges: instability in model outputs, degraded performance with long context, and hallucination. As a result, many existing solutions either use LLMs merely to enrich predefined rule sets, thereby keeping the detection process fundamentally rule-based, or over-rely on them, leading to poor ro"
+},
+{
+"id": "2510.00311",
+"title": "CORTEX: Collaborative LLM Agents for High-Stakes Alert Triage",
+"year": 2025,
+"abstract": "Security Operations Centers (SOCs) are overwhelmed by tens of thousands of daily alerts, with only a small fraction corresponding to genuine attacks. This overload creates alert fatigue, leading to overlooked threats and analyst burnout. Classical detection pipelines are brittle and context-poor, while recent LLM-based approaches typically rely on a single model to interpret logs, retrieve context, and adjudicate alerts end-to-end -- an approach that struggles with noisy enterprise data and offers limited transparency. We propose CORTEX, a multi-agent LLM architecture for high-stakes alert triage in which specialized agents collaborate over real evidence: a behavior-analysis agent inspects a"
+},
+{
+"id": "2510.27675",
+"title": "On the Difficulty of Selecting Few-Shot Examples for Effective LLM-based Vulnerability Detection",
+"year": 2025,
+"abstract": "Large language models (LLMs) have demonstrated impressive capabilities across a wide range of coding tasks, including summarization, translation, completion, and code generation. Despite these advances, detecting code vulnerabilities remains a challenging problem for LLMs. In-context learning (ICL) has emerged as an effective mechanism for improving model performance by providing a small number of labeled examples within the prompt. Prior work has shown, however, that the effectiveness of ICL depends critically on how these few-shot examples are selected. In this paper, we study two intuitive criteria for selecting few-shot examples for ICL in the context of code vulnerability detection. The"
+},
+{
+"id": "2512.04106",
+"title": "Retrieval-Augmented Few-Shot Prompting Versus Fine-Tuning for Code Vulnerability Detection",
+"year": 2025,
+"abstract": "Few-shot prompting has emerged as a practical alternative to fine-tuning for leveraging the capabilities of large language models (LLMs) in specialized tasks. However, its effectiveness depends heavily on the selection and quality of in-context examples, particularly in complex domains. In this work, we examine retrieval-augmented prompting as a strategy to improve few-shot performance in code vulnerability detection, where the goal is to identify one or more security-relevant weaknesses present in a given code snippet from a predefined set of vulnerability categories. We perform a systematic evaluation using the Gemini-1.5-Flash model across three approaches: (1) standard few-shot prompting"
+},
+{
+"id": "2512.16538",
+"title": "A Systematic Study of Code Obfuscation Against LLM-based Vulnerability Detection",
+"year": 2025,
+"abstract": "As large language models (LLMs) are increasingly adopted for code vulnerability detection, their reliability and robustness across diverse vulnerability types have become a pressing concern. In traditional adversarial settings, code obfuscation has long been used as a general strategy to bypass auditing tools, preserving exploitability without tampering with the tools themselves. Numerous efforts have explored obfuscation methods and tools, yet their capabilities differ in terms of supported techniques, granularity, and programming languages, making it difficult to systematically assess their impact on LLM-based vulnerability detection. To address this gap, we provide a structured systematiz"
+},
+{
+"id": "2601.08691",
+"title": "LLMs in Code Vulnerability Analysis: A Proof of Concept",
+"year": 2026,
+"abstract": "Context: Traditional software security analysis methods struggle to keep pace with the scale and complexity of modern codebases, requiring intelligent automation to detect, assess, and remediate vulnerabilities more efficiently and accurately. Objective: This paper explores the incorporation of code-specific and general-purpose Large Language Models (LLMs) to automate critical software security tasks, such as identifying vulnerabilities, predicting severity and access complexity, and generating fixes as a proof of concept. Method: We evaluate five pairs of recent LLMs, including both code-based and general-purpose open-source models, on two recognized C/C++ vulnerability datasets, namely Big"
+},
+{
+"id": "2601.18847",
+"title": "MulVul: Retrieval-augmented Multi-Agent Code Vulnerability Detection via Cross-Model Prompt Evolution",
+"year": 2026,
+"abstract": "Large Language Models (LLMs) struggle to automate real-world vulnerability detection due to two key limitations: the heterogeneity of vulnerability patterns undermines the effectiveness of a single unified model, and manual prompt engineering for massive weakness categories is unscalable. To address these challenges, we propose \\textbf{MulVul}, a retrieval-augmented multi-agent framework designed for precise and broad-coverage vulnerability detection. MulVul adopts a coarse-to-fine strategy: a \\emph{Router} agent first predicts the top-$k$ coarse categories and then forwards the input to specialized \\emph{Detector} agents, which identify the exact vulnerability types. Both agents are equippe"
+},
+{
+"id": "2602.06751",
+"title": "Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vulnerability Detection",
+"year": 2026,
+"abstract": "Recent progress in ML and LLMs has improved vulnerability detection, and recent datasets have reduced label noise and unrelated code changes. However, most existing approaches still operate at the function level, where models are asked to predict whether a single function is vulnerable without inter-procedural context. In practice, vulnerability presence and root cause often depend on contextual information. Naively appending such context is not a reliable solution: real-world context is long, redundant, and noisy, and we find that unstructured context frequently degrades the performance of strong fine-tuned code models. We present CPRVul, a context-aware vulnerability detection framework th"
+},
+{
+"id": "2603.24837",
+"title": "Bridging Code Property Graphs and Language Models for Program Analysis",
+"year": 2026,
+"abstract": "Large Language Models (LLMs) face critical challenges when analyzing security vulnerabilities in real world codebases: token limits prevent loading entire repositories, code embeddings fail to capture inter procedural data flows, and LLMs struggle to generate complex static analysis queries. These limitations force existing approaches to operate on isolated code snippets, missing vulnerabilities that span multiple functions and files. We introduce codebadger, an open source Model Context Protocol (MCP) server that integrates Joern's Code Property Graph (CPG) engine with LLMs. Rather than requiring LLMs to generate complex CPG queries, codebadger provides high level tools for program slicing,"
+},
+{
+"id": "2604.17948",
+"title": "RAVEN: Retrieval-Augmented Vulnerability Exploration Network for Memory Corruption Analysis in User Code and Binary Programs",
+"year": 2026,
+"abstract": "Large Language Models (LLMs) have demonstrated remarkable capabilities across various cybersecurity tasks, including vulnerability classification, detection, and patching. However, their potential in automated vulnerability report documentation and analysis remains underexplored. We present RAVEN (Retrieval Augmented Vulnerability Exploration Network), a framework leveraging LLM agents and Retrieval Augmented Generation (RAG) to synthesize comprehensive vulnerability analysis reports. Given vulnerable source code, RAVEN generates reports following the Google Project Zero Root Cause Analysis template. The framework uses four modules: an Explorer agent for vulnerability identification, a RAG e"
+},
+{
+"id": "2605.01885",
+"title": "QASecClaw: A Multi-Agent LLM Approach for False Positive Reduction in Static Application Security Testing",
+"year": 2026,
+"abstract": "Static Application Security Testing tools help developers find security vulnerabilities before release, but they often produce many false positives. This increases manual review effort, reduces developer trust, and may cause real vulnerabilities to be ignored among noisy reports. We present QASecClaw, a multi agent approach that combines conventional Static Application Security Testing with coding specialized Large Language Model based contextual code review. A SAST engine first reports candidate vulnerabilities, and a Large Language Model based SAST Filter Agent then reviews each finding with source code context to decide whether it is likely to be a true positive or a false positive. QASec"
+},
+{
+"id": "2605.09461",
+"title": "VulTriage: Triple-Path Context Augmentation for LLM-Based Vulnerability Detection",
+"year": 2026,
+"abstract": "Automated vulnerability detection is a fundamental task in software security, yet existing learning-based methods still struggle to capture the structural dependencies, domain-specific vulnerability knowledge, and complex program semantics required for accurate detection. Recent Large Language Models (LLMs) have shown strong code understanding ability, but directly prompting them with raw source code often leads to missed vulnerabilities or false alarms, especially when vulnerable and benign functions differ only in subtle semantic details. To address this, we propose VulTriage, a triple-path context augmentation framework for LLM-based vulnerability detection. VulTriage enhances the LLM inp"
+},
+{
+"id": "2606.21397",
+"title": "Evaluating LLMs for Real-World Web Vulnerability Detection",
+"year": 2026,
+"abstract": "Large Language Models (LLMs) have emerged as a promising tool for automated vulnerability detection, yet their effectiveness on web-specific vulnerabilities remains to be explored. This work benchmarks six frontier (Claude Opus 4.6, Codex GPT-5.4, Gemini 3.1-pro-preview) and open-weight models (Qwen 3.5, Qwen 3 Coder Next, MiniMax M2.5) on their ability to detect real-world web vulnerabilities using static analysis in WordPress plugins, including SQL injection, stored cross-site scripting, path traversal, and remote code execution. Using five prompt designs of varying structure, scope, and complexity across three experiment iterations, we aim to answer how model and prompt choice affects vul"
+},
+{
+"id": "2607.01138",
+"title": "Antaeus: Hunting Repository-Level Logic Vulnerabilities via Context-Grounded LLM Reasoning",
+"year": 2026,
+"abstract": "LLM-based vulnerability detectors have shown promising results in identifying memory-safety bugs and vulnerability classes whose violations can often be expressed through established security properties. Logic vulnerabilities, however, pose a different challenge, as their identification requires inferring application-specific security invariants and implicit assumptions about intended behavior. Even frontier agentic models struggle because these invariants are often implicit and buried among unrelated code. Motivated by this gap, we present Antaeus, a framework for detecting logic vulnerabilities that grounds LLM reasoning in repository-level code context. Antaeus follows a repository-scale "
+},
+{
+"id": "2607.21983",
+"title": "Ethereum NFT Smart Contracts: Knowledge-Guided Vulnerability Detection with LLM and Code Slicing",
+"year": 2026,
+"abstract": "Ethereum non-fungible tokens (NFTs) implement ownership, transfer, authorization, and metadata operations through smart contracts, making contract vulnerabilities a direct risk to digital assets. Existing static analyzers provide efficient rule-based screening but can struggle with application-specific logic, whereas unconstrained large language model analysis may be distracted by irrelevant code or produce inconsistent outputs. We present a vulnerability-detection method that combines vulnerability-focused code slicing, an ERC-721-oriented knowledge base, and constrained DeepSeek analysis. Regular-expression patterns locate candidate statements for reentrancy, integer overflow or underflow,"
+},
+{
+"id": "2608.14668",
+"title": "BRA-Audit: Budgeted Runtime Auditing for LLM Multi-Agent Systems via Cumulative-Exposure Audit-Point Placement",
+"year": 2026,
+"abstract": "LLM-based multi-agent systems (LLM-MAS) solve complex tasks through specialized collaboration, but inter-agent dependencies can propagate hallucinated or malicious outputs into system-level failures. Auditor agents mitigate these risks, yet existing strategies face an efficiency dilemma: end-only auditing reviews long trajectories and final outputs, potentially weakening audit effectiveness and enlarging rollback scope, while auditing every agent each round improves detection and localization at high token cost. How can guard performance be preserved while minimizing token cost? To address this problem, we propose BRA-Audit, a budget-aware runtime auditing framework that models MAS execution"
+},
+{
+"id": "gptscan detecting logic vulnerabilities ",
+"title": "GPTScan: Detecting Logic Vulnerabilities in Smart Contracts by Combining GPT with Program Analysis",
+"year": 2024,
+"abstract": "Smart contracts are prone to various vulnerabilities, leading to substantial financial losses over time. Current analysis tools mainly target vulnerabilities with fixed control- or data-flow patterns, such as re-entrancy and integer overflow. However, a recent study on Web3 security bugs revealed that about 80% of these bugs cannot be audited by existing tools due to the lack of domain-specific property description and checking. Given recent advances in Large Language Models (LLMs), it is worth exploring how Generative Pre-training Transformer (GPT) could aid in detecting logic vulnerabilities."
+},
+{
+"id": "synthetic lies understanding aigenerated",
+"title": "Synthetic Lies: Understanding AI-Generated Misinformation and Evaluating Algorithmic and Human Solutions",
+"year": 2023,
+"abstract": "Large language models have abilities in creating high-volume human-like texts and can be used to generate persuasive misinformation. However, the risks remain under-explored. To address the gap, this work first examined characteristics of AI-generated misinformation (AI-misinfo) compared with human creations, and then evaluated the applicability of existing solutions. We compiled human-created COVID-19 misinformation and abstracted it into narrative prompts for a language model to output AI-misinfo. We found significant linguistic differences within human-AI pairs, and patterns of AI-misinfo in enhancing details, communicating uncertainties, drawing conclusions, and simulating personal tones"
+}
+]

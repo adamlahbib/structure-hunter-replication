@@ -1,0 +1,46 @@
+[
+{
+"arxiv_id": "2401.15459",
+"title": "Multi-LLM Collaboration + Data-Centric Innovation = 2x Better Vulnerability Repair"
+},
+{
+"arxiv_id": "2406.05892",
+"title": "Security Vulnerability Detection with Multitask Self-Instructed Fine-Tuning of Large Language Models"
+},
+{
+"arxiv_id": "2411.06493",
+"title": "LProtector: An LLM-driven Vulnerability Detection System"
+},
+{
+"arxiv_id": "2504.16877",
+"title": "Context-Enhanced Vulnerability Detection Based on Large Language Model"
+},
+{
+"arxiv_id": "2506.17798",
+"title": "CognixShield: PoV-Guided Vulnerable API Usage Detection in Large Codebases via LLMs"
+},
+{
+"arxiv_id": "2509.16275",
+"title": "SecureFixAgent: A Hybrid LLM Agent for Automated Python Static Vulnerability Repair"
+},
+{
+"arxiv_id": "2512.04106",
+"title": "Retrieval-Augmented Few-Shot Prompting Versus Fine-Tuning for Code Vulnerability Detection"
+},
+{
+"arxiv_id": "2601.18844",
+"title": "Reducing False Positives in Static Bug Detection with LLMs: An Empirical Study in Industry"
+},
+{
+"arxiv_id": "2604.08417",
+"title": "Vulnerability Detection with Interprocedural Context in Multiple Languages: Assessing Effectiveness and Cost of Modern LLMs"
+},
+{
+"arxiv_id": "2605.04251",
+"title": "Root-Cause-Driven Automated Vulnerability Repair"
+},
+{
+"arxiv_id": "2607.01138",
+"title": "Antaeus: Hunting Repository-Level Logic Vulnerabilities via Context-Grounded LLM Reasoning"
+}
+]

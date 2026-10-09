@@ -1,0 +1,592 @@
+{
+ "papers": [
+  {
+   "arxiv_id": "2308.03314",
+   "n_refs": 49,
+   "in_scope_by_title": 0,
+   "unknown": []
+  },
+  {
+   "arxiv_id": "2403.19096",
+   "n_refs": 65,
+   "in_scope_by_title": 0,
+   "unknown": []
+  },
+  {
+   "arxiv_id": "2409.18395",
+   "n_refs": 34,
+   "in_scope_by_title": 1,
+   "unknown": [
+    {
+     "title": "Enhancing Static Analysis for Practical Bug Detection: An LLM-Integrated Approach",
+     "year": 2024,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2501.18160",
+   "n_refs": 50,
+   "in_scope_by_title": 3,
+   "unknown": [
+    {
+     "title": "LLM-Assisted Static Analysis for Detecting Security Vulnerabilities",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "Enhancing Static Analysis for Practical Bug Detection: An LLM-Integrated Approach",
+     "year": 2024,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2506.11561",
+   "n_refs": 21,
+   "in_scope_by_title": 0,
+   "unknown": []
+  },
+  {
+   "arxiv_id": "2508.13092",
+   "n_refs": 28,
+   "in_scope_by_title": 1,
+   "unknown": [
+    {
+     "title": "LLM-IFT: LLM-Powered Information Flow Tracking for Secure Hardware",
+     "year": 2025,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2601.10865",
+   "n_refs": 86,
+   "in_scope_by_title": 5,
+   "unknown": [
+    {
+     "title": "LLM-Assisted Static Analysis for Detecting Security Vulnerabilities",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs",
+     "year": 2023,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2604.08417",
+   "n_refs": 25,
+   "in_scope_by_title": 0,
+   "unknown": []
+  },
+  {
+   "arxiv_id": "2606.25356",
+   "n_refs": 35,
+   "in_scope_by_title": 2,
+   "unknown": [
+    {
+     "title": "SV-TrustEval-C: Evaluating Structure and Semantic Reasoning in Large Language Models for Source Code Vulnerability Analysis",
+     "year": 2025,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2608.03134",
+   "n_refs": 43,
+   "in_scope_by_title": 1,
+   "unknown": []
+  },
+  {
+   "arxiv_id": "2401.15459",
+   "n_refs": 80,
+   "in_scope_by_title": 0,
+   "unknown": []
+  },
+  {
+   "arxiv_id": "2405.04994",
+   "n_refs": 89,
+   "in_scope_by_title": 0,
+   "unknown": []
+  },
+  {
+   "arxiv_id": "2411.03079",
+   "n_refs": 72,
+   "in_scope_by_title": 2,
+   "unknown": [
+    {
+     "title": "Enhancing Static Analysis for Practical Bug Detection: An LLM-Integrated Approach",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "Automatically Inspecting Thousands of Static Bug Warnings with Large Language Model: How Far Are We?",
+     "year": 2024,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2504.16057",
+   "n_refs": 60,
+   "in_scope_by_title": 3,
+   "unknown": [
+    {
+     "title": "LLM-Assisted Static Analysis for Detecting Security Vulnerabilities",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "Enhancing Static Analysis for Practical Bug Detection: An LLM-Integrated Approach",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "GRACE: Empowering LLM-based software vulnerability detection with graph structure and in-context learning",
+     "year": 2024,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2506.17798",
+   "n_refs": 48,
+   "in_scope_by_title": 3,
+   "unknown": [
+    {
+     "title": "GRACE: Empowering LLM-based software vulnerability detection with graph structure and in-context learning",
+     "year": 2024,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2510.02534",
+   "n_refs": 66,
+   "in_scope_by_title": 4,
+   "unknown": [
+    {
+     "title": "Can LLM Prompting Serve as a Proxy for Static Analysis in Vulnerability Detection",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "Automatically Inspecting Thousands of Static Bug Warnings with Large Language Model: How Far Are We?",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "LSAST: Enhancing Cybersecurity Through LLM-Supported Static Application Security Testing",
+     "year": 2025,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2601.18847",
+   "n_refs": 27,
+   "in_scope_by_title": 0,
+   "unknown": []
+  },
+  {
+   "arxiv_id": "2604.27714",
+   "n_refs": 19,
+   "in_scope_by_title": 0,
+   "unknown": []
+  },
+  {
+   "arxiv_id": "2607.01138",
+   "n_refs": 37,
+   "in_scope_by_title": 4,
+   "unknown": [
+    {
+     "title": "LLM-Assisted Static Analysis for Detecting Security Vulnerabilities",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "Enhancing Static Analysis for Practical Bug Detection: An LLM-Integrated Approach",
+     "year": 2024,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2401.16185",
+   "n_refs": 84,
+   "in_scope_by_title": 4,
+   "unknown": [
+    {
+     "title": "Enhancing Static Analysis for Practical Bug Detection: An LLM-Integrated Approach",
+     "year": 2024,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2406.05892",
+   "n_refs": 45,
+   "in_scope_by_title": 1,
+   "unknown": [
+    {
+     "title": "GRACE: Empowering LLM-based software vulnerability detection with graph structure and in-context learning",
+     "year": 2024,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2411.06493",
+   "n_refs": 37,
+   "in_scope_by_title": 4,
+   "unknown": [
+    {
+     "title": "Vercation: Precise Vulnerable Open-Source Software Version Identification Based on Static Analysis and LLM",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "LLM-Assisted Static Analysis for Detecting Security Vulnerabilities",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "GRACE: Empowering LLM-based software vulnerability detection with graph structure and in-context learning",
+     "year": 2024,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2504.16877",
+   "n_refs": 73,
+   "in_scope_by_title": 2,
+   "unknown": [
+    {
+     "title": "LLM-Assisted Static Analysis for Detecting Security Vulnerabilities",
+     "year": 2024,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2506.18394",
+   "n_refs": 81,
+   "in_scope_by_title": 2,
+   "unknown": [
+    {
+     "title": "Enhancing Static Analysis for Practical Bug Detection: An LLM-Integrated Approach",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "Sanitizing Large Language Models in Bug Detection with Data-Flow",
+     "year": 2024,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2512.04106",
+   "n_refs": 18,
+   "in_scope_by_title": 0,
+   "unknown": []
+  },
+  {
+   "arxiv_id": "2603.13384",
+   "n_refs": 56,
+   "in_scope_by_title": 1,
+   "unknown": [
+    {
+     "title": "Hybrid Automated Program Repair by Combining Large Language Models and Program Analysis",
+     "year": 2024,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2605.09461",
+   "n_refs": 35,
+   "in_scope_by_title": 0,
+   "unknown": []
+  },
+  {
+   "arxiv_id": "2607.03963",
+   "n_refs": 44,
+   "in_scope_by_title": 1,
+   "unknown": [
+    {
+     "title": "LLM-Assisted Static Analysis for Detecting Security Vulnerabilities",
+     "year": 2024,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2403.06838",
+   "n_refs": 100,
+   "in_scope_by_title": 2,
+   "unknown": [
+    {
+     "title": "LLMSmartSec: Smart Contract Security Auditing with LLM and Annotated Control Flow Graph",
+     "year": 2024,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2406.11147",
+   "n_refs": 80,
+   "in_scope_by_title": 7,
+   "unknown": [
+    {
+     "title": "ProveRAG: Provenance-Driven Vulnerability Analysis With Automated Retrieval-Augmented LLMs",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "VulScribeR: Exploring RAG-based Vulnerability Augmentation with LLMs",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "Retrieval Augmented Generation Integrated Large Language Models in Smart Contract Vulnerability Detection",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "LLM-Assisted Static Analysis for Detecting Security Vulnerabilities",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "Enhancing Static Analysis for Practical Bug Detection: An LLM-Integrated Approach",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "Automatically Inspecting Thousands of Static Bug Warnings with Large Language Model: How Far Are We?",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "When GPT Meets Program Analysis: Towards Intelligent Detection of Smart Contract Logic Vulnerabilities in GPTScan",
+     "year": 2023,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2501.04510",
+   "n_refs": 67,
+   "in_scope_by_title": 1,
+   "unknown": [
+    {
+     "title": "GRACE: Empowering LLM-based software vulnerability detection with graph structure and in-context learning",
+     "year": 2024,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2506.10322",
+   "n_refs": 20,
+   "in_scope_by_title": 5,
+   "unknown": [
+    {
+     "title": "LLM-Assisted Static Analysis for Detecting Security Vulnerabilities",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "Automatically Inspecting Thousands of Static Bug Warnings with Large Language Model: How Far Are We?",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "Sanitizing Large Language Models in Bug Detection with Data-Flow",
+     "year": 2024,
+     "known": false
+    },
+    {
+     "title": "When GPT Meets Program Analysis: Towards Intelligent Detection of Smart Contract Logic Vulnerabilities in GPTScan",
+     "year": 2023,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2507.16585",
+   "n_refs": null,
+   "in_scope_by_title": null,
+   "unknown": []
+  },
+  {
+   "arxiv_id": "2512.16538",
+   "n_refs": 80,
+   "in_scope_by_title": 3,
+   "unknown": [
+    {
+     "title": "Do Language Models Learn Semantics of Code? A Case Study in Vulnerability Detection",
+     "year": 2023,
+     "known": false
+    },
+    {
+     "title": "Software Vulnerability Detection with GPT and In-Context Learning",
+     "year": 2023,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2603.27204",
+   "n_refs": 65,
+   "in_scope_by_title": 1,
+   "unknown": [
+    {
+     "title": "TaintP2X: Detecting Taint-Style Prompt-to-Anything Injection Vulnerabilities in LLM-Integrated Applications",
+     "year": 2026,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2605.17444",
+   "n_refs": 50,
+   "in_scope_by_title": 2,
+   "unknown": [
+    {
+     "title": "Explainable Recommendation of Software Vulnerability Repair Based on Metadata Retrieval and Multifaceted LLMs",
+     "year": 2025,
+     "known": false
+    },
+    {
+     "title": "ReCode: Improving LLM-based Code Repair with Fine-Grained Retrieval-Augmented Generation",
+     "year": 2025,
+     "known": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2607.29422",
+   "n_refs": 34,
+   "in_scope_by_title": 0,
+   "unknown": []
+  }
+ ],
+ "unique_unknown": [
+  {
+   "title": "Enhancing Static Analysis for Practical Bug Detection: An LLM-Integrated Approach",
+   "year": 2024,
+   "known": false
+  },
+  {
+   "title": "LLM-Assisted Static Analysis for Detecting Security Vulnerabilities",
+   "year": 2024,
+   "known": false
+  },
+  {
+   "title": "LLM-IFT: LLM-Powered Information Flow Tracking for Secure Hardware",
+   "year": 2025,
+   "known": false
+  },
+  {
+   "title": "Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs",
+   "year": 2023,
+   "known": false
+  },
+  {
+   "title": "SV-TrustEval-C: Evaluating Structure and Semantic Reasoning in Large Language Models for Source Code Vulnerability Analysis",
+   "year": 2025,
+   "known": false
+  },
+  {
+   "title": "Automatically Inspecting Thousands of Static Bug Warnings with Large Language Model: How Far Are We?",
+   "year": 2024,
+   "known": false
+  },
+  {
+   "title": "GRACE: Empowering LLM-based software vulnerability detection with graph structure and in-context learning",
+   "year": 2024,
+   "known": false
+  },
+  {
+   "title": "Can LLM Prompting Serve as a Proxy for Static Analysis in Vulnerability Detection",
+   "year": 2024,
+   "known": false
+  },
+  {
+   "title": "LSAST: Enhancing Cybersecurity Through LLM-Supported Static Application Security Testing",
+   "year": 2025,
+   "known": false
+  },
+  {
+   "title": "Vercation: Precise Vulnerable Open-Source Software Version Identification Based on Static Analysis and LLM",
+   "year": 2024,
+   "known": false
+  },
+  {
+   "title": "Sanitizing Large Language Models in Bug Detection with Data-Flow",
+   "year": 2024,
+   "known": false
+  },
+  {
+   "title": "Hybrid Automated Program Repair by Combining Large Language Models and Program Analysis",
+   "year": 2024,
+   "known": false
+  },
+  {
+   "title": "LLMSmartSec: Smart Contract Security Auditing with LLM and Annotated Control Flow Graph",
+   "year": 2024,
+   "known": false
+  },
+  {
+   "title": "ProveRAG: Provenance-Driven Vulnerability Analysis With Automated Retrieval-Augmented LLMs",
+   "year": 2024,
+   "known": false
+  },
+  {
+   "title": "VulScribeR: Exploring RAG-based Vulnerability Augmentation with LLMs",
+   "year": 2024,
+   "known": false
+  },
+  {
+   "title": "Retrieval Augmented Generation Integrated Large Language Models in Smart Contract Vulnerability Detection",
+   "year": 2024,
+   "known": false
+  },
+  {
+   "title": "When GPT Meets Program Analysis: Towards Intelligent Detection of Smart Contract Logic Vulnerabilities in GPTScan",
+   "year": 2023,
+   "known": false
+  },
+  {
+   "title": "Do Language Models Learn Semantics of Code? A Case Study in Vulnerability Detection",
+   "year": 2023,
+   "known": false
+  },
+  {
+   "title": "Software Vulnerability Detection with GPT and In-Context Learning",
+   "year": 2023,
+   "known": false
+  },
+  {
+   "title": "TaintP2X: Detecting Taint-Style Prompt-to-Anything Injection Vulnerabilities in LLM-Integrated Applications",
+   "year": 2026,
+   "known": false
+  },
+  {
+   "title": "Explainable Recommendation of Software Vulnerability Repair Based on Metadata Retrieval and Multifaceted LLMs",
+   "year": 2025,
+   "known": false
+  },
+  {
+   "title": "ReCode: Improving LLM-based Code Repair with Fine-Grained Retrieval-Augmented Generation",
+   "year": 2025,
+   "known": false
+  }
+ ]
+}

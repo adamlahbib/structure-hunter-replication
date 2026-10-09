@@ -1,0 +1,18 @@
+{
+ "n": 67,
+ "repr_primary": {
+  "kappa": 0.48,
+  "agree": 37,
+  "n": 67
+ },
+ "integration": {
+  "kappa": 0.73,
+  "agree": 53,
+  "n": 67
+ },
+ "evaluation": {
+  "kappa": 0.55,
+  "agree": 50,
+  "n": 67
+ }
+}

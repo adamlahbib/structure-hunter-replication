@@ -1,0 +1,435 @@
+{
+ "repr_primary": [
+  {
+   "arxiv_id": "2401.15459",
+   "system": "VulMaster",
+   "first": "ast",
+   "second": "hybrid",
+   "note": "Full text (ar5iv), good retrieval: VulMaster fuses raw code segments + AST node sequences + retrieved CWE example-fix pa"
+  },
+  {
+   "arxiv_id": "2403.06838",
+   "system": "ACFix",
+   "first": "hybrid",
+   "second": "retrieved_context",
+   "note": "Abstract only; mined RBAC role-permission taxonomy (49 pairs from 344K contracts) retrieved and injected via CoT prompt;"
+  },
+  {
+   "arxiv_id": "2403.19096",
+   "system": "SCALE",
+   "first": "hybrid",
+   "second": "nl_structured",
+   "note": "Full-text (ar5iv). SCT = AST + LLM comments flattened to structured NL text, fused via cross-attention during pre-traine"
+  },
+  {
+   "arxiv_id": "2406.05892",
+   "system": "MSIVD",
+   "first": "cfg_dfg",
+   "second": "hybrid",
+   "note": "Full text (ar5iv), good retrieval: MSIVD LoRA-fine-tunes CodeLlama on code text while fusing GGNN embeddings of CFG-deri"
+  },
+  {
+   "arxiv_id": "2408.03489",
+   "system": "Mahyari24",
+   "first": "hybrid",
+   "second": "slice",
+   "note": "Full text; source converted to LLVM IR then dependency-graph-sliced into iSeVC code gadgets, tokenized and used to finet"
+  },
+  {
+   "arxiv_id": "2409.18395",
+   "system": "Khan24",
+   "first": "retrieved_context",
+   "second": "raw_text",
+   "note": "Full-text (HTML); progressively injects textual vuln-disclosure/CWE-detail context into Copilot prompts (15%->63% repair"
+  },
+  {
+   "arxiv_id": "2411.03079",
+   "system": "LLM4FPM",
+   "first": "cpg",
+   "second": "slice",
+   "note": "Full text (html): eCPG-derived precise code slice serialized into structured LLM prompt; Table III ablates same LLM/task"
+  },
+  {
+   "arxiv_id": "2501.18160",
+   "system": "RepoAudit",
+   "first": "taint_path",
+   "second": "hybrid",
+   "note": "Full text; agent traverses call graph and data-dependence graph via tree-sitter/static-analysis tool calls plus an LLM v"
+  },
+  {
+   "arxiv_id": "2504.16877",
+   "system": "PacVD",
+   "first": "cfg_dfg",
+   "second": "interproc_callgraph",
+   "note": "Full text (ar5iv), good retrieval: extracts 3-layer call-depth interprocedural context at 4 abstraction levels (branch/f"
+  },
+  {
+   "arxiv_id": "2505.19828",
+   "system": "SecVulEval",
+   "first": "retrieved_context",
+   "second": "hybrid",
+   "note": "Full text; benchmark of 25,440 functions with statement-level labels; a multi-agent (Normalization/Planning/Context/Dete"
+  },
+  {
+   "arxiv_id": "2505.22010",
+   "system": "VulBinLLM",
+   "first": "hybrid",
+   "second": "raw_text",
+   "note": "Full-text (ar5iv). Decompiled pseudocode enriched with LLM-added vulnerability comments/renamed variables, plus a memory"
+  },
+  {
+   "arxiv_id": "2506.11561",
+   "system": "Antal25",
+   "first": "retrieved_context",
+   "second": "hybrid",
+   "note": "Full text (alphaxiv mirror, arxiv.org/html 404'd): 9 prompt arms mix CWE/CVE text, manually-extracted code snippets/head"
+  },
+  {
+   "arxiv_id": "2506.17798",
+   "system": "CognixShield",
+   "first": "retrieved_context",
+   "second": "hybrid",
+   "note": "Full text (ar5iv), good retrieval: combines AST-based semantic fragmentation, multi-agent RAG retrieving cross-file/inte"
+  },
+  {
+   "arxiv_id": "2507.16585",
+   "system": "LLMxCPG",
+   "first": "slice",
+   "second": "cpg",
+   "note": "Full text; CPG-derived backward slices (67.84-90.93% size reduction) serialized as text into the prompt; Appendix C comp"
+  },
+  {
+   "arxiv_id": "2509.15433",
+   "system": "SAST-Genius",
+   "first": "taint_path",
+   "second": "hybrid",
+   "note": "Full text (alphaxiv mirror, arxiv.org/html 404'd): Semgrep-derived code snippets, AST, call graph, and source-to-sink da"
+  },
+  {
+   "arxiv_id": "2510.02534",
+   "system": "ZeroFalse",
+   "first": "taint_path",
+   "second": "hybrid",
+   "note": "Full-text (html, good quality). Hybrid of source-to-sink dataflow/taint trace + CWE micro-rubric knowledge, single-pass "
+  },
+  {
+   "arxiv_id": "2510.17919",
+   "system": "ParaVul",
+   "first": "retrieved_context",
+   "second": "hybrid",
+   "note": "Full text; parallel architecture: an LLM branch finetuned (SLoRA) on raw contract text plus a hybrid dense+BM25 RAG bran"
+  },
+  {
+   "arxiv_id": "2512.07533",
+   "system": "VulnLLM-R",
+   "first": "raw_text",
+   "second": "interproc_callgraph",
+   "note": "Full text; static call-graph paths seed context and the model (finetuned on agentic trajectories) can invoke a function-"
+  },
+  {
+   "arxiv_id": "2601.10865",
+   "system": "SemTaint",
+   "first": "interproc_callgraph",
+   "second": "hybrid",
+   "note": "Full text (html): multi-agent LLM resolves call-graph edges and taint source/sink specs feeding CodeQL, iterating as Cod"
+  },
+  {
+   "arxiv_id": "2601.18844",
+   "system": "Du26",
+   "first": "taint_path",
+   "second": "hybrid",
+   "note": "Full text (ar5iv), moderate retrieval: industrial empirical study comparing raw-code prompting vs extended caller/callee"
+  },
+  {
+   "arxiv_id": "2601.18847",
+   "system": "MulVul",
+   "first": "retrieved_context",
+   "second": "hybrid",
+   "note": "Full-text (html, good quality). Hybrid of SCALE representation (LLM-generated NL comments attached to AST nodes + encode"
+  },
+  {
+   "arxiv_id": "2601.19239",
+   "system": "Li26",
+   "first": "interproc_callgraph",
+   "second": "hybrid",
+   "note": "Full text; empirical black-box comparison of 5 heterogeneous LLM tools (RepoAudit: agent/call-graph; KNighter: CSA-check"
+  },
+  {
+   "arxiv_id": "2602.06751",
+   "system": "CPRVul",
+   "first": "cpg",
+   "second": "interproc_callgraph",
+   "note": "Full-text (ar5iv, CPRVul). Code property graph used internally to extract caller/callee/global-variable inter-procedural"
+  },
+  {
+   "arxiv_id": "2603.27204",
+   "system": "MalSkills",
+   "first": "hybrid",
+   "second": "cpg",
+   "note": "Full text (html): skill dependency graph (property graph of artifacts/security-sensitive-operations/operands/value-flow,"
+  },
+  {
+   "arxiv_id": "2604.08417",
+   "system": "Lira26",
+   "first": "raw_text",
+   "second": "interproc_callgraph",
+   "note": "Full text (ar5iv), good retrieval: AST-derived caller/callee source appended to prompts; same 4 LLMs tested code-only vs"
+  },
+  {
+   "arxiv_id": "2604.27714",
+   "system": "Chen26",
+   "first": "raw_text",
+   "second": "hybrid",
+   "note": "Full-text (ar5iv). Explicit controlled comparison of raw source text vs pruned-AST-as-text input, LoRA fine-tuned on the"
+  },
+  {
+   "arxiv_id": "2605.04251",
+   "system": "Kumushi",
+   "first": "slice",
+   "second": "hybrid",
+   "note": "Full text (ar5iv), good retrieval: Kumushi gives an agentic patch LLM tool access plus evidence-ranked cross-file Functi"
+  },
+  {
+   "arxiv_id": "2605.09461",
+   "system": "VulTriage",
+   "first": "cfg_dfg",
+   "second": "hybrid",
+   "note": "Full-text (html, good quality). Triple-path hybrid: verbalized AST/CFG/DFG (control path) + CWE-knowledge retrieval (kno"
+  },
+  {
+   "arxiv_id": "2607.01138",
+   "system": "Antaeus",
+   "first": "retrieved_context",
+   "second": "hybrid",
+   "note": "Full text (ar5iv), good retrieval: combines local call-context (direct callees via Tree-sitter) with a once-per-repo str"
+  },
+  {
+   "arxiv_id": "2607.21983",
+   "system": "Yang26",
+   "first": "slice",
+   "second": "hybrid",
+   "note": "Full-text (ar5iv). Regex+structure-aware slicing extracts line-numbered vulnerability-focused code slices, concatenated "
+  }
+ ],
+ "integration": [
+  {
+   "arxiv_id": "2403.06838",
+   "system": "ACFix",
+   "first": "neurosymbolic_analyzer_loop",
+   "second": "prompt_serialization",
+   "note": "Abstract only; mined RBAC role-permission taxonomy (49 pairs from 344K contracts) retrieved and injected via CoT prompt;"
+  },
+  {
+   "arxiv_id": "2501.18160",
+   "system": "RepoAudit",
+   "first": "neurosymbolic_analyzer_loop",
+   "second": "agent_tool_use",
+   "note": "Full text; agent traverses call graph and data-dependence graph via tree-sitter/static-analysis tool calls plus an LLM v"
+  },
+  {
+   "arxiv_id": "2505.19828",
+   "system": "SecVulEval",
+   "first": "agent_tool_use",
+   "second": "prompt_serialization",
+   "note": "Full text; benchmark of 25,440 functions with statement-level labels; a multi-agent (Normalization/Planning/Context/Dete"
+  },
+  {
+   "arxiv_id": "2505.22010",
+   "system": "VulBinLLM",
+   "first": "agent_tool_use",
+   "second": "prompt_serialization",
+   "note": "Full-text (ar5iv). Decompiled pseudocode enriched with LLM-added vulnerability comments/renamed variables, plus a memory"
+  },
+  {
+   "arxiv_id": "2506.18394",
+   "system": "LTFix",
+   "first": "retrieval_guide",
+   "second": "prompt_serialization",
+   "note": "Full-text (html, good quality). LTFix builds an error-propagation path + typestate context trace (via FTA/GDB) serialize"
+  },
+  {
+   "arxiv_id": "2507.16585",
+   "system": "LLMxCPG",
+   "first": "finetune_adapter",
+   "second": "prompt_serialization",
+   "note": "Full text; CPG-derived backward slices (67.84-90.93% size reduction) serialized as text into the prompt; Appendix C comp"
+  },
+  {
+   "arxiv_id": "2509.00882",
+   "system": "VULSOLVER",
+   "first": "neurosymbolic_analyzer_loop",
+   "second": "prompt_serialization",
+   "note": "Full-text (HTML); SAST extracts JSON-structured main source-to-sink paths plus caller-callee branch trees, serialized in"
+  },
+  {
+   "arxiv_id": "2509.15433",
+   "system": "SAST-Genius",
+   "first": "neurosymbolic_analyzer_loop",
+   "second": "prompt_serialization",
+   "note": "Full text (alphaxiv mirror, arxiv.org/html 404'd): Semgrep-derived code snippets, AST, call graph, and source-to-sink da"
+  },
+  {
+   "arxiv_id": "2512.06846",
+   "system": "CKG-LLM",
+   "first": "retrieval_guide",
+   "second": "neurosymbolic_analyzer_loop",
+   "note": "Full-text (html, good quality). Contract Knowledge Graph built from Slither IR (AST+CFG+SSA dataflow+call/inheritance ed"
+  },
+  {
+   "arxiv_id": "2512.07533",
+   "system": "VulnLLM-R",
+   "first": "finetune_adapter",
+   "second": "agent_tool_use",
+   "note": "Full text; static call-graph paths seed context and the model (finetuned on agentic trajectories) can invoke a function-"
+  },
+  {
+   "arxiv_id": "2601.19239",
+   "system": "Li26",
+   "first": "agent_tool_use",
+   "second": "neurosymbolic_analyzer_loop",
+   "note": "Full text; empirical black-box comparison of 5 heterogeneous LLM tools (RepoAudit: agent/call-graph; KNighter: CSA-check"
+  },
+  {
+   "arxiv_id": "2603.13384",
+   "system": "VulnAgent-R2",
+   "first": "neurosymbolic_analyzer_loop",
+   "second": "agent_tool_use",
+   "note": "Full-text (HTML); role-specialized agents tool-read a heterogeneous repository graph (AST\u222aCFG\u222aDFG\u222aCALL\u222aIMP\u222aTEST\u222aHIST, bu"
+  },
+  {
+   "arxiv_id": "2605.01885",
+   "system": "QASecClaw",
+   "first": "prompt_serialization",
+   "second": "agent_tool_use",
+   "note": "Abstract-only; a Mission Orchestrator coordinates specialized agents (SAST filter, security validation, evidence correla"
+  },
+  {
+   "arxiv_id": "2605.09461",
+   "system": "VulTriage",
+   "first": "retrieval_guide",
+   "second": "prompt_serialization",
+   "note": "Full-text (html, good quality). Triple-path hybrid: verbalized AST/CFG/DFG (control path) + CWE-knowledge retrieval (kno"
+  }
+ ],
+ "evaluation": [
+  {
+   "arxiv_id": "2403.06838",
+   "system": "ACFix",
+   "first": "representation_only_ablation",
+   "second": "ablated_measured",
+   "note": "Abstract only; mined RBAC role-permission taxonomy (49 pairs from 344K contracts) retrieved and injected via CoT prompt;"
+  },
+  {
+   "arxiv_id": "2405.04994",
+   "system": "SPVR",
+   "first": "representation_only_ablation",
+   "second": "ablated_measured",
+   "note": "Abstract-only; rules extract syntax-tree info + CWE description into NL prompts for ChatGPT-4; compared against fine-tun"
+  },
+  {
+   "arxiv_id": "2406.11147",
+   "system": "Vul-RAG",
+   "first": "ablated_measured",
+   "second": "representation_only_ablation",
+   "note": "Full-text (html, good quality). Table 4 compares vanilla LLM vs code-level RAG vs knowledge-level RAG (Vul-RAG) across s"
+  },
+  {
+   "arxiv_id": "2409.18395",
+   "system": "Khan24",
+   "first": "representation_only_ablation",
+   "second": "ablated_measured",
+   "note": "Full-text (HTML); progressively injects textual vuln-disclosure/CWE-detail context into Copilot prompts (15%->63% repair"
+  },
+  {
+   "arxiv_id": "2501.18160",
+   "system": "RepoAudit",
+   "first": "representation_only_ablation",
+   "second": "ablated_measured",
+   "note": "Full text; agent traverses call graph and data-dependence graph via tree-sitter/static-analysis tool calls plus an LLM v"
+  },
+  {
+   "arxiv_id": "2503.03586",
+   "system": "JitVul",
+   "first": "representation_only_ablation",
+   "second": "ablated_measured",
+   "note": "Full-text (HTML); benchmarks Plain LLM (raw text) vs Dep-Aug LLM (retrieved callers/callees) vs ReAct Agent (get_callers"
+  },
+  {
+   "arxiv_id": "2504.16057",
+   "system": "MoCQ",
+   "first": "representation_only_ablation",
+   "second": "ablated_measured",
+   "note": "Full text (html): LLM generates CodeQL/Joern queries operating over a code property graph/CFG substrate; a symbolic vali"
+  },
+  {
+   "arxiv_id": "2505.19828",
+   "system": "SecVulEval",
+   "first": "not_evaluated",
+   "second": "ablated_measured",
+   "note": "Full text; benchmark of 25,440 functions with statement-level labels; a multi-agent (Normalization/Planning/Context/Dete"
+  },
+  {
+   "arxiv_id": "2506.10322",
+   "system": "LLM4PFA",
+   "first": "representation_only_ablation",
+   "second": "ablated_measured",
+   "note": "Full-text (HTML); CFG-derived branch conditions plus source-sink function call trace fed to an LLM agent that iterativel"
+  },
+  {
+   "arxiv_id": "2508.13092",
+   "system": "VerilogLAVD",
+   "first": "representation_only_ablation",
+   "second": "ablated_measured",
+   "note": "Full-text (ar5iv). Verilog Property Graph (VeriPG) fuses AST+CFG+DFG; LLM generates graph-traversal detection rules with"
+  },
+  {
+   "arxiv_id": "2509.16275",
+   "system": "SecureFixAgent",
+   "first": "ablated_measured",
+   "second": "representation_only_ablation",
+   "note": "Full text (ar5iv), moderate retrieval: Bandit static-analyzer report excerpts + code segment fed to LLM in an iterative "
+  },
+  {
+   "arxiv_id": "2512.07533",
+   "system": "VulnLLM-R",
+   "first": "representation_only_ablation",
+   "second": "ablated_measured",
+   "note": "Full text; static call-graph paths seed context and the model (finetuned on agentic trajectories) can invoke a function-"
+  },
+  {
+   "arxiv_id": "2603.13384",
+   "system": "VulnAgent-R2",
+   "first": "representation_only_ablation",
+   "second": "ablated_measured",
+   "note": "Full-text (HTML); role-specialized agents tool-read a heterogeneous repository graph (AST\u222aCFG\u222aDFG\u222aCALL\u222aIMP\u222aTEST\u222aHIST, bu"
+  },
+  {
+   "arxiv_id": "2603.27204",
+   "system": "MalSkills",
+   "first": "representation_only_ablation",
+   "second": "ablated_measured",
+   "note": "Full text (html): skill dependency graph (property graph of artifacts/security-sensitive-operations/operands/value-flow,"
+  },
+  {
+   "arxiv_id": "2604.17948",
+   "system": "RAVEN",
+   "first": "demonstrated",
+   "second": "ablated_measured",
+   "note": "Full-text (html, good quality). Despite title, only source code (NIST-SARD) is analyzed via 4-agent pipeline (Explorer/R"
+  },
+  {
+   "arxiv_id": "2605.17444",
+   "system": "MemRepair",
+   "first": "representation_only_ablation",
+   "second": "ablated_measured",
+   "note": "Full text; agent with view/search/Iter_grep(AST-based)/str_replace tools plus a 3-layer memory (History-Fix, Security-Pa"
+  },
+  {
+   "arxiv_id": "2607.29422",
+   "system": "AgenticRepair",
+   "first": "representation_only_ablation",
+   "second": "ablated_measured",
+   "note": "Abstract-only; three specialized subagents engineer co-primary contexts (cross-file dataflow/memory-op structure, runtim"
+  }
+ ]
+}

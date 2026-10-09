@@ -1,0 +1,90 @@
+[
+{
+"arxiv_id": "2401.15459",
+"title": "Multi-LLM Collaboration + Data-Centric Innovation = 2x Better Vulnerability Repair",
+"repr_primary": "hybrid",
+"integration": "finetune_adapter",
+"evaluation": "representation_only_ablation",
+"note": "Full text (ar5iv), good retrieval: VulMaster fuses raw code segments + AST node sequences + retrieved CWE example-fix pairs via Fusion-in-Decoder fine-tuning; Table 4 ablates w/o AST, w/o CWE knowledge, w/o entire function on same architecture."
+},
+{
+"arxiv_id": "2406.05892",
+"title": "Security Vulnerability Detection with Multitask Self-Instructed Fine-Tuning of Large Language Models",
+"repr_primary": "hybrid",
+"integration": "finetune_adapter",
+"evaluation": "representation_only_ablation",
+"note": "Full text (ar5iv), good retrieval: MSIVD LoRA-fine-tunes CodeLlama on code text while fusing GGNN embeddings of CFG-derived dataflow (DeepDFA); Table 4 compares LLM-only vs LLM+GNN on same fine-tuned backbone."
+},
+{
+"arxiv_id": "2411.06493",
+"title": "LProtector: An LLM-driven Vulnerability Detection System",
+"repr_primary": "retrieved_context",
+"integration": "retrieval_guide",
+"evaluation": "representation_only_ablation",
+"note": "Full text (ar5iv), good retrieval: RAG retrieves top-5 similar vulnerable code+CWE examples from a vector DB into GPT-4o's prompt; Table III ablates RAG and CoT independently/combined on same model."
+},
+{
+"arxiv_id": "2504.16877",
+"title": "Context-Enhanced Vulnerability Detection Based on Large Language Model",
+"repr_primary": "interproc_callgraph",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"note": "Full text (ar5iv), good retrieval: extracts 3-layer call-depth interprocedural context at 4 abstraction levels (branch/frequency/data-flow info), appended as text; Table 4 ablates w/o-API vs A1-A4 on same models (GPT-4o, DeepSeek-R1, CodeLLaMA)."
+},
+{
+"arxiv_id": "2506.17798",
+"title": "CognixShield: PoV-Guided Vulnerable API Usage Detection in Large Codebases via LLMs",
+"repr_primary": "hybrid",
+"integration": "agent_tool_use",
+"evaluation": "representation_only_ablation",
+"note": "Full text (ar5iv), good retrieval: combines AST-based semantic fragmentation, multi-agent RAG retrieving cross-file/interprocedural context, and structured PoV specs; Table 2 ablates w/o AST, w/o RAG, w/o PoV independently, same model."
+},
+{
+"arxiv_id": "2509.16275",
+"title": "SecureFixAgent: A Hybrid LLM Agent for Automated Python Static Vulnerability Repair",
+"repr_primary": "raw_text",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "representation_only_ablation",
+"note": "Full text (ar5iv), moderate retrieval: Bandit static-analyzer report excerpts + code segment fed to LLM in an iterative detect-repair-validate loop; Table III crosses LLM-only vs full loop with raw vs LoRA-fine-tuned model, isolating loop/context contribution."
+},
+{
+"arxiv_id": "2512.04106",
+"title": "Retrieval-Augmented Few-Shot Prompting Versus Fine-Tuning for Code Vulnerability Detection",
+"repr_primary": "retrieved_context",
+"integration": "retrieval_guide",
+"evaluation": "representation_only_ablation",
+"note": "Full text (ar5iv), good retrieval: same Gemini-1.5-Flash backbone and shot count compared with randomly-selected vs similarity-retrieved few-shot examples (10/20 shots), isolating retrieval as the sole varied factor."
+},
+{
+"arxiv_id": "2601.18844",
+"title": "Reducing False Positives in Static Bug Detection with LLMs: An Empirical Study in Industry",
+"repr_primary": "hybrid",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "ablated_measured",
+"note": "Full text (ar5iv), moderate retrieval: industrial empirical study comparing raw-code prompting vs extended caller/callee context (LLM4SA) vs static-analysis path-constraint + agentic reasoning (LLM4PFA) on 433 real Tencent alarms; no single-model representation-isolating ablation, only cross-technique/cross-LLM comparison."
+},
+{
+"arxiv_id": "2604.08417",
+"title": "Vulnerability Detection with Interprocedural Context in Multiple Languages: Assessing Effectiveness and Cost of Modern LLMs",
+"repr_primary": "interproc_callgraph",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"note": "Full text (ar5iv), good retrieval: AST-derived caller/callee source appended to prompts; same 4 LLMs tested code-only vs +callers vs +callees vs both across C/C++/Python, finding added context often degrades accuracy."
+},
+{
+"arxiv_id": "2605.04251",
+"title": "Root-Cause-Driven Automated Vulnerability Repair",
+"repr_primary": "hybrid",
+"integration": "agent_tool_use",
+"evaluation": "ablated_measured",
+"note": "Full text (ar5iv), good retrieval: Kumushi gives an agentic patch LLM tool access plus evidence-ranked cross-file Functions-of-Interest (from dynamic traces + static dataflow) and structured crash/sanitizer reports; quantified vs PatchAgent/LoopRepair/Codex plus two-tier expert assessment, but no ablation isolating the ranking/representation itself."
+},
+{
+"arxiv_id": "2607.01138",
+"title": "Antaeus: Hunting Repository-Level Logic Vulnerabilities via Context-Grounded LLM Reasoning",
+"repr_primary": "hybrid",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"note": "Full text (ar5iv), good retrieval: combines local call-context (direct callees via Tree-sitter) with a once-per-repo structured trust-boundary/security summary, concatenated into prompts; Table IV ablates removing local vs repo context independently on same models (Opus, GPT)."
+}
+]

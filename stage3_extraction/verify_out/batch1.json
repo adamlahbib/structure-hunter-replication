@@ -1,0 +1,189 @@
+[
+{
+"arxiv_id": "2401.15459",
+"numbers": [
+{"metric": "Exact Match (EM)", "value": "20.0% (up from 10.2% best prior baseline)", "where": "Abstract / main results table", "verdict": "CONFIRMED", "note": "Abstract confirms EM 10.2%->20.0%."},
+{"metric": "EM ablation w/o AST", "value": "19.0% (-1.0pp vs full 20.0%)", "where": "Ablation study (Sec 6)", "verdict": "CONFIRMED", "note": "Value correct (Table 4: full 20.0%, w/o AST 19.0%) but location is wrong: this is in Section 5.2 (RQ2), not Section 6. Section 6 is the Discussion section (6.1 = case study, 6.5 = threats to validity, incl. the perfect-fault-localization assumption)."},
+{"metric": "BLEU", "value": "29.3% (up from 21.3%)", "where": "Abstract / main results", "verdict": "CONFIRMED", "note": "Matches abstract exactly."},
+{"metric": "structure_gain", "value": "Removing AST drops EM 20.0%->19.0% (-1.0pp); removing CWE knowledge drops it to 18.9% (-1.1pp); removing full-function input drops it to 18.8% (-1.2pp), same adapted-CodeT5 backbone/training budget", "where": "Table 4, Section 5.2 (RQ2)", "verdict": "CONFIRMED", "note": "All three deltas verified against Table 4 exactly."}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "Location citation error: the AST ablation is in Sec 5.2/Table 4, not 'Sec 6' as the record states (Sec 6 is Discussion, where the qualitative case study 6.1 and the fault-localization assumption 6.5 actually live). All numeric values are correct; stop_detail is accurate."
+},
+{
+"arxiv_id": "2406.05892",
+"numbers": [
+{"metric": "F1 on BigVul (vs best baseline LineVul+DeepDFA)", "value": "0.92 vs 0.88", "where": "Table 3, Section 5.1", "verdict": "CONFIRMED", "note": "Table 3: MSIVD 0.92 vs LineVul+DeepDFA 0.88."},
+{"metric": "F1 on PreciseBugs (post-cutoff, unseen) vs LineVul", "value": "0.48 vs 0.31", "where": "Table 3, Section 5.1 RQ2", "verdict": "CONFIRMED", "note": "IMPORTANT CAVEAT: in Table 3 the 0.48 is explicitly attributed to 'MSIVD -' (i.e. WITHOUT the GNN/dataflow structural component), not full MSIVD. The paper states DeepDFA's GNN layer was built specifically for BigVul's single-function structure and was NOT applied to PreciseBugs, so only the ablated (no-structure) variant was evaluated there. The number is correct, but citing it as evidence of the structural representation's generalization benefit is misleading -- it actually shows the LLM-only variant's number."},
+{"metric": "GNN-embedding ablation on BigVul (MSIVD- vs MSIVD)", "value": "F1 0.90 -> 0.92", "where": "Table 4, RQ3", "verdict": "CONFIRMED", "note": "Table 4: Multi-round SIFT (no GNN) 0.90 -> Multi-round SIFT+GNN 0.92."},
+{"metric": "structure_gain", "value": "GGNN embeddings raise F1 0.90->0.92 on BigVul, same CodeLlama-13B backbone/training budget (Table 4)", "where": "Table 4", "verdict": "CONFIRMED", "note": "Matches Table 4 exactly."}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "Most important finding: the PreciseBugs 0.48 figure belongs to 'MSIVD -' (without GNN/structure), per the paper's own admission that the GNN layer could not be transferred to PreciseBugs -- so this generalization number does NOT demonstrate the structural representation's benefit, contrary to how it could be read in context. The true representation-only ablation (0.90->0.92) is on BigVul only (Table 4) and is correctly verified."
+},
+{
+"arxiv_id": "2411.06493",
+"numbers": [
+{"metric": "F1 (LProtector vs baselines)", "value": "33.49% (LProtector) vs 19.15% (VulDeePecker) vs 22.87% (Reveal)", "where": "Table II", "verdict": "CONFIRMED", "note": "Exact match."},
+{"metric": "ablation F1 (RAG+CoT vs No RAG)", "value": "33.49% vs 23.92%", "where": "Table III", "verdict": "CONFIRMED", "note": "Exact match; Table III also has a 'No CoT' row (26.51%) not cited in the record but not needed."},
+{"metric": "ablation F1 (No RAG & No CoT)", "value": "18.61%", "where": "Table III", "verdict": "CONFIRMED", "note": "Exact match."},
+{"metric": "structure_gain", "value": "Removing RAG (holding GPT-4o + CoT fixed) drops F1 33.49%->23.92%, a 9.57pp loss", "where": "Table III", "verdict": "CONFIRMED", "note": "33.49-23.92=9.57, arithmetic correct."}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "All numbers confirmed exactly against Tables II/III. Retrieval mechanism description (OpenAI embeddings, ChromaDB, top-5, 500-instance store, GPT-4o exemplar selection) matches the paper. No issues found."
+},
+{
+"arxiv_id": "2504.16877",
+"numbers": [
+{"metric": "F1, DeepSeek-R1+CoT: API-abstraction level A3 vs w/o-API context", "value": "69.09% vs 60.19% (+8.9pp)", "where": "Table 4, Section 5.1.1", "verdict": "WRONG", "correct_value_if_wrong": "69.09% vs 60.89% (+8.20pp)", "note": "Table 4 (DeepSeek-R1+CoT) actually reads: w/o-API F1=60.89%, A3 F1=69.09%. The record's 60.19% is wrong (likely digit transposition of 60.89%), and the stated +8.9pp gap is consequently wrong too -- correct gap is +8.20pp."},
+{"metric": "F1 vs best context-sampling baseline (API-guided sampling)", "value": "69.09% vs 66.18% (+2.91pp)", "where": "Table 5, Section 5.4", "verdict": "CONFIRMED", "note": "Exact match."},
+{"metric": "CodeLLaMA+BP F1 vs best baseline (hierarchy sampling, HS-C)", "value": "67.48% vs 58.14% (+9.34pp)", "where": "Section 5.4 / Table 5", "verdict": "CONFIRMED", "note": "Exact match, 67.48-58.14=9.34."},
+{"metric": "structure_gain", "value": "API-abstraction context (A3) raises F1 from 60.19% (w/o-API) to 69.09% on DeepSeek-R1+CoT (Table 4, Sec 5.1.1)", "where": "Table 4, Sec 5.1.1", "verdict": "WRONG", "correct_value_if_wrong": "60.89% (not 60.19%); true gain is +8.20pp not +8.9pp", "note": "Repeats the same digit error as the first key_number."}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "Most important finding: the w/o-API-context F1 baseline is misquoted as 60.19% in two places (key_numbers and structure_gain); the paper's Table 4 value is 60.89%, making the true gain +8.20pp rather than the stated +8.9pp. All other numbers (Table 5 comparisons) are correct."
+},
+{
+"arxiv_id": "2506.17798",
+"numbers": [
+{"metric": "F1 (full vs ablations, same 57-project set)", "value": "89% full; 64% w/o AST fragmentation; 60% w/o cross-file RAG; 77% w/o PoV guidance", "where": "Ablation table", "verdict": "CONFIRMED", "note": "Exact match to ablation Table 2."},
+{"metric": "Precision/Recall/Accuracy (full)", "value": "84% / 95% / 84%", "where": "Abstract / results", "verdict": "CONFIRMED", "note": "Matches abstract exactly."},
+{"metric": "Cross-file reliance", "value": "47/57 projects required cross-function/cross-file retrieved fragments", "where": "Results section", "verdict": "CONFIRMED", "note": "Exact quote match: 47 projects needed cross-function/cross-file fragments, 10 were single-function-sufficient."},
+{"metric": "structure_gain", "value": "w/o cross-file RAG drops F1 89%->60% (-29pp); w/o AST fragmentation drops to 64% (-25pp); w/o PoV drops to 77% (-12pp)", "where": "Ablation table", "verdict": "CONFIRMED", "note": "Arithmetic and values all correct (89-60=29, 89-64=25, 89-77=12)."}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "All numbers confirmed exactly. Stop_detail (Reflector terminates on sufficient inter-procedural coverage OR no new fragments retrieved) matches Algorithm 1's description verbatim. No issues found."
+},
+{
+"arxiv_id": "2509.16275",
+"numbers": [
+{"metric": "fix accuracy, fine-tuned SecureFixAgent", "value": "87.83%", "where": "Table III", "verdict": "CONFIRMED", "note": "Exact match."},
+{"metric": "false positive rate", "value": "8.11%", "where": "Table III", "verdict": "CONFIRMED", "note": "Exact match."},
+{"metric": "gains vs baselines (abstract)", "value": "+13.51pp fix accuracy vs pre-trained LLMs; -10.8pp FP vs static analysis alone; -5.46pp FP vs pre-trained LLMs", "where": "Abstract", "verdict": "CONFIRMED", "note": "Matches abstract exactly."},
+{"metric": "structure_gain", "value": "Iterative loop vs single-pass LLM: fix accuracy rises 79.72% (LLM-only, iteration 1) -> 87.83% (SecureFixAgent, iteration 3)", "where": "Fig. 2, Table III", "verdict": "CONFIRMED", "note": "Confirmed 79.72% LLM-only converging at iteration 1, 87.83% SecureFixAgent converging at iteration 3."}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "All numbers confirmed exactly. evaluation=ablated_measured is correctly chosen (not representation_only_ablation) since the gain comes from an iterative multi-round loop with growing interaction/context budget vs a single pass, not a same-budget representation swap."
+},
+{
+"arxiv_id": "2512.04106",
+"numbers": [
+{"metric": "F1 / partial-match, 20-shot retrieval-augmented", "value": "74.05% / 83.90%", "where": "Table I", "verdict": "CONFIRMED", "note": "Exact match."},
+{"metric": "F1 / partial-match, zero-shot baseline", "value": "36.35% / 20.30%", "where": "Table I", "verdict": "CONFIRMED", "note": "Exact match, same Gemini-1.5-Flash backbone as the retrieval arm."},
+{"metric": "fine-tuned comparators", "value": "Fine-tuned Gemini-1.5-Flash 59.31% F1 vs Fine-tuned CodeBERT 91.22% F1", "where": "Table I / results", "verdict": "CONFIRMED", "note": "Exact match."},
+{"metric": "structure_gain", "value": "Retrieval-augmented 20-shot raises F1 36.35%(zero-shot)->74.05%, same Gemini-1.5-Flash model, retrieval is sole varied factor", "where": "Table I", "verdict": "CONFIRMED", "note": "Numbers correct, but see note on the 'sole varied factor' framing."}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "The cited structure_gain comparison (zero-shot vs 20-shot-retrieval) is confounded: shot count goes 0->20, not just retrieval on/off, so 'retrieval is the sole varied factor' overstates isolation for that specific pair. However, evaluation=representation_only_ablation is still fair because the paper DOES contain a clean same-shot-count ablation elsewhere (10-shot retrieval 71.43% F1 vs 10-shot random 65.69% F1) that properly isolates the retrieval/representation effect -- the extractor just cited the wrong (confounded) pair as the example."
+},
+{
+"arxiv_id": "2601.18844",
+"numbers": [
+{"metric": "False positive rate among industrial alerts", "value": "76% (328/433 FP)", "where": "RQ1", "verdict": "CONFIRMED", "note": "328/433=75.75%, rounds to 76%; matches 328 FP / 105 TP breakdown in abstract."},
+{"metric": "Best hybrid method (LLM4PFA, GPT-4o) accuracy/precision/recall", "value": "0.93 / 0.83-0.93 / 0.75-0.88; eliminates 94-98% of FPs", "where": "RQ2, Table 2", "verdict": "CONFIRMED", "note": "Table 2 across 4 backbones (GPT-4o, Claude-Opus-4, Qwen-3-Coder, DeepSeek-R1): precision range 0.83-0.93 and recall range 0.75-0.88 match exactly; accuracy is 0.93-0.94 across backbones (0.93 given is representative, minor rounding). 94-98% FP elimination matches abstract."},
+{"metric": "Cost per alarm", "value": "2.1-109.5 sec / $0.0011-$0.12", "where": "RQ3, Table 4", "verdict": "CONFIRMED", "note": "Exact match to abstract/Table 4."},
+{"metric": "structure_gain", "value": "LLM4PFA vs Basic Prompt, same GPT-4o backbone: accuracy 0.50->0.93 (+0.43), FPR_Recall 0.45->0.98 (+0.53)", "where": "Table 2", "verdict": "CONFIRMED", "note": "Table 2: Basic Prompt GPT-4o accuracy=0.50, FPR_R=0.45; LLM4PFA GPT-4o accuracy=0.93, FPR_R=0.98. Deltas correct."}
+],
+"repr_primary_agree": true,
+"repr_primary_suggested": null,
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "Important nuance confirmed: LLM4PFA is an EXTERNAL prior tool (Du et al. 2025) being re-benchmarked by these authors, while 'Basic Prompt' is the authors' own control condition -- so despite same-GPT-4o-backbone framing, this is comparing two different systems/pipelines, not a pure representation swap within one architecture. evaluation=ablated_measured (not representation_only_ablation) is therefore the correct call, matching the strict rule given."
+},
+{
+"arxiv_id": "2604.08417",
+"numbers": [
+{"metric": "GPT-4.1 Mini (C), Code-Only vs Code+Callees", "value": "Accuracy 0.7556 -> 0.5098, F1 0.8608 -> 0.6753", "where": "Table 6", "verdict": "CONFIRMED", "note": "Exact match."},
+{"metric": "GPT-5 Mini (C), Code-Only vs Code+Callers", "value": "Accuracy 0.9052 -> 0.7946, F1 0.9502 -> 0.8855", "where": "Table 6", "verdict": "CONFIRMED", "note": "Exact match."},
+{"metric": "Claude Haiku 4.5 (C), across context conditions", "value": "Accuracy ~0.979-0.980, F1 ~0.989-0.990 (negligible change)", "where": "Table 6", "verdict": "CONFIRMED", "note": "Exact values: CO 0.9803/0.9901, CC 0.9804/0.9901, CK 0.9788/0.9893 - all within stated ranges."},
+{"metric": "structure_gain", "value": "Adding interprocedural context degraded F1 for most models (e.g. GPT-4.1 Mini 0.8608->0.6753); Claude Haiku 4.5 robust; tokens +102% for callees", "where": "Table 6 / token usage discussion", "verdict": "CONFIRMED", "note": "Token increase quote verified verbatim: CO=2367 tokens, CC=4785 (+102%), CK=4586 (+94%) for C."}
+],
+"repr_primary_agree": false,
+"repr_primary_suggested": "interproc_callgraph",
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "repr_primary disagreement: the paper's stated 'primary independent variable' is explicitly the interprocedural context block (which functions to include, selected via AST-derived caller/callee relationships) -- this is best tagged interproc_callgraph, not raw_text, even though the content inserted for each included function is plain source code. All numeric values confirmed exactly against Table 6."
+},
+{
+"arxiv_id": "2605.04251",
+"numbers": [
+{"metric": "Tier-1 plausible patch rate", "value": "Kumushi 85.4% vs Codex 86.0%, PatchAgent 71.9%, LoopRepair 2.2%", "where": "Section 4, Tier 1 results", "verdict": "CONFIRMED", "note": "Exact match (Table 3): 152/178, 153/178, 128/178, 4/178 respectively."},
+{"metric": "Root-cause fix rate (human assessment)", "value": "Kumushi 84.9% vs Codex 77.8%", "where": "Table 4", "verdict": "CONFIRMED", "note": "Exact match: 129/152 vs 119/153."},
+{"metric": "Human win-rate vs Codex", "value": "Kumushi preferred 47% vs Codex 27% (26% tied), sign test p=0.0065", "where": "Section 4.5", "verdict": "CONFIRMED", "note": "Exact match (Figure 3): 68/144=47%, 39/144=27%, 37/144=26% tied, p=0.0065."},
+{"metric": "structure_gain", "value": "Evidence-weighted FoI context yields comparable plausibility to Codex (85.4% vs 86.0%) but higher root-cause-fix rate (84.9% vs 77.8%) and human preference (47% vs 27%)", "where": "Section 4, Table 4", "verdict": "CONFIRMED", "note": "Restates already-verified numbers; consistent."}
+],
+"repr_primary_agree": false,
+"repr_primary_suggested": "hybrid",
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "repr_primary disagreement: the context construction genuinely combines three distinct modalities -- AFL++ dynamic execution traces, CodeQL static intraprocedural dataflow, and bidirectional call-graph BFS -- fused via an evidence-weighted/noisy-OR score into ranked Functions of Interest. This multi-modal fusion is a textbook case for 'hybrid' rather than a single 'slice' tag (dynamic fuzzing traces in particular are not slicing). All numeric values confirmed exactly."
+},
+{
+"arxiv_id": "2607.01138",
+"numbers": [
+{"metric": "True positives / FPs (Claude Opus 4.7)", "value": "15/28 TP, 1,345 FP across 4,859 functions", "where": "Table II", "verdict": "CONFIRMED", "note": "Exact match."},
+{"metric": "Ablation recall, full vs -Local vs -Repo", "value": "Claude: 15 vs 9 vs 9; GPT: 12 vs 8 vs 7", "where": "Table IV", "verdict": "CONFIRMED", "note": "Exact match (out of 28 ground-truth vulnerabilities)."},
+{"metric": "FP reduction from comparative validation", "value": "1,682 -> 1,345 (20% reduction), no TP loss", "where": "Table V", "verdict": "CONFIRMED", "note": "Exact match; 15 TPs retained, none lost."},
+{"metric": "structure_gain", "value": "Removing either context source roughly halves TP detections (Claude 15->9/9; GPT 12->8/7) at fixed backbone", "where": "Table IV", "verdict": "CONFIRMED", "note": "Matches Table IV exactly."}
+],
+"repr_primary_agree": false,
+"repr_primary_suggested": "hybrid",
+"integration_agree": true,
+"integration_suggested": null,
+"evaluation_agree": true,
+"evaluation_suggested": null,
+"stop_detail_fair": true,
+"note": "repr_primary disagreement: 'retrieved_context' implies similarity-search/RAG retrieval, but Antaeus's context is deterministically constructed -- Tree-sitter depth-one callee extraction (interproc_callgraph) plus a once-per-repo narrative context bundle (nl_structured), with nothing retrieved via embedding search. Given both components are load-bearing (ablating either roughly halves TPs, Table IV), 'hybrid' fits better than either single tag or 'retrieved_context'. All numeric values confirmed exactly."
+}
+]

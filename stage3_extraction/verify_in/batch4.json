@@ -1,0 +1,294 @@
+[
+{
+"arxiv_id": "2403.19096",
+"title": "SCALE: Constructing Structured Natural Language Comment Trees for Software Vulnerability Detection",
+"system": "SCALE",
+"key_numbers": [
+{
+"metric": "F1 on Reveal",
+"value": "62.85% (SCALE) vs 56.04% best baseline (UniXcoder; CodeBERT 49.10% is the worst, not best, baseline)",
+"where": "Table 3"
+},
+{
+"metric": "F1 on FFMPeg+Qemu",
+"value": "65.11% (SCALE) vs 63.24% (CodeT5)",
+"where": "Table 3"
+},
+{
+"metric": "CodeBERT F1 gain from SCT-enhanced representation",
+"value": "+10.87% on FFMPeg+Qemu",
+"where": "Table 4, RQ2"
+}
+],
+"repr_primary": "hybrid",
+"integration": "finetune_adapter",
+"evaluation": "representation_only_ablation",
+"structure_gain": "SCALE (AST + LLM-generated comment tree) improves F1 by 1.17-13.47 points over best pre-trained/LLM baseline across three datasets (Table 3); RQ4 ablation shows removing SCT-Enhanced Representation module degrades performance.",
+"stop_detail": "ChatGPT-generated per-statement comments are inserted as sibling/parent nodes into a Tree-sitter AST via row-position matching, then 11 syntax-category rules replace AST node values with comment text to build the structured comment tree (Section 3.1-3.2)."
+},
+{
+"arxiv_id": "2409.09661",
+"title": "ContractTinker: LLM-Empowered Vulnerability Repair for Real-World Smart Contracts",
+"system": "ContractTinker",
+"key_numbers": [
+{
+"metric": "valid patches fixing vulnerability",
+"value": "23/48 (48%)",
+"where": "\u00a74.2.2 evaluation"
+},
+{
+"metric": "top-3 strategy success rate",
+"value": "91.6%",
+"where": "\u00a74"
+},
+{
+"metric": "single-strategy (GPT-3.5) success rate",
+"value": "70.4%",
+"where": "\u00a74"
+}
+],
+"repr_primary": "hybrid",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "demonstrated",
+"structure_gain": "none reported (no raw-code-only baseline or no-CDG condition tested)",
+"stop_detail": "Slither-derived Contextual Dependency Graph prunes to vulnerability-relevant elements before Chain-of-Thought prompting; multi-agent debate with an independent LLM validator plus a compilation check gates accepted patches (\u00a72.2-\u00a72.4, \u00a74.2.2)"
+},
+{
+"arxiv_id": "2502.00064",
+"title": "Evaluating Large Language Models in Vulnerability Detection Under Variable Context Windows",
+"system": "Lin25",
+"key_numbers": [
+{
+"metric": "benchmark scale",
+"value": "74 vulnerabilities / 140 Java files / 25 CWE types",
+"where": "Dataset description"
+},
+{
+"metric": "models robust to context-length (both null hypotheses accepted)",
+"value": "GPT-4; Mistral-7B and Mixtral-8x7B at 32,768-token context window",
+"where": "Results / chi-square tests"
+}
+],
+"repr_primary": "raw_text",
+"integration": "prompt_serialization",
+"evaluation": "ablated_measured",
+"structure_gain": "none reported (raw-text only study; no structured representation compared, only context-window truncation of raw text)",
+"stop_detail": "No explicit grounding mechanism; all files are known-vulnerable by construction, and responses are manually classified Correct/Incorrect/Irrelevant with no inter-annotator agreement reported"
+},
+{
+"arxiv_id": "2505.22010",
+"title": "VulBinLLM: LLM-powered Vulnerability Detection for Stripped Binaries",
+"system": "VulBinLLM",
+"key_numbers": [
+{
+"metric": "Accuracy CWE-134",
+"value": "99.74% (VulBinLLM) vs 93.88% (LATTE)",
+"where": "Table 3"
+},
+{
+"metric": "F1 CWE-190",
+"value": "98.99% (VulBinLLM) vs 62.05% (LATTE)",
+"where": "Table 3"
+},
+{
+"metric": "Overall accuracy gain vs LATTE",
+"value": "~10% increase",
+"where": "Results/abstract"
+}
+],
+"repr_primary": "hybrid",
+"integration": "agent_tool_use",
+"evaluation": "ablated_measured",
+"structure_gain": "Decompilation optimization (vulnerability-annotated, simplified, renamed pseudocode) plus memory-management agent yields ~10% average accuracy gain and up to ~37-point F1 gain (CWE-190) over LATTE baseline on Juliet binaries (Table 3); no controlled representation-only ablation is reported.",
+"stop_detail": "GPT-4o annotates decompiled Ghidra pseudocode with vulnerability-flagging comments, simplifies control structures, and renames variables; a memory-management agent queues functions and stores/retrieves per-function summarized analysis in a SQL archival store to work around context-window limits (VulBinLLM architecture section, Figure 3)."
+},
+{
+"arxiv_id": "2508.13092",
+"title": "VerilogLAVD: LLM-Aided Rule Generation for Vulnerability Detection in Verilog",
+"system": "VerilogLAVD",
+"key_numbers": [
+{
+"metric": "F1 (GPT-4o + VerilogLAVD)",
+"value": "0.57 vs 0.25 (LLM+Knowledge baseline)",
+"where": "Table 2"
+},
+{
+"metric": "F1 (DeepSeek-V3 + VerilogLAVD)",
+"value": "0.50 vs 0.34 (LLM+Knowledge baseline)",
+"where": "Table 2"
+},
+{
+"metric": "Illegal rule-usage rate with validation FSM",
+"value": "40.87% -> 10.10% (87.10% reduction)",
+"where": "Table 3"
+}
+],
+"repr_primary": "cpg",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "representation_only_ablation",
+"structure_gain": "VeriPG graph (AST + control/data dependency) plus LLM-generated traversal rules improves F1 over LLM+external-knowledge baseline by 0.32 (GPT-4o: 0.57 vs 0.25) and 0.16 (DeepSeek-V3: 0.50 vs 0.34), same backbone LLMs held fixed (Table 2).",
+"stop_detail": "LLM performs chain-of-thought extraction of vulnerability conditions from CWE text into JSON-structured rules (functions/filters/paths), symbolically executed via traversal over the VeriPG property graph, with a validation FSM checking primitive usage during rule generation (rule-generation and Table 3 sections)."
+},
+{
+"arxiv_id": "2510.20739",
+"title": "Learning to Triage Vulnerability Reports from Program Analysis: An Empirical Study in Node.js",
+"system": "Ni25",
+"key_numbers": [
+{
+"metric": "best LLM (full fine-tune) F1",
+"value": "0.915",
+"where": "Results table"
+},
+{
+"metric": "GNN F1",
+"value": "0.886",
+"where": "Results table"
+},
+{
+"metric": "LLM+GNN hybrid F1",
+"value": "0.902",
+"where": "Results table"
+}
+],
+"repr_primary": "raw_text",
+"integration": "finetune_adapter",
+"evaluation": "ablated_measured",
+"structure_gain": "The text-only LLM (raw code snippet + nearby data-flow context, 0.915 F1) outperforms the graph-only GNN (0.886 F1) and the concatenated LLM+GNN hybrid (0.902 F1); adding graph structure does not improve over the text representation alone here",
+"stop_detail": "No cross-modal grounding; the hybrid model concatenates independently-learned LLM text embeddings and GNN provenance-graph embeddings with end-to-end backprop, no attention/alignment mechanism (\u00a73.4)"
+},
+{
+"arxiv_id": "2512.16538",
+"title": "A Systematic Study of Code Obfuscation Against LLM-based Vulnerability Detection",
+"system": "Li25",
+"key_numbers": [
+{
+"metric": "virtualization-obfuscation attack success rate (downgrade), C/C++ datasets",
+"value": "~80%",
+"where": "Finding #2 / Section 4.2.1"
+},
+{
+"metric": "mixed-programming-language obfuscation attack success rate",
+"value": "~75%",
+"where": "Finding #2"
+},
+{
+"metric": "detection success-rate gap, existence-only vs. type+location scoring criterion",
+"value": "~40% average increase under existence-only vs. type/location criterion",
+"where": "Section 4.2.3 (RQ3), cf. Table 6 and Table 13 (appendix)"
+}
+],
+"repr_primary": "raw_text",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"structure_gain": "Central ablation compares raw code text vs. its obfuscated (layout/data-flow/control-flow-transformed) counterpart, same LLM/prompt: virtualization obfuscation degrades detection with up to ~80% attack success rate on C/C++ (Finding #2); conversely some layout obfuscations (e.g., L1) 'upgrade' detection by removing misleading surface cues, e.g. QWEN-14B on PrimeVul jumps from 0.39 to 0.80 success after L1 (Section 4.2.3).",
+"stop_detail": "No external grounding/retrieval mechanism is used; detection is single-turn prompting of raw (possibly obfuscated) source code, scored on a 1-4 rubric checking existence, type, and location match against ground truth (Section 4.1 Evaluation Metrics)."
+},
+{
+"arxiv_id": "2602.06751",
+"title": "Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vulnerability Detection",
+"system": "CPRVul",
+"key_numbers": [
+{
+"metric": "PrimeVul accuracy, function-only vs full CPRVul",
+"value": "56.65% -> 67.78% (+11.13pp)",
+"where": "Tables 1 and 8"
+},
+{
+"metric": "Raw-context degradation (UniXcoder, PrimeVul)",
+"value": "56.65% -> 54.22% when raw unstructured context appended",
+"where": "Table 1"
+},
+{
+"metric": "Reasoning-phase (Phase II) contribution",
+"value": "-15.24pp accuracy when removed",
+"where": "Ablation, Table 8"
+}
+],
+"repr_primary": "cpg",
+"integration": "finetune_adapter",
+"evaluation": "ablated_measured",
+"structure_gain": "Reported +11.13pp (56.65%->67.78%) compares UniXcoder (encoder classifier) vs fine-tuned Qwen2.5-32B \u2014 different architectures, so the gain is NOT representation-isolated; fine-tuning-budget equality is unsubstantiated.",
+"stop_detail": "Model selection uses best checkpoint by validation-set performance; structured reasoning grounds the final label in explicit 'observation / security_reasoning / impact' JSON fields generated before the verdict (Phase II reasoning description)"
+},
+{
+"arxiv_id": "2604.27714",
+"title": "How Code Representation Shapes False-Positive Dynamics in Cross-Language LLM Vulnerability Detection",
+"system": "Chen26",
+"key_numbers": [
+{
+"metric": "FPR escalation with text fine-tuning (Qwen3-8B, OWASP Java)",
+"value": "0.763 zero-shot -> 0.866 pilot -> 1.000 full-scale, while F1 stays 0.637-0.688",
+"where": "Results section"
+},
+{
+"metric": "FPR reduction switching text-trained model's input to AST, no retraining (Qwen3-8B)",
+"value": "0.866 -> 0.583 (Delta -0.282), F1 0.688 -> 0.637",
+"where": "Cross-representation probe results"
+},
+{
+"metric": "Per-CWE heterogeneity (CWE-330)",
+"value": "FPR reduction of Delta=-0.527 under text->AST switch",
+"where": "Per-CWE analysis"
+}
+],
+"repr_primary": "raw_text",
+"integration": "finetune_adapter",
+"evaluation": "representation_only_ablation",
+"structure_gain": "Switching a text-fine-tuned model's inference-time input from raw text to pruned AST (no retraining) cuts FPR by 0.282-0.527 depending on CWE, with only a modest F1 cost (e.g. 0.688->0.637 for Qwen3-8B), same model weights and training budget -- a pure representation-only manipulation",
+"stop_detail": "No grounding/stop mechanism reported; this is an empirical characterization study without a deployable technique or explicit stopping criterion"
+},
+{
+"arxiv_id": "2606.04739",
+"title": "Revisiting Vul-RAG: Reproducibility and Replicability of RAG-based Vulnerability Detection with Open-Weight Models",
+"system": "Vul-RAG",
+"key_numbers": [
+{
+"metric": "pairwise accuracy, Qwen2.5-Coder-32B (reproduction vs original)",
+"value": "identical pairwise accuracy; balanced recall/precision differ by <=2pp",
+"where": "RQ1, Table 3"
+},
+{
+"metric": "pairwise accuracy, DeepSeek-Coder-V2 (reproduction vs original)",
+"value": "0.30 -> 0.22 (-8pp); 21/586 pairs failed (CUDA OOM)",
+"where": "RQ1, Section 5"
+},
+{
+"metric": "performance plateau across all evaluated open-weight models",
+"value": "~0.30 pairwise accuracy (best reasoning model 0.29)",
+"where": "RQ4, Tables 3 and 5, Section 5"
+}
+],
+"repr_primary": "retrieved_context",
+"integration": "retrieval_guide",
+"evaluation": "ablated_measured",
+"structure_gain": "none reported -- the RAG knowledge-base/retrieval representation is held fixed (reused from the original Vul-RAG) across all comparisons; gains/losses are attributed to model family, scale, and reasoning capability, not to representation variation.",
+"stop_detail": "Vul-RAG retrieves top-n knowledge-base entries (functional semantics, vulnerability causes, fixing solutions) via BM25 plus re-ranking keyed on LLM-extracted code semantics, then has the LLM sequentially reason over each retrieved item before a final verdict (Section 3, Figure 1)."
+},
+{
+"arxiv_id": "2607.21983",
+"title": "Ethereum NFT Smart Contracts: Knowledge-Guided Vulnerability Detection with LLM and Code Slicing",
+"system": "Yang26",
+"key_numbers": [
+{
+"metric": "positive-label rate, slices+knowledge",
+"value": "97.1% (437/450)",
+"where": "Table 4, Abstract, Section 5.4"
+},
+{
+"metric": "positive-label rate, slices-knowledge",
+"value": "87.11% (392/450)",
+"where": "Table 4, Section 5.4"
+},
+{
+"metric": "positive-label rate, complete contracts-knowledge",
+"value": "73.78% (332/450)",
+"where": "Table 4, Section 5.4"
+}
+],
+"repr_primary": "slice",
+"integration": "prompt_serialization",
+"evaluation": "ablated_measured",
+"structure_gain": "+13.33pp / +10.0pp deltas correct, but same-model/config constancy is not substantiated (settings 'not recorded') and complete-contract inputs are far longer than slices \u2014 unequal context budget.",
+"stop_detail": "A structure-aware context-window algorithm regex-locates candidate statements, expands to a syntactically balanced function-scoped slice, and embeds an ERC-721-specific knowledge base plus a closed label set and explicit 'return None if insufficient evidence' rejection rule directly in the prompt (Section 4.2-4.3, Algorithm 1, Prompt 1)."
+}
+]

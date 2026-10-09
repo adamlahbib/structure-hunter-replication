@@ -1,0 +1,98 @@
+[
+{
+"arxiv_id": "2310.08275",
+"title": "Harnessing the Power of LLM to Support Binary Taint Analysis",
+"repr_primary": "taint_path",
+"integration": "prompt_serialization",
+"evaluation": "ablated_measured",
+"note": "Full text (html): static decompilation/call-graph analysis extracts 'dangerous flow' taint chains once, serialized as a multi-turn prompt sequence per function in the chain; compared vs Emtaint/Arbiter/Karonte baselines, no representation-isolated ablation."
+},
+{
+"arxiv_id": "2405.17238",
+"title": "IRIS: LLM-Assisted Static Analysis for Detecting Security Vulnerabilities",
+"repr_primary": "taint_path",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "ablated_measured",
+"note": "Full text (html): LLM infers source/sink specs consumed by CodeQL's inter-procedural dataflow engine, then LLM filters resulting candidate taint paths (loop); measured vs CodeQL-alone baseline (27->55 vulns detected), component ablation on specs but no representation-type isolation."
+},
+{
+"arxiv_id": "2411.03079",
+"title": "Utilizing Precise and Complete Code Context to Guide LLM in Automatic False Positive Mitigation",
+"repr_primary": "slice",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"note": "Full text (html): eCPG-derived precise code slice serialized into structured LLM prompt; Table III ablates same LLM/task with slice vs full-file text (no-slice) vs single-file-only (no-FARF) context arms, isolating the representation."
+},
+{
+"arxiv_id": "2504.16057",
+"title": "Neuro-symbolic Static Analysis with LLM-generated Vulnerability Patterns",
+"repr_primary": "cpg",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "ablated_measured",
+"note": "Full text (html): LLM generates CodeQL/Joern queries operating over a code property graph/CFG substrate; a symbolic validator executes queries and returns trace-level state feedback iteratively; measured vs IRIS/KNighter/pure-LLM baselines plus a DSL-completeness ablation, not a code-representation-only ablation."
+},
+{
+"arxiv_id": "2506.11561",
+"title": "Identifying Helpful Context for LLM-based Vulnerability Repair: A Preliminary Study",
+"repr_primary": "hybrid",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"note": "Full text (alphaxiv mirror, arxiv.org/html 404'd): 9 prompt arms mix CWE/CVE text, manually-extracted code snippets/headers/imports, evaluated on same GPT-4o/GPT-4 over 42 vulnerabilities x3 runs, Vul4J-validated -- controlled context-only ablation across heterogeneous representation types."
+},
+{
+"arxiv_id": "2509.15433",
+"title": "LLM-Driven SAST-Genius: A Hybrid Static Analysis Framework for Comprehensive and Actionable Security",
+"repr_primary": "hybrid",
+"integration": "prompt_serialization",
+"evaluation": "ablated_measured",
+"note": "Full text (alphaxiv mirror, arxiv.org/html 404'd): Semgrep-derived code snippets, AST, call graph, and source-to-sink dataflow paths flattened into a structured JSON prompt; measured vs Semgrep and GPT-4-alone baselines (89.5% vs 35.7%/65.5% precision), no representation ablation."
+},
+{
+"arxiv_id": "2511.11896",
+"title": "VULPO: Context-Aware Vulnerability Detection via On-Policy LLM Optimization",
+"repr_primary": "interproc_callgraph",
+"integration": "finetune_adapter",
+"evaluation": "ablated_measured",
+"note": "Full text (html): repository-level context (2-hop call-graph callees, macros, type defs, includes) extracted via clang/Joern AST analysis and concatenated into prompts used to train via cold-start SFT + on-policy RL; compared vs zero-shot models and prior VD methods, no with/without-context ablation on an identical model."
+},
+{
+"arxiv_id": "2601.10865",
+"title": "Multi-Agent Taint Specification Extraction for Vulnerability Detection",
+"repr_primary": "hybrid",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "representation_only_ablation",
+"note": "Full text (html): multi-agent LLM resolves call-graph edges and taint source/sink specs feeding CodeQL, iterating as CodeQL's taint propagation exposes new unresolved calls; Table III systematically varies sources/sinks and call-graph enhancement over a fixed CodeQL backend (rulesets R1-R4), isolating each representation's contribution."
+},
+{
+"arxiv_id": "2603.27204",
+"title": "MalSkills: Detecting Malicious Skills in the Agentic Supply Chain via Neuro-symbolic Reasoning",
+"repr_primary": "cpg",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "ablated_measured",
+"note": "Full text (html): skill dependency graph (property graph of artifacts/security-sensitive-operations/operands/value-flow, built from code+manifests+NL) is summarized as a subgraph and serialized for LLM reasoning, with a symbolic<->neural extraction/reasoning feedback loop; component ablation (Table 4) and comparison vs 5 baselines, but no graph-vs-flat-text isolation."
+},
+{
+"arxiv_id": "2605.03697",
+"title": "Tailored Prompts, Targeted Protection: Vulnerability-Specific LLM Analysis for Smart Contracts",
+"repr_primary": "ast",
+"integration": "prompt_serialization",
+"evaluation": "demonstrated",
+"note": "Full text (html): source parsed into AST, vulnerability-specific call-stack/context fragments flattened into a JSON prompt for 13 vulnerability-specific detectors; only own-method metrics reported (Table II), no baseline tools or representation ablation."
+},
+{
+"arxiv_id": "2606.25356",
+"title": "Representation Matters: An Empirical Study of Program Representations for LLM Vulnerability Reasoning",
+"repr_primary": "hybrid",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"note": "Abstract only (sufficient): RepBench serializes raw source/AST/CFG/PDG/combinations/enriched-PDG into prompts under a fixed CoT + structured-output protocol across 107 Joern-based C/C++ testcases -- a textbook representation-only ablation, the paper's central design."
+},
+{
+"arxiv_id": "2608.03134",
+"title": "CLEAR: Causal Context-Based Agentic Reasoning for Vulnerability Detection",
+"repr_primary": "retrieved_context",
+"integration": "retrieval_guide",
+"evaluation": "representation_only_ablation",
+"note": "Full text (html): a Vulnerability Causal Knowledge Graph retrieves top-K similar historical causal nodes/edges as structured context for multi-agent (Collector/Claim/Critic/Judge) reasoning, not dynamic tool use; Table 3 ablates 'No VCKG (Agent-only)' vs full system on the same agents (P-C 8.08 vs 19.17), isolating the retrieved-context contribution."
+}
+]

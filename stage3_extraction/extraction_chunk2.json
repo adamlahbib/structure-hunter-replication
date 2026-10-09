@@ -1,0 +1,500 @@
+[
+  {
+    "arxiv_id": "2401.16185",
+    "system": "LLM4Vuln",
+    "year": 2024,
+    "venue": "arXiv",
+    "peer_reviewed": false,
+    "eligible": true,
+    "repr_classes": [
+      "raw_text",
+      "retrieved_context"
+    ],
+    "integration": "prompt_serialization",
+    "task": "detection",
+    "scope": "interprocedural",
+    "domain": "general",
+    "evaluation": "representation_only_ablation",
+    "datasets": [
+      "UniVul"
+    ],
+    "cross_language": true,
+    "wieringa": "evaluation",
+    "record_type": "benchmark_eval",
+    "key_numbers": [
+      {
+        "metric": "knowledge-enhancement effect on F1 (Solidity, foundation models)",
+        "value": "F1 nearly doubling on average with knowledge vs. without",
+        "where": "RQ1 results section"
+      },
+      {
+        "metric": "context-supplementation effect on TP counts across 36 knowledge x prompt combinations",
+        "value": "Solidity 22/36 increased, Java 18/36 increased, C/C++ 28/36 increased",
+        "where": "RQ2 results section"
+      },
+      {
+        "metric": "zero-day validation",
+        "value": "14 confirmed vulnerabilities of 29 submitted, $3,576 in bounties across 4 projects",
+        "where": "RQ4 results section"
+      }
+    ],
+    "structure_gain": "Context supplementation (caller/related-function context) increased TP in 22/36 (Solidity), 18/36 (Java), 28/36 (C/C++) knowledge x prompt combinations vs. the no-context condition, same model/budget (RQ2).",
+    "confound_note": "Knowledge (Nk/Ok/Sk), context (with/without), and prompt scheme (raw/CoT) are each varied independently while holding the model and the other two dimensions fixed within each comparison cell -- a genuine 3-way representation/context ablation across 6 LLMs and 3 languages.",
+    "stop_detail": "Caller/related-function context is statically extracted and serialized directly into the prompt; knowledge grounding uses either the LLM's own knowledge, raw retrieved vulnerability reports (FAISS top-3), or GPT-4.1-summarized knowledge, per the knowledge/context prompt templates (Fig. 4, Sec. III-IV).",
+    "threats_to_datum": "Context is supplied via static analysis 'for benchmarking purposes only' rather than real agentic retrieval; retrieved knowledge itself is imperfectly aligned with ground truth (only 36-68% of sampled retrieved knowledge matched ground truth), which could understate the true achievable benefit of context/knowledge."
+  },
+  {
+    "arxiv_id": "2408.03489",
+    "system": "Mahyari24",
+    "year": 2024,
+    "venue": "arXiv",
+    "peer_reviewed": false,
+    "eligible": true,
+    "repr_classes": [
+      "hybrid",
+      "interproc_callgraph"
+    ],
+    "integration": "finetune_adapter",
+    "task": "multi",
+    "scope": "interprocedural",
+    "domain": "general",
+    "evaluation": "ablated_measured",
+    "datasets": [
+      "NVD",
+      "SARD"
+    ],
+    "cross_language": false,
+    "wieringa": "validation",
+    "record_type": "technique_tool",
+    "key_numbers": [
+      {
+        "metric": "accuracy (BERT on LLVM-IR representation)",
+        "value": "98.25%",
+        "where": "results/evaluation section"
+      },
+      {
+        "metric": "accuracy (DistilBERT on LLVM-IR representation)",
+        "value": "98.17%",
+        "where": "results section"
+      },
+      {
+        "metric": "accuracy (VulDeeLocator baseline)",
+        "value": "82.43%",
+        "where": "comparison table"
+      }
+    ],
+    "structure_gain": "No raw-source-text baseline is reported; all three evaluated methods (BERT, DistilBERT, LSTM) use the LLVM-IR representation. Against prior tool VulDeeLocator: 98.25% vs. 82.43% accuracy, but method/representation/training pipeline differ simultaneously.",
+    "confound_note": "The comparison is against a prior tool (VulDeeLocator) rather than an ablation of the same model with/without the LLVM-IR + interprocedural-slice representation; architecture, training data, and representation all vary together, so no isolated representation effect can be attributed.",
+    "stop_detail": "Source code is compiled to LLVM IR; for each function call the callee's IR is spliced into the caller at the call site (interprocedural composition) before tokenization and fine-tuning of BERT/DistilBERT/LSTM (preprocessing/iSeVC construction section).",
+    "threats_to_datum": "No ablation isolates the IR representation itself from the model architecture; gains over VulDeeLocator may stem from the transformer architectures rather than the representation. Programs are truncated to under 265 lines of IR, and no F1/precision/recall are reported alongside accuracy."
+  },
+  {
+    "arxiv_id": "2501.18160",
+    "system": "RepoAudit",
+    "year": 2025,
+    "venue": "arXiv",
+    "peer_reviewed": false,
+    "eligible": true,
+    "repr_classes": [
+      "taint_path",
+      "interproc_callgraph",
+      "raw_text"
+    ],
+    "integration": "neurosymbolic_analyzer_loop",
+    "task": "multi",
+    "scope": "interprocedural",
+    "domain": "general",
+    "evaluation": "representation_only_ablation",
+    "datasets": [
+      "custom benchmark of 15 real-world C/C++ projects",
+      "9 additional high-profile OSS projects (real-world validation set)"
+    ],
+    "cross_language": false,
+    "wieringa": "evaluation",
+    "record_type": "technique_tool",
+    "key_numbers": [
+      {
+        "metric": "precision (full RepoAudit)",
+        "value": "78.43% (40 TP, 11 FP)",
+        "where": "Table 2 / Table 6"
+      },
+      {
+        "metric": "precision, validator ablation (no validator)",
+        "value": "33.33% (19 TP, 38 FP) vs. 78.43% with validator",
+        "where": "Table 6 ablation"
+      },
+      {
+        "metric": "precision, abstraction ablation (no program abstraction)",
+        "value": "40.38% (21 TP, 31 FP) vs. 78.43% with abstraction",
+        "where": "Table 6 ablation"
+      }
+    ],
+    "structure_gain": "With structured data-flow abstraction (memory of feasible-path/data-flow-fact tuples) vs. without (RepoAudit-NoAbs): precision 78.43% (40TP/11FP) vs. 40.38% (21TP/31FP); with validator vs. without: 78.43% vs. 33.33%, same LLM (Claude 3.5 Sonnet), same benchmark (Table 6).",
+    "confound_note": "Table 6 ablations vary only one component at a time (program abstraction on/off; validator on/off) holding the LLM and benchmark fixed -- a clean representation/verification-only ablation.",
+    "stop_detail": "Demand-driven, call-graph-guided exploration produces LLM-derived data-flow facts (u@s -> v@s notation) along feasible paths, cached in an agent memory keyed by (function, value); a validator cross-checks control-flow ordering and path feasibility before reporting (Explorer/Validator sections, Table 6).",
+    "threats_to_datum": "Interprocedural analysis is explicitly bounded to a maximum calling-context depth of 4 functions and the authors state RepoAudit 'is not sound' for longer call chains; residual false positives/negatives from LLM hallucination persist despite the validator."
+  },
+  {
+    "arxiv_id": "2505.17460",
+    "system": "FocusVul",
+    "year": 2025,
+    "venue": "arXiv (withdrawn by author)",
+    "peer_reviewed": false,
+    "eligible": true,
+    "repr_classes": [
+      "slice",
+      "cpg"
+    ],
+    "integration": "finetune_adapter",
+    "task": "multi",
+    "scope": "function",
+    "domain": "general",
+    "evaluation": "representation_only_ablation",
+    "datasets": [
+      "PrimeVul"
+    ],
+    "cross_language": false,
+    "wieringa": "validation",
+    "record_type": "technique_tool",
+    "key_numbers": [
+      {
+        "metric": "F1-score improvement, context selection vs. full-function ablation (w/o CS)",
+        "value": "+164.03% average across models",
+        "where": "ablation results section"
+      },
+      {
+        "metric": "VDS@0.5 reduction",
+        "value": "-25.03% average",
+        "where": "results section"
+      },
+      {
+        "metric": "input-token compression rate",
+        "value": "17.34% (train), 18.56% (test)",
+        "where": "efficiency results"
+      }
+    ],
+    "structure_gain": "FocusVul with CPG-derived dependency/execution-flow context selection vs. w/o CS (full-function baseline), same LM: +164.03% avg F1 improvement and -25.03% avg VDS@0.5 on PrimeVul (ablation table).",
+    "confound_note": "The w/o VC (no commit-supervision), w/o VCI (no VRR prediction at inference), and w/o CS (full function, no context selection) ablations hold the base LM fixed and vary only the context-construction pipeline, isolating the representation/context-selection effect from model capacity.",
+    "stop_detail": "Vulnerability-Relevant Regions are identified from commit-fix diffs via hierarchical semantic modeling, then a slice around these regions is extracted from the Code Property Graph using control/data-dependence and execution-order edges before fine-tuning a standard LM on the sliced segments (context extraction / methodology section).",
+    "threats_to_datum": "IMPORTANT: this paper was withdrawn by the author on arXiv citing 'fundamental errors in the methodology' (per the arXiv abstract-page withdrawal notice). The extraction above is drawn from the (withdrawn) v1 full text; reported numbers should be treated as unreliable pending author correction, not as a validated representation-only-ablation datum. Joern also fails to parse ~9.84% of functions."
+  },
+  {
+    "arxiv_id": "2506.18394",
+    "system": "LTFix",
+    "year": 2025,
+    "venue": "arXiv",
+    "peer_reviewed": false,
+    "eligible": true,
+    "repr_classes": [
+      "taint_path",
+      "interproc_callgraph"
+    ],
+    "integration": "retrieval_guide",
+    "task": "repair",
+    "scope": "repository",
+    "domain": "general",
+    "evaluation": "representation_only_ablation",
+    "datasets": [
+      "SAVER benchmark (8 projects, 153 errors)",
+      "custom benchmark (14 real-world projects, 49 memory errors)"
+    ],
+    "cross_language": false,
+    "wieringa": "evaluation",
+    "record_type": "technique_tool",
+    "key_numbers": [
+      {
+        "metric": "correct patches, full LTFix vs. LTFix-NT (no context trace) ablation",
+        "value": "22 vs. 15 (+47%)",
+        "where": "Section 5.7 Ablation Analysis (RQ3)"
+      },
+      {
+        "metric": "total errors fixed, full LTFix vs. LTFix-F (file-level context) ablation",
+        "value": "37 vs. 15 (correct patches 22 vs. 7, +214%)",
+        "where": "Section 5.7 ablation table"
+      },
+      {
+        "metric": "repair success rate (custom benchmark / SAVER dataset)",
+        "value": "37/49 (75.5%) and 122/153 (79.7%)",
+        "where": "main results section"
+      }
+    ],
+    "structure_gain": "Full LTFix (typestate-guided context trace) vs. LTFix-NT (error-propagation path only, no context trace), same LLM (Claude 3.5 Sonnet): 22 vs. 15 correct patches (+47%), 37 vs. 22 total errors fixed (+68%), 1 vs. 4 new errors introduced (Section 5.7 ablation, RQ3).",
+    "confound_note": "The LTFix-F / LTFix-M / LTFix-NT / full ablation fixes the LLM and prompting strategy, varying only the amount/structure of retrieved context (implicated files -> backtrace functions -> propagation path without trace -> full typestate-guided context trace), isolating the context-representation effect.",
+    "stop_detail": "A finite typestate automaton instruments dynamic execution (via GDB) to record memory-object state transitions only at typestate-changing statements, producing an error-propagation path (nearest allocation to error point) and a context trace that are serialized into the LLM prompt (Algorithm 1, methodology section).",
+    "threats_to_datum": "Evaluation relies on dynamic analysis requiring proof-of-concept inputs, so errors not exercised by available PoCs are missed; multi-threaded programs are explicitly excluded; LLM output validity is determined by a majority-of-5-runs threshold (4/5), introducing residual non-determinism."
+  },
+  {
+    "arxiv_id": "2510.17919",
+    "system": "ParaVul",
+    "year": 2025,
+    "venue": "arXiv",
+    "peer_reviewed": false,
+    "eligible": true,
+    "repr_classes": [
+      "retrieved_context",
+      "raw_text"
+    ],
+    "integration": "retrieval_guide",
+    "task": "detection",
+    "scope": "function",
+    "domain": "smart_contract",
+    "evaluation": "ablated_measured",
+    "datasets": [
+      "SC_UEE",
+      "ScrawlD"
+    ],
+    "cross_language": false,
+    "wieringa": "validation",
+    "record_type": "technique_tool",
+    "key_numbers": [
+      {
+        "metric": "F1 (single-label detection, full ParaVul)",
+        "value": "0.9398",
+        "where": "abstract / results section"
+      },
+      {
+        "metric": "F1 (multi-label detection, full ParaVul)",
+        "value": "0.9330",
+        "where": "abstract / results section"
+      },
+      {
+        "metric": "F1, SLoRA-only LLM detector (single-label / multi-label)",
+        "value": "0.9021 / 0.9396",
+        "where": "Table IV"
+      }
+    ],
+    "structure_gain": "Verification/fusion module reported to outperform LLM-only and RAG-only baselines by 'at least 4% (vs. LLM) and 12% (vs. RAG)' in F1 for single-label detection (Figure 4); exact per-configuration numbers not stated in the accessible text.",
+    "confound_note": "The fusion condition changes retrieval strategy (dense/BM25/none) AND adds a meta-learning verification layer simultaneously relative to the SLoRA-only LLM baseline, so the retrieval/context effect is not cleanly isolated from the added fusion mechanism.",
+    "stop_detail": "Hybrid retrieval (dense embeddings over sliding-window segments + BM25) over a corpus of labeled vulnerable code fragments supplies inherited vulnerability labels that are fused with the SLoRA-fine-tuned LLM's prediction via a meta-learning MLP, rather than being concatenated into the LLM's prompt (retrieval/fusion methodology section).",
+    "threats_to_datum": "Figure 4's LLM-only/RAG-only/fusion comparison does not hold the base LLM or the presence of the fusion/verification layer constant across arms, so gains cannot be attributed specifically to retrieval-augmented context vs. the meta-learning fusion component; exact numeric values for Figure 4 were not visible in the fetched text."
+  },
+  {
+    "arxiv_id": "2512.16538",
+    "system": "Li25",
+    "year": 2025,
+    "venue": "arXiv",
+    "peer_reviewed": false,
+    "eligible": true,
+    "repr_classes": [
+      "raw_text"
+    ],
+    "integration": "prompt_serialization",
+    "task": "multi",
+    "scope": "file",
+    "domain": "general",
+    "evaluation": "representation_only_ablation",
+    "datasets": [
+      "Smart-bugs",
+      "PrimeVul",
+      "ReposVul_cpp",
+      "ReposVul_py"
+    ],
+    "cross_language": true,
+    "wieringa": "evaluation",
+    "record_type": "empirical_study",
+    "key_numbers": [
+      {
+        "metric": "virtualization-obfuscation attack success rate (downgrade), C/C++ datasets",
+        "value": "~80%",
+        "where": "Finding #2 / Section 4.2.1"
+      },
+      {
+        "metric": "mixed-programming-language obfuscation attack success rate",
+        "value": "~75%",
+        "where": "Finding #2"
+      },
+      {
+        "metric": "detection success-rate gap, existence-only vs. type+location scoring criterion",
+        "value": "~40% average increase under existence-only vs. type/location criterion",
+        "where": "Section 4.2.3 (RQ3), cf. Table 6 and Table 13 (appendix)"
+      }
+    ],
+    "structure_gain": "Central ablation compares raw code text vs. its obfuscated (layout/data-flow/control-flow-transformed) counterpart, same LLM/prompt: virtualization obfuscation degrades detection with up to ~80% attack success rate on C/C++ (Finding #2); conversely some layout obfuscations (e.g., L1) 'upgrade' detection by removing misleading surface cues, e.g. QWEN-14B on PrimeVul jumps from 0.39 to 0.80 success after L1 (Section 4.2.3).",
+    "confound_note": "Table 6's original-vs-obfuscated comparison holds the LLM, prompt template, and underlying ground-truth vulnerability fixed and varies only the raw-text obfuscation transformation -- a clean representation-only ablation, though 'representation' here means raw-text surface form (layout/data-flow/control-flow perturbation) rather than a structured alternative such as AST or CFG.",
+    "stop_detail": "No external grounding/retrieval mechanism is used; detection is single-turn prompting of raw (possibly obfuscated) source code, scored on a 1-4 rubric checking existence, type, and location match against ground truth (Section 4.1 Evaluation Metrics).",
+    "threats_to_datum": "Obfuscation transformations are generated by GPT-4o itself rather than a verified-correctness obfuscation tool, so semantic preservation of the obfuscated code is not independently confirmed; temperature fixed near zero for reproducibility, but reasoning-model output variance is not otherwise addressed."
+  },
+  {
+    "arxiv_id": "2603.13384",
+    "system": "VulnAgent-R2",
+    "year": 2026,
+    "venue": "arXiv",
+    "peer_reviewed": false,
+    "eligible": true,
+    "repr_classes": [
+      "cpg",
+      "retrieved_context",
+      "interproc_callgraph"
+    ],
+    "integration": "neurosymbolic_analyzer_loop",
+    "task": "multi",
+    "scope": "repository",
+    "domain": "general",
+    "evaluation": "representation_only_ablation",
+    "datasets": [
+      "Devign",
+      "Big-Vul",
+      "DiverseVul",
+      "PrimeVul",
+      "JITVul"
+    ],
+    "cross_language": false,
+    "wieringa": "validation",
+    "record_type": "technique_tool",
+    "key_numbers": [
+      {
+        "metric": "F1/AUROC (Devign)",
+        "value": "0.798/0.895",
+        "where": "Table 4 main results"
+      },
+      {
+        "metric": "F1/AUROC (PrimeVul)",
+        "value": "0.385/0.781",
+        "where": "Table 4 main results"
+      },
+      {
+        "metric": "F1 ablation on PrimeVul, full vs. w/o graph optimizer",
+        "value": "0.385 vs. 0.337",
+        "where": "Table 10 ablation"
+      }
+    ],
+    "structure_gain": "Full VulnAgent-R2 (bounded graph-context optimizer) vs. w/o graph optimizer, same base LLM (Qwen2.5-Coder-32B), on PrimeVul: F1 0.385 vs. 0.337 (Table 10); w/o CER 0.359, w/o Sceptic 0.352, w/o VPS 0.346 -- each context/verification component contributes measurably.",
+    "confound_note": "Table 10 removes one architectural component (graph optimizer / counterfactual evidence reweighting / Sceptic / verification-plan synthesis) at a time while holding the base LLM and remaining pipeline fixed, isolating each context/verification mechanism's marginal contribution to F1.",
+    "stop_detail": "Grounded via a Joern-style code property graph (AST+CFG+DFG+CALL edges) traversed under a token-budgeted, greedy utility-maximizing selection (Eq. 6) that pulls in callers, callees, data-flow neighbors, tests, configs, and historical patches; claims are further calibrated via counterfactual evidence reweighting and executable verification harnesses (graph triage / CER / VPS sections).",
+    "threats_to_datum": "Authors caution PrimeVul F1 remains modest (0.385) and describe the system as 'a prioritization aid rather than a replacement for manual review'; some ablation deltas are small relative to likely LLM sampling variance, and build-environment/runtime-assumption failures account for 23.8% of errors."
+  },
+  {
+    "arxiv_id": "2605.01885",
+    "system": "QASecClaw",
+    "year": 2026,
+    "venue": "arXiv",
+    "peer_reviewed": false,
+    "eligible": true,
+    "repr_classes": [
+      "raw_text"
+    ],
+    "integration": "prompt_serialization",
+    "task": "triage_fp_reduction",
+    "scope": "file",
+    "domain": "general",
+    "evaluation": "ablated_measured",
+    "datasets": [
+      "OWASP Benchmark v1.2"
+    ],
+    "cross_language": false,
+    "wieringa": "validation",
+    "record_type": "technique_tool",
+    "key_numbers": [
+      {
+        "metric": "F1, QASecClaw vs. standalone Semgrep",
+        "value": "90.93% vs. 78.39%",
+        "where": "abstract / results table"
+      },
+      {
+        "metric": "false positives, QASecClaw vs. standalone Semgrep",
+        "value": "64 vs. 560 (-88.6%)",
+        "where": "results table"
+      },
+      {
+        "metric": "recall, QASecClaw vs. standalone Semgrep",
+        "value": "87.1% vs. 90.0% (-3.2 pp)",
+        "where": "results table"
+      }
+    ],
+    "structure_gain": "QASecClaw (SAST + LLM file-context filter agent) vs. standalone Semgrep on the same OWASP Benchmark v1.2 test set: F1 90.93% vs. 78.39%, precision 95.1% vs. 69.5%, false positives 64 vs. 560 (-88.6%), recall 87.1% vs. 90.0% (-3.2 pp).",
+    "confound_note": "The comparison is standalone-SAST vs. the full LLM-agent pipeline added at once; no ablation isolates the raw-file-context contribution itself (e.g., LLM-with-context vs. LLM-without-context) from the broader multi-agent orchestration (Mission Orchestrator, validators) introduced simultaneously.",
+    "stop_detail": "The SAST Filter Agent builds a per-finding prompt containing the CWE category, file location, and the complete relevant source-file text (batched 15 files at a time), queries Qwen 3.5 Plus, and parses a structured JSON true/false-positive verdict (Methodology section).",
+    "threats_to_datum": "Evaluated only on a synthetic benchmark (OWASP Benchmark v1.2), a single language (Java), and a single SAST baseline (Semgrep), with no repeated-run or multi-model robustness check; the Trust Boundary Violation (CWE-501) category regressed relative to Semgrep alone."
+  },
+  {
+    "arxiv_id": "2606.22647",
+    "system": "RAVEN",
+    "year": 2026,
+    "venue": "arXiv (under review)",
+    "peer_reviewed": false,
+    "eligible": true,
+    "repr_classes": [
+      "retrieved_context",
+      "cpg",
+      "interproc_callgraph"
+    ],
+    "integration": "agent_tool_use",
+    "task": "repair",
+    "scope": "repository",
+    "domain": "general",
+    "evaluation": "ablated_measured",
+    "datasets": [
+      "160 real-world CVEs (CVEFixes-derived)",
+      "Vul4J (out-of-distribution set)"
+    ],
+    "cross_language": true,
+    "wieringa": "validation",
+    "record_type": "technique_tool",
+    "key_numbers": [
+      {
+        "metric": "repair success rate (Java, 10 CWEs, 83 instances)",
+        "value": "86.75%",
+        "where": "main results table"
+      },
+      {
+        "metric": "repair success rate (C, 29 instances)",
+        "value": "86.94%",
+        "where": "cross-language results table"
+      },
+      {
+        "metric": "out-of-distribution repair success rate (Vul4J, 23 unseen CWEs)",
+        "value": "65.22%",
+        "where": "OOD evaluation section"
+      }
+    ],
+    "structure_gain": "No ablation isolates the retrieval/Curator-Agent context contribution; authors report only end-to-end repair success rate vs. other repair tools (Table III: RAVEN 7/9 correct vs. fewer for SAN2PATCH/PatchAgent on unseen C vulnerabilities), so no representation-only delta is available.",
+    "confound_note": "Comparison against baseline repair tools (SAN2PATCH, PatchAgent, ExtractFix, VulnFix, VulMaster) varies the entire pipeline (LLM, retrieval, agent architecture) simultaneously; the retrieval/context contribution is not isolated from model and pipeline differences.",
+    "stop_detail": "A Curator Agent iteratively calls repository-exploration tools (read_bundle, search_repo, find_symbol, read_file) to gather cross-file caller/callee and dependency information, combined with a multi-faceted BM25 retriever (keyword, code-snippet, and Joern-CPG based) whose top patch is chosen by a Selector Agent and injected into the Patch Generator's prompt (Algorithm 1 / Curator Agent section).",
+    "threats_to_datum": "Authors explicitly note no per-component ablation isolates the retrieval/Curator-Agent contribution; 'partial fixes' count toward the reported success rate, and CodeBLEU similarity does not guarantee functional/security correctness; performance drops substantially out-of-distribution (65.22% vs. 86.75%)."
+  },
+  {
+    "arxiv_id": "2608.03134",
+    "system": "CLEAR",
+    "year": 2026,
+    "venue": "arXiv",
+    "peer_reviewed": false,
+    "eligible": true,
+    "repr_classes": [
+      "retrieved_context",
+      "hybrid"
+    ],
+    "integration": "retrieval_guide",
+    "task": "detection",
+    "scope": "function",
+    "domain": "general",
+    "evaluation": "representation_only_ablation",
+    "datasets": [
+      "PrimeVul",
+      "Java-Pair (curated from CVEFixes, MegaVul, CleanVul)"
+    ],
+    "cross_language": true,
+    "wieringa": "validation",
+    "record_type": "technique_tool",
+    "key_numbers": [
+      {
+        "metric": "Pairwise-Correct (P-C), CLEAR vs. VulTrial baseline (PrimeVul)",
+        "value": "19.17 vs. 8.31 (+130.7% relative)",
+        "where": "Table 1 main results"
+      },
+      {
+        "metric": "Pairwise-Correct (P-C), CLEAR vs. VulTrial baseline (Java-Pair)",
+        "value": "21.36 +/- 1.48 vs. 12.45 +/- 2.08 (+71.56% relative)",
+        "where": "Table 1 main results"
+      },
+      {
+        "metric": "No-VCKG ablation P-C (PrimeVul)",
+        "value": "8.08 (no VCKG) vs. 19.17 (full CLEAR)",
+        "where": "Table 3 node ablation"
+      }
+    ],
+    "structure_gain": "Full CLEAR (with Vulnerability Causal Knowledge Graph context) vs. No-VCKG ablation, same multi-agent LLM pipeline, on PrimeVul: Pairwise-Correct 19.17 vs. 8.08 (Table 3); removing only Fix-Intent nodes drops it to 14.32 vs. 19.17 full.",
+    "confound_note": "Table 3's node-ablation removes individual VCKG node types (or the whole VCKG) while holding the multi-agent (Collector/Claim/Critic/Judge) architecture and base LLM fixed, isolating the causal-context representation's contribution; the headline 130.7%/71.56% figures instead compare CLEAR's full pipeline against a different prior system (VulTrial), which is not representation-isolated.",
+    "stop_detail": "Grounded via a Vulnerability Causal Knowledge Graph built offline from CVE descriptions, patches, and source code (LLM-extracted causal chains linked by semantic-similarity neighborhood edges and cross-instance global edges); a Collector Agent retrieves the Top-5 similar historical Entrypoints and traverses Local/Neighbor/Global edges, serializing the result into the Claim/Critic/Judge agents' prompts (VCKG construction / Collector Agent section).",
+    "threats_to_datum": "Authors note semantic similarity used to build VCKG edges does not guarantee causal consistency (nodes can be linked despite being causally unrelated, or left disconnected despite sharing a mechanism); human inter-rater agreement on Global Edge validity is only moderate (kappa=0.51); causal claims are LLM-derived, not symbolically verified."
+  }
+]

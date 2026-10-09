@@ -1,0 +1,258 @@
+[
+{
+"id": "2208.08067",
+"decision": "exclude",
+"criterion": "E2",
+"reason": "Lightweight non-LLM transformer using AST features for detection, not an LLM security-analysis task; also predates 2023 scope.",
+"repr_guess": "ast",
+"task_guess": "detection"
+},
+{
+"id": "2401.13169",
+"decision": "exclude",
+"criterion": "E2",
+"reason": "Repository-level vulnerability dataset construction for DL-based detectors; no LLM security-analysis task described.",
+"repr_guess": "unknown",
+"task_guess": "benchmark"
+},
+{
+"id": "2403.19096",
+"decision": "uncertain",
+"criterion": "unclear-I1",
+"reason": "Unclear whether 'pre-trained model' is an LLM; structured NL comment-tree representation used but LLM status ambiguous.",
+"repr_guess": "nl-structured",
+"task_guess": "detection"
+},
+{
+"id": "2405.17238",
+"decision": "include",
+"criterion": "I-all",
+"reason": "LLM combined with static analysis, inferring taint specifications for whole-repository vulnerability detection.",
+"repr_guess": "hybrid",
+"task_guess": "detection"
+},
+{
+"id": "2407.14372",
+"decision": "exclude",
+"criterion": "E1",
+"reason": "Evaluates LLMs on preprocessed/normalized code sequences; no structural representation or context mechanism described.",
+"repr_guess": "raw-text",
+"task_guess": "benchmark"
+},
+{
+"id": "2409.09661",
+"decision": "uncertain",
+"criterion": "unclear-I2",
+"reason": "LLM-based smart contract repair claims high-level semantic understanding but abstract truncated before describing any structural mechanism.",
+"repr_guess": "unknown",
+"task_guess": "repair"
+},
+{
+"id": "2410.05451",
+"decision": "exclude",
+"criterion": "E3",
+"reason": "Prompt-injection defense for LLM systems; agent-loop security, out of scope.",
+"repr_guess": "unknown",
+"task_guess": "unknown"
+},
+{
+"id": "2411.07586",
+"decision": "exclude",
+"criterion": "E5",
+"reason": "Broad survey of APR and code generation papers; no single quantitative result of its own.",
+"repr_guess": "unknown",
+"task_guess": "multi"
+},
+{
+"id": "2502.00306",
+"decision": "exclude",
+"criterion": "E1",
+"reason": "Membership inference attack on RAG document retrieval; not a code vulnerability analysis task.",
+"repr_guess": "retrieval",
+"task_guess": "unknown"
+},
+{
+"id": "2504.16584",
+"decision": "exclude",
+"criterion": "E1",
+"reason": "Fine-tuned small LM classifies CWEs from raw code; no structural representation or context mechanism.",
+"repr_guess": "raw-text",
+"task_guess": "detection"
+},
+{
+"id": "2505.13479",
+"decision": "exclude",
+"criterion": "E4",
+"reason": "Graph-augmented LLM for RTL code generation; security mentioned only as motivation, no vulnerability-analysis task.",
+"repr_guess": "hybrid",
+"task_guess": "unknown"
+},
+{
+"id": "2505.22010",
+"decision": "uncertain",
+"criterion": "unclear-I2",
+"reason": "Uses decompilation optimization and long-context memory for binary vulnerability detection; unclear if this counts as structural grounding vs. plain decompiled text.",
+"repr_guess": "hybrid",
+"task_guess": "detection"
+},
+{
+"id": "2506.15656",
+"decision": "exclude",
+"criterion": "E1",
+"reason": "Multi-agent phishing website detection (URL/HTML/brand); not source-code vulnerability analysis.",
+"repr_guess": "unknown",
+"task_guess": "detection"
+},
+{
+"id": "2507.03051",
+"decision": "uncertain",
+"criterion": "unclear-I2",
+"reason": "RL/GRPO finetuning study for vulnerability detection; abstract truncated before clarifying if 'structured' refers to representation/context or just reward structure.",
+"repr_guess": "unknown",
+"task_guess": "detection"
+},
+{
+"id": "2508.14066",
+"decision": "exclude",
+"criterion": "E1",
+"reason": "Generic interview study on industrial RAG adoption; not a security analysis task.",
+"repr_guess": "retrieval",
+"task_guess": "unknown"
+},
+{
+"id": "2509.17337",
+"decision": "uncertain",
+"criterion": "unclear-I2",
+"reason": "Multimodal LLM for vulnerability reasoning via QA; pairs code and NL queries but no explicit structural representation described.",
+"repr_guess": "nl-structured",
+"task_guess": "detection"
+},
+{
+"id": "2510.20739",
+"decision": "include",
+"criterion": "I-all",
+"reason": "Empirically compares LLM, GNN, and hybrid GNN-LLM models on triaging program-analysis-derived vulnerability reports in Node.js.",
+"repr_guess": "hybrid",
+"task_guess": "triage"
+},
+{
+"id": "2511.11896",
+"decision": "include",
+"criterion": "I-all",
+"reason": "Constructs ContextVul, augmenting function-level benchmarks with repository-level context, for on-policy LLM vulnerability detection.",
+"repr_guess": "interproc",
+"task_guess": "detection"
+},
+{
+"id": "2512.09006",
+"decision": "exclude",
+"criterion": "E1",
+"reason": "Compares prompt engineering vs fine-tuning for LLM vulnerability detection; no representation/context mechanism or study.",
+"repr_guess": "raw-text",
+"task_guess": "detection"
+},
+{
+"id": "2601.00254",
+"decision": "include",
+"criterion": "I-all",
+"reason": "Empirically compares RAG, SFT, and dual-agent LLM approaches (retrieval-based context) for vulnerability detection.",
+"repr_guess": "retrieval",
+"task_guess": "detection"
+},
+{
+"id": "2601.18844",
+"decision": "uncertain",
+"criterion": "unclear-I2",
+"reason": "Industrial empirical study of LLM-based false-alarm reduction (triage); mechanism/context used by the techniques not specified in abstract.",
+"repr_guess": "unknown",
+"task_guess": "triage"
+},
+{
+"id": "2602.05868",
+"decision": "exclude",
+"criterion": "E4",
+"reason": "Evaluates static analyzers (CodeQL/Semgrep) against ground truth on LLM-generated code; detection performed by traditional tools, not an LLM.",
+"repr_guess": "raw-text",
+"task_guess": "detection"
+},
+{
+"id": "2603.22853",
+"decision": "exclude",
+"criterion": "E3",
+"reason": "Security analysis of LLM agent applications/deployment configs; agent-focused, out of scope.",
+"repr_guess": "taint",
+"task_guess": "detection"
+},
+{
+"id": "2604.08417",
+"decision": "include",
+"criterion": "I-all",
+"reason": "Empirically assesses effectiveness/cost of modern LLMs given interprocedural (caller/callee) context for multi-language vulnerability detection.",
+"repr_guess": "interproc",
+"task_guess": "detection"
+},
+{
+"id": "2604.27714",
+"decision": "include",
+"criterion": "I-all",
+"reason": "Systematically compares raw source text vs. pruned AST representations and their effect on false-positive rates in cross-language LLM vulnerability detection.",
+"repr_guess": "ast",
+"task_guess": "detection"
+},
+{
+"id": "2605.04251",
+"decision": "include",
+"criterion": "I-all",
+"reason": "LLM repair agent grounded in diversified dynamic fault localization to identify root cause before patching.",
+"repr_guess": "hybrid",
+"task_guess": "repair"
+},
+{
+"id": "2606.04739",
+"decision": "include",
+"criterion": "I-all",
+"reason": "Reproducibility study of Vul-RAG, a retrieval-augmented LLM vulnerability detection framework, with open-weight models.",
+"repr_guess": "retrieval",
+"task_guess": "detection"
+},
+{
+"id": "2606.30587",
+"decision": "exclude",
+"criterion": "E1",
+"reason": "Studies cognitive/framing biases (author attribution, task framing) in LLM vulnerability judgments; not structural program representation.",
+"repr_guess": "nl-structured",
+"task_guess": "detection"
+},
+{
+"id": "2607.13439",
+"decision": "include",
+"criterion": "I-all",
+"reason": "Agent-based exploration adaptively gathers repository-level/inter-procedural dependencies for repository-level vulnerability detection.",
+"repr_guess": "interproc",
+"task_guess": "detection"
+},
+{
+"id": "2608.03626",
+"decision": "exclude",
+"criterion": "E5",
+"reason": "Conceptual security lifecycle/governance framework for LLM systems; no code vulnerability analysis task or quantitative result.",
+"repr_guess": "unknown",
+"task_guess": "unknown"
+},
+{
+"id": "a survey on chatgpt aigenerated contents",
+"decision": "exclude",
+"criterion": "E5",
+"reason": "General AIGC survey covering security/privacy broadly; not a code vulnerability study, no quantitative result.",
+"repr_guess": "unknown",
+"task_guess": "unknown"
+},
+{
+"id": "llms in software security a survey of vu",
+"decision": "exclude",
+"criterion": "E5",
+"reason": "Survey of LLM vulnerability-detection literature; no original quantitative result.",
+"repr_guess": "unknown",
+"task_guess": "unknown"
+}
+]

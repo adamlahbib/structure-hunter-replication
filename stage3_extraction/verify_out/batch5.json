@@ -1,0 +1,189 @@
+[
+{
+  "arxiv_id": "2405.04994",
+  "numbers": [
+    {"metric": "Pass@3 repairs (ChatGPT-4, with vs without SPVR)", "value": "143/547 vs 65/547", "where": "Table 3, Section 5.1.1", "verdict": "CONFIRMED"},
+    {"metric": "CodeBLEU (ChatGPT-4)", "value": "0.4109 (SPVR) vs 0.3025 (baseline)", "where": "Table 3", "verdict": "CONFIRMED"},
+    {"metric": "Ablation Pass@3 (ChatGPT-3.5-turbo, with vs without MET info)", "value": "138/547 vs 55/547", "where": "Table 10, Section 5.4", "verdict": "CONFIRMED"},
+    {"metric": "structure_gain", "value": "~151% relative gain (55->138 on Pass@3, ChatGPT-3.5-turbo, same model/samples/metric, Table 10)", "where": "Table 10, Section 5.4", "verdict": "CONFIRMED", "note": "(138-55)/55=150.9%, matches 'roughly 151%'"}
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All three key numbers and structure_gain confirmed exactly in Tables 3 and 10. Table 10 with/without-MET ablation on the same model (ChatGPT-3.5-turbo) is a textbook representation_only_ablation."
+},
+{
+  "arxiv_id": "2409.18395",
+  "numbers": [
+    {"metric": "Detection rate (Copilot)", "value": "76% (118/156)", "where": "Table I", "verdict": "CONFIRMED"},
+    {"metric": "Repair rate, no context", "value": "15% (24/156)", "where": "Table I", "verdict": "CONFIRMED"},
+    {"metric": "Repair rate, context-aware prompt tuning", "value": "63% (>4x improvement)", "where": "Table I", "verdict": "CONFIRMED"},
+    {"metric": "structure_gain", "value": "15% -> 63% repair success, >4x, same LLM (Copilot) throughout", "where": "Table I", "verdict": "CONFIRMED", "note": "63/15=4.2x; paper itself calls it 'more than four times'"}
+  ],
+  "repr_primary_agree": false,
+  "repr_primary_suggested": "nl_structured",
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Facet disagreement: repr_primary 'retrieved_context' is a mismatch -- there is no retrieval mechanism (no corpus/search); the paper manually stages CWE description plus four hand-authored structured cues (buffer id, bound selection, range precision, placement) directly into the prompt. 'nl_structured' fits better. All numbers and stop_detail confirmed."
+},
+{
+  "arxiv_id": "2503.03586",
+  "numbers": [
+    {"metric": "F1, Plain LLM vanilla (GPT-4o)", "value": "65.96", "where": "results table (Table 2)", "verdict": "CONFIRMED"},
+    {"metric": "Pairwise accuracy (pAcc), ReAct+CoT (GPT-4o)", "value": "19.13", "where": "results table (Table 2)", "verdict": "CONFIRMED"},
+    {"metric": "pAcc improvement of ReAct over Plain LLM", "value": "0.1% to 16.61%", "where": "abstract/results", "verdict": "CONFIRMED", "note": "Exact quoted range in Section 5.1"},
+    {"metric": "structure_gain", "value": "Plain LLM pAcc ~1-17.6% vs ReAct up to 19.13%; Plain LLM F1 65.96 vs ReAct F1 57-58", "where": "Table 2", "verdict": "CONFIRMED", "note": "Table 2 full breakdown: Plain LLM pAcc = 1.02/15.02/4.44/17.63 across prompting strategies (matches ~1-17.6%); ReAct F1 for Vanilla/CoT = 57.77/58.07 (matches '57-58'), though ReAct FS/CoT+FS variants go as low as 52.61, outside that narrow window."}
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": false,
+  "evaluation_suggested": "ablated_measured",
+  "stop_detail_fair": true,
+  "note": "Facet disagreement: evaluation 'representation_only_ablation' is too strict a label -- ReAct Agent vs Plain LLM is not a fixed-budget representation swap; ReAct adds an entirely different interaction paradigm (multi-step tool-calling loop with get_callers/get_callees/get_definition), expanding effective context/compute, which the strict rule treats as a different system, i.e. ablated_measured. All numbers confirmed exactly against Table 2."
+},
+{
+  "arxiv_id": "2506.10322",
+  "numbers": [
+    {"metric": "False positive filter rate (FPR_P)", "value": "0.97-1.0 (filters 72-96% of FPs)", "where": "Abstract, Table 1", "verdict": "WRONG", "correct_value_if_wrong": "FPR_P per bug type in Table 1 is 0.98 (NPD), 1.0 (BOF), 1.0 (UAF) -- i.e. range 0.98-1.0, not 0.97-1.0.", "note": "Also the '72-96% of FPs filtered' parenthetical actually describes a different metric, FPR_R (measured across baseline analyzers/projects), not FPR_P -- the value conflates two distinct metrics from the paper."},
+    {"metric": "Recall on true bugs", "value": "42/45 (0.93), misses only 3 bugs", "where": "Abstract", "verdict": "CONFIRMED"},
+    {"metric": "Ablation gain over NoContext/BatchSol", "value": "136.7%-173.1% improvement in FPR_R", "where": "Table 4, Section 4.4", "verdict": "CONFIRMED"},
+    {"metric": "structure_gain", "value": "vs LLM4SA: NPD FPR_R 0.51->0.72 (+41.2%); vs LLMDFA: NPD FPR_R 0.35->0.72 (+105.7%)", "where": "Table 1", "verdict": "CONFIRMED", "note": "Both deltas match exactly, same GPT-4o-mini/dataset/temperature=0 setup."}
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "FPR_P key number is WRONG: correct range is 0.98-1.0 not 0.97-1.0, and the '72-96%' parenthetical actually describes the separate FPR_R metric, not FPR_P. Recall, ablation gain, and structure_gain all confirmed exactly."
+},
+{
+  "arxiv_id": "2509.00882",
+  "numbers": [
+    {"metric": "Accuracy/F1/Recall on OWASP Benchmark", "value": "97.85% / 97.97% / 100%", "where": "Abstract; Table II", "verdict": "CONFIRMED"},
+    {"metric": "vs CodeQL accuracy/precision", "value": "CodeQL 52-57%/50-54% vs VULSOLVER 93.66-96.92% precision, 100% recall", "where": "Section V-A2", "verdict": "CONFIRMED"},
+    {"metric": "Real-world vulnerabilities found", "value": "15 previously unknown, CVSS 7.5-9.8", "where": "Section V-C1, Abstract", "verdict": "CONFIRMED"},
+    {"metric": "structure_gain", "value": "vs CWE-DF: 48-52% accuracy vs VULSOLVER's 96.64-98.41%", "where": "Table IV", "verdict": "CONFIRMED"}
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly. Verification mechanism confirmed self-contained (sequential caller-callee state derivation) with no external SMT solver (Z3 or otherwise) used, matching stop_detail; paper frames it as semantic/LLM-driven rather than purely symbolic, a minor nuance not affecting fairness."
+},
+{
+  "arxiv_id": "2511.04023",
+  "numbers": [
+    {"metric": "Precision/Recall/F1 vs IRIS", "value": "84.3/75.4/79.6 (AdaTaint) vs 81.2/74.8/77.8 (IRIS)", "where": "Table 1", "verdict": "CONFIRMED"},
+    {"metric": "Average false-positive reduction vs baselines", "value": "43.7%", "where": "Abstract", "verdict": "CONFIRMED"},
+    {"metric": "Developer triage time", "value": "42.3s -> 29.1s per alert (31% reduction)", "where": "Table 3", "verdict": "CONFIRMED"},
+    {"metric": "structure_gain", "value": "F1 79.6 (AdaTaint) vs 77.8 (IRIS) vs 66.4 (static-only); FPR 17.5% vs 38.7% static-only", "where": "Table 1", "verdict": "CONFIRMED"}
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly against Tables 1 and 3. Stop_detail's description of LLM source/sink classification plus a separate trained binary classifier (logistic regression/gradient-boosted trees) filtering alerts is confirmed verbatim in the architecture section."
+},
+{
+  "arxiv_id": "2601.00254",
+  "numbers": [
+    {"metric": "RAG accuracy / F1", "value": "0.86 / 0.85", "where": "Results table", "verdict": "CONFIRMED"},
+    {"metric": "base (un-augmented) LLM F1", "value": "0.67", "where": "Results table", "verdict": "CONFIRMED"},
+    {"metric": "SFT F1", "value": "0.80", "where": "Results table", "verdict": "CONFIRMED"},
+    {"metric": "structure_gain", "value": "RAG 0.85 F1 vs base 0.67 F1 (+0.18)", "where": "Results tables", "verdict": "CONFIRMED"}
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly. RAG top-20-chunk retrieval + re-ranking from MITRE CWE database (Sec III-C) and Dual-Agent validator auditing for logical inconsistencies/unsupported assumptions (Sec III-E) both confirmed verbatim."
+},
+{
+  "arxiv_id": "2603.13384",
+  "numbers": [
+    {"metric": "F1/AUROC (Devign)", "value": "0.798/0.895", "where": "Table 4 main results", "verdict": "CONFIRMED"},
+    {"metric": "F1/AUROC (PrimeVul)", "value": "0.385/0.781", "where": "Table 4 main results", "verdict": "CONFIRMED"},
+    {"metric": "F1 ablation on PrimeVul, full vs. w/o graph optimizer", "value": "0.385 vs. 0.337", "where": "Table 10 ablation", "verdict": "CONFIRMED"},
+    {"metric": "structure_gain", "value": "full 0.385 vs w/o graph optimizer 0.337; w/o CER 0.359; w/o Sceptic 0.352; w/o VPS 0.346", "where": "Table 10", "verdict": "CONFIRMED", "note": "All four ablation values match exactly."}
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly. CPG description (typed heterogeneous graph, AST+CFG+DFG+CALL+IMP+TEST+HIST edges) with token-budgeted greedy selection (max 16 blocks, 8000-token limit) matches stop_detail; w/o-graph-optimizer ablation on the same base LLM (Qwen2.5-Coder-32B) is a fair representation_only_ablation."
+},
+{
+  "arxiv_id": "2605.01885",
+  "numbers": [
+    {"metric": "F1, QASecClaw vs. standalone Semgrep", "value": "90.93% vs. 78.39%", "where": "abstract / results table", "verdict": "CONFIRMED"},
+    {"metric": "false positives, QASecClaw vs. standalone Semgrep", "value": "64 vs. 560 (-88.6%)", "where": "results table", "verdict": "CONFIRMED"},
+    {"metric": "recall, QASecClaw vs. standalone Semgrep", "value": "87.1% vs. 90.0% (-3.2 pp)", "where": "results table", "verdict": "WRONG", "correct_value_if_wrong": "87.1% vs 90.0% is a -2.9 percentage-point difference. The paper's own '3.2%' figure is explicitly a RELATIVE reduction ((0.900-0.871)/0.900=3.2%), not a percentage-point (pp) difference.", "note": "Unit mislabeled: '-3.2 pp' should be '-2.9 pp' (or '-3.2% relative')."},
+    {"metric": "structure_gain", "value": "F1 90.93% vs 78.39%, precision 95.1% vs 69.5%, false positives 64 vs 560 (-88.6%), recall 87.1% vs 90.0% (-3.2 pp)", "where": "results table", "verdict": "WRONG", "correct_value_if_wrong": "Precision 95.1% vs 69.5% is confirmed correct; the recall figure repeats the same pp/relative-% conflation as above (-2.9 pp actual, not -3.2 pp).", "note": "Same recall unit error carried into structure_gain restatement."}
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Recall delta mislabeled as '-3.2 pp' in both the key_number and structure_gain; actual pp difference is -2.9 (90.0% -> 87.1%), and the paper's 3.2% is a relative reduction, not percentage points. F1, precision, and false-positive numbers all confirmed exactly."
+},
+{
+  "arxiv_id": "2606.22647",
+  "numbers": [
+    {"metric": "repair success rate (Java, 10 CWEs, 83 instances)", "value": "86.75%", "where": "main results table", "verdict": "CONFIRMED"},
+    {"metric": "repair success rate (C, 29 instances)", "value": "86.94%", "where": "cross-language results table", "verdict": "CONFIRMED"},
+    {"metric": "out-of-distribution repair success rate (Vul4J, 23 unseen CWEs)", "value": "65.22%", "where": "OOD evaluation section", "verdict": "CONFIRMED"},
+    {"metric": "structure_gain", "value": "Table III: RAVEN 7/9 correct vs. fewer for SAN2PATCH/PatchAgent on unseen C vulnerabilities", "where": "Table III", "verdict": "CONFIRMED", "note": "7/9 confirmed; paper describes RAVEN 'outperforming or matching' the two baselines rather than giving their exact counts, but the qualitative claim holds."}
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All three per-table success rates confirmed exactly; note the abstract's headline figure (83.13% aggregate across all settings) differs from these table-specific numbers, but that is not what the record cites, so no conflict. Curator Agent tools and BM25/Joern-CPG retriever confirmed verbatim."
+},
+{
+  "arxiv_id": "2607.29422",
+  "numbers": [
+    {"metric": "Repair success rate (full AgenticRepair, GPT-5.2)", "value": "75.0% on 200-CVE strict subset; abstract reports 73% overall, outperforming strongest baseline by 29pp", "where": "Abstract and ablation table", "verdict": "CONFIRMED", "note": "Table II: 75.0% (150/200) strict; abstract 73.3% (220/300) overall, rounds to '73%'."},
+    {"metric": "Context-facet ablation deltas", "value": "w/o code-structure -1.5pp, w/o execution context -0.5pp, w/o commit-history -2.0pp (75.0% -> 73.0-74.5%)", "where": "Ablation table", "verdict": "CONFIRMED"},
+    {"metric": "Scaffold ablation", "value": "single-agent scaffold 30.5% (-44.5pp) vs full multi-agent 75.0%", "where": "Ablation table", "verdict": "CONFIRMED"},
+    {"metric": "structure_gain", "value": "context-facet removal costs 0.5-2pp (75.0%->73.0-74.5%); single-agent scaffold costs 44.5pp", "where": "Ablation table", "verdict": "CONFIRMED"}
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly against the ablation table. Context-facet ablation (same model GPT-5.2, same multi-agent scaffold, only context facet varied) is a clean representation_only_ablation. Synthesis-verification loop stop condition (sanitizer harness, 75-step budget) confirmed verbatim."
+}
+]

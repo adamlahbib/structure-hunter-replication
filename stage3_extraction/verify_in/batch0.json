@@ -1,0 +1,326 @@
+[
+{
+"arxiv_id": "2310.08275",
+"title": "Harnessing the Power of LLM to Support Binary Taint Analysis",
+"system": "LATTE",
+"key_numbers": [
+{
+"metric": "average detection accuracy across CWE types",
+"value": "77%",
+"where": "Table 2, Section 6.2"
+},
+{
+"metric": "real-world firmware bugs found",
+"value": "119 unique bugs, 37 previously unknown, 10 assigned CVEs",
+"where": "Section 6.6"
+},
+{
+"metric": "GPT-4.0 vs GPT-3.5 accuracy delta",
+"value": "+13.99 percentage points",
+"where": "Table 3"
+}
+],
+"repr_primary": "taint_path",
+"integration": "prompt_serialization",
+"evaluation": "ablated_measured",
+"structure_gain": "none reported (no ablation isolates the dangerous-flow/slicing representation itself against raw decompiled code on the same model)",
+"stop_detail": "Backward interprocedural data-dependency slicing from taint sources to vulnerable sinks builds 'dangerous flow' call chains (Def 4.2, Sec 5) that ground the LLM's step-by-step function-by-function analysis via sequential prompt templates (Sec 5.3)."
+},
+{
+"arxiv_id": "2405.17238",
+"title": "IRIS: LLM-Assisted Static Analysis for Detecting Security Vulnerabilities",
+"system": "IRIS",
+"key_numbers": [
+{
+"metric": "vulnerabilities detected",
+"value": "55 (IRIS+GPT-4) vs 27 (CodeQL)",
+"where": "Table 1"
+},
+{
+"metric": "F1",
+"value": "0.177 (IRIS+GPT-4) vs 0.076 (CodeQL)",
+"where": "Table 1"
+},
+{
+"metric": "sink specification recall (GPT-4 vs CodeQL)",
+"value": "87.11%",
+"where": "Figures 6-7"
+}
+],
+"repr_primary": "taint_path",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "ablated_measured",
+"structure_gain": "IRIS+GPT-4 detects 55/120 vulnerabilities vs CodeQL's 27/120, F1 0.177 vs 0.076 (Table 1); this compares the full neurosymbolic taint-context pipeline against a static-only baseline, not the same model with/without structure.",
+"stop_detail": "LLM-inferred taint specifications (source/sink/sanitizer/propagator) populate an inter-procedural dataflow graph; detected source-to-sink code paths are serialized with surrounding +/-5 lines for contextual LLM analysis (Sec 3.1-3.5, Appendix A.3)."
+},
+{
+"arxiv_id": "2411.03079",
+"title": "Utilizing Precise and Complete Code Context to Guide LLM in Automatic False Positive Mitigation",
+"system": "LLM4FPM",
+"key_numbers": [
+{
+"metric": "Juliet F1 (CSA warnings, before vs after)",
+"value": "93.48% -> 99.75%",
+"where": "RQ1, Figure 8"
+},
+{
+"metric": "D2A label accuracy",
+"value": "53% (original) -> 86%",
+"where": "RQ1"
+},
+{
+"metric": "Ablation accuracy/F1, no-slice vs full (Qwen2.5-32B)",
+"value": "95.15%/97.19% vs 98.17%/98.92%",
+"where": "Table III, RQ3"
+}
+],
+"repr_primary": "cpg",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"structure_gain": "eCPG-based slicing (vs full-file raw context, LLM4FPM-noslice) improves accuracy by +3.02pp and F1 by +1.73pp on the same Qwen2.5-32B model (Table III); the raw-file variant also fails outright on 40 cases due to context-window overflow.",
+"stop_detail": "The FARF algorithm formally guarantees completeness of the retrieved dependent-file set via whole-program CPG + file-reference-graph SCC traversal (Section III-C); it verifies coverage of context, not correctness of the slice's judgment."
+},
+{
+"arxiv_id": "2504.16057",
+"title": "Neuro-symbolic Static Analysis with LLM-generated Vulnerability Patterns",
+"system": "MoCQ",
+"key_numbers": [
+{
+"metric": "F1 (avg)",
+"value": "MoCQ 0.51 vs DSL100 (full grammar) 0.31",
+"where": "Table 8"
+},
+{
+"metric": "query generation pass rate",
+"value": "MoCQ 77.4% vs DSL0 (no spec) 9.9% vs DSL100 50.0%",
+"where": "Table 7"
+},
+{
+"metric": "detection TP/FP on 343 test vulns",
+"value": "MoCQ 269 TP/197 FP vs Pure LLM 185 TP/182 FP vs Expert queries 222 TP/184 FP",
+"where": "Tables 2 and 4"
+}
+],
+"repr_primary": "cpg",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "representation_only_ablation",
+"structure_gain": "Providing a subset DSL grammar (MoCQ) instead of no specification raises query-generation pass rate from 9.9% (DSL0) to 77.4%, and F1 from 0.31 (DSL100, full grammar) to 0.51 (MoCQ), same LLM loop (Tables 7-8).",
+"stop_detail": "LLM iteratively generates CPG/CodeQL queries from a BNF-grammar DSL spec, receiving symbolic-validator feedback (syntax/runtime/semantic errors) and intermediate program states after each query block, refining over up to 20 iterations (Algorithm 1)."
+},
+{
+"arxiv_id": "2506.11561",
+"title": "Identifying Helpful Context for LLM-based Vulnerability Repair: A Preliminary Study",
+"system": "Antal25",
+"key_numbers": [
+{
+"metric": "repair rate per run (Short+CVE+Manual vs GPT-4o baseline)",
+"value": "18-14-17 vs 11-12-14",
+"where": "Table 1"
+},
+{
+"metric": "avg repair rate, CWE vs CVE context",
+"value": "CWE 29.4% vs CVE 37.3%",
+"where": "Sec 4, RQ1 answer box"
+},
+{
+"metric": "Top-3 prompt ensemble, distinct vulns fixed",
+"value": "26/42 (61.9%) vs original baseline 17/42 (40.4%) vs GPT-4o reproduction 19/42 (45.2%)",
+"where": "Sec 4.2, Table 1"
+}
+],
+"repr_primary": "retrieved_context",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"structure_gain": "Combining a CVE-derived repair guideline with manually extracted repository context (Short+CVE Hints+Manual) achieves the best single-prompt result (18-14-17 across 3 runs) vs GPT-4o baseline (11-12-14), same GPT-4o-2024-08-06 model, temperature 0.01 throughout (Table 1).",
+"stop_detail": "Manually curated context -- class headers, redacted-but-named referenced methods, imports, standardized CWE text, raw/GPT-summarized CVE descriptions, and manually identified project-specific hints -- is inserted directly into a zero-shot prompt (Sec 3.2-3.3, Table 1)."
+},
+{
+"arxiv_id": "2509.15433",
+"title": "LLM-Driven SAST-Genius: A Hybrid Static Analysis Framework for Comprehensive and Actionable Security",
+"system": "SAST-Genius",
+"key_numbers": [
+{
+"metric": "Precision/Recall/F1",
+"value": "SAST-Genius 89.5%/100%/94.5% vs Semgrep 35.7%/73.5%/48.3% vs GPT-4 65.5%/77.1%/70.8%",
+"where": "Table 1"
+},
+{
+"metric": "false positives",
+"value": "225 (Semgrep) -> 20 (SAST-Genius), ~91% reduction (~11x fewer)",
+"where": "Sec IV.B, Fig. 2"
+},
+{
+"metric": "PoC exploit generation success",
+"value": "~70% of exploitable findings",
+"where": "Sec III.B"
+}
+],
+"repr_primary": "hybrid",
+"integration": "finetune_adapter",
+"evaluation": "ablated_measured",
+"structure_gain": "SAST-Genius (fine-tuned LLM + structured AST/taint-path JSON prompt) reaches 89.5% precision vs Semgrep's 35.7% (no LLM) and GPT-4's 65.5% (Table 1), but model, fine-tuning, and representation all differ simultaneously across arms.",
+"stop_detail": "Semgrep's intermediate representations (AST nodes and source-to-sink taint paths) plus call-graph/library-dependency context and the original rule/severity are serialized into a structured JSON prompt fed to a fine-tuned Llama-3-8B triage engine, which outputs a verdict plus reasoning summary (Sec III.A, Fig. 1)."
+},
+{
+"arxiv_id": "2511.11896",
+"title": "VULPO: Context-Aware Vulnerability Detection via On-Policy LLM Optimization",
+"system": "VULPO",
+"key_numbers": [
+{
+"metric": "P-Pass@1, VULPO-4B vs Qwen3-4B baseline",
+"value": "22.60% vs 7.45%",
+"where": "Table III, Section VII-C"
+},
+{
+"metric": "F1, VULPO-4B vs Qwen3-4B",
+"value": "40.09% vs 15.20%",
+"where": "Table III"
+},
+{
+"metric": "P-Pass@8, VULPO-4B vs DeepSeek-V3.1",
+"value": "53.91% vs 42.13%",
+"where": "Table III"
+}
+],
+"repr_primary": "interproc_callgraph",
+"integration": "finetune_adapter",
+"evaluation": "ablated_measured",
+"structure_gain": "No dataset-wide numeric ablation of context vs no-context is reported; a single qualitative case (Fig. 1/Sec II-A) shows Qwen3-4B misses a null-check bug from caller-only context but succeeds once the callee implementation (interprocedural context) is added -- the effect is not quantified across the benchmark.",
+"stop_detail": "LLM-based judges (GPT-OSS-120B, 99.75% judge accuracy) grade outcome/localization/reasoning against the ground-truth CVE description and patch diff to compute the RL reward (Section V-B/V-C, Eq. 3) -- judge-based grounding, not formal verification."
+},
+{
+"arxiv_id": "2601.10865",
+"title": "Multi-Agent Taint Specification Extraction for Vulnerability Detection",
+"system": "SemTaint",
+"key_numbers": [
+{
+"metric": "Recall vs CodeQL baseline",
+"value": "106/162 (65.43%) vs CodeQL 0%",
+"where": "RQ1 results"
+},
+{
+"metric": "TICR candidate call reduction",
+"value": "94,909 -> 10,184 calls (89.2% reduction)",
+"where": "RQ2"
+},
+{
+"metric": "Novel vulnerabilities discovered",
+"value": "4 in 4 npm packages (CWE-78, CWE-22, CWE-915)",
+"where": "RQ4"
+}
+],
+"repr_primary": "taint_path",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "representation_only_ablation",
+"structure_gain": "LLM-derived taint specs (sources/sinks + repaired call graph) raise recall from 0% (CodeQL baseline, ruleset R1) to 65.43% (106/162) on known vulnerabilities; ablation (RQ3/Table IV) shows 76.4% of catches needed only custom sources/sinks while 23.6% additionally needed call-graph repair.",
+"stop_detail": "LLM-proposed facts (sources/sinks as endpoint locations, call edges as span locations) must bind by file/line/column to CodeQL's existing Data Flow Graph QL nodes; unbindable proposals are rejected, and each agent's output is aggregated across 3 runs via union or majority vote to reduce stochasticity (Validation subsection)."
+},
+{
+"arxiv_id": "2603.27204",
+"title": "MalSkills: Detecting Malicious Skills in the Agentic Supply Chain via Neuro-symbolic Reasoning",
+"system": "MalSkills",
+"key_numbers": [
+{
+"metric": "F1/Precision/Recall on MalSkillsBench",
+"value": "F1=0.93, P=0.95, R=0.92 vs best baseline F1=0.88 (Skill Scanner)",
+"where": "results table"
+},
+{
+"metric": "Wild-Skills-150K flagged/confirmed",
+"value": "620 flagged, 400 manually confirmed malicious (64.5% precision open-world)",
+"where": "wild-deployment RQ"
+},
+{
+"metric": "Ablation w/o Symbolic Extractor recall",
+"value": "drops to 0.27",
+"where": "ablation table"
+}
+],
+"repr_primary": "hybrid",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "representation_only_ablation",
+"structure_gain": "Full neuro-symbolic Skill Dependency Graph pipeline reaches F1=0.93 vs 0.88 best baseline on MalSkillsBench; ablation shows removing the symbolic extractor collapses recall to 0.27 and removing the neuro reasoner drops F1 to 0.71 with FPR rising to 0.49 (ablation table), same LLM backbone held fixed across arms.",
+"stop_detail": "Security-sensitive operations extracted symbolically (Semgrep + YASA points-to/interprocedural data-flow) or via LLM from implicit NL cues are linked into a typed Skill Dependency Graph (artifact-contains-SSO-has_operand-value_flow edges); a neuro-to-symbolic feedback loop promotes stable LLM findings into symbolic rules over time (SDG construction / neuro-symbolic reasoning section)."
+},
+{
+"arxiv_id": "2605.03697",
+"title": "Tailored Prompts, Targeted Protection: Vulnerability-Specific LLM Analysis for Smart Contracts",
+"system": "Zhang26",
+"key_numbers": [
+{
+"metric": "average positive recall",
+"value": "0.92 (range 0.73-1.00)",
+"where": "Results section"
+},
+{
+"metric": "average negative recall",
+"value": "0.85 (range 0.60-1.00)",
+"where": "Results section"
+},
+{
+"metric": "CoT vs standard few-shot prompting accuracy",
+"value": "0.91 vs 0.85",
+"where": "Ablation (CoT) section"
+}
+],
+"repr_primary": "ast",
+"integration": "prompt_serialization",
+"evaluation": "demonstrated",
+"structure_gain": "none reported (no raw-code-only baseline for comparison; the only ablation present is CoT vs. standard few-shot prompting, +0.06 accuracy, which is unrelated to the AST-derived context itself)",
+"stop_detail": "Vulnerability instances are grounded in professionally produced audit reports (CoinMarketCap, CertiK, QuantStamp, ConsenSys) matched to GitHub source via audited commit hashes; no automated static/dynamic verification of the LLM's own output"
+},
+{
+"arxiv_id": "2606.25356",
+"title": "Representation Matters: An Empirical Study of Program Representations for LLM Vulnerability Reasoning",
+"system": "RepBench",
+"key_numbers": [
+{
+"metric": "AST+PDG curated accuracy",
+"value": "83.2%",
+"where": "\u00a75.2 Table 6"
+},
+{
+"metric": "raw source baseline curated accuracy",
+"value": "53.5%",
+"where": "\u00a75.2 Table 6"
+},
+{
+"metric": "context dilution: source+graph vs. graph-only",
+"value": "69.4% at 12,938 avg tokens vs. 74.4% at 5,973 avg tokens",
+"where": "\u00a75.3 Finding 5"
+}
+],
+"repr_primary": "hybrid",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"structure_gain": "AST+PDG reaches 83.2% curated accuracy vs. 53.5% for raw source alone (+29.7pp), with model (qwen3.6-plus), temperature, prompting/checklist structure, and 50,000-character budget held fixed across all ten representation variants (\u00a74.2, \u00a75.2 Table 6)",
+"stop_detail": "Structured JSON output required with reasoning fields (sink_identified, data_source, validation_present, control_flow_analysis, pdg_dependencies); curated accuracy computed only on valid binary predictions matching expected labels (\u00a73.5.8, \u00a74.4)"
+},
+{
+"arxiv_id": "2608.03134",
+"title": "CLEAR: Causal Context-Based Agentic Reasoning for Vulnerability Detection",
+"system": "CLEAR",
+"key_numbers": [
+{
+"metric": "Pairwise-Correct (P-C), CLEAR vs. VulTrial baseline (PrimeVul)",
+"value": "19.17 vs. 8.31 (+130.7% relative)",
+"where": "Table 1 main results"
+},
+{
+"metric": "Pairwise-Correct (P-C), CLEAR vs. VulTrial baseline (Java-Pair)",
+"value": "21.36 +/- 1.48 vs. 12.45 +/- 2.08 (+71.56% relative)",
+"where": "Table 1 main results"
+},
+{
+"metric": "No-VCKG ablation P-C (PrimeVul)",
+"value": "8.08 (no VCKG) vs. 19.17 (full CLEAR)",
+"where": "Table 3 node ablation"
+}
+],
+"repr_primary": "retrieved_context",
+"integration": "retrieval_guide",
+"evaluation": "representation_only_ablation",
+"structure_gain": "Full CLEAR (with Vulnerability Causal Knowledge Graph context) vs. No-VCKG ablation, same multi-agent LLM pipeline, on PrimeVul: Pairwise-Correct 19.17 vs. 8.08 (Table 3); removing only Fix-Intent nodes drops it to 14.32 vs. 19.17 full.",
+"stop_detail": "Grounded via a Vulnerability Causal Knowledge Graph built offline from CVE descriptions, patches, and source code (LLM-extracted causal chains linked by semantic-similarity neighborhood edges and cross-instance global edges); a Collector Agent retrieves the Top-5 similar historical Entrypoints and traverses Local/Neighbor/Global edges, serializing the result into the Claim/Critic/Judge agents' prompts (VCKG construction / Collector Agent section)."
+}
+]

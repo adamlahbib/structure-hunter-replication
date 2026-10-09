@@ -1,0 +1,391 @@
+[
+{
+  "arxiv_id": "2401.16185",
+  "numbers": [
+    {
+      "metric": "knowledge-enhancement effect on F1 (Solidity, foundation models)",
+      "value": "F1 nearly doubling on average with knowledge vs. without",
+      "where": "RQ1 results section",
+      "verdict": "CONFIRMED",
+      "note": "Paper states verbatim: 'knowledge enhancement substantially improves performance in Solidity ... with F1 scores nearly doubling on average' (foundation models only; deep reasoning models showed the opposite effect)."
+    },
+    {
+      "metric": "context-supplementation effect on TP counts across 36 knowledge x prompt combinations",
+      "value": "Solidity 22/36 increased, Java 18/36 increased, C/C++ 28/36 increased",
+      "where": "RQ2 results section",
+      "verdict": "CONFIRMED",
+      "note": "Exact match to full-text: 22/36, 18/36, 28/36 respectively."
+    },
+    {
+      "metric": "zero-day validation",
+      "value": "14 confirmed vulnerabilities of 29 submitted, $3,576 in bounties across 4 projects",
+      "where": "RQ4 results section",
+      "verdict": "CONFIRMED",
+      "note": "Paper: 'we submitted 29 issues across these four projects, and 14 were confirmed ... a total bounty of $3,576' (4 projects: Apebond, Glyph AMM, StakeStone, Hajime)."
+    },
+    {
+      "metric": "structure_gain",
+      "value": "Context supplementation (caller/related-function context) increased TP in 22/36 (Solidity), 18/36 (Java), 28/36 (C/C++) knowledge x prompt combinations vs. the no-context condition, same model/budget (RQ2).",
+      "where": "structure_gain field",
+      "verdict": "CONFIRMED",
+      "note": "Restates the RQ2 numbers above, confirmed identically."
+    }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All 3 key_numbers plus structure_gain confirmed exactly (RQ1 F1 near-doubling; RQ2 22/18/28 of 36; RQ4 14/29 + $3,576/4 projects). Confirmed via full text that context (callees + related vulnerable code) is statically extracted and that GPT-4.1 is indeed used for knowledge summarization (the arXiv page appears to carry a later revision post-dating GPT-4.1's release), supporting stop_detail as written."
+},
+{
+  "arxiv_id": "2406.11147",
+  "numbers": [
+    {
+      "metric": "Pair accuracy gain vs code-level RAG baseline",
+      "value": "16%-27% improvement",
+      "where": "Main results / comparison to code-level RAG",
+      "verdict": "CONFIRMED",
+      "note": "Table 4: GPT-4o 0.32 vs 0.05 (+27pp), Claude 0.27 vs 0.11 (+16pp), Qwen 0.26 vs 0.09 (+17pp), DeepSeek 0.30 vs 0.05 (+25pp)."
+    },
+    {
+      "metric": "Accuracy gain vs plain-LLM baseline",
+      "value": "16%-24% increase in identifying vulnerable/patched pairs",
+      "where": "Abstract",
+      "verdict": "CONFIRMED",
+      "note": "Table 4 vs Table 1 basic prompts: GPT-4o +24pp, Claude +21pp, Qwen +19pp, DeepSeek +16pp."
+    },
+    {
+      "metric": "Manual detection accuracy with generated explanations",
+      "value": "60% -> 77%",
+      "where": "Abstract / human study",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "metric": "structure_gain",
+      "value": "Knowledge-level RAG (structured multi-dimensional vulnerability knowledge) beats code-level RAG (raw code retrieval) by 16-27 points pair accuracy; beats a fine-tuning baseline (LLMAO) by 22-26 points",
+      "where": "structure_gain field",
+      "verdict": "CONFIRMED",
+      "note": "Both deltas verified against Table 4 (16-27pp vs code-level RAG; 22-26pp vs LLMAO)."
+    }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": false,
+  "evaluation_suggested": "representation_only_ablation",
+  "stop_detail_fair": true,
+  "note": "Evaluation should be representation_only_ablation, not ablated_measured: confirmed via full text that 'code-level RAG' (Table 4) is Vul-RAG's OWN ablation variant (same LLMs, same PairVul benchmark, same retrieval pipeline) that swaps structured knowledge for raw retrieved code -- exactly the with-structure vs raw-text arm the strict definition asks for -- not a separate baseline system. All 3 key_numbers plus structure_gain confirmed exactly."
+},
+{
+  "arxiv_id": "2501.04510",
+  "numbers": [
+    {
+      "metric": "Accuracy drop w/o cross-modal alignment",
+      "value": "-18.75pp (CodeLlama), -14.54pp (CodeGemma), -14.49pp (Qwen)",
+      "where": "Table IV (validation set ablation)",
+      "verdict": "CONFIRMED",
+      "note": "Verified against raw Table IV values: full accuracies 0.6627/0.6154/0.6572 vs ablated 0.4752/0.4700/0.5123 -> drops of 18.75/14.54/14.49pp exactly."
+    },
+    {
+      "metric": "Accuracy drop w/o projector",
+      "value": "-22.93pp (CodeLlama), -13.86pp (CodeGemma), -11.75pp (Qwen)",
+      "where": "Table IV",
+      "verdict": "CONFIRMED",
+      "note": "Ablated accuracies 0.4334/0.4768/0.5397 vs full -> drops of 22.93/13.86/11.75pp exactly."
+    },
+    {
+      "metric": "Dataset scale",
+      "value": "330,000+ samples, 809 projects, 150 CWEs",
+      "where": "Dataset description",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "metric": "structure_gain",
+      "value": "Removing the graph-to-text cross-modal alignment module (which fuses the CPG-derived GAT embeddings into soft prompts) drops accuracy by 14.5-18.75pp across three frozen LLM backbones, same soft-prompt tuning budget otherwise",
+      "where": "structure_gain field",
+      "verdict": "CONFIRMED"
+    }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly against raw Table IV values (initial AI-summarized fetch had rounding errors; re-verified with full table reproduction). Minor nuance: the Table IV ablations (w/o projector, w/o cross-modal alignment) degrade the graph-to-LLM fusion mechanism rather than removing the CPG/graph input entirely -- there is no separate graph-free 'text-only, identical architecture' arm in the paper -- so representation_only_ablation is a defensible but not airtight label."
+},
+{
+  "arxiv_id": "2505.17416",
+  "numbers": [
+    {
+      "metric": "Detection accuracy / F1",
+      "value": "91.11% accuracy, F1 0.9104",
+      "where": "Results table (LLM-BSCVM(W))",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "metric": "RAG ablation delta",
+      "value": "F1 0.9104 -> 0.8440 (-6.64pp) and accuracy -5.5pp w/o RAG",
+      "where": "Table IV",
+      "verdict": "CONFIRMED",
+      "note": "Accuracy 91.11% -> 85.61% = -5.50pp exactly; F1 0.9104 -> 0.8440 = -6.64pp exactly."
+    },
+    {
+      "metric": "False positive rate vs baseline",
+      "value": "5.1% vs TrustLLM's 7.2%",
+      "where": "Results section",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "metric": "structure_gain",
+      "value": "Removing RAG (retrieved audit reports / similar-contract corpus) drops F1 from 0.9104 to 0.8440 (-6.64pp); a full-context variant LLM-BSCVM(E) that injects more retrieved text actually underperforms (80.42% accuracy) due to noise",
+      "where": "structure_gain field",
+      "verdict": "CONFIRMED",
+      "note": "LLM-BSCVM(E) confirmed at exactly 0.8042 accuracy / 0.7890 F1, with the paper explicitly attributing the drop to 'excessive contextual information' distracting the model."
+    }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": false,
+  "integration_suggested": "retrieval_guide",
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Integration should be retrieval_guide, not agent_tool_use: full-text check of all six agents (Detector/Advisor/Assessor/Fixer/Verifier/Reporter) shows a fixed sequential 'Decompose-Retrieve-Generate' pipeline with weighted-fusion/voting and no autonomous, dynamically-triggered tool invocation (no Slither/compiler/etc. called by an agentic loop). All 3 key_numbers plus structure_gain confirmed exactly."
+},
+{
+  "arxiv_id": "2506.18394",
+  "numbers": [
+    {
+      "metric": "correct patches, full LTFix vs. LTFix-NT (no context trace) ablation",
+      "value": "22 vs. 15 (+47%)",
+      "where": "Section 5.7 Ablation Analysis (RQ3)",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "metric": "total errors fixed, full LTFix vs. LTFix-F (file-level context) ablation",
+      "value": "37 vs. 15 (correct patches 22 vs. 7, +214%)",
+      "where": "Section 5.7 ablation table",
+      "verdict": "CONFIRMED",
+      "note": "LTFix-F: 15 total errors fixed, 7 correct patches; (22-7)/7=214% relative increase in correct patches, exact match."
+    },
+    {
+      "metric": "repair success rate (custom benchmark / SAVER dataset)",
+      "value": "37/49 (75.5%) and 122/153 (79.7%)",
+      "where": "main results section",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "metric": "structure_gain",
+      "value": "Full LTFix (typestate-guided context trace) vs. LTFix-NT (error-propagation path only, no context trace), same LLM (Claude 3.5 Sonnet): 22 vs. 15 correct patches (+47%), 37 vs. 22 total errors fixed (+68%), 1 vs. 4 new errors introduced (Section 5.7 ablation, RQ3).",
+      "where": "structure_gain field",
+      "verdict": "CONFIRMED",
+      "note": "LTFix-NT confirmed at 22 total errors fixed, 15 correct patches, 4 new errors; all deltas match. Claude 3.5 Sonnet confirmed as the sole LLM used across all ablation arms."
+    }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly against Section 5.7's ablation table and main results. Same LLM (Claude 3.5 Sonnet) held constant across LTFix/LTFix-NT/LTFix-F confirms a clean representation_only_ablation; stop_detail's description of GDB-based dynamic typestate instrumentation producing an error-propagation path plus context trace is confirmed verbatim."
+},
+{
+  "arxiv_id": "2510.02534",
+  "numbers": [
+    {
+      "metric": "F1 (OWASP Java Benchmark)",
+      "value": "0.912",
+      "where": "Abstract / results",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "metric": "F1 (OpenVuln)",
+      "value": "0.955",
+      "where": "Abstract / results",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "metric": "F1 gain, optimized vs minimal-context prompt (OpenVuln)",
+      "value": "~+0.15 avg (e.g. gpt-5 +0.334, gpt-oss-20b +0.381)",
+      "where": "Table 4",
+      "verdict": "WRONG",
+      "correct_value_if_wrong": "Average F1 gain across the 10 models in Table 4 (OpenVuln) is +0.176, not ~+0.15",
+      "note": "Per-model examples (gpt-5 +0.334, gpt-oss-20b +0.381) are exactly correct. But summing all 10 listed model deltas (0.196, 0.096, -0.243, 0.268, 0.216, 0.077, 0.334, 0.233, 0.381, 0.203) gives an average of +0.176, not '~0.15'; the paper itself states no explicit average figure, so this appears to be a computed estimate that undershoots the true mean by ~0.03 (~17% relative), notably because it doesn't fully account for the Gemini-2.5-Pro regression's small weight."
+    },
+    {
+      "metric": "structure_gain",
+      "value": "Optimized prompt (flow-sensitive taint traces + CWE-specific micro-rubric) improves F1 by ~0.15 on average over a minimal-context baseline prompt with the same LLM and decoding settings, e.g. gpt-5 +0.334 F1 on OpenVuln (Table 4)",
+      "where": "structure_gain field",
+      "verdict": "WRONG",
+      "correct_value_if_wrong": "Average gain is +0.176, not ~0.15 (same issue as key_number above)",
+      "note": "Duplicates the same average-gain discrepancy as the key_number above."
+    }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "The '~+0.15 avg' F1 gain figure (in both the key_number and structure_gain) is off: the true average across Table 4's 10 OpenVuln models is +0.176. Both headline F1 scores (0.912 OWASP, 0.955 OpenVuln) and the two cited per-model deltas (gpt-5 +0.334, gpt-oss-20b +0.381) are exactly correct; stop_detail's one-shot schema-constrained JSON adjudication description is confirmed verbatim."
+},
+{
+  "arxiv_id": "2512.06846",
+  "numbers": [
+    {
+      "metric": "F1 (SFT+DPO) on FORGE",
+      "value": "74.9% (P73.1%/R76.8%)",
+      "where": "Table 1",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "metric": "F1 progression Base -> SFT -> SFT+DPO",
+      "value": "57.8% -> 65.5% -> 74.9%",
+      "where": "Table 1",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "metric": "avg detection time per contract vs baselines",
+      "value": "11.3s (CKG-LLM) vs 13.5s (Achecker) vs 15.8s (GPTScan)",
+      "where": "Table 2",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "metric": "structure_gain",
+      "value": "none reported for representation directly (the knowledge-graph structure is held constant); reported gains are from fine-tuning stages: F1 rises Base 57.8% -> SFT 65.5% -> SFT+DPO 74.9% (Table 1), not a raw-text-vs-KG ablation.",
+      "where": "structure_gain field",
+      "verdict": "CONFIRMED",
+      "note": "Confirmed no raw-text-vs-KG ablation exists; the F1 progression numbers cited match Table 1 exactly."
+    }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "All numbers confirmed exactly against Table 1 and Table 2. Confirmed the contract knowledge graph merges AST (ontology layer), control-flow (hasNext edges), invocation, inheritance, and SSA-based data dependencies from Slither IR -- consistent with a CPG-style representation -- and that the SFT+DPO-tuned LLM translates NL vulnerability patterns into SPARQL queries against this graph, matching stop_detail."
+},
+{
+  "arxiv_id": "2601.18847",
+  "numbers": [
+    {
+      "metric": "Macro-F1 (type-level detection)",
+      "value": "MulVul 34.79% vs GPT-4o 3.86% vs LLM x CPG 24.58% vs LLMVulExp 22.72% vs VISION 18.12%",
+      "where": "Table 2",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "metric": "retrieval ablation Macro-F1",
+      "value": "34.56% (full) -> 21.80% (no retrieval), -30.70pp",
+      "where": "Table 4",
+      "verdict": "WRONG",
+      "correct_value_if_wrong": "34.56% -> 21.80% is a -12.76pp drop, not -30.70pp",
+      "note": "The 34.56% and 21.80% values are correct, but -30.70pp is misattributed: in Table 4's delta (Δ) column, -30.70 is actually the delta for the GPT-4o baseline row (34.56-3.86=30.70), not for the 'w/o Retrieval' row, whose true delta is -12.76pp (34.56-21.80)."
+    },
+    {
+      "metric": "prompt-evolution ablation gain",
+      "value": "51.6% improvement over manual prompts",
+      "where": "ablation section",
+      "verdict": "CONFIRMED",
+      "note": "w/o Evolution = 22.80% Macro-F1; (34.56-22.80)/22.80 = 51.6% relative improvement, exact match."
+    },
+    {
+      "metric": "structure_gain",
+      "value": "Removing retrieval-augmentation alone (agents/base LLM held fixed) drops Macro-F1 from 34.56% to 21.80%, a 30.7pp loss (Table 4) -- a clean representation-only ablation isolating the retrieved vulnerability-knowledge-base context.",
+      "where": "structure_gain field",
+      "verdict": "WRONG",
+      "correct_value_if_wrong": "The drop is 12.76pp, not 30.7pp (same misattribution as the key_number above)",
+      "note": "Repeats the same Table 4 delta-column misattribution."
+    }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": true,
+  "integration_suggested": null,
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "The retrieval-ablation drop is wrong in both the key_number and structure_gain: Table 4 shows 'w/o Retrieval' at 21.80% vs full 34.56%, a -12.76pp change, not -30.70pp (that figure is actually the GPT-4o-baseline row's delta in the same table). Macro-F1 comparison table and the 51.6% prompt-evolution figure are both confirmed exactly."
+},
+{
+  "arxiv_id": "2604.17948",
+  "numbers": [
+    {
+      "metric": "overall quality/remediation score (LLM-judge)",
+      "value": "54.21% average across tested models",
+      "where": "Results section",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "metric": "component quality scores",
+      "value": "Structural Integrity ~7.5/10, Ground Truth Alignment ~6.14/10, Code Reasoning ~7.32/10, Remediation Quality ~6.98/10",
+      "where": "Results section",
+      "verdict": "UNRETRIEVABLE",
+      "note": "These per-dimension values live only in Figure 6, a heatmap for one specific model (Falcon H1R-7B) across RAG configurations, not as an average across all tested models; exact cell values aren't present as extractable text. The one comparable figure found in prose (Code Reasoning = 7.10 for the best config) does not match the claimed 7.32, and Ground Truth Alignment = 6.14 does match, but full confirmation of all four values requires reading the image directly, which is not possible via text-based fetch."
+    },
+    {
+      "metric": "knowledge base size",
+      "value": "70 Google Project Zero reports + 1,321 CWE entries",
+      "where": "RAG engine section",
+      "verdict": "CONFIRMED"
+    }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": false,
+  "integration_suggested": "retrieval_guide",
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Component quality scores are UNRETRIEVABLE as precisely stated (they come from a Figure 6 heatmap for one model only; a text-quoted value for Code Reasoning=7.10 conflicts with the claimed 7.32). Integration should be retrieval_guide, not agent_tool_use: confirmed the Explorer/Analyst/Reporter agents run a fixed deterministic pipeline (RAG-fed prompts chained sequentially) with no autonomous tool invocation. Overall score and KB size both confirmed exactly; no RAG-vs-no-RAG ablation exists, consistent with structure_gain='none reported'."
+},
+{
+  "arxiv_id": "2605.09461",
+  "numbers": [
+    {
+      "metric": "P-C (Pair-wise Correct) vs VulTrial",
+      "value": "147 vs 81",
+      "where": "Table 1",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "metric": "F1 vs ConColl",
+      "value": "0.6907 vs 0.6287",
+      "where": "Table 1",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "metric": "Control Path ablation (P-C / Error)",
+      "value": "Full 55/76 -> w/o Control Path 42/89",
+      "where": "Table 2, 131-pair subset",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "metric": "structure_gain",
+      "value": "Removing the structural Control Path (AST/CFG/DFG-derived) drops P-C from 55 to 42 (-23.6% relative) and raises errors from 76 to 89, same GPT-4o backend and test subset (Table 2).",
+      "where": "structure_gain field",
+      "verdict": "CONFIRMED",
+      "note": "(55-42)/55=23.6% exact; GPT-4o confirmed as the LLM for all methods including this ablation."
+    }
+  ],
+  "repr_primary_agree": true,
+  "repr_primary_suggested": null,
+  "integration_agree": false,
+  "integration_suggested": "prompt_serialization",
+  "evaluation_agree": true,
+  "evaluation_suggested": null,
+  "stop_detail_fair": true,
+  "note": "Integration should be prompt_serialization, not retrieval_guide: full text confirms the Control Path (AST/CFG/DFG) -- the basis for repr_primary=cfg_dfg and for structure_gain -- is directly verbalized via templates and inserted into the prompt (a 'verbalization operator', not retrieval); retrieval_guide actually describes the separate Knowledge Path (CWE database via hybrid dense-sparse retrieval), which is not what's being ablated here. Minor note: the paper states removing the Semantic Path (not Control Path) causes the largest overall drop, though the Control-Path numbers reported are themselves accurate. All 3 key_numbers plus structure_gain confirmed exactly."
+}
+]

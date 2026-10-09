@@ -1,0 +1,299 @@
+[
+{
+"arxiv_id": "2401.15459",
+"title": "Multi-LLM Collaboration + Data-Centric Innovation = 2x Better Vulnerability Repair",
+"system": "VulMaster",
+"key_numbers": [
+{
+"metric": "Exact Match (EM)",
+"value": "20.0% (up from 10.2% best prior baseline)",
+"where": "Abstract / main results table"
+},
+{
+"metric": "EM ablation w/o AST",
+"value": "19.0% (-1.0pp vs full 20.0%)",
+"where": "Ablation study (Sec 6)"
+},
+{
+"metric": "BLEU",
+"value": "29.3% (up from 21.3%)",
+"where": "Abstract / main results"
+}
+],
+"repr_primary": "ast",
+"integration": "finetune_adapter",
+"evaluation": "representation_only_ablation",
+"structure_gain": "Removing serialized AST sequence drops EM by 1.0pp (20.0%->19.0%); removing CWE knowledge drops it 1.1pp; removing full-function input drops it 1.2pp, all on the same adapted-CodeT5 backbone and training budget",
+"stop_detail": "No automated grounding/stop mechanism; qualitative case study only (Sec 6.1), relies on assumed perfect fault localization via special tokens marking vulnerable lines"
+},
+{
+"arxiv_id": "2406.05892",
+"title": "Security Vulnerability Detection with Multitask Self-Instructed Fine-Tuning of Large Language Models",
+"system": "MSIVD",
+"key_numbers": [
+{
+"metric": "F1 on BigVul (vs best baseline LineVul+DeepDFA)",
+"value": "0.92 vs 0.88",
+"where": "Table 3, Section 5.1"
+},
+{
+"metric": "F1 on PreciseBugs (post-cutoff, unseen) vs LineVul",
+"value": "0.48 vs 0.31",
+"where": "Table 3, Section 5.1 RQ2"
+},
+{
+"metric": "GNN-embedding ablation on BigVul (MSIVD- vs MSIVD)",
+"value": "F1 0.90 -> 0.92",
+"where": "Table 4, RQ3"
+}
+],
+"repr_primary": "cfg_dfg",
+"integration": "finetune_adapter",
+"evaluation": "representation_only_ablation",
+"structure_gain": "Adding CFG/DFA-derived GGNN embeddings to the fine-tuned LLM's hidden states raises F1 from 0.90 (LLM-only, MSIVD-) to 0.92 (MSIVD) on BigVul, holding the CodeLlama-13B backbone and training budget fixed (Table 4).",
+"stop_detail": "Reaching-definition dataflow analysis computed over each function's CFG is embedded via a GGNN and concatenated to the LLM's final hidden states before classification (Section 3.3)."
+},
+{
+"arxiv_id": "2411.06493",
+"title": "LProtector: An LLM-driven Vulnerability Detection System",
+"system": "LProtector",
+"key_numbers": [
+{
+"metric": "F1 (LProtector vs baselines)",
+"value": "33.49% (LProtector) vs 19.15% (VulDeePecker) vs 22.87% (Reveal)",
+"where": "Table II"
+},
+{
+"metric": "ablation F1 (RAG+CoT vs No RAG)",
+"value": "33.49% vs 23.92%",
+"where": "Table III"
+},
+{
+"metric": "ablation F1 (No RAG & No CoT)",
+"value": "18.61%",
+"where": "Table III"
+}
+],
+"repr_primary": "retrieved_context",
+"integration": "retrieval_guide",
+"evaluation": "representation_only_ablation",
+"structure_gain": "Removing RAG context (holding GPT-4o and CoT fixed) drops F1 from 33.49% to 23.92%, a 9.57pp loss (Table III).",
+"stop_detail": "Input code is embedded via OpenAI embeddings; top-5 cosine-similar CWE/CVE examples are retrieved from a 500-instance Big-Vul vector store (ChromaDB); GPT-4o selects the best-matching exemplar to ground its classification (RAG formula, Sec III)."
+},
+{
+"arxiv_id": "2504.16877",
+"title": "Context-Enhanced Vulnerability Detection Based on Large Language Model",
+"system": "PacVD",
+"key_numbers": [
+{
+"metric": "F1, DeepSeek-R1+CoT: API-abstraction level A3 vs w/o-API context",
+"value": "69.09% vs 60.89% (+8.20pp)",
+"where": "Table 4"
+},
+{
+"metric": "F1 vs best context-sampling baseline (API-guided sampling)",
+"value": "69.09% vs 66.18% (+2.91pp)",
+"where": "Table 5, Section 5.4"
+},
+{
+"metric": "CodeLLaMA+BP F1 vs best baseline (hierarchy sampling, HS-C)",
+"value": "67.48% vs 58.14% (+9.34pp)",
+"where": "Section 5.4 / Table 5"
+}
+],
+"repr_primary": "cfg_dfg",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"structure_gain": "A3 API-context vs w/o-API: F1 69.09% vs 60.89% (+8.20pp), same model (Table 4).",
+"stop_detail": "Control-flow and data-flow analysis over the target function and its callees (up to 3 call layers) extracts four API-usage features (fuzzy/concrete branches, call counts, key variables) at four increasing abstraction levels A1-A4, appended directly into the LLM prompt (Section 3.2.2, 3.3.1)."
+},
+{
+"arxiv_id": "2506.17798",
+"title": "CognixShield: PoV-Guided Vulnerable API Usage Detection in Large Codebases via LLMs",
+"system": "CognixShield",
+"key_numbers": [
+{
+"metric": "F1 (full vs ablations, same 57-project set)",
+"value": "89% full; 64% w/o AST fragmentation; 60% w/o cross-file RAG; 77% w/o PoV guidance",
+"where": "Ablation table"
+},
+{
+"metric": "Precision/Recall/Accuracy (full)",
+"value": "84% / 95% / 84%",
+"where": "Abstract / results"
+},
+{
+"metric": "Cross-file reliance",
+"value": "47/57 projects required cross-function/cross-file retrieved fragments",
+"where": "Results section"
+}
+],
+"repr_primary": "retrieved_context",
+"integration": "agent_tool_use",
+"evaluation": "representation_only_ablation",
+"structure_gain": "w/o cross-file RAG (single-function context only) drops F1 from 89% to 60% (-29pp); w/o AST-based fragmentation drops F1 to 64% (-25pp); w/o PoV-guided reasoning drops F1 to 77% (-12pp), all on the same 57-project dataset",
+"stop_detail": "Reflector agent's retrieval loop terminates when it judges the assembled context provides sufficient inter-procedural coverage for exploitability determination or no new relevant fragments are retrieved (multi-agent RAG loop, Reflector/Grader description)"
+},
+{
+"arxiv_id": "2509.16275",
+"title": "SecureFixAgent: A Hybrid LLM Agent for Automated Python Static Vulnerability Repair",
+"system": "SecureFixAgent",
+"key_numbers": [
+{
+"metric": "fix accuracy, fine-tuned SecureFixAgent",
+"value": "87.83%",
+"where": "Table III"
+},
+{
+"metric": "false positive rate",
+"value": "8.11%",
+"where": "Table III"
+},
+{
+"metric": "gains vs baselines (abstract)",
+"value": "+13.51pp fix accuracy vs pre-trained LLMs; -10.8pp FP vs static analysis alone; -5.46pp FP vs pre-trained LLMs",
+"where": "Abstract"
+}
+],
+"repr_primary": "raw_text",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "ablated_measured",
+"structure_gain": "No representation-only ablation; reported gain is from the iterative validate-loop vs single-pass LLM: fix accuracy rises from 79.72% (LLM-only, converges at iteration 1) to 87.83% (SecureFixAgent, converges at iteration 3) (Fig. 2, Table III).",
+"stop_detail": "Bandit static-analysis findings (vulnerable segment, rule report) plus full source are fed to the LLM each iteration, and each proposed patch is re-validated by re-running Bandit until convergence or the iteration limit (Algorithm 1, Sec III-B/III-E)."
+},
+{
+"arxiv_id": "2512.04106",
+"title": "Retrieval-Augmented Few-Shot Prompting Versus Fine-Tuning for Code Vulnerability Detection",
+"system": "Trad25",
+"key_numbers": [
+{
+"metric": "F1 / partial-match, 20-shot retrieval-augmented",
+"value": "74.05% / 83.90%",
+"where": "Table I"
+},
+{
+"metric": "F1 / partial-match, zero-shot baseline",
+"value": "36.35% / 20.30%",
+"where": "Table I"
+},
+{
+"metric": "fine-tuned comparators",
+"value": "Fine-tuned Gemini-1.5-Flash 59.31% F1 vs Fine-tuned CodeBERT 91.22% F1",
+"where": "Table I / results"
+}
+],
+"repr_primary": "retrieved_context",
+"integration": "retrieval_guide",
+"evaluation": "representation_only_ablation",
+"structure_gain": "Retrieval-augmented 20-shot prompting raises F1 from 36.35% (zero-shot) to 74.05%, same Gemini-1.5-Flash model (Table I) -- retrieval of semantically similar labeled examples is the sole varied factor across the few-shot arms.",
+"stop_detail": "Query code is embedded via gemini-embedding-001; top-k semantically similar labeled code+vulnerability-label pairs are retrieved via cosine similarity from a ChromaDB store and inserted as few-shot exemplars in the prompt (retrieval mechanism section)."
+},
+{
+"arxiv_id": "2601.18844",
+"title": "Reducing False Positives in Static Bug Detection with LLMs: An Empirical Study in Industry",
+"system": "Du26",
+"key_numbers": [
+{
+"metric": "False positive rate among industrial alerts",
+"value": "76% (328/433 FP)",
+"where": "RQ1"
+},
+{
+"metric": "Best hybrid method (LLM4PFA, GPT-4o) accuracy/precision/recall",
+"value": "0.93 / 0.83-0.93 / 0.75-0.88; eliminates 94-98% of FPs",
+"where": "RQ2, Table 2"
+},
+{
+"metric": "Cost per alarm",
+"value": "2.1-109.5 sec / $0.0011-$0.12",
+"where": "RQ3, Table 4"
+}
+],
+"repr_primary": "taint_path",
+"integration": "neurosymbolic_analyzer_loop",
+"evaluation": "ablated_measured",
+"structure_gain": "LLM4PFA (path-constraint hybrid) vs Basic Prompt, same GPT-4o backbone: accuracy 0.50 -> 0.93 (+0.43), FPR_Recall 0.45 -> 0.98 (+0.53) (Table 2).",
+"stop_detail": "Ground truth established via two-round manual review by developers/code reviewers plus majority voting over 3 LLM runs; no automated or formal verification oracle."
+},
+{
+"arxiv_id": "2604.08417",
+"title": "Vulnerability Detection with Interprocedural Context in Multiple Languages: Assessing Effectiveness and Cost of Modern LLMs",
+"system": "Lira26",
+"key_numbers": [
+{
+"metric": "GPT-4.1 Mini (C), Code-Only vs Code+Callees",
+"value": "Accuracy 0.7556 -> 0.5098, F1 0.8608 -> 0.6753",
+"where": "Table 6"
+},
+{
+"metric": "GPT-5 Mini (C), Code-Only vs Code+Callers",
+"value": "Accuracy 0.9052 -> 0.7946, F1 0.9502 -> 0.8855",
+"where": "Table 6"
+},
+{
+"metric": "Claude Haiku 4.5 (C), across context conditions",
+"value": "Accuracy ~0.979-0.980, F1 ~0.989-0.990 (negligible change)",
+"where": "Table 6"
+}
+],
+"repr_primary": "interproc_callgraph",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"structure_gain": "Adding interprocedural context (callee/caller code) DEGRADED performance for most models -- e.g. GPT-4.1 Mini F1 dropped 0.8608 -> 0.6753 (Code-Only vs Code+Callees, C, same model/prompt/temperature=0); only Claude Haiku 4.5 was robust. Token usage nearly doubled (+102%) without proportional gains.",
+"stop_detail": "No grounding/verification mechanism; this is a pure prompting study -- LLM outputs are parsed via regex and compared to ReposVul ground-truth CVE labels."
+},
+{
+"arxiv_id": "2605.04251",
+"title": "Root-Cause-Driven Automated Vulnerability Repair",
+"system": "Kumushi",
+"key_numbers": [
+{
+"metric": "Tier-1 plausible patch rate",
+"value": "Kumushi 85.4% vs Codex 86.0%, PatchAgent 71.9%, LoopRepair 2.2%",
+"where": "Section 4, Tier 1 results"
+},
+{
+"metric": "Root-cause fix rate (human assessment)",
+"value": "Kumushi 84.9% vs Codex 77.8%",
+"where": "Table 4"
+},
+{
+"metric": "Human win-rate vs Codex",
+"value": "Kumushi preferred 47% vs Codex 27% (26% tied), sign test p=0.0065",
+"where": "Section 4.5"
+}
+],
+"repr_primary": "hybrid",
+"integration": "agent_tool_use",
+"evaluation": "ablated_measured",
+"structure_gain": "Evidence-weighted ranked Functions-of-Interest context (call-graph traversal + dynamic traces + static dataflow) yields comparable oracle-based plausibility to Codex (85.4% vs 86.0%) but a higher root-cause-fix rate (84.9% vs 77.8%) and higher human preference (47% vs 27%) versus a frontier commercial coding agent lacking this pre-computed localization context (Section 4, Table 4).",
+"stop_detail": "Context is grounded via bounded bidirectional call-graph BFS (callers/callees) from crash-stack anchors, combined with AFL++ dynamic execution traces and static dataflow queries, consolidated into an evidence-weighted score ranking the top-20 Functions of Interest fed to the LLM alongside the sanitizer report (Section 3.1/3.3); patches are iteratively verified via ASan compilation, PoC replay, and test-suite execution, with failure output looped back to the agent (Section 3.3)."
+},
+{
+"arxiv_id": "2607.01138",
+"title": "Antaeus: Hunting Repository-Level Logic Vulnerabilities via Context-Grounded LLM Reasoning",
+"system": "Antaeus",
+"key_numbers": [
+{
+"metric": "True positives / FPs (Claude Opus 4.7)",
+"value": "15/28 TP, 1,345 FP across 4,859 functions",
+"where": "Table II"
+},
+{
+"metric": "Ablation recall, full vs -Local vs -Repo",
+"value": "Claude: 15 vs 9 vs 9; GPT: 12 vs 8 vs 7",
+"where": "Table IV"
+},
+{
+"metric": "FP reduction from comparative validation",
+"value": "1,682 -> 1,345 (20% reduction), no TP loss",
+"where": "Table V"
+}
+],
+"repr_primary": "hybrid",
+"integration": "prompt_serialization",
+"evaluation": "representation_only_ablation",
+"structure_gain": "Removing either context source (local callee augmentation or repository-context bundle) roughly halves true-positive detections (Claude: 15->9/9; GPT: 12->8/7) at fixed LLM backbone (Table IV), directly isolating representation contribution.",
+"stop_detail": "Context-grounding is static and non-agentic: Tree-sitter extracts depth-one callee signatures/bodies and referenced macro/constant definitions (local augmentation), plus a once-per-repository five-section context bundle (system purpose, principal model, protected objects, information outputs, trust topology) serialized into a single structured LLM call per function (Section III-B, Fig. 1)."
+}
+]
