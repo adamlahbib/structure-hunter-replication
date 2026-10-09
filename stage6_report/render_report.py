@@ -14,11 +14,6 @@ def get(path):
     for k in path.split("."):
         if isinstance(v, dict) and k in v:
             v = v[k]
-        elif isinstance(v, dict):
-            v = 0 if path.split(".")[0] in COUNT_FACETS else None  # absent facet value = zero count
-            if v is None:
-                sys.exit(f"render_report: unknown placeholder {{{{{path}}}}}")
-            break
         else:
             sys.exit(f"render_report: unknown placeholder {{{{{path}}}}}")
     if isinstance(v, (dict, list)):
@@ -65,13 +60,15 @@ def table(name):
         return "\n".join(out)
     if name == "isolation":
         out = ["Table: Study-level audit of the 37 records first coded as representation-only ablations.", "",
-               "| System | Model / config | Dataset, metric | Budget control | Arms compared | Other change | Verdict | Decided by |",
-               "|---|---|---|---|---|---|---|---|"]
-        cl = lambda t: re.sub(r"\s+", " ", str(t or "")).replace("|", "/")
+               "| System | Model / config | Dataset, metric | Budget control | Arms compared | Other change | Reported delta | Verdict | Decided by | Rationale |",
+               "|---|---|---|---|---|---|---|---|---|---|"]
+        def cl(t):  # one line per cell; "the record" in audit notes means our original extraction
+            t = re.sub(r"\s+", " ", str(t or "")).replace("|", "/")
+            return re.sub(r"\b([Tt])he record('s)?\b", lambda m: ("O" if m.group(1) == "T" else "o") + "ur original extraction" + (m.group(2) or ""), t)
         for a in stats["isolation_audit"]:
             out.append(f"| {a['system']} | {cl(a['model_config'])} | {cl(a['dataset_metric'])} | {cl(a['budget_control'])} | "
-                       f"{cl(a['arm_a'])} vs {cl(a['arm_b'])} | {cl(a['other_changes'])} | {ab(a['evaluation'])} | "
-                       f"{'both checkers' if a['decided_by'] == 'both checkers' else 'authors'} |")
+                       f"{cl(a['arm_a'])} vs {cl(a['arm_b'])} | {cl(a['other_changes'])} | {cl(a.get('delta'))} | {ab(a['evaluation'])} | "
+                       f"{'both checkers' if a['decided_by'] == 'both checkers' else 'author (proposed verdict)'} | {cl(a.get('human_reason') or a.get('rationale'))} |")
         return "\n".join(out)
     sys.exit(f"render_report: unknown table {name}")
 
@@ -86,5 +83,5 @@ print(f"report.md rendered: {n} placeholders filled")
 
 if __name__ == "__main__" and os.environ.get("SELFTEST"):
     stats.update({"a": {"b": 3}, "k": {"kappa": 0.5}})
-    assert get("a.b") == "3" and get("k.kappa") == "0.50" and get("evaluation.nonexistent_level") == "0"
+    assert get("a.b") == "3" and get("k.kappa") == "0.50"
     print("selftest ok")

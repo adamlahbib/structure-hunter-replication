@@ -1187,6 +1187,8 @@
   "strict_program_structure": 5,
   "survived": 7,
   "final_not_isolated": 2,
+  "not_audited": 31,
+  "extra_extraction_errors": 7,
   "n_source_inconsistency": 6
  },
  "n_peer_strict": 2,
@@ -1200,6 +1202,12 @@
   "uncertain": 2,
   "exclude": 6,
   "include_doi_only": 7
+ },
+ "funnel": {
+  "identified": 511,
+  "prefilter_pass": 126,
+  "extracted": 75,
+  "demoted": 7
  },
  "verification": {
   "records": 68,
@@ -1231,6 +1239,7 @@
   "n": 25,
   "agree": 17,
   "kappa": 0.38,
+  "kappa_3way": 0.55,
   "include_vs_exclude_flips": 0
  }
 }

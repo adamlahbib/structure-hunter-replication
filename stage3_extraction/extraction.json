@@ -1197,6 +1197,7 @@
    "Zian Su",
    "Xiangyu Zhang"
   ],
+  "a2_extraction_error": true,
   "source_inconsistency": "Text says no-validator FPs 'increase to 31'; Table 6 and its +245.45% give 38.",
   "isolation_audit": {
    "arxiv_id": "2501.18160",
@@ -2086,6 +2087,7 @@
    "Ting Yu",
    "Issa Khalil"
   ],
+  "a2_extraction_error": true,
   "isolation_audit": {
    "arxiv_id": "2507.16585",
    "system": "LLMxCPG",
@@ -2401,6 +2403,7 @@
    "Iman Sharafaldin",
    "Mohammad A. Tayebi"
   ],
+  "a2_extraction_error": true,
   "isolation_audit": {
    "arxiv_id": "2510.02534",
    "system": "ZeroFalse",
@@ -2695,6 +2698,7 @@
    "Fouad Trad",
    "Ali Chehab"
   ],
+  "a2_extraction_error": true,
   "isolation_audit": {
    "arxiv_id": "2512.04106",
    "system": "Trad25",
@@ -3018,6 +3022,7 @@
    "William Enck",
    "Alexandros Kapravelos"
   ],
+  "a2_extraction_error": true,
   "isolation_audit": {
    "arxiv_id": "2601.10865",
    "system": "SemTaint",
@@ -4304,6 +4309,7 @@
    "Rebecca Montanari",
    "Lorenzo Cavallaro"
   ],
+  "a2_extraction_error": true,
   "isolation_audit": {
    "arxiv_id": "2607.01138",
    "system": "Antaeus",
@@ -4553,6 +4559,7 @@
    "Patanamon Thongtanunam",
    "Kla Tantithamthavorn"
   ],
+  "a2_extraction_error": true,
   "isolation_audit": {
    "arxiv_id": "2607.29422",
    "system": "AgenticRepair",

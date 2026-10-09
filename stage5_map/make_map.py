@@ -71,6 +71,8 @@ stats["isoaudit"] = {"n": n, "agree": sum(x == y for x, y in pa), "kappa": round
                      "strict_program_structure": sum(not a["not_program_structure"] and a["verdict"] == "R-strict" for a in aud),
                      "survived": sum(a["verdict"] == "R-strict" for a in aud),
                      "final_not_isolated": sum(a["verdict"] == "not-isolated" for a in aud),
+                     "not_audited": N - len(aud),
+                     "extra_extraction_errors": sum(bool(r.get("a2_extraction_error")) for r in rows),
                      "n_source_inconsistency": sum(bool(r.get("source_inconsistency")) for r in rows)}
 stats["n_peer_strict"] = sum(1 for r in rows if r.get("peer_reviewed") and r.get("evaluation") == "repr_strict")
 
@@ -86,6 +88,11 @@ stats["snowball"] = {"papers": len(sc["papers"]), "resolved": sum(p["n_refs"] is
                      "uncertain": sum(x["decision"] == "uncertain" for x in new),
                      "exclude": sum(x["decision"] == "exclude" for x in new),
                      "include_doi_only": sum(x["decision"] == "include" and "arXiv" not in (x.get("source_id") or "") for x in new)}
+
+nl = lambda f: sum(1 for l in open(f) if l.strip())
+stats["funnel"] = {"identified": nl(f"{BASE}/stage1_search/identified.jsonl"), "prefilter_pass": nl(f"{BASE}/stage2_screening/candidates.jsonl"),
+                   "extracted": len(json.load(open(f"{BASE}/stage3_extraction/extraction.json")))}
+stats["funnel"]["demoted"] = stats["funnel"]["extracted"] - N
 
 # ---- method facts, each derived from its own source file (no hand-copied numbers)
 import glob
@@ -103,7 +110,10 @@ dual = [(first[d["id"]], d["decision"]) for d in json.load(open(f"{S2}/decisions
 bp = [(a == "include", b == "include") for a, b in dual]
 po = sum(a == b for a, b in bp) / len(bp)
 pe = sum(sum(a == k for a, _ in bp) * sum(b == k for _, b in bp) for k in (True, False)) / len(bp) ** 2
+L3 = ("include", "exclude", "uncertain"); po3 = sum(a == b for a, b in dual) / len(dual)
+pe3 = sum(sum(a == k for a, _ in dual) * sum(b == k for _, b in dual) for k in L3) / len(dual) ** 2
 stats["screening_dual"] = {"n": len(dual), "agree": sum(a == b for a, b in bp), "kappa": round((po - pe) / (1 - pe), 2),
+                           "kappa_3way": round((po3 - pe3) / (1 - pe3), 2),
                            "include_vs_exclude_flips": sum({a, b} == {"include", "exclude"} for a, b in dual)}
 json.dump(stats, open(f"{OUT}/stage5_map/_map_stats.json", "w"), indent=1)
 

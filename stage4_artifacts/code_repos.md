@@ -21,6 +21,9 @@ soft-prompt-tuning, neuro-symbolic static analysis), repair, and repository/agen
 approaches, prioritizing the study's headline findings plus additional systems chosen for
 representation-class and venue diversity.
 
+> **Revision note (2026-10-09).** Selected during the original study (67 records at that time; the corpus is now 68).
+> The selection is purposive and does not cover every study in the revised strict set. "NONE FOUND" means none was found in one targeted search.
+
 ## 1. Repository table
 
 | System | arXiv ID | Repo | Stars | License | Activity signal |

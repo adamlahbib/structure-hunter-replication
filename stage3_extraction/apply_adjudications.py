@@ -55,6 +55,9 @@ assert "GPT-5 vs GPT-5-mi" in by["2601.10865"]["confound_note"]
 fix_gain("2601.10865", "LLM-derived taint specifications for CodeQL raise recall from 0% (stock CodeQL) to 65.43% (106/162); RQ3 apportions catches (testing split): 76.4% needed only custom sources/sinks, 23.6% also the repaired call graph. CodeQL, not the LLM, performs detection.")
 fix_gain("2501.18160", "Same-agent ablations: no-validator 40TP/38FP (precision 51.28%, our computation from Table 6) and no-abstraction 40.38% (21TP/31FP) vs full 78.43% (40TP/11FP).")
 
+A2_FIXED = ["2607.01138", "2507.16585", "2607.29422", "2512.04106", "2510.02534", "2601.10865", "2501.18160"]
+for aid in A2_FIXED: by[aid]["a2_extraction_error"] = True
+
 # Inconsistencies INSIDE primary studies (not extraction errors): recorded, numbers taken from the tables.
 SRC = {
     "2501.18160": "Text says no-validator FPs 'increase to 31'; Table 6 and its +245.45% give 38.",

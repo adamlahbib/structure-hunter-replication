@@ -1,5 +1,10 @@
 # Stage 3 — Author Adjudication Log (Study 6, 2026-08-30)
 
+> **Historical header (2026-08-30).** The paragraph below predates the GPTScan restoration (amendment D2) and the
+> isolation re-audit (amendment A2). Current totals: 68 records, 261 numeric claims (243 confirmed, 17 wrong, 1
+> unretrievable), and the A2 section at the end of this log. The paper's numbers come from `stage5_map/_map_stats.json`.
+
+
 Independent verification covered **all 67 eligible records, 257 numeric claims** (93.0% confirmed,
 17 wrong, 1 unretrievable — a figure-only heatmap) plus non-blind facet spot-checks; a blind second
 coder re-coded all 67 on three facets. One record (2607.03963 LeanGuard) was skipped by its batch
