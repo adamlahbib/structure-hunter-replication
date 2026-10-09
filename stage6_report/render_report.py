@@ -64,6 +64,7 @@ def table(name):
                "|---|---|---|---|---|---|---|---|---|---|"]
         def cl(t):  # one line per cell; "the record" in audit notes means our original extraction
             t = re.sub(r"\s+", " ", str(t or "")).replace("|", "/")
+            t = t.replace("$", "\\$")  # literal dollars, not pandoc math
             return re.sub(r"\b([Tt])he record('s)?\b", lambda m: ("O" if m.group(1) == "T" else "o") + "ur original extraction" + (m.group(2) or ""), t)
         for a in stats["isolation_audit"]:
             out.append(f"| {a['system']} | {cl(a['model_config'])} | {cl(a['dataset_metric'])} | {cl(a['budget_control'])} | "

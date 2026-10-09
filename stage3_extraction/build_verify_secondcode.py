@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Study 6: build verify_in/ batches (numbers + facets per eligible record) and secondcode_in/
+"""build verify_in/ batches (numbers + facets per eligible record) and secondcode_in/
 batches (BLIND: id+title only) from extraction.json. Usage: build_verify_secondcode.py [base] [nbatch]."""
 import json, sys, os
 

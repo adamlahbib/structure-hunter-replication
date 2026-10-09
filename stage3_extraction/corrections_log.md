@@ -1,4 +1,4 @@
-# Stage 3 — Author Adjudication Log (Study 6, 2026-08-30)
+# Stage 3 — Author Adjudication Log (2026-08-30)
 
 > **Historical header (2026-08-30).** The paragraph below predates the GPTScan restoration (amendment D2) and the
 > isolation re-audit (amendment A2). Current totals: 68 records, 261 numeric claims (243 confirmed, 17 wrong, 1

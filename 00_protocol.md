@@ -1,4 +1,4 @@
-# Review Protocol — Systematic Mapping Study (Study 6)
+# Review Protocol — Systematic Mapping Study
 
 **Working title:** *Does Structure Help the Hunter? A Systematic Mapping of Program Representations and
 Context in LLM Security Analysis.*
@@ -52,7 +52,7 @@ Under Variable Context Windows" (varies context, no structure — must be INCLUD
 empirical study), smart-contract slicing+LLM work (domain boundary); *negative controls (must be excluded
 if retrieved):* DiverseVul (dataset for non-LLM DL, E2), a prompt-only "can GPT find bugs" benchmark with
 no representation/context variation (E1), an agent-hijacking/prompt-injection defense (E3 — program
-Studies 1–4 territory). Recall + control outcomes reported in `search_log.md`.
+related studies territory). Recall + control outcomes reported in `search_log.md`.
 
 **Caps (declared before any draw).** If pre-filter candidates exceed **200**, screening uses a seeded
 random sample of 200 (`seed=20260830`), reported as sampling in PRISMA.
@@ -68,7 +68,7 @@ English, retrievable.
 **Exclude:** **E1** prompt-only LLM security work with neither a representation/context mechanism nor a
 representation/context study (plain "ask the model" benchmarks); **E2** non-LLM structural detection
 (GNN/DL-only; kept as background, not corpus); **E3** agent-loop security — prompt injection, hijacking,
-agent safety (program Studies 1–4 territory); **E4** security *of* LLM-generated code (does the model
+agent safety (related studies territory); **E4** security *of* LLM-generated code (does the model
 write vulnerable code) with no analysis task; **E5** no quantitative result; **E6** duplicate/superseded;
 **E7** not retrievable.
 
@@ -104,7 +104,7 @@ written rule (default to full-text check).
 cross_language), F6, F7, key_numbers(1–3, source+location), confound_note(what varies between compared
 conditions), structure_gain(reported delta vs unstructured baseline, if any, with conditions),
 stop_detail, threats_to_that_datum`. **Full-corpus number verification** + **blind full-corpus second
-coding** (F1-primary, F2, F5) with κ, as Study 4.
+coding** (F1-primary, F2, F5) with κ, related studies.
 
 ## 7. Analysis & synthesis (named)
 
@@ -112,7 +112,7 @@ coding** (F1-primary, F2, F5) with κ, as Study 4.
 2008). Central maps: representation × task cross-tabulation; representation × evaluation-rigor; the RQ4
 "isolation table" (every structure-vs-text comparison and what varies between its arms); classical
 static-analysis idiom crosswalk. **Quality assessment:** none, by design, per Petersen (disclosed);
-F5 captures rigor descriptively. Evidence labels + programmatic counts as Study 5.
+F5 captures rigor descriptively. Evidence labels + programmatic counts as .
 
 ## 8. Threats to validity — Petersen's four categories by name
 
@@ -124,7 +124,7 @@ heterogeneous datasets/metrics — no cross-paper effect pooling; corpus-scoped 
 ## 9. Reporting
 
 Main body ≤ 8 pages (IEEE, split build) + `supplementary.pdf` appendices. AI-tooling disclosure as
-Studies 1–5.
+related studies.
 
 ## 10. Stage map
 

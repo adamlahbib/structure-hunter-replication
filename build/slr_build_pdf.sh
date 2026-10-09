@@ -119,6 +119,7 @@ if MODE=='split':
     open(f'{BASE}/supplementary.tex','w').write(supp.replace('%DOCOPT%',docopt).replace('%TITLE%',TITLE).replace('%AUTH%',auth))
     print('assembled supplementary.tex')
 PY
+rm -f "$BASE/paper.pdf" "$BASE/supplementary.pdf"   # a failed build must not leave a stale PDF behind
 ( cd "$BASE" && tectonic paper.tex --keep-logs 2>&1 | grep -iE "error|could not represent|undefined control" | grep -viE "underfull|overfull|badness|warning: warnings" || true )
 if [ "$MODE" = "split" ]; then
   ( cd "$BASE" && tectonic supplementary.tex --keep-logs 2>&1 | grep -iE "error|could not represent|undefined control" | grep -viE "underfull|overfull|badness|warning: warnings" || true )

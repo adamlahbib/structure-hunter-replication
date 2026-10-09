@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Study 6: author adjudication of the verification pass + blind-second-coder disagreements.
+"""author adjudication of the verification pass + blind-second-coder disagreements.
 Applies accepted corrections onto extraction.json. Decisions and rationale in corrections_log.md.
 Run order: merge_extraction.py -> apply_adjudications.py -> summarize_verification.py -> make_map.py.
 Usage: apply_adjudications.py [base]"""
@@ -114,4 +114,4 @@ for a in audit:
 
 for r in rows: r["adjudicated"] = True  # compute_kappa.py refuses post-adjudication data
 json.dump(rows, open(P, "w"), indent=1)
-print("Study 6 adjudications applied:", len(rows), "records")
+print("adjudications applied:", len(rows), "records")

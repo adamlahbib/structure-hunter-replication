@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Study 6: Cohen's kappa between first coding (extraction.json) and blind second coding
+"""Cohen's kappa between first coding (extraction.json) and blind second coding
 (secondcode_out/batch*.json) for repr_primary, integration, evaluation.
 Usage: compute_kappa.py [base] [kappa_out_json]"""
 import json, glob, sys, collections

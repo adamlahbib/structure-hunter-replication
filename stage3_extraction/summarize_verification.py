@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Study 6: tally verify_out batches -> verification.json + verification_summary.md +
+"""tally verify_out batches -> verification.json + verification_summary.md +
 _needs_adjudication.json. Usage: summarize_verification.py [verify_out_dir] [out_dir]"""
 import json, glob, sys
 
@@ -28,7 +28,7 @@ for f in sorted(glob.glob(f"{VD}/batch*.json")):
 json.dump(out, open(f"{OUT}/verification.json", "w"), indent=1)
 json.dump(needs, open(f"{OUT}/_needs_adjudication.json", "w"), indent=1)
 nch = sum(tot.values()); retr = tot["CONFIRMED"] + tot["WRONG"]
-md = f"""# Stage 3 — Independent Verification Summary (Study 6)
+md = f"""# Stage 3 — Independent Verification Summary
 
 Records verified: {len(out)}. Key numbers checked: {nch}.
 - CONFIRMED: {tot['CONFIRMED']} ({100*tot['CONFIRMED']/nch:.1f}% of checked; {100*tot['CONFIRMED']/retr:.1f}% of retrievable)

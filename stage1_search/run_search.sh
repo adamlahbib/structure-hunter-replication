@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Study 6 stage 1: database search (arXiv + OpenAlex). Strategy 1 of 3 (see 00_protocol.md §2).
+# database search (arXiv + OpenAlex). Strategy 1 of 3 (see 00_protocol.md §2).
 set -u
 # Helpers: github.com/lingzhi227/agent-research-skills @ 9e6c085 (not redistributed). Set ARS_DIR to a checkout.
 DR="${ARS_DIR:?set ARS_DIR to a checkout of agent-research-skills}/skills/deep-research/scripts"
@@ -30,4 +30,4 @@ oa "program representation vulnerability detection large language model" oa_repr
 oa "graph large language model vulnerability detection" oa_graph.jsonl
 oa "static analysis LLM security false positive" oa_static.jsonl
 oa "slicing context vulnerability repair LLM" oa_slice.jsonl
-echo "Study 6 database search done: $(ls "$R" | wc -l) result files"
+echo "database search done: $(ls "$R" | wc -l) result files"

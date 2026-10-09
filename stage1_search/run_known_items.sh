@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Study 6 stage 1: known-item / snowball-seed queries (strategy 2 of 3) + quasi-gold-standard
+# known-item / snowball-seed queries (strategy 2 of 3) + quasi-gold-standard
 # retrieval, incl. borderline cases and negative controls (00_protocol.md §2).
 set -u
 # Helpers: github.com/lingzhi227/agent-research-skills @ 9e6c085 (not redistributed). Set ARS_DIR to a checkout.
@@ -24,4 +24,4 @@ ki "evaluating large language models vulnerability detection variable context wi
 # negative controls (expected exclusions if retrieved):
 ki "DiverseVul new vulnerable source code dataset deep learning" nc_diversevul.jsonl
 ki "prompt injection defense tool-using agent benchmark" nc_injection.jsonl
-echo "Study 6 known-item search done"
+echo "known-item search done"

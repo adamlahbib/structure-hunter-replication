@@ -1,4 +1,4 @@
-# Gold-set recall audit (Study 6)
+# Gold-set recall audit
 
 | Item | Retrieved | Passed pre-filter |
 |---|---|---|

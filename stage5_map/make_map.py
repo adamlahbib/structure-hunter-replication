@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Study 6 stage 5: derive ALL map statistics from extraction.json -> _map_stats.json +
+"""derive ALL map statistics from extraction.json -> _map_stats.json +
 systematic_map.md. Usage: make_map.py [base_with_extraction] [out_base]."""
 import json, sys, os, collections
 

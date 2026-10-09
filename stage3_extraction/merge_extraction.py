@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Study 6: merge extraction chunks -> extraction.json + corpus.jsonl + facet count printout.
+"""merge extraction chunks -> extraction.json + corpus.jsonl + facet count printout.
 Usage: merge_extraction.py [out_base]  (default: the study folder)."""
 import json, glob, sys, os, collections
 
