@@ -1,12 +1,52 @@
 {
- "2403.19096": {"verdict": "R-unmatched-budget", "reason": "Judge the cleanest comparison (Without SCTC vs SCALE): same architecture, structured comment tree adds text, lengths unreported. The cited 'Without SER' arm removes an architecture module."},
- "2409.18395": {"verdict": "R-unmatched-budget", "reason": "Judge the cleaner single-prompt comparison (no context 15% vs CWE detail 31%): same model, added context, length unreported. The cited 63% arm is interactive with human correction and retries."},
- "2501.18160": {"verdict": "component", "reason": "Ablations remove a validator stage or a reasoning step of the prompt procedure; the code shown to the model is unchanged."},
- "2608.03134": {"verdict": "component", "reason": "Removing the knowledge graph also removes the similarity-retrieval stage, graph expansion and an LLM filter/retry step."},
- "2401.15459": {"verdict": "R-unmatched-budget", "reason": "10x512 segment cap rarely binds (~90% of samples below it), so the AST arm usually carries more input."},
- "2406.05892": {"verdict": "not-isolated", "reason": "Adding the graph adds a trained GNN adapter (model dimension 4096->4352, separate training loop); the graph is never LLM input."},
- "2512.04106": {"verdict": "R-strict", "reason": "Equal-shot comparison (10 retrieved vs 10 random examples, same model and template, F1 71.43% vs 65.69%); example count matched, token length unreported (caveat)."},
- "2603.13384": {"verdict": "component", "reason": "Removing the graph-context optimiser removes a stage inside a multi-agent tool loop; the structured arm also uses more tokens (9,410 vs 7,810)."},
- "2501.04510": {"verdict": "not-isolated", "reason": "The paper's ablation removes a trained alignment module (different trained model); the GRACE comparison is a different method."},
- "2512.16538": {"verdict": "R-strict", "reason": "Original vs comment-deleted code, same model and prompt, shorter obfuscated arm. Flagged: varies surface form, not program structure."}
+ "2403.19096": {
+  "verdict": "R-unmatched-budget",
+  "reason": "Judge the cleanest comparison (Without SCTC vs SCALE): same architecture, structured comment tree adds text, lengths unreported. The cited 'Without SER' arm removes an architecture module.",
+  "process": "author reviewed the two arms, a deciding quote and an assistant-proposed verdict; accepted the proposal"
+ },
+ "2409.18395": {
+  "verdict": "R-unmatched-budget",
+  "reason": "Judge the cleaner single-prompt comparison (no context 15% vs CWE detail 31%): same model, added context, length unreported. The cited 63% arm is interactive with human correction and retries.",
+  "process": "author reviewed the two arms, a deciding quote and an assistant-proposed verdict; accepted the proposal"
+ },
+ "2501.18160": {
+  "verdict": "component",
+  "reason": "Ablations remove a validator stage or a reasoning step of the prompt procedure; the code shown to the model is unchanged.",
+  "process": "author reviewed the two arms, a deciding quote and an assistant-proposed verdict; accepted the proposal"
+ },
+ "2608.03134": {
+  "verdict": "component",
+  "reason": "Removing the knowledge graph also removes the similarity-retrieval stage, graph expansion and an LLM filter/retry step.",
+  "process": "author reviewed the two arms, a deciding quote and an assistant-proposed verdict; accepted the proposal"
+ },
+ "2401.15459": {
+  "verdict": "R-unmatched-budget",
+  "reason": "10x512 segment cap rarely binds (~90% of samples below it), so the AST arm usually carries more input.",
+  "process": "author reviewed the two arms, a deciding quote and an assistant-proposed verdict; accepted the proposal"
+ },
+ "2406.05892": {
+  "verdict": "not-isolated",
+  "reason": "Adding the graph adds a trained GNN adapter (model dimension 4096->4352, separate training loop); the graph is never LLM input.",
+  "process": "author reviewed the two arms, a deciding quote and an assistant-proposed verdict; accepted the proposal"
+ },
+ "2512.04106": {
+  "verdict": "R-strict",
+  "reason": "Equal-shot comparison (10 retrieved vs 10 random examples, same model and template, F1 71.43% vs 65.69%); example count matched, token length unreported (caveat).",
+  "process": "author reviewed the two arms, a deciding quote and an assistant-proposed verdict; accepted the proposal"
+ },
+ "2603.13384": {
+  "verdict": "component",
+  "reason": "Removing the graph-context optimiser removes a stage inside a multi-agent tool loop; the structured arm also uses more tokens (9,410 vs 7,810).",
+  "process": "author reviewed the two arms, a deciding quote and an assistant-proposed verdict; accepted the proposal"
+ },
+ "2501.04510": {
+  "verdict": "not-isolated",
+  "reason": "The paper's ablation removes a trained alignment module (different trained model); the GRACE comparison is a different method.",
+  "process": "author reviewed the two arms, a deciding quote and an assistant-proposed verdict; accepted the proposal"
+ },
+ "2512.16538": {
+  "verdict": "R-strict",
+  "reason": "Original vs comment-deleted code, same model and prompt, shorter obfuscated arm. Flagged: varies surface form, not program structure.",
+  "process": "author reviewed the two arms, a deciding quote and an assistant-proposed verdict; accepted the proposal"
+ }
 }

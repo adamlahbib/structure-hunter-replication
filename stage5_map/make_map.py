@@ -74,6 +74,19 @@ stats["isoaudit"] = {"n": n, "agree": sum(x == y for x, y in pa), "kappa": round
                      "n_source_inconsistency": sum(bool(r.get("source_inconsistency")) for r in rows)}
 stats["n_peer_strict"] = sum(1 for r in rows if r.get("peer_reviewed") and r.get("evaluation") == "repr_strict")
 
+# bounded backward-snowballing check (deviation D1): references of the audited studies, screened on title+abstract
+sc = json.load(open(f"{BASE}/stage1_search/_snowball_check.json"))
+scr = json.load(open(f"{BASE}/stage1_search/_snowball_screen.json"))
+corpus_ids = {r["arxiv_id"] for r in rows}
+new = [x for x in scr if not any(i in (x.get("source_id") or "") for i in corpus_ids)]
+stats["snowball"] = {"papers": len(sc["papers"]), "resolved": sum(p["n_refs"] is not None for p in sc["papers"]),
+                     "refs": sum(p["n_refs"] or 0 for p in sc["papers"]), "flagged": len(scr),
+                     "already_in_corpus": len(scr) - len(new),
+                     "include": sum(x["decision"] == "include" for x in new),
+                     "uncertain": sum(x["decision"] == "uncertain" for x in new),
+                     "exclude": sum(x["decision"] == "exclude" for x in new),
+                     "include_doi_only": sum(x["decision"] == "include" and "arXiv" not in (x.get("source_id") or "") for x in new)}
+
 # ---- method facts, each derived from its own source file (no hand-copied numbers)
 import glob
 S3 = f"{BASE}/stage3_extraction"

@@ -1190,6 +1190,17 @@
   "n_source_inconsistency": 6
  },
  "n_peer_strict": 2,
+ "snowball": {
+  "papers": 37,
+  "resolved": 36,
+  "refs": 1903,
+  "flagged": 22,
+  "already_in_corpus": 2,
+  "include": 12,
+  "uncertain": 2,
+  "exclude": 6,
+  "include_doi_only": 7
+ },
  "verification": {
   "records": 68,
   "claims": 261,
